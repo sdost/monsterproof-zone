@@ -16,17 +16,17 @@
 	 * ...
 	 * @author Samuel Dost
 	 */
-	public class Breakout extends Panel
+	public class GPBreakout extends Panel
 	{
 		private var _sm:StateMachine;
 		
-		public function Breakout() 
+		public function GPBreakout() 
 		{		
 			super();
 			
 			_sm = new StateMachine();
 				
-		}//end BasicPreloader() constructor.
+		}//end constructor.
 		
 		public function init(a_params:Object):void
 		{
@@ -56,18 +56,14 @@
 		{
 			AppSettings.instance.removeEventListener(Event.COMPLETE, onConfigReady);
 			
-			// our flashVars were set before we were added to the stage, so, now that we're on the stage, we can start.
-			_myStateMachine.start();
-			
 			trace("Added to Stage.");
 			
 		}//end addedToStage()
 		
 		protected function addStates():void
-		{	
-			_fsm.
+		{
 		}//end addStates()
 		
-	}//end class Breakout
+	}//end class GPBreakout
 	
 }//end package com.bored.games.darts

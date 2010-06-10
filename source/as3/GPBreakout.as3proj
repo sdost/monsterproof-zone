@@ -4,7 +4,7 @@
   <output>
     <movie disabled="False" />
     <movie input="" />
-    <movie path="build\Darts501MP.swf" />
+    <movie path="build\GPBreakout.swf" />
     <movie fps="30" />
     <movie width="700" />
     <movie height="550" />
@@ -53,7 +53,7 @@
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>
-    <element path="libs\BoredEngine.swc" />
+    <element path="libs\MonsterProofEngine.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -73,7 +73,7 @@
   </library>
   <!-- Class files to compile (other referenced classes will automatically be included) -->
   <compileTargets>
-    <compile path="src\com\bored\games\darts\Darts501MP.as" />
+    <compile path="src\com\bored\games\breakout\GPBreakout.as" />
   </compileTargets>
   <!-- Paths to exclude from the Project Explorer tree -->
   <hiddenPaths>

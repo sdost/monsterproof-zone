@@ -17,17 +17,17 @@ package com.bored.games.breakout.actions
 			
 		}//end constructor()
 		
-		public function initParams(a_params:Object):void
+		override public function initParams(a_params:Object):void
 		{
 			
 		}//end initParams()
 
-		public function startAction():void
+		override public function startAction():void
 		{
 			
 		}//end startAction()
 
-		public function update(a_time:Number):void
+		override public function update(a_time:Number):void
 		{
 			
 		}//end update()

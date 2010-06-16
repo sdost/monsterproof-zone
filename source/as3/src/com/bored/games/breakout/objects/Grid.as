@@ -1,7 +1,14 @@
 package com.bored.games.breakout.objects 
 {
+	import Box2D.Collision.Shapes.b2PolygonShape;
+	import Box2D.Collision.Shapes.b2Shape;
+	import Box2D.Dynamics.b2Body;
+	import Box2D.Dynamics.b2BodyDef;
+	import Box2D.Dynamics.b2FixtureDef;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
+	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	
 	/**
 	 * ...
@@ -9,32 +16,56 @@ package com.bored.games.breakout.objects
 	 */
 	public class Grid extends GameElement
 	{
-		public static const GridWidth:int = AppSettings.instance.defaultGridWidth;
-		public static const GridHeight:int = AppSettings.instance.defaultGridHeight;
-		public static const Shift:int = 7; // 2^7 == 128
+		private static const MAX_GRID_OBJECTS:int = 100;
+		
+		private var _gridWidth:int;
+		private var _gridHeight:int;
 		
 		private var _gridObjectList:Vector.<GridObject>;
 		private var _grid:Vector.<int>;
 		
-		public function Grid() 
-		{
-			super();
+		private var _count:int;
 			
-			_gridObjectList = new Vector.<GridObject>();
+		private var _shift:int;
+		
+		public function Grid( a_width:int, a_height:int ) 
+		{
+			_gridWidth = a_width;
+			_gridHeight = a_height;
+			
+			_shift = 0;
+			var minLength:int = _gridWidth * _gridHeight;
+			var powOfTwo:int = 1;
+			while ( powOfTwo < minLength )
+			{
+				powOfTwo *= 2;
+				_shift++;
+			}
+			
+			_gridObjectList = new Vector.<GridObject>(MAX_GRID_OBJECTS, true);
+			
+			_count = 0;
 		
 			generate();			
 		}//end constructor()
 		
+		public function get gridWidth():int
+		{
+			return _gridWidth;
+		}//end get gridWidth()
+		
+		public function get gridHeight():int
+		{
+			return _gridHeight;
+		}//end get gridHeight()
+		
 		private function generate():void
 		{
-			_grid = new Vector.<int>(100 << Shift, true);
+			_grid = new Vector.<int>(100 << _shift, true);
 			
-			for ( var x:int = 0; x < GridWidth; x++)
+			for ( var i:int = 0; i < _grid.length; i++)
 			{
-				for ( var y:int = 0; y < GridHeight; y++)
-				{
-					_grid[(x << Shift) | y] = 0;
-				}
+				_grid[i] = -1;
 			}
 		}//end generate()
 		
@@ -47,35 +78,58 @@ package com.bored.games.breakout.objects
 			
 			if ( a_y < 0 ) return false;
 			
-			if ( rightBounds > GridWidth ) return false;
+			if ( rightBounds > _gridWidth ) return false;
 			
-			if ( bottomBounds > GridHeight ) return false;
+			if ( bottomBounds > _gridHeight ) return false;
 			
-			var ind:uint = _gridObjectList.push(a_obj);
+			var x:int, y:int;
 			
-			for ( var x:int = a_x; x < rightBounds; x++ )
+			for ( x = a_x; x < rightBounds; x++ )
 			{
-				for ( var y:int = a_y; y < bottomBounds; y++ )
+				for ( y = a_y; y < bottomBounds; y++ )
 				{
-					_grid[(x << Shift) | y] = ind;
+					if ( _grid[(x << _shift) | y] >= 0 )
+						return false;
 				}
 			}
+			
+			_gridObjectList[_count] = a_obj;
+			a_obj.setGrid(this);
+			a_obj.gridX = x;
+			a_obj.gridY = y;
+			
+			for ( x = a_x; x < rightBounds; x++ )
+			{
+				for ( y = a_y; y < bottomBounds; y++ )
+				{
+					_grid[(x << _shift) | y] = _count;
+				}
+			}
+			
+			_count++;
 			
 			return true;
 		}//end addGridObject()
 		
-		public function retrieve( a_x:int, a_y:int ):int
+		public function getGridObjectAt( a_x:int, a_y:int ):GridObject
 		{
-			return _grid[(x << Shift) | y];
-		}//end retrieve()
+			if ( a_x < 0 || a_y < 0 ) return null;
+			
+			var ind:int = _grid[(a_x << _shift) | a_y];
+			
+			if( ind >= 0 )
+				return _gridObjectList[ind];
+			else 
+				return null;
+		}//end getGridObjectAt()
 		
 		override public function update(t:Number = 0):void
 		{
 			super.update(t);
 			
-			for each( var obj:GridObject in _gridObjectList )
+			for ( var i:uint = 0; i < _count; i++ )
 			{
-				obj.update(t);
+				_gridObjectList[i].update(t);
 			}
 		}//end update()
 		

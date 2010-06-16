@@ -13,21 +13,22 @@ package com.bored.games.breakout.objects
 	 */
 	public class GridObject extends GameElement
 	{
-		private var _gridWidth:int;
-		private var _gridHeight:int;
+		protected var _grid:Grid;
 		
-		protected var _dispObj:DisplayObject;		
+		protected var _gridX:uint;
+		protected var _gridY:uint;
 		
-		public function GridObject() 
+		protected var _gridWidth:uint;
+		protected var _gridHeight:uint;
+		
+		public function GridObject(a_width:int = 1, a_height:int = 1) 
 		{
 			super();
 			
-			_gridWidth = 1;
-			_gridHeight = 1;
+			_gridWidth = a_width;
+			_gridHeight = a_height;
 			
 			initializeActions();
-			
-			_dispObj = new Bitmap( ImageFactory.getBitmapDataByQualifiedName( AppSettings.instance.defaultBlockBitmap, AppSettings.instance.defaultBlockWidth, AppSettings.instance.defaultBlockHeight ) );
 		}//end constructor()
 		
 		private function initializeActions():void
@@ -35,26 +36,41 @@ package com.bored.games.breakout.objects
 			addAction(new RemoveGridObjectAction(this));
 		}//end initializeActions
 		
-		public function get gridWidth():int
+		public function get gridWidth():uint
 		{
 			return _gridWidth;
 		}//end get gridWidth()
 		
-		public function get gridHeight():int
+		public function get gridHeight():uint
 		{
 			return _gridHeight;
 		}//end get gridHeight()
-	
-		override public function update(t:Number = 0):void
-		{
-			super.update(t);
-		}//end update()
 		
-		public function get display():DisplayObject
+		public function set gridX(a_x:uint):void
 		{
-			return _dispObj;
-		}//end get display()
-				
+			_gridX = a_x;
+		}//end set gridX()
+		
+		public function set gridY(a_y:uint):void
+		{
+			_gridY = a_y;
+		}//end set gridY()
+		
+		public function get gridX():uint
+		{
+			return _gridX;
+		}//end get gridX()
+		
+		public function get gridY():uint
+		{
+			return _gridY;
+		}//end get gridY()
+		
+		public function setGrid(a_grid:Grid):void
+		{
+			_grid = a_grid;
+		}//end setGrid()
+		
 	}//end GridObject
 
 }//end package

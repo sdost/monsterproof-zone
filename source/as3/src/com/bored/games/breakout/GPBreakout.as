@@ -1,6 +1,7 @@
 ﻿package com.bored.games.breakout
 {
 	import com.bored.games.breakout.states.controllers.GameplayController;
+	import com.bored.games.input.Input;
 	import com.bored.services.BoredServices;
 	import com.inassets.statemachines.Finite.FiniteStateMachine;
 	import com.jac.fsm.StateController;
@@ -50,6 +51,9 @@
 		{
 			super.addedToStage();
 			
+			_screen = new MovieClip();
+			addChild(_screen);
+		
 			addStates();
 			
 			stage.align = StageAlign.TOP_LEFT;
@@ -57,8 +61,6 @@
 			AppSettings.instance.load("development.config");
 			
 			AppSettings.instance.addEventListener(Event.COMPLETE, onConfigReady);
-			
-			addChild(_screen);
 		}//end addedToStage()		
 		
 		private function onConfigReady(a_evt:Event):void
@@ -70,8 +72,6 @@
 		
 		protected function addStates():void
 		{
-			_screen = new MovieClip();
-			
 			_sc = new GameplayController(_screen);
 		}//end addStates()
 		

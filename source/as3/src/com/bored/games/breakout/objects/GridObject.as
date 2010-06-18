@@ -46,15 +46,6 @@ package com.bored.games.breakout.objects
 			return _gridHeight;
 		}//end get gridHeight()
 		
-		public function set gridX(a_x:uint):void
-		{
-			_gridX = a_x;
-		}//end set gridX()
-		
-		public function set gridY(a_y:uint):void
-		{
-			_gridY = a_y;
-		}//end set gridY()
 		
 		public function get gridX():uint
 		{
@@ -66,10 +57,24 @@ package com.bored.games.breakout.objects
 			return _gridY;
 		}//end get gridY()
 		
-		public function setGrid(a_grid:Grid):void
+		public function get grid():Grid
+		{
+			return _grid;
+		}//end get grid()
+		
+		public function addToGrid(a_grid:Grid, a_x:uint, a_y:uint):void
 		{
 			_grid = a_grid;
-		}//end setGrid()
+			_gridX = a_x;
+			_gridY = a_y;
+		}//end addToGrid()
+		
+		public function removeFromGrid():void
+		{
+			_grid = null;
+			_gridX = 0;
+			_gridY = 0;
+		}//end addToGrid()
 		
 	}//end GridObject
 

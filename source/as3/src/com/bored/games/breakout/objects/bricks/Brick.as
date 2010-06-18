@@ -2,8 +2,9 @@ package com.bored.games.breakout.objects.bricks
 {
 	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
+	import Box2D.Dynamics.b2Fixture;
+	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.actions.RemoveGridObjectAction;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.objects.TileSet;
@@ -22,7 +23,7 @@ package com.bored.games.breakout.objects.bricks
 		
 		private var _tileSet:TileSet;
 		
-		private var _brickBody:b2Body;
+		private var _brickFixture:b2Fixture;
 		
 		public function Brick(a_width:int = 1, a_height:int = 1, a_tileSet:TileSet = null)
 		{
@@ -37,66 +38,58 @@ package com.bored.games.breakout.objects.bricks
 					AppSettings.instance.defaultTileHeight);
 		}//end constructor()
 		
-		override public function setGrid(a_grid:Grid):void 
+		override public function addToGrid(a_grid:Grid, a_x:uint, a_y:uint):void 
 		{
-			super.setGrid(a_grid);
+			super.addToGrid(a_grid, a_x, a_y);
 			
-			if( this._grid )
-				initializePhysics();
-			else
-				cleanup();
-		}//end setGrid()
+			initializePhysics();
+		}//end addToGrid()
 		
+		override public function removeFromGrid():void
+		{
+			cleanupPhysics();
+			
+			super.removeFromGrid();
+		}//end removeFromGrid()
+				
 		private function initializePhysics():void
 		{
-			var bd:b2BodyDef = new b2BodyDef();
 			var shape:b2PolygonShape = new b2PolygonShape();
 			
-			var bodyWidth:int = this.gridWidth * _tileSet.tileWidth;
-			var bodyHeight:int = this.gridHeight * _tileSet.tileHeight;
+			var b2Width:Number = this.gridWidth * _tileSet.tileWidth;
+			var b2Height:Number = this.gridHeight * _tileSet.tileHeight;
 			
-			shape.SetAsBox( (bodyWidth / PhysicsWorld.PhysScale) / 2,  (bodyHeight / PhysicsWorld.PhysScale) / 2 );
+			var b2X:Number = this.gridX * _tileSet.tileWidth + b2Width / 2;
+			var b2Y:Number = this.gridY * _tileSet.tileHeight + b2Height / 2;			
 			
-			_brickBody = PhysicsWorld.CreateBody(bd);
-			_brickBody.CreateFixture2(shape);
+			shape.SetAsOrientedBox( (b2Width / PhysicsWorld.PhysScale) / 2,  (b2Height / PhysicsWorld.PhysScale) / 2, new b2Vec2( b2X / PhysicsWorld.PhysScale, b2Y / PhysicsWorld.PhysScale ) );
+			
+			var fd:b2FixtureDef = new b2FixtureDef();
+			fd.shape = shape;
+			fd.density = 0.0;
+			fd.userData = this;
+			
+			_brickFixture = _grid.gridBody.CreateFixture(fd);
 		}//end initializePhysics()
 		
-		private function cleanup():void
+		private function cleanupPhysics():void
 		{
-			PhysicsWorld.DestroyBody(_brickBody);
-			
-			_brickBody = null;
-		}//end cleanup()
-		
-		override public function set gridX(value:uint):void 
-		{
-			super.gridX = value;
-			
-			var x:Number = (gridX * tileSet.tileWidth) - (gridWidth / 2 * tileSet.tileWidth);
-			var y:Number = (gridY * tileSet.tileWidth) - (gridHeight / 2 * tileSet.tileHeight);
-			
-			updateBodyPosition( x, y );
-		}//end set gridX()
-		
-		override public function set gridY(value:uint):void 
-		{
-			super.gridY = value;
-			
-			var x:Number = (gridX * tileSet.tileWidth) - (gridWidth / 2 * tileSet.tileWidth);
-			var y:Number = (gridY * tileSet.tileWidth) - (gridHeight / 2 * tileSet.tileHeight);
-			
-			updateBodyPosition( x, y );
-		}//end set gridY()
-		
-		private function updateBodyPosition( a_x:Number, a_y:Number ):void
-		{
-			_brickBody.SetPosition( new b2Vec2(a_x / PhysicsWorld.PhysScale, a_y / PhysicsWorld.PhysScale) );
-		}//end updateBodyPosition()
+			if ( _grid ) 
+			{
+				_grid.gridBody.DestroyFixture(_brickFixture);
+				_brickFixture = null;
+			}
+		}//end cleanupPhysics()
 		
 		public function get tileSet():TileSet
 		{
 			return _tileSet;
 		}//end get tileSet()
+		
+		public function notifyHit():void
+		{
+			activateAction(RemoveGridObjectAction.NAME);
+		}//end notifyHit()
 		
 	}//end Brick
 

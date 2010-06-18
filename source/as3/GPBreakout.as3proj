@@ -6,8 +6,8 @@
     <movie input="" />
     <movie path="build\GPBreakout.swf" />
     <movie fps="30" />
-    <movie width="700" />
-    <movie height="550" />
+    <movie width="672" />
+    <movie height="544" />
     <movie version="10" />
     <movie background="#000000" />
   </output>
@@ -43,14 +43,7 @@
   </build>
   <!-- SWC Include Libraries -->
   <includeLibraries>
-    <element path="libs\DartsEngine.swc" />
-    <element path="libs\Confirm_Screen.swc" />
-    <element path="libs\DartUVs.swc" />
-    <element path="libs\Fonts.swc" />
-    <element path="libs\GameplayScreen.swc" />
-    <element path="libs\HUDAssets.swc" />
-    <element path="libs\Portraits.swc" />
-    <element path="libs\Sounds.swc" />
+    <!-- example: <element path="..." /> -->
   </includeLibraries>
   <!-- SWC Libraries -->
   <libraryPaths>

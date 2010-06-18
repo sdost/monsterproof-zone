@@ -3,11 +3,14 @@ package com.bored.games.breakout.physics
 	import Box2D.Collision.b2AABB;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
+	import Box2D.Dynamics.b2ContactListener;
 	import Box2D.Dynamics.b2DebugDraw;
 	import Box2D.Dynamics.b2World;
 	import Box2D.Dynamics.b2Fixture;
 	import Box2D.Collision.Shapes.b2Shape;
 	import Box2D.Dynamics.b2BodyDef;
+	import Box2D.Dynamics.Joints.b2Joint;
+	import Box2D.Dynamics.Joints.b2JointDef;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	/**
@@ -27,9 +30,14 @@ package com.bored.games.breakout.physics
 		
 		public static function InitializePhysics():void
 		{
-			_world = new b2World( new b2Vec2(), _doSleep );
+			_world = new b2World( new b2Vec2(0, 0), _doSleep );
 			_world.SetWarmStarting(true);
 		}//end InitializePhysics()
+		
+		public static function SetContactListener(a_listener:b2ContactListener):void
+		{
+			_world.SetContactListener(a_listener);
+		}//end SetContactListener()
 		
 		public static function SetDebugDraw(a_sprite:Sprite):void
 		{
@@ -52,6 +60,16 @@ package com.bored.games.breakout.physics
 			return _world.CreateBody(a_def);
 		}//end CreateBody()
 		
+		public static function CreateJoint( a_def:b2JointDef ):b2Joint
+		{
+			return _world.CreateJoint(a_def);
+		}//end CreateJoint()
+		
+		public static function GetGroundBody():b2Body
+		{
+			return _world.GetGroundBody();
+		}//end GetGroundBody()
+		
 		public static function UpdateWorld():void
 		{
 			if ( _world )
@@ -67,6 +85,11 @@ package com.bored.games.breakout.physics
 		{
 			_world.DestroyBody(a_body);				
 		}//end CleanupBody()
+		
+		public static function IsLocked():Boolean
+		{
+			return _world.IsLocked();
+		}//end IsLocked()
 		
 	}//end PhysicsWorld
 

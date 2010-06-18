@@ -1,6 +1,8 @@
 package com.bored.games.breakout.actions 
 {
 	import com.bored.games.actions.Action;
+	import com.bored.games.breakout.objects.Grid;
+	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.objects.GameElement;
 	
 	/**
@@ -9,7 +11,7 @@ package com.bored.games.breakout.actions
 	 */
 	public class RemoveGridObjectAction extends Action
 	{
-		public static var NAME:String = "com.bored.games.breakout.actions.RemoveGridObjectAction";
+		public static const NAME:String = "com.bored.games.breakout.actions.RemoveGridObjectAction";
 		
 		public function RemoveGridObjectAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
@@ -24,7 +26,14 @@ package com.bored.games.breakout.actions
 
 		override public function startAction():void
 		{
+			var grid:Grid = (_gameElement as GridObject).grid;
 			
+			if ( grid ) 
+			{
+				grid.removeGridObject( _gameElement as GridObject );
+			}
+			
+			this._finished = true;
 		}//end startAction()
 
 		override public function update(a_time:Number):void

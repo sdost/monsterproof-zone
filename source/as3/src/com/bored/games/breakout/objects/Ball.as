@@ -5,7 +5,6 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
-	import com.bored.games.breakout.actions.MoveBall;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
 	import flash.display.Bitmap;
@@ -42,6 +41,7 @@ package com.bored.games.breakout.objects
 			fd.density = 1.0;
 			fd.friction = 0.0;
 			fd.restitution = 1.0;
+			fd.userData = this;
 			
 			_ballBody = PhysicsWorld.CreateBody(bd);
 			_ballBody.CreateFixture(fd);
@@ -61,11 +61,6 @@ package com.bored.games.breakout.objects
 		{
 			return _ballBmp;
 		}//end get bitmap()
-		
-		private function updateBodyPosition( a_x:Number, a_y:Number ):void
-		{
-			_ballBody.SetPosition( new b2Vec2(a_x / PhysicsWorld.PhysScale, a_y / PhysicsWorld.PhysScale) );
-		}//end updateBodyPosition()
 		
 		override public function get width():Number
 		{

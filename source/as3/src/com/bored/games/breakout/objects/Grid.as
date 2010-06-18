@@ -5,6 +5,7 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
 	import flash.geom.Point;
@@ -22,7 +23,10 @@ package com.bored.games.breakout.objects
 		private var _gridHeight:int;
 		
 		private var _gridObjectList:Vector.<GridObject>;
+		private var _gridRemoveList:Vector.<GridObject>;
 		private var _grid:Vector.<int>;
+		
+		private var _gridBody:b2Body;
 		
 		private var _count:int;
 			
@@ -43,11 +47,27 @@ package com.bored.games.breakout.objects
 			}
 			
 			_gridObjectList = new Vector.<GridObject>(MAX_GRID_OBJECTS, true);
+			_gridRemoveList = new Vector.<GridObject>();
 			
 			_count = 0;
 		
-			generate();			
+			generate();
+			
+			initializePhysics();
 		}//end constructor()
+		
+		private function initializePhysics():void
+		{
+			var bd:b2BodyDef = new b2BodyDef();
+			bd.type = b2Body.b2_staticBody;
+			
+			_gridBody = PhysicsWorld.CreateBody(bd);
+		}//end initializePhysics()
+		
+		public function get gridBody():b2Body
+		{
+			return _gridBody;
+		}//end function get gridBody()
 		
 		public function get gridWidth():int
 		{
@@ -93,23 +113,47 @@ package com.bored.games.breakout.objects
 				}
 			}
 			
-			_gridObjectList[_count] = a_obj;
-			a_obj.setGrid(this);
-			a_obj.gridX = x;
-			a_obj.gridY = y;
+			var i:uint;
+			for ( i = 0; i < MAX_GRID_OBJECTS; i++ )
+			{
+				if ( _gridObjectList[i] == null ) break;
+			}
+			_gridObjectList[i] = a_obj;
+			a_obj.addToGrid(this, a_x, a_y);
 			
 			for ( x = a_x; x < rightBounds; x++ )
 			{
 				for ( y = a_y; y < bottomBounds; y++ )
 				{
-					_grid[(x << _shift) | y] = _count;
+					_grid[(x << _shift) | y] = i;
 				}
 			}
 			
-			_count++;
-			
 			return true;
 		}//end addGridObject()
+		
+		public function removeGridObject(a_go:GridObject):Boolean
+		{
+			var ind:uint = _gridObjectList.indexOf(a_go);
+			if ( ind < 0 ) return false;
+			
+			var rightBounds:int = a_go.gridX + a_go.gridWidth;
+			var bottomBounds:int = a_go.gridY + a_go.gridHeight;
+			
+			var x:int, y:int;
+			
+			for ( x = a_go.gridX; x < rightBounds; x++ )
+			{
+				for ( y = a_go.gridY; y < bottomBounds; y++ )
+				{
+					_grid[(x << _shift) | y] = -1; 
+				}
+			}			
+			
+			_gridRemoveList.push(a_go);
+			
+			return true;
+		}//end removeGridObject()
 		
 		public function getGridObjectAt( a_x:int, a_y:int ):GridObject
 		{
@@ -127,9 +171,19 @@ package com.bored.games.breakout.objects
 		{
 			super.update(t);
 			
-			for ( var i:uint = 0; i < _count; i++ )
+			var go:GridObject;
+			while( _gridRemoveList.length > 0 )
 			{
-				_gridObjectList[i].update(t);
+				go = _gridRemoveList.pop();
+				var ind:uint = _gridObjectList.indexOf(go);
+				_gridObjectList[ind] = null;
+				go.removeFromGrid();
+			}
+			
+			for ( var i:uint = 0; i < _gridObjectList.length; i++ )
+			{
+				if( _gridObjectList[i] )
+					_gridObjectList[i].update(t);
 			}
 		}//end update()
 		

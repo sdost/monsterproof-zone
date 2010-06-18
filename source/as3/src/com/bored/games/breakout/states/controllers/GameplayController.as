@@ -2,6 +2,7 @@ package com.bored.games.breakout.states.controllers
 {
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.breakout.states.views.HUDView;
+	import com.bored.games.input.Input;
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
 	import flash.display.MovieClip;
@@ -15,9 +16,12 @@ package com.bored.games.breakout.states.controllers
 	{
 		private var _gameView:StateView;
 		private var _hudView:StateView;
+		private var _input:Input;
 		
 		public function GameplayController(a_container:MovieClip) 
 		{			
+			_input = new Input(a_container);
+			
 			_gameView = new GameView();
 			_hudView = new HUDView();
 			
@@ -29,6 +33,8 @@ package com.bored.games.breakout.states.controllers
 		private function onEnterFrame(e:Event):void
 		{
 			this.update();
+			
+			Input.update();
 		}//end onEnterFrame()
 		
 	}//end GameplayController

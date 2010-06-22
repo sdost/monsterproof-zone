@@ -17,7 +17,7 @@ package com.bored.games.breakout.objects
 	 */
 	public class Grid extends GameElement
 	{
-		private static const MAX_GRID_OBJECTS:int = 100;
+		private static const MAX_GRID_OBJECTS:int = 1000;
 		
 		private var _gridWidth:int;
 		private var _gridHeight:int;

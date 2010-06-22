@@ -23,6 +23,8 @@ package com.bored.games.breakout.objects
 		
 		private var _ballBody:b2Body;
 		
+		private var _speedLimit:Number = 50;
+		
 		public function Ball()
 		{
 			_ballBmp = new imgCls();
@@ -35,9 +37,11 @@ package com.bored.games.breakout.objects
 		{
 			var bd:b2BodyDef = new b2BodyDef();
 			bd.type = b2Body.b2_dynamicBody;
+			bd.fixedRotation = true;
+			bd.allowSleep = false;
 			
 			var fd:b2FixtureDef = new b2FixtureDef();
-			fd.shape = new b2CircleShape( 13 / PhysicsWorld.PhysScale );
+			fd.shape = new b2CircleShape( (_ballBmp.bitmapData.width / 2) / PhysicsWorld.PhysScale );
 			fd.density = 1.0;
 			fd.friction = 0.0;
 			fd.restitution = 1.0;
@@ -80,6 +84,16 @@ package com.bored.games.breakout.objects
 			
 			this.x = pos.x * PhysicsWorld.PhysScale;
 			this.y = pos.y * PhysicsWorld.PhysScale;
+			
+			var bodyVelocity:b2Vec2 =_ballBody.GetLinearVelocity();
+			if (bodyVelocity.Length() > _speedLimit) {
+				var limitVelocity:b2Vec2 = bodyVelocity.Copy();
+				limitVelocity.Normalize();
+				limitVelocity.Multiply(_speedLimit);
+				var velocityDifference:b2Vec2 = bodyVelocity.Copy()
+				velocityDifference.Subtract(limitVelocity);
+				_ballBody.ApplyImpulse(velocityDifference.GetNegative(), _ballBody.GetPosition());
+			}
 		}//end update()
 		
 	}//end Ball

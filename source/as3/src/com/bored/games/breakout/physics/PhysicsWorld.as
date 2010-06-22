@@ -22,9 +22,9 @@ package com.bored.games.breakout.physics
 		private static var _world:b2World;
 		private static var _doSleep:Boolean = true;
 		
-		private static var _timeStep:Number = 1.0 / 30.0;
-		private static var _velIterations:int = 10;
-		private static var _posIterations:int = 10;
+		private static var _timeStep:Number = 1.0 / 60.0;
+		private static var _velIterations:int = 20;
+		private static var _posIterations:int = 20;
 		
 		private static var _physScale:Number = 30;
 		

@@ -7,6 +7,8 @@ package com.bored.games.breakout.states.controllers
 	import com.jac.fsm.StateViewController;
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.events.TimerEvent;
+	import flash.utils.Timer;
 	
 	/**
 	 * ...
@@ -18,6 +20,8 @@ package com.bored.games.breakout.states.controllers
 		private var _hudView:StateView;
 		private var _input:Input;
 		
+		private var _updateTimer:Timer;
+		
 		public function GameplayController(a_container:MovieClip) 
 		{			
 			_input = new Input(a_container);
@@ -27,10 +31,12 @@ package com.bored.games.breakout.states.controllers
 			
 			super([_gameView, _hudView], a_container);
 			
-			this.container.addEventListener(Event.ENTER_FRAME, onEnterFrame, false, 0, true);
+			_updateTimer = new Timer(16);
+			_updateTimer.addEventListener(TimerEvent.TIMER, timerUpdate, false, 0, true);
+			_updateTimer.start();
 		}//end constructor()
 		
-		private function onEnterFrame(e:Event):void
+		private function timerUpdate(e:Event):void
 		{
 			this.update();
 			

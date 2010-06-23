@@ -16,6 +16,7 @@
     <class path="src" />
     <class path="..\..\..\Box2DFlashAS3 2.1a\Source" />
     <class path="..\..\..\SWFExplorer 0.6\src" />
+    <class path="..\..\..\Flint_2_1_4_source" />
   </classpaths>
   <!-- Build options -->
   <build>

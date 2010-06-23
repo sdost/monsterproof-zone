@@ -23,7 +23,7 @@ package com.bored.games.breakout.objects
 		
 		private var _ballBody:b2Body;
 		
-		private var _speedLimit:Number = 50;
+		public static const SpeedLimit:Number = 25;
 		
 		public function Ball()
 		{
@@ -86,10 +86,10 @@ package com.bored.games.breakout.objects
 			this.y = pos.y * PhysicsWorld.PhysScale;
 			
 			var bodyVelocity:b2Vec2 =_ballBody.GetLinearVelocity();
-			if (bodyVelocity.Length() > _speedLimit) {
+			if (bodyVelocity.Length() > SpeedLimit) {
 				var limitVelocity:b2Vec2 = bodyVelocity.Copy();
 				limitVelocity.Normalize();
-				limitVelocity.Multiply(_speedLimit);
+				limitVelocity.Multiply(SpeedLimit);
 				var velocityDifference:b2Vec2 = bodyVelocity.Copy()
 				velocityDifference.Subtract(limitVelocity);
 				_ballBody.ApplyImpulse(velocityDifference.GetNegative(), _ballBody.GetPosition());

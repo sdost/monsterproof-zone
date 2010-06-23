@@ -50,6 +50,16 @@ package com.bored.games.breakout.objects
 			}
 		}//end get currFrame()
 		
+		override public function get width():Number 
+		{
+			return _frames_BMD[_currFrameInd].width;
+		}//end get width()
+		
+		override public function get height():Number
+		{
+			return _frames_BMD[_currFrameInd].height;
+		}//end get height()
+		
 	}//end BrickSprite
 
 }//end package

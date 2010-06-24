@@ -4,14 +4,15 @@ package com.bored.games.breakout.objects.bricks
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Fixture;
 	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.actions.DisintegrateBrickAction;
 	import com.bored.games.breakout.actions.RemoveGridObjectAction;
-	import com.bored.games.breakout.objects.BrickSprite;
+	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
-	import com.bored.games.breakout.objects.TileSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.sven.utils.AppSettings;
 	import com.sven.utils.ImageFactory;
+	import org.flintparticles.common.renderers.Renderer;
 	
 	/**
 	 * ...
@@ -21,9 +22,11 @@ package com.bored.games.breakout.objects.bricks
 	{
 		private var _brickFixture:b2Fixture;
 		
-		private var _brickSprite:BrickSprite;
+		private var _brickSprite:AnimatedSprite;
 		
-		public function Brick(a_width:int, a_height:int, a_sprite:BrickSprite)
+		private var _disintegrate:DisintegrateBrickAction;
+		
+		public function Brick(a_width:int, a_height:int, a_sprite:AnimatedSprite)
 		{
 			super(a_width, a_height);
 			
@@ -43,6 +46,14 @@ package com.bored.games.breakout.objects.bricks
 			
 			super.removeFromGrid();
 		}//end removeFromGrid()
+		
+		override protected function initializeActions():void 
+		{
+			super.initializeActions();
+			
+			_disintegrate = new DisintegrateBrickAction(this);
+			addAction(_disintegrate);
+		}//end initializeActions()
 				
 		private function initializePhysics():void
 		{
@@ -73,14 +84,25 @@ package com.bored.games.breakout.objects.bricks
 			}
 		}//end cleanupPhysics()
 		
-		public function get brickSprite():BrickSprite
+		public function get brickSprite():AnimatedSprite
 		{
 			return _brickSprite;
 		}//end get brickSprite()
 		
-		public function notifyHit():void
+		public function notifyHit(a_renderer:Renderer, a_ballX:Number, a_ballY:Number, a_ballSpeed:Number):void
 		{
 			activateAction(RemoveGridObjectAction.NAME);
+			
+			var obj:Object = 
+			{
+				renderer: a_renderer,
+				ballX: a_ballX,
+				ballY: a_ballY,
+				ballSpeed: a_ballSpeed
+			};
+				
+			_disintegrate.initParams(obj);
+			activateAction(DisintegrateBrickAction.NAME);
 		}//end notifyHit()
 		
 		override public function update(t:Number = 0):void 

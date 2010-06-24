@@ -13,10 +13,10 @@ package com.bored.games.breakout.states.views
 	import Box2D.Dynamics.Joints.b2MouseJoint;
 	import Box2D.Dynamics.Joints.b2MouseJointDef;
 	import com.bored.games.breakout.emitters.BrickCrumbs;
-	import com.bored.games.breakout.factories.BrickSpriteFactory;
+	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.bricks.Brick;
-	import com.bored.games.breakout.objects.BrickSprite;
+	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.objects.Paddle;
@@ -43,12 +43,31 @@ package com.bored.games.breakout.states.views
 	import flash.net.URLRequest;
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
+	import org.flintparticles.common.actions.Fade;
 	import org.bytearray.explorer.events.SWFExplorerEvent;
 	import org.bytearray.explorer.SWFExplorer;
+	import org.flintparticles.common.actions.Age;
+	import org.flintparticles.common.counters.Blast;
+	import org.flintparticles.common.counters.Steady;
+	import org.flintparticles.common.counters.TimePeriod;
+	import org.flintparticles.common.displayObjects.Line;
+	import org.flintparticles.common.easing.Quadratic;
 	import org.flintparticles.common.events.EmitterEvent;
+	import org.flintparticles.common.initializers.ColorInit;
+	import org.flintparticles.common.initializers.Lifetime;
+	import org.flintparticles.common.initializers.SharedImage;
+	import org.flintparticles.twoD.actions.Accelerate;
+	import org.flintparticles.twoD.actions.LinearDrag;
+	import org.flintparticles.twoD.actions.RandomDrift;
+	import org.flintparticles.twoD.activities.FollowDisplayObject;
+	import org.flintparticles.twoD.initializers.Velocity;
+	import org.flintparticles.twoD.actions.Move;
+	import org.flintparticles.twoD.actions.RotateToDirection;
 	import org.flintparticles.twoD.emitters.Emitter2D;
 	import org.flintparticles.twoD.renderers.BitmapRenderer;
 	import org.flintparticles.twoD.renderers.PixelRenderer;
+	import org.flintparticles.twoD.zones.DiscZone;
+	import org.flintparticles.twoD.zones.DisplayObjectZone;
 	
 	/**
 	 * ...
@@ -66,12 +85,14 @@ package com.bored.games.breakout.states.views
 		
 		private var _gameScreen:Bitmap;
 		
-		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Background_BMP')]
-		private var _bkgdBmpCls:Class;
-		private var _bkgdBmp:Bitmap;
+		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Background_MC')]
+		private var _bkgdMCCls:Class;		
+		private var _backgroundAnimation:AnimatedSprite;
 		
 		private var _backBuffer:BitmapData;
 		private var _effectsBuffer:BitmapData;
+		
+		private var _ballSparks:Emitter2D;
 		
 		private var _particleRenderer:PixelRenderer;
 		
@@ -79,7 +100,8 @@ package com.bored.games.breakout.states.views
 		private var _blurFilter:BlurFilter;
 		
 		private var _brickSprites:Dictionary;
-		private var _brickSpritesVector:Vector.<BrickSprite>;
+		
+		private var _animatedSprites:Vector.<AnimatedSprite>;
 		
 		private var _spriteLoader:Loader;
 		private var _spriteExplorer:SWFExplorer;
@@ -111,7 +133,11 @@ package com.bored.games.breakout.states.views
 		{
 			super.addedToStageHandler(e);
 			
-			_bkgdBmp = new _bkgdBmpCls();
+			_backgroundAnimation = AnimatedSpriteFactory.generateAnimatedSprite(new _bkgdMCCls());
+			
+			_animatedSprites = new Vector.<AnimatedSprite>();
+			
+			_animatedSprites.push(_backgroundAnimation);
 			
 			_glowFilter = new GlowFilter(0xFFFFFF, 1, 2, 2, 2, 5, true);
 			_blurFilter = new BlurFilter(2, 2, 5);
@@ -133,8 +159,29 @@ package com.bored.games.breakout.states.views
 			_spriteLoader.load( new URLRequest("../assets/BrickSpriteLibrary.swf") );
 			
 			_particleRenderer = new PixelRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight) );
-			//_particleRenderer.addFilter( _blurFilter, true );
 			addChild(_particleRenderer);
+			
+			/*
+			_ballSparks = new Emitter2D();
+			
+			_ballSparks.counter = new TimePeriod(50, 0.3, Quadratic.easeOut );
+			
+			_ballSparks.addInitializer( new ColorInit( 0xFFFFCC00, 0xFFFFCC00 ) );
+			_ballSparks.addInitializer( new Velocity( new DiscZone( new Point(), 20, 10 ) ) );
+			_ballSparks.addInitializer( new Lifetime( 0.2, 0.4 ) );
+			
+			_ballSparks.addAction( new RandomDrift( 20, 20 ) );
+			_ballSparks.addAction( new Fade() );
+			_ballSparks.addAction( new Age() );
+			_ballSparks.addAction( new Move() );
+			_ballSparks.addAction( new RotateToDirection() );
+			_ballSparks.addAction( new Accelerate(0, 200) );
+			_ballSparks.addAction( new LinearDrag(0.5) );
+			
+			_ballSparks.addActivity( new FollowDisplayObject(_ball, _particleRenderer) );
+			
+			_particleRenderer.addEmitter(_ballSparks);
+			*/
 			
 			stage.invalidate();
 			
@@ -208,16 +255,15 @@ package com.bored.games.breakout.states.views
 		
 		private function spriteAssetsParsed(e:SWFExplorerEvent):void
 		{
-			_brickSpritesVector = new Vector.<BrickSprite>(e.definitions.length, true);
 			_brickSprites = new Dictionary(true);
 			
 			for ( var i:int = 0; i < e.definitions.length; i++ )
 			{
 				var cls:Class = _spriteLoader.contentLoaderInfo.applicationDomain.getDefinition(e.definitions[i]) as Class;
 				
-				var bs:BrickSprite = BrickSpriteFactory.generateBrickSprite(new cls() as MovieClip);
+				var bs:AnimatedSprite = AnimatedSpriteFactory.generateAnimatedSprite(new cls() as MovieClip);
 				
-				_brickSpritesVector[i] = bs;
+				_animatedSprites.push(bs);
 				_brickSprites[e.definitions[i]] = bs;
 			}
 			
@@ -267,21 +313,17 @@ package com.bored.games.breakout.states.views
 		
 		private function renderFrame(e:Event):void
 		{
-			for each( var bs:BrickSprite in _brickSpritesVector )
+			for each( var sprite:AnimatedSprite in _animatedSprites )
 			{
-				bs.update();
+				sprite.update();
 			}
 			
 			var go:GridObject;
 			var objectDrawn:Vector.<GridObject> = new Vector.<GridObject>();
-
-			//_effectsBuffer.fillRect(_effectsBuffer.rect, 0x00000000);
-			_effectsBuffer.copyPixels( _ball.bitmap.bitmapData, _ball.bitmap.bitmapData.rect, new Point( _ball.x - _ball.width / 2, _ball.y - _ball.height / 2 ), null, null, true );
-			_effectsBuffer.applyFilter( _effectsBuffer, _effectsBuffer.rect, new Point(), _glowFilter );
-			_effectsBuffer.applyFilter( _effectsBuffer, _effectsBuffer.rect, new Point(), _blurFilter );
 			
-			_backBuffer.copyPixels( _bkgdBmp.bitmapData, _bkgdBmp.bitmapData.rect, new Point(), null, null, true );
-			_backBuffer.copyPixels( _effectsBuffer, _effectsBuffer.rect, new Point(), null, null, true);
+			_backBuffer.copyPixels( _backgroundAnimation.currFrame, _backgroundAnimation.currFrame.rect, new Point(), null, null, true );
+			_backBuffer.copyPixels( _ball.bitmap.bitmapData, _ball.bitmap.bitmapData.rect, new Point( _ball.x - _ball.width / 2, _ball.y - _ball.height / 2 ), null, null, true );
+
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
 			{
 				for ( var j:int = 0; j < _grid.gridHeight; j++ )
@@ -299,8 +341,6 @@ package com.bored.games.breakout.states.views
 				
 			_backBuffer.copyPixels( _paddle.bitmap.bitmapData, _paddle.bitmap.bitmapData.rect, new Point( _paddle.x - _paddle.width / 2, _paddle.y - _paddle.height / 2 ), null, null, true );
 			
-			//_backBuffer.copyPixels( _particleRenderer.bitmapData, _backBuffer.rect, new Point(), null, null, true );
-			
 			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());			
 		}//end render()
 		
@@ -316,7 +356,7 @@ package com.bored.games.breakout.states.views
 						
 			_grid.update();
 			_ball.update();
-			_paddle.update();			
+			_paddle.update();
 			
 			if ( Contacts.length > 0 ) 
 			{
@@ -324,12 +364,9 @@ package com.bored.games.breakout.states.views
 				var data:* = f.GetUserData();
 				if ( data && data is Brick )
 				{
-					data.notifyHit();
+					//_ballSparks.start();
 					
-					var emitter:BrickCrumbs = new BrickCrumbs(data, _ball.x, _ball.y, _ball.physicsBody.GetLinearVelocity().Length());
-					emitter.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter, false, 0, true );
-					_particleRenderer.addEmitter(emitter);
-					emitter.start();
+					data.notifyHit(_particleRenderer, _ball.x, _ball.y, _ball.physicsBody.GetLinearVelocity().Length());
 				}
 			}
 			
@@ -341,14 +378,8 @@ package com.bored.games.breakout.states.views
 				}
 			}	
 			
-			if( stage )
-				stage.invalidate();
+			if( stage )	stage.invalidate();
 		}//end update()
-		
-		private function removeEmitter( e:EmitterEvent ):void
-		{
-			_particleRenderer.removeEmitter( Emitter2D( e.target ) );
-		}//end killEmitter()
 		
 		private function UpdateMouseWorld():void
 		{

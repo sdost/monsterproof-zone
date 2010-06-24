@@ -1,6 +1,7 @@
 package com.bored.games.breakout.physics 
 {
 	import Box2D.Collision.b2AABB;
+	import Box2D.Common.b2Settings;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2ContactListener;

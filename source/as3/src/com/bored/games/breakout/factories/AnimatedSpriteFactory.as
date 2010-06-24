@@ -1,18 +1,18 @@
 package com.bored.games.breakout.factories 
 {
-	import com.bored.games.breakout.objects.BrickSprite;
+	import com.bored.games.breakout.objects.AnimatedSprite;
 	import flash.display.BitmapData;
 	import flash.display.MovieClip;
 	/**
 	 * ...
 	 * @author sam
 	 */
-	public class BrickSpriteFactory
+	public class AnimatedSpriteFactory
 	{
 		
-		public static function generateBrickSprite( clip:MovieClip ):BrickSprite
+		public static function generateAnimatedSprite( clip:MovieClip ):AnimatedSprite
 		{
-			var sprite:BrickSprite = new BrickSprite();
+			var sprite:AnimatedSprite = new AnimatedSprite(clip.totalFrames);
 			
 			var bmd:BitmapData = new BitmapData(clip.width, clip.height);
 			
@@ -30,8 +30,8 @@ package com.bored.games.breakout.factories
 			bmd = null;
 			
 			return sprite;
-		}//end generateBrickSprite()
+		}//end generateAnimatedSprite()
 		
-	}//end BrickSpriteFactory
+	}//end AnimatedSpriteFactory
 
 }//end package

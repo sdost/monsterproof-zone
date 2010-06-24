@@ -5,7 +5,7 @@
     <movie disabled="False" />
     <movie input="" />
     <movie path="build\GPBreakout.swf" />
-    <movie fps="30" />
+    <movie fps="45" />
     <movie width="672" />
     <movie height="544" />
     <movie version="10" />

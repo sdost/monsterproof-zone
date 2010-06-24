@@ -7,21 +7,21 @@ package com.bored.games.breakout.objects
 	 * ...
 	 * @author sam
 	 */
-	public class BrickSprite extends GameElement
+	public class AnimatedSprite extends GameElement
 	{
 		private var _frames_BMD:Vector.<BitmapData>;
 		
 		private var _currFrameInd:uint;
 		private var _totalFrames:uint;
 		
-		public function BrickSprite() 
+		public function AnimatedSprite(a_frames:uint) 
 		{
 			super();
 			
-			_frames_BMD = new Vector.<BitmapData>(30, true);
+			_frames_BMD = new Vector.<BitmapData>(a_frames, true);
 			_currFrameInd = 0;
 			_totalFrames = 0;
-		}//end contructor()
+		}//end constructor()
 		
 		public function addFrame(a_bmd:BitmapData):void
 		{
@@ -60,6 +60,6 @@ package com.bored.games.breakout.objects
 			return _frames_BMD[_currFrameInd].height;
 		}//end get height()
 		
-	}//end BrickSprite
+	}//end AnimatedSprite
 
 }//end package

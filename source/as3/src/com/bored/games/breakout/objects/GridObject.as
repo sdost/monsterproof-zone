@@ -31,7 +31,7 @@ package com.bored.games.breakout.objects
 			initializeActions();
 		}//end constructor()
 		
-		private function initializeActions():void
+		protected function initializeActions():void
 		{
 			addAction(new RemoveGridObjectAction(this));
 		}//end initializeActions

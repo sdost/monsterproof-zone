@@ -52,7 +52,7 @@ package com.bored.games.breakout.emitters
 			var particles:Array = Particle2DUtils.createPixelParticlesFromBitmapData(a_brick.brickSprite.currFrame, this.particleFactory, xOffset, yOffset);
 			addExistingParticles(particles, true);
 			
-			addAction( new Explosion( 2 * a_speed / Ball.SpeedLimit, a_x, a_y, 1000) );
+			addAction( new Explosion( 1 * a_speed / Ball.SpeedLimit, a_x, a_y, 1000) );
 			addAction( new RandomDrift( 30.0, 30.0 ) );
 			addAction( new LinearDrag( 0.5 ) );
 		}//end constructor()

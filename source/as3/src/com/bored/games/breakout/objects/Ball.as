@@ -38,6 +38,7 @@ package com.bored.games.breakout.objects
 			var bd:b2BodyDef = new b2BodyDef();
 			bd.type = b2Body.b2_dynamicBody;
 			bd.fixedRotation = true;
+			bd.bullet = true;
 			bd.allowSleep = false;
 			
 			var fd:b2FixtureDef = new b2FixtureDef();

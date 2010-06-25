@@ -37,7 +37,7 @@ package com.bored.games.breakout.emitters
 	public class BrickCrumbs extends Emitter2D
 	{
 		
-		public function BrickCrumbs( a_brick:Brick, a_x:Number, a_y:Number, a_speed:Number )
+		public function BrickCrumbs( a_brick:Brick )
 		{			
 			addInitializer( new Lifetime( 0.0, 1.0 ) );
 			
@@ -49,10 +49,18 @@ package com.bored.games.breakout.emitters
 			var xOffset:Number = a_brick.gridX * AppSettings.instance.defaultTileWidth;
 			var yOffset:Number = a_brick.gridY * AppSettings.instance.defaultTileHeight;
 			
-			var particles:Array = Particle2DUtils.createPixelParticlesFromBitmapData(a_brick.brickSprite.currFrame, this.particleFactory, xOffset, yOffset);
+			var particles:Array = Particle2DUtils.createRectangleParticlesFromBitmapData(a_brick.brickSprite.currFrame, uint(a_brick.brickSprite.currFrame.height/4), this.particleFactory, xOffset, yOffset);
 			addExistingParticles(particles, true);
+		
+			addAction( 
+				new Explosion( 
+					Math.random() * 6 + 4,
+					(a_brick.gridX + a_brick.gridWidth / 2) * AppSettings.instance.defaultTileWidth,
+					(a_brick.gridY + a_brick.gridHeight / 2) * AppSettings.instance.defaultTileHeight,
+					1000
+				)
+			);
 			
-			addAction( new Explosion( 1 * a_speed / Ball.SpeedLimit, a_x, a_y, 1000) );
 			addAction( new RandomDrift( 30.0, 30.0 ) );
 			addAction( new LinearDrag( 0.5 ) );
 		}//end constructor()

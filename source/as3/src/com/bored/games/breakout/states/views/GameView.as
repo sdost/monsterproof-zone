@@ -15,8 +15,10 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.emitters.BrickCrumbs;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.objects.Ball;
+	import com.bored.games.breakout.objects.bricks.Bomb;
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.bored.games.breakout.objects.bricks.SimpleBrick;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.objects.Paddle;
@@ -56,6 +58,7 @@ package com.bored.games.breakout.states.views
 	import org.flintparticles.common.initializers.ColorInit;
 	import org.flintparticles.common.initializers.Lifetime;
 	import org.flintparticles.common.initializers.SharedImage;
+	import org.flintparticles.common.renderers.Renderer;
 	import org.flintparticles.twoD.actions.Accelerate;
 	import org.flintparticles.twoD.actions.LinearDrag;
 	import org.flintparticles.twoD.actions.RandomDrift;
@@ -76,6 +79,7 @@ package com.bored.games.breakout.states.views
 	public class GameView extends StateView
 	{
 		public static var Contacts:Vector.<GameContact>;
+		public static var ParticleRenderer:Renderer;
 		
 		private var _grid:Grid;
 		private var _ball:Ball;
@@ -93,9 +97,7 @@ package com.bored.games.breakout.states.views
 		private var _effectsBuffer:BitmapData;
 		
 		private var _ballSparks:Emitter2D;
-		
-		private var _particleRenderer:PixelRenderer;
-		
+	
 		private var _glowFilter:GlowFilter;
 		private var _blurFilter:BlurFilter;
 		
@@ -158,8 +160,10 @@ package com.bored.games.breakout.states.views
 			_spriteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, spritesLoaded, false, 0, true);
 			_spriteLoader.load( new URLRequest("../assets/BrickSpriteLibrary.swf") );
 			
-			_particleRenderer = new PixelRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight) );
-			addChild(_particleRenderer);
+			//_particleRenderer = new PixelRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight) );
+			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), true );
+			(ParticleRenderer as BitmapRenderer).blendMode = BlendMode.SCREEN;
+			addChild((ParticleRenderer as BitmapRenderer));
 			
 			/*
 			_ballSparks = new Emitter2D();
@@ -280,13 +284,26 @@ package com.bored.games.breakout.states.views
 			{
 				var obj:DisplayObject = parent.getChildAt(i);
 				
-				_grid.addGridObject( 
-					new Brick( 
-						uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
-						uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-						_brickSprites[getQualifiedClassName(obj)]), 
-					uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5),
-					uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5) );
+				var brick:Brick;
+				
+				switch(getQualifiedClassName(obj))
+				{
+					case "Bomb":
+						brick = new Bomb(
+							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
+							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
+							_brickSprites[getQualifiedClassName(obj)]);
+						break;
+					default:
+						brick = new SimpleBrick( 
+							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
+							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
+							_brickSprites[getQualifiedClassName(obj)]);
+						break;
+				}
+				
+				if ( brick )
+					_grid.addGridObject(brick, uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
 			}
 			
 			resetBall();
@@ -364,9 +381,7 @@ package com.bored.games.breakout.states.views
 				var data:* = f.GetUserData();
 				if ( data && data is Brick )
 				{
-					//_ballSparks.start();
-					
-					data.notifyHit(_particleRenderer, _ball.x, _ball.y, _ball.physicsBody.GetLinearVelocity().Length());
+					data.notifyHit();
 				}
 			}
 			

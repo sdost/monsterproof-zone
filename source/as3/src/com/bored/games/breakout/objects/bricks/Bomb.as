@@ -1,8 +1,12 @@
 package com.bored.games.breakout.objects.bricks 
 {
-	import com.bored.games.breakout.actions.ExplodeBombAction;
+	import com.bored.games.breakout.actions.ExplodeBrickAction;
+	import com.bored.games.breakout.emitters.BrickExplosion;
 	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.bored.games.breakout.states.views.GameView;
+	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.common.renderers.Renderer;
+	import org.flintparticles.twoD.emitters.Emitter2D;
 	
 	/**
 	 * ...
@@ -10,8 +14,6 @@ package com.bored.games.breakout.objects.bricks
 	 */
 	public class Bomb extends Brick
 	{
-		private var _explode:ExplodeBombAction;
-		
 		public function Bomb(a_width:int, a_height:int, a_sprite:AnimatedSprite) 
 		{
 			super(a_width, a_height, a_sprite);
@@ -20,18 +22,45 @@ package com.bored.games.breakout.objects.bricks
 		override protected function initializeActions():void 
 		{
 			super.initializeActions();
-			
-			_explode = new ExplodeBombAction(this);
-			addAction(_explode);
 		}//end initializeActions()
 		
 		override public function notifyHit():void 
 		{			
-			activateAction(ExplodeBombAction.NAME);
+			grid.explodeBricks(getAllNeighbors());
+			
+			addAction(new ExplodeBrickAction(this));
+			activateAction(ExplodeBrickAction.NAME);
 			
 			super.notifyHit();
 		}//end notifyHit()
 		
+		public function getAllNeighbors():Vector.<Brick>
+		{
+			var neighbors:Vector.<Brick> = new Vector.<Brick>();
+			var go:Brick;
+			
+			for ( var i:uint = this.gridX - 1; i <= this.gridX + this.gridWidth; i++ )
+			{
+				for ( var j:uint = this.gridY - 1; j <= this.gridY + this.gridHeight; j++ )
+				{
+					go = this.grid.getGridObjectAt(i, j) as Brick;
+					if ( go && go != this )
+					{
+						neighbors.push(go);
+					}
+				}
+			}
+			
+			return neighbors;
+		}//end getAllNeighbors()
+		
+		override public function update(t:Number = 0):void 
+		{
+			super.update(t);
+			
+			this.brickSprite.update(t);
+		}//end update()
+
 	}//end Bomb
 
 }//end package

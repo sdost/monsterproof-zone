@@ -20,9 +20,9 @@ package com.bored.games.breakout.objects.bricks
 	 */
 	public class Brick extends GridObject
 	{
-		private var _brickFixture:b2Fixture;
+		protected var _brickFixture:b2Fixture;
 		
-		private var _brickSprite:AnimatedSprite;
+		protected var _brickSprite:AnimatedSprite;
 		
 		public function Brick(a_width:int, a_height:int, a_sprite:AnimatedSprite)
 		{
@@ -45,7 +45,7 @@ package com.bored.games.breakout.objects.bricks
 			super.removeFromGrid();
 		}//end removeFromGrid()
 				
-		private function initializePhysics():void
+		protected function initializePhysics():void
 		{
 			var shape:b2PolygonShape = new b2PolygonShape();
 			
@@ -83,7 +83,7 @@ package com.bored.games.breakout.objects.bricks
 		{
 			activateAction(RemoveGridObjectAction.NAME);
 		}//end notifyHit()
-		
+			
 	}//end Brick
 
 }//end package

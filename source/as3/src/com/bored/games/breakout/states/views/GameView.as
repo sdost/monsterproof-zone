@@ -18,7 +18,10 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.objects.bricks.Bomb;
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.bored.games.breakout.objects.bricks.LimpBrick;
+	import com.bored.games.breakout.objects.bricks.MultiHitBrick;
 	import com.bored.games.breakout.objects.bricks.SimpleBrick;
+	import com.bored.games.breakout.objects.bricks.UnbreakableBrick;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.objects.Paddle;
@@ -45,6 +48,7 @@ package com.bored.games.breakout.states.views
 	import flash.net.URLRequest;
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
+	import flash.utils.getTimer;
 	import org.flintparticles.common.actions.Fade;
 	import org.bytearray.explorer.events.SWFExplorerEvent;
 	import org.bytearray.explorer.SWFExplorer;
@@ -294,6 +298,18 @@ package com.bored.games.breakout.states.views
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
 							_brickSprites[getQualifiedClassName(obj)]);
 						break;
+					case "MedLimp": case "SmLimp":
+						brick = new LimpBrick( 
+							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
+							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
+							_brickSprites[getQualifiedClassName(obj)]);
+						break;
+					case "MedMetal": case "SmMetal":
+						brick = new UnbreakableBrick( 
+							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
+							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
+							_brickSprites[getQualifiedClassName(obj)]);
+						break;
 					default:
 						brick = new SimpleBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
@@ -329,12 +345,7 @@ package com.bored.games.breakout.states.views
 		}//end exit()
 		
 		private function renderFrame(e:Event):void
-		{
-			for each( var sprite:AnimatedSprite in _animatedSprites )
-			{
-				sprite.update();
-			}
-			
+		{			
 			var go:GridObject;
 			var objectDrawn:Vector.<GridObject> = new Vector.<GridObject>();
 			
@@ -371,9 +382,10 @@ package com.bored.games.breakout.states.views
 			
 			PhysicsWorld.UpdateWorld();
 						
-			_grid.update();
-			_ball.update();
-			_paddle.update();
+			var time:uint = getTimer();
+			_grid.update(time);
+			_ball.update(time);
+			_paddle.update(time);
 			
 			if ( Contacts.length > 0 ) 
 			{

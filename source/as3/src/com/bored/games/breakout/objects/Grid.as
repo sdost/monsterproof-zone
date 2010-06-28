@@ -5,6 +5,8 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.actions.ExplosionManagerAction;
+	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
@@ -25,6 +27,8 @@ package com.bored.games.breakout.objects
 		private var _gridObjectList:Vector.<GridObject>;
 		private var _gridRemoveList:Vector.<GridObject>;
 		private var _grid:Vector.<int>;
+		
+		private var _explosionManager:ExplosionManagerAction;
 		
 		private var _gridBody:b2Body;
 		
@@ -53,8 +57,20 @@ package com.bored.games.breakout.objects
 		
 			generate();
 			
+			initializeActions();
 			initializePhysics();
 		}//end constructor()
+		
+		private function initializeActions():void
+		{
+			var obj:Object =
+			{
+				delay: 125
+			};
+			
+			_explosionManager = new ExplosionManagerAction(this, obj);
+			addAction(_explosionManager);
+		}//end initializeActions()
 		
 		private function initializePhysics():void
 		{
@@ -78,6 +94,13 @@ package com.bored.games.breakout.objects
 		{
 			return _gridHeight;
 		}//end get gridHeight()
+		
+		public function explodeBricks(a_vec:Vector.<Brick>):void
+		{
+			if ( _explosionManager.finished ) activateAction(ExplosionManagerAction.NAME);
+			
+			_explosionManager.addBricks(a_vec);
+		}//end explodeBricks()
 		
 		private function generate():void
 		{
@@ -175,8 +198,10 @@ package com.bored.games.breakout.objects
 			while( _gridRemoveList.length > 0 )
 			{
 				go = _gridRemoveList.pop();
-				var ind:uint = _gridObjectList.indexOf(go);
-				_gridObjectList[ind] = null;
+				var ind:int = _gridObjectList.indexOf(go);
+				if(ind > 0)
+					_gridObjectList[ind] = null;
+					
 				go.removeFromGrid();
 			}
 			

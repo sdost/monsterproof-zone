@@ -13,8 +13,6 @@ package com.bored.games.breakout.objects.bricks
 	 */
 	public class SimpleBrick extends Brick
 	{
-		private var _disintegrate:DisintegrateBrickAction;
-		
 		public function SimpleBrick(a_width:int, a_height:int, a_sprite:AnimatedSprite) 
 		{
 			super(a_width, a_height, a_sprite);
@@ -23,13 +21,11 @@ package com.bored.games.breakout.objects.bricks
 		override protected function initializeActions():void 
 		{
 			super.initializeActions();
-			
-			_disintegrate = new DisintegrateBrickAction(this);
-			addAction(_disintegrate);
 		}//end initializeActions()
 		
 		override public function notifyHit():void 
 		{
+			addAction(new DisintegrateBrickAction(this));
 			activateAction(DisintegrateBrickAction.NAME);
 			
 			super.notifyHit();

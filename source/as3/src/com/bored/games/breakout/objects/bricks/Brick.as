@@ -6,12 +6,14 @@ package com.bored.games.breakout.objects.bricks
 	import Box2D.Dynamics.b2Fixture;
 	import Box2D.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.RemoveGridObjectAction;
+	import com.bored.games.breakout.actions.SpawnPointBubbles;
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.sven.utils.AppSettings;
 	import com.sven.utils.ImageFactory;
+	import flash.display.BitmapData;
 	import org.flintparticles.common.renderers.Renderer;
 	
 	/**
@@ -24,11 +26,16 @@ package com.bored.games.breakout.objects.bricks
 		
 		protected var _brickSprite:AnimatedSprite;
 		
+		protected var _currFrame:uint;
+		
 		public function Brick(a_width:int, a_height:int, a_sprite:AnimatedSprite)
 		{
 			super(a_width, a_height);
 			
 			_brickSprite = a_sprite;
+			_brickSprite.incrementReferenceCount();
+			
+			_currFrame = 1;
 		}//end constructor()
 		
 		override public function addToGrid(a_grid:Grid, a_x:uint, a_y:uint):void 
@@ -44,6 +51,13 @@ package com.bored.games.breakout.objects.bricks
 			
 			super.removeFromGrid();
 		}//end removeFromGrid()
+		
+		override protected function initializeActions():void
+		{
+			super.initializeActions();
+			
+			//addAction(new SpawnPointBubbles(this));
+		}//end initializeActions
 				
 		protected function initializePhysics():void
 		{
@@ -68,21 +82,32 @@ package com.bored.games.breakout.objects.bricks
 		private function cleanupPhysics():void
 		{
 			if ( _grid ) 
-			{
+			{				
 				_grid.gridBody.DestroyFixture(_brickFixture);
 				_brickFixture = null;
 			}
 		}//end cleanupPhysics()
 		
-		public function get brickSprite():AnimatedSprite
+		public function get currFrame():BitmapData
 		{
-			return _brickSprite;
+			return _brickSprite.currFrame;
 		}//end get brickSprite()
 		
 		public function notifyHit():void
 		{
 			activateAction(RemoveGridObjectAction.NAME);
+			//activateAction(SpawnPointBubbles.NAME);
 		}//end notifyHit()
+		
+		override public function destroy():void 
+		{			
+			//removeAction(SpawnPointBubbles.NAME);
+			
+			super.destroy();
+			
+			_brickSprite.decrementReferenceCount();
+			_brickSprite = null;
+		}//end destroy()
 			
 	}//end Brick
 

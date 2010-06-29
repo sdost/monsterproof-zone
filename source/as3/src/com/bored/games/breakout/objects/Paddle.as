@@ -39,6 +39,7 @@ package com.bored.games.breakout.objects
 			bd.type = b2Body.b2_dynamicBody;
 			bd.fixedRotation = true;
 			bd.allowSleep = false;
+			bd.userData = this;
 			
 			var shape:b2PolygonShape = new b2PolygonShape();
 			shape.SetAsBox( (_paddleBmp.bitmapData.width / 2) / PhysicsWorld.PhysScale, (_paddleBmp.bitmapData.height / 2) / PhysicsWorld.PhysScale );

@@ -55,11 +55,18 @@ package com.bored.games.breakout.objects.bricks
 		}//end getAllNeighbors()
 		
 		override public function update(t:Number = 0):void 
-		{
+		{			
 			super.update(t);
 			
-			this.brickSprite.update(t);
+			_brickSprite.update(t);
 		}//end update()
+		
+		override public function destroy():void 
+		{
+			removeAction(ExplodeBrickAction.NAME);
+			
+			super.destroy();
+		}//end destroy()
 
 	}//end Bomb
 

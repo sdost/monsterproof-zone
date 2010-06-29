@@ -5,7 +5,7 @@
     <movie disabled="False" />
     <movie input="" />
     <movie path="build\GPBreakout.swf" />
-    <movie fps="45" />
+    <movie fps="40" />
     <movie width="672" />
     <movie height="544" />
     <movie version="10" />
@@ -17,6 +17,7 @@
     <class path="..\..\..\Box2DFlashAS3 2.1a\Source" />
     <class path="..\..\..\SWFExplorer 0.6\src" />
     <class path="..\..\..\Flint_2_1_4_source" />
+    <class path="..\..\..\Away3DLite\src" />
   </classpaths>
   <!-- Build options -->
   <build>

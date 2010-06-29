@@ -2,6 +2,7 @@ package com.bored.games.breakout.objects.bricks
 {
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
 	import com.bored.games.breakout.objects.AnimatedSprite;
+	import flash.display.BitmapData;
 	
 	/**
 	 * ...
@@ -43,11 +44,27 @@ package com.bored.games.breakout.objects.bricks
 			if ( _accumulatedHits >= _hitsToBreak ) 
 			{
 				activateAction(DisintegrateBrickAction.NAME);
+								
 				super.notifyHit()
 			}
-			//else
+			else
+			{
 				//activateAction(CrackBrickAction.NAME);
+			}
 		}//end notifyHit()
+		
+		override public function get currFrame():BitmapData
+		{
+			return _brickSprite.getFrame(_accumulatedHits);
+		}//end get brickSprite()
+		
+		override public function destroy():void 
+		{
+			removeAction(DisintegrateBrickAction.NAME);
+			//removeAction(CrackBrickAction.NAME);
+			
+			super.destroy();
+		}
 		
 	}//end MultiHitBrick
 

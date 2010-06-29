@@ -10,6 +10,8 @@ package com.bored.games.breakout.objects
 	 */
 	public class AnimatedSprite extends GameElement
 	{
+		private var _refCount:uint = 0;
+		
 		private var _frames_BMD:Vector.<BitmapData>;
 		
 		private var _currFrame:Number;
@@ -35,8 +37,16 @@ package com.bored.games.breakout.objects
 			_frames_BMD[_totalFrames++] = a_bmd; 
 		}//end addFrame()
 		
+		public function getFrame(a_num:int):BitmapData
+		{			
+			if( a_num >= _totalFrames )
+				return _frames_BMD[_totalFrames - 1];
+			else
+				return _frames_BMD[a_num];
+		}//end advanceFrame()
+		
 		override public function update(t:Number = 0):void
-		{
+		{			
 			var delta:uint = (t - _lastUpdate);
 			_lastUpdate = t;
 			
@@ -50,16 +60,7 @@ package com.bored.games.breakout.objects
 		
 		public function get currFrame():BitmapData
 		{
-			var bmd:BitmapData = _frames_BMD[_currFrameInd];
-			
-			if (bmd)
-			{
-				return bmd;
-			}
-			else
-			{
-				return null;
-			}
+			return _frames_BMD[_currFrameInd];
 		}//end get currFrame()
 		
 		override public function get width():Number 
@@ -71,6 +72,32 @@ package com.bored.games.breakout.objects
 		{
 			return _frames_BMD[_currFrameInd].height;
 		}//end get height()
+		
+		public function incrementReferenceCount():void
+		{
+			_refCount++;
+		}//end incrementReferenceCount()
+		
+		public function decrementReferenceCount():void
+		{
+			_refCount--;
+			
+			if ( _refCount == 0 )
+			{
+				destroyBitmapData();
+			}
+		}//end decrementReferenceCount()
+		
+		private function destroyBitmapData():void
+		{			
+			for ( var i:uint = 0; i < _totalFrames; i++ )
+			{
+				_frames_BMD[i].dispose();
+				_frames_BMD[i] = null;
+			}
+			
+			_frames_BMD = null;
+		}//end destroyBitmapData()
 		
 	}//end AnimatedSprite
 

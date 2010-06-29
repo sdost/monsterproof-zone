@@ -3,6 +3,7 @@ package com.bored.games.breakout.objects.bricks
 	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.actions.MeltBrickAction;
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.sven.utils.AppSettings;
@@ -46,8 +47,18 @@ package com.bored.games.breakout.objects.bricks
 		
 		override public function notifyHit():void 
 		{
+			addAction(new MeltBrickAction(this));
+			activateAction(MeltBrickAction.NAME);
+			
 			super.notifyHit();
 		}//end notifyHit()
+		
+		override public function destroy():void 
+		{
+			removeAction(MeltBrickAction.NAME);
+			
+			super.destroy();
+		}//end destroy()
 		
 	}//end LimpBrick
 

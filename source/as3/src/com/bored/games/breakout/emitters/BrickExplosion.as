@@ -31,21 +31,18 @@ package com.bored.games.breakout.emitters
 		
 		public function BrickExplosion(a_brick:Brick) 
 		{
-			counter = new Blast(50);
+			counter = new Blast(20);
 			
 			var xOffset:Number = a_brick.gridX * AppSettings.instance.defaultTileWidth;
 			var yOffset:Number = a_brick.gridY * AppSettings.instance.defaultTileHeight;
 			
 			addInitializer( new Lifetime( 0.2, 0.5 ) );
-			addInitializer( new Position( new BitmapDataZone( a_brick.brickSprite.currFrame, xOffset, yOffset ) ) );
-			addInitializer( new SharedImage( new RadialDot( 5, 0xFFFFFF, BlendMode.SCREEN ) ) );
+			addInitializer( new Position( new BitmapDataZone( a_brick.currFrame, xOffset, yOffset ) ) );
+			addInitializer( new SharedImage( new RadialDot( 20 ) ) );
 			
 			addAction( new MultiColorChange([0xFFFF00, 0xFF8200, 0xc00000]) );
-			addAction( new Fade(1.0, 0.4) );
+			addAction( new Fade(0.8, 0.4) );
 			addAction( new Age() );
-			addAction( new Move() );
-			addAction( new ScaleImage(1, 6) );
-			addAction( new RandomDrift( 30.0, 30.0 ) );
 		}//end constructor()
 		
 	}//end BrickExplosion

@@ -14,13 +14,14 @@
     </define>
     <define>
       <name>CONFIG::timeStamp</name>
-      <value>'6/28/2010'</value>
+      <value>'6/29/2010'</value>
     </define>
     <source-path append="true">
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\src</path-element>
       <path-element>C:\Users\Magdalena\Projects\Box2DFlashAS3 2.1a\Source</path-element>
       <path-element>C:\Users\Magdalena\Projects\SWFExplorer 0.6\src</path-element>
       <path-element>C:\Users\Magdalena\Projects\Flint_2_1_4_source</path-element>
+      <path-element>C:\Users\Magdalena\Projects\Away3DLite\src</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
@@ -31,7 +32,7 @@
     <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\src\com\bored\games\breakout\GPBreakout.as</path-element>
   </file-specs>
   <default-background-color>#000000</default-background-color>
-  <default-frame-rate>45</default-frame-rate>
+  <default-frame-rate>40</default-frame-rate>
   <default-size>
     <width>672</width>
     <height>544</height>

@@ -6,76 +6,75 @@ package com.bored.games.text
 	 */
 	public class BitmapFontEngine
 	{
+		/**
+		 * size of the space in pixels
+		 */
+		private var _space:uint;
 		
-		public function BitmapFontEngine() 
+		/**
+		 * size of the space between lines; This is -2 to counteract the 2 pixel transparent border
+		 */
+		private var _leading:uint;
+		
+		/**
+		 * space between letters
+		 */
+		private var _kerning:int;
+		
+		/**
+		 * remove path and suffix to get the clipName
+		 */
+		private var _name:String;
+		
+		public function BitmapFontEngine(a_fontName:String) 
 		{
-			
+			_space = 7;
+			_leading = 0;
+			_kerning = -2;
+			_name = fontName;
+		}//end constructor()
+		
+		public function isLoaded()
+		{
+			log("calling BfeFont.isLoaded", 4);
+			//due to problems with the loaded movie saying it was loaded when it was not, the font files contain a 
+			//stop action in the second frame with a _loaded var that is set to "true" (string) to aid in determining the loading state
+			if (this._clip._loaded == "true") {
+				return true;
+			} else {
+				return false;
+			}
 		}
 		
-	}
+		public function get space = function() {
+			return this._space;
+		};
+		bfeFont.prototype.setSpace = function(newVal) {
+			this._space = newVal;
+		};
+		bfeFont.prototype.getLeading = function() {
+			return this._leading;
+		};
+		bfeFont.prototype.setLeading = function(newVal) {
+			this._leading = newVal;
+		};
+		bfeFont.prototype.getKerning = function() {
+			return this._kerning;
+		};
+		bfeFont.prototype.setKerning = function(newVal) {
+			this._kerning = newVal;
+		};
+		bfeFont.prototype.getName = function() {
+			return this._name;
+		};
+		bfeFont.prototype.getClip = function() {
+			return this._clip;
+		};
+		
+	}//end BitmapFontEngine
 
-}
+}//end package
 
-/*
-//BFE - Bitmap Font Engine
-/***********************************************************************************************************************
-													BFE FONT OBJECT
-/***********************************************************************************************************************/
-Object.prototype.bfeFont = function(fontName) {
-	log("instantiating a BfeFont:"+fontName, 2);
-	//contains meta-information about font(spacing, leading, kerning)
-	this._space = 7;
-	//size of the space in pixels
-	this._leading = 0;
-	//size of the space between lines; This is -2 to counteract the 2 pixel transparent border
-	this._kerning = -2;
-	//space between letters
-	this._name = fontName;
-	//remove path and suffix to get the clipName
-	this.clipName = fontName.substring(0,fontName.length-4);
-	var nameArray = this.clipName.split("/");
-	this.clipName = nameArray.pop();
-	//load the font swf and attach it to this clip   
-	// all instances of bfeString will attach clips to this clip
-	createEmptyMovieClip(this.clipName, font_i++);
-	this._clip = eval(this.clipName);
-	this._clip.loadMovie(fontName);
-	return this;
-};
-bfeFont.prototype.isLoaded = function() {
-	log("calling BfeFont.isLoaded", 4);
-	//due to problems with the loaded movie saying it was loaded when it was not, the font files contain a 
-	//stop action in the second frame with a _loaded var that is set to "true" (string) to aid in determining the loading state
-	if (this._clip._loaded == "true") {
-		return true;
-	} else {
-		return false;
-	}
-};
-bfeFont.prototype.getSpace = function() {
-	return this._space;
-};
-bfeFont.prototype.setSpace = function(newVal) {
-	this._space = newVal;
-};
-bfeFont.prototype.getLeading = function() {
-	return this._leading;
-};
-bfeFont.prototype.setLeading = function(newVal) {
-	this._leading = newVal;
-};
-bfeFont.prototype.getKerning = function() {
-	return this._kerning;
-};
-bfeFont.prototype.setKerning = function(newVal) {
-	this._kerning = newVal;
-};
-bfeFont.prototype.getName = function() {
-	return this._name;
-};
-bfeFont.prototype.getClip = function() {
-	return this._clip;
-};
 /***********************************************************************************************************************
 													BFE STRING OBJECT
 /***********************************************************************************************************************/

@@ -65,7 +65,7 @@ package com.bored.games.breakout.objects
 		{
 			var obj:Object =
 			{
-				delay: 125
+				delay: AppSettings.instance.defaultBombCascadeDelay
 			};
 			
 			_explosionManager = new ExplosionManagerAction(this, obj);
@@ -76,6 +76,7 @@ package com.bored.games.breakout.objects
 		{
 			var bd:b2BodyDef = new b2BodyDef();
 			bd.type = b2Body.b2_staticBody;
+			bd.userData = this;
 			
 			_gridBody = PhysicsWorld.CreateBody(bd);
 		}//end initializePhysics()
@@ -203,6 +204,7 @@ package com.bored.games.breakout.objects
 					_gridObjectList[ind] = null;
 					
 				go.removeFromGrid();
+				go.destroy();
 			}
 			
 			for ( var i:uint = 0; i < _gridObjectList.length; i++ )

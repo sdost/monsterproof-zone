@@ -76,6 +76,11 @@ package com.bored.games.breakout.objects
 			_gridY = 0;
 		}//end addToGrid()
 		
+		public function destroy():void
+		{
+			removeAction(RemoveGridObjectAction.NAME);
+		}//end destroy()
+		
 	}//end GridObject
 
 }//end package

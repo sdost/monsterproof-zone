@@ -3,6 +3,7 @@ package com.bored.games.breakout.emitters
 	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.sven.utils.AppSettings;
+	import flash.display.BlendMode;
 	import flash.display.DisplayObject;
 	import flash.geom.Point;
 	import org.flintparticles.common.actions.Age;
@@ -11,10 +12,12 @@ package com.bored.games.breakout.emitters
 	import org.flintparticles.common.counters.Blast;
 	import org.flintparticles.common.displayObjects.Dot;
 	import org.flintparticles.common.displayObjects.Line;
+	import org.flintparticles.common.displayObjects.RadialDot;
 	import org.flintparticles.common.displayObjects.Star;
 	import org.flintparticles.common.initializers.ColorInit;
 	import org.flintparticles.common.initializers.Lifetime;
 	import org.flintparticles.common.initializers.SharedImage;
+	import org.flintparticles.twoD.actions.DeathZone;
 	import org.flintparticles.twoD.actions.Explosion;
 	import org.flintparticles.twoD.actions.RandomDrift;
 	import org.flintparticles.twoD.initializers.Position;
@@ -34,37 +37,35 @@ package com.bored.games.breakout.emitters
 	 * ...
 	 * @author sam
 	 */
-	public class BrickCrumbs extends Emitter2D
+	public class BrickMelt extends Emitter2D
 	{
 		
-		public function BrickCrumbs( a_brick:Brick )
-		{			
-			addInitializer( new Lifetime( 0.0, 1.0 ) );
-			
-			addAction( new Fade(1.0, 0.2) );
-			addAction( new Age() );
-			addAction( new Move() );
-			addAction( new Accelerate( 0, 200 ) );
+		public function BrickMelt( a_brick:Brick )
+		{		
+			counter = new Blast(6);
 			
 			var xOffset:Number = a_brick.gridX * AppSettings.instance.defaultTileWidth;
 			var yOffset:Number = a_brick.gridY * AppSettings.instance.defaultTileHeight;
 			
-			var particles:Array = Particle2DUtils.createRectangleParticlesFromBitmapData(a_brick.currFrame, uint(a_brick.currFrame.height/4), this.particleFactory, xOffset, yOffset);
-			addExistingParticles(particles, true);
-		
+			addInitializer( new Lifetime( 0.5, 0.8 ) );
+			addInitializer( new Position( new BitmapDataZone( a_brick.currFrame, xOffset, yOffset ) ) );
+			addInitializer( new SharedImage( new Dot( 2, 0x57d8dd, BlendMode.SCREEN ) ) );
+			
 			addAction( 
 				new Explosion( 
-					Math.random() * 6 + 4,
+					Math.random() * 3 + 1,
 					(a_brick.gridX + a_brick.gridWidth / 2) * AppSettings.instance.defaultTileWidth,
-					(a_brick.gridY + a_brick.gridHeight / 2) * AppSettings.instance.defaultTileHeight,
+					(a_brick.gridY + a_brick.gridHeight) * AppSettings.instance.defaultTileHeight,
 					1000
 				)
 			);
 			
-			addAction( new RandomDrift( 30.0, 30.0 ) );
-			addAction( new LinearDrag( 0.5 ) );
+			addAction( new Fade(0.8, 0.4) );
+			addAction( new Age() );
+			addAction( new Move() );
+			addAction( new Accelerate(0, 200) );
 		}//end constructor()
 		
-	}//end BrickCrumbs
+	}//end BrickMelt
 
 }//end package

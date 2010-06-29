@@ -40,6 +40,7 @@ package com.bored.games.breakout.objects
 			bd.fixedRotation = true;
 			bd.bullet = true;
 			bd.allowSleep = false;
+			bd.userData = this;
 			
 			var fd:b2FixtureDef = new b2FixtureDef();
 			fd.shape = new b2CircleShape( (_ballBmp.bitmapData.width / 2) / PhysicsWorld.PhysScale );

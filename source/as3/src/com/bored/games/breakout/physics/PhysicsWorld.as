@@ -12,8 +12,11 @@ package com.bored.games.breakout.physics
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.Joints.b2Joint;
 	import Box2D.Dynamics.Joints.b2JointDef;
+	import com.bored.games.breakout.objects.PointBubble;
+	import com.bored.games.objects.GameElement;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
+	import flash.utils.getTimer;
 	/**
 	 * ...
 	 * @author sam
@@ -75,10 +78,28 @@ package com.bored.games.breakout.physics
 		{
 			if ( _world )
 			{
-				_world.Step(_timeStep, _velIterations, _posIterations);
+				_world.Step(_timeStep, _velIterations, _posIterations);				
 				_world.ClearForces();
-				
 				_world.DrawDebugData();
+				
+				var time:int = getTimer();
+				var bb:b2Body = _world.GetBodyList();
+				
+				while ( bb != null )
+				{
+					if ( bb.GetUserData() != null )
+					{
+						if ( bb.GetUserData() is PointBubble )
+						{
+							var grav:b2Vec2 = new b2Vec2(0.0, 1.0 * bb.GetMass())
+							bb.ApplyForce(grav, bb.GetWorldCenter());
+						}
+						
+						bb.GetUserData().update(time);
+					}
+					
+					bb = bb.GetNext();
+				}
 			}
 		}//end UpdateWorld()
 		

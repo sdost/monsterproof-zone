@@ -25,6 +25,7 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.objects.Paddle;
+	import com.bored.games.breakout.objects.PointBubble;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.input.Input;
 	import com.jac.fsm.StateView;
@@ -49,6 +50,7 @@ package com.bored.games.breakout.states.views
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getTimer;
+	import net.hires.debug.Stats;
 	import org.flintparticles.common.actions.Fade;
 	import org.bytearray.explorer.events.SWFExplorerEvent;
 	import org.bytearray.explorer.SWFExplorer;
@@ -94,8 +96,10 @@ package com.bored.games.breakout.states.views
 		private var _gameScreen:Bitmap;
 		
 		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Background_MC')]
-		private var _bkgdMCCls:Class;		
-		private var _backgroundAnimation:AnimatedSprite;
+		private var _bkgdMCCls:Class;	
+		private var _bkgdMC:MovieClip;
+		
+		//private var _backgroundAnimation:AnimatedSprite;
 		
 		private var _backBuffer:BitmapData;
 		private var _effectsBuffer:BitmapData;
@@ -124,6 +128,8 @@ package com.bored.games.breakout.states.views
 		private var _mouseJoint:b2MouseJoint;
 		private var _lineJoint:b2LineJoint;
 		
+		private var _stats:Stats;
+		
 		public function GameView() 
 		{
 			super();
@@ -139,14 +145,14 @@ package com.bored.games.breakout.states.views
 		{
 			super.addedToStageHandler(e);
 			
-			_backgroundAnimation = AnimatedSpriteFactory.generateAnimatedSprite(new _bkgdMCCls());
+			//_backgroundAnimation = AnimatedSpriteFactory.generateAnimatedSprite(new _bkgdMCCls());
+			_bkgdMC = new _bkgdMCCls();
 			
-			_animatedSprites = new Vector.<AnimatedSprite>();
+			//_animatedSprites = new Vector.<AnimatedSprite>();
+			//_animatedSprites.push(_backgroundAnimation);
 			
-			_animatedSprites.push(_backgroundAnimation);
-			
-			_glowFilter = new GlowFilter(0xFFFFFF, 1, 2, 2, 2, 5, true);
-			_blurFilter = new BlurFilter(2, 2, 5);
+			//_glowFilter = new GlowFilter(0xFFFFFF, 1, 2, 2, 2, 5, true);
+			//_blurFilter = new BlurFilter(2, 2, 5);
 			
 			_backBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_effectsBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
@@ -164,32 +170,12 @@ package com.bored.games.breakout.states.views
 			_spriteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, spritesLoaded, false, 0, true);
 			_spriteLoader.load( new URLRequest("../assets/BrickSpriteLibrary.swf") );
 			
-			//_particleRenderer = new PixelRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight) );
-			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), true );
-			(ParticleRenderer as BitmapRenderer).blendMode = BlendMode.SCREEN;
+			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), false );
+			//(ParticleRenderer as BitmapRenderer).blendMode = BlendMode.SCREEN;
 			addChild((ParticleRenderer as BitmapRenderer));
 			
-			/*
-			_ballSparks = new Emitter2D();
-			
-			_ballSparks.counter = new TimePeriod(50, 0.3, Quadratic.easeOut );
-			
-			_ballSparks.addInitializer( new ColorInit( 0xFFFFCC00, 0xFFFFCC00 ) );
-			_ballSparks.addInitializer( new Velocity( new DiscZone( new Point(), 20, 10 ) ) );
-			_ballSparks.addInitializer( new Lifetime( 0.2, 0.4 ) );
-			
-			_ballSparks.addAction( new RandomDrift( 20, 20 ) );
-			_ballSparks.addAction( new Fade() );
-			_ballSparks.addAction( new Age() );
-			_ballSparks.addAction( new Move() );
-			_ballSparks.addAction( new RotateToDirection() );
-			_ballSparks.addAction( new Accelerate(0, 200) );
-			_ballSparks.addAction( new LinearDrag(0.5) );
-			
-			_ballSparks.addActivity( new FollowDisplayObject(_ball, _particleRenderer) );
-			
-			_particleRenderer.addEmitter(_ballSparks);
-			*/
+			_stats = new Stats();
+			addChild(_stats);
 			
 			stage.invalidate();
 			
@@ -271,7 +257,7 @@ package com.bored.games.breakout.states.views
 				
 				var bs:AnimatedSprite = AnimatedSpriteFactory.generateAnimatedSprite(new cls() as MovieClip);
 				
-				_animatedSprites.push(bs);
+				//_animatedSprites.push(bs);
 				_brickSprites[e.definitions[i]] = bs;
 			}
 			
@@ -304,6 +290,20 @@ package com.bored.games.breakout.states.views
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
 							_brickSprites[getQualifiedClassName(obj)]);
 						break;
+					case "MedTwoHit": case "SmTwoHit":
+						brick = new MultiHitBrick(
+							2,
+							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
+							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
+							_brickSprites[getQualifiedClassName(obj)]);
+						break;
+					case "MedThreeHit": case "SmThreeHit":
+						brick = new MultiHitBrick(
+							3,
+							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
+							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
+							_brickSprites[getQualifiedClassName(obj)]);
+						break;
 					case "MedMetal": case "SmMetal":
 						brick = new UnbreakableBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
@@ -317,7 +317,7 @@ package com.bored.games.breakout.states.views
 							_brickSprites[getQualifiedClassName(obj)]);
 						break;
 				}
-				
+			
 				if ( brick )
 					_grid.addGridObject(brick, uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
 			}
@@ -349,7 +349,8 @@ package com.bored.games.breakout.states.views
 			var go:GridObject;
 			var objectDrawn:Vector.<GridObject> = new Vector.<GridObject>();
 			
-			_backBuffer.copyPixels( _backgroundAnimation.currFrame, _backgroundAnimation.currFrame.rect, new Point(), null, null, true );
+			_backBuffer.draw(_bkgdMC);
+			//_backBuffer.copyPixels( _backgroundAnimation.currFrame, _backgroundAnimation.currFrame.rect, new Point(), null, null, true );
 			_backBuffer.copyPixels( _ball.bitmap.bitmapData, _ball.bitmap.bitmapData.rect, new Point( _ball.x - _ball.width / 2, _ball.y - _ball.height / 2 ), null, null, true );
 
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
@@ -359,7 +360,7 @@ package com.bored.games.breakout.states.views
 					go = _grid.getGridObjectAt(i, j);
 					if (go && objectDrawn.indexOf(go) == -1) 
 					{
-						var bmd:BitmapData = (go as Brick).brickSprite.currFrame;
+						var bmd:BitmapData = (go as Brick).currFrame;
 						_backBuffer.copyPixels( bmd, bmd.rect, new Point(i * AppSettings.instance.defaultTileWidth, j * AppSettings.instance.defaultTileHeight), null, null, true );
 						
 						objectDrawn.push(go);
@@ -368,6 +369,8 @@ package com.bored.games.breakout.states.views
 			}
 				
 			_backBuffer.copyPixels( _paddle.bitmap.bitmapData, _paddle.bitmap.bitmapData.rect, new Point( _paddle.x - _paddle.width / 2, _paddle.y - _paddle.height / 2 ), null, null, true );
+			
+			//_backBuffer.copyPixels( (ParticleRenderer as BitmapRenderer).bitmapData, (ParticleRenderer as BitmapRenderer).canvas, new Point(), null, null, true );
 			
 			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());			
 		}//end render()
@@ -382,11 +385,12 @@ package com.bored.games.breakout.states.views
 			
 			PhysicsWorld.UpdateWorld();
 						
-			var time:uint = getTimer();
-			_grid.update(time);
-			_ball.update(time);
-			_paddle.update(time);
+			//var time:uint = getTimer();
+			//_grid.update(time);
+			//_ball.update(time);
+			//_paddle.update(time);
 			
+			/*
 			if ( Contacts.length > 0 ) 
 			{
 				var f:b2Fixture = Contacts[0].fixtureA;
@@ -396,12 +400,21 @@ package com.bored.games.breakout.states.views
 					data.notifyHit();
 				}
 			}
-			
+			*/
+		
 			for each( var c:GameContact in Contacts )
-			{				
-				if ( f.GetBody() == _bottomWall )
+			{
+				if ( c.fixtureA.GetBody() == _bottomWall )
 				{
-					resetBall();
+					if ( c.fixtureB.GetUserData() is Ball )
+						resetBall();
+					if ( c.fixtureB.GetUserData() is PointBubble )
+						c.fixtureB.GetUserData().cleanupPhysics();
+				}
+				else if ( c.fixtureA.GetUserData() is Brick )
+				{
+					if ( c.fixtureB.GetUserData() is Ball )
+						c.fixtureA.GetUserData().notifyHit();
 				}
 			}	
 			
@@ -435,6 +448,7 @@ import Box2D.Dynamics.Contacts.b2Contact;
 import com.bored.games.breakout.objects.Ball;
 import com.bored.games.breakout.objects.bricks.Brick;
 import com.bored.games.breakout.objects.Paddle;
+import com.bored.games.breakout.objects.PointBubble;
 import com.bored.games.breakout.physics.PhysicsWorld;
 import com.bored.games.breakout.states.views.GameView;
 
@@ -442,6 +456,9 @@ class GameContactListener extends b2ContactListener
 {
 	override public function BeginContact(contact:b2Contact):void
 	{
+		var fixtureA:b2Fixture = contact.GetFixtureA();
+		var fixtureB:b2Fixture = contact.GetFixtureB();
+		
 		if( contact.IsEnabled() )
 			GameView.Contacts.push( new GameContact(contact.GetFixtureA(), contact.GetFixtureB()) );
 	}//end BeginContact()
@@ -459,7 +476,8 @@ class GameContactListener extends b2ContactListener
 			pos++;
 		}
 		
-		GameView.Contacts.splice(pos, 1);		
+		if( pos < GameView.Contacts.length )
+			GameView.Contacts.splice(pos, 1);		
 	}//end EndContact()
 	
 	override public function PostSolve(contact:b2Contact, impulse:b2ContactImpulse):void
@@ -502,6 +520,15 @@ class GameContactListener extends b2ContactListener
 	{	
 		var fixtureA:b2Fixture = contact.GetFixtureA();
 		var fixtureB:b2Fixture = contact.GetFixtureB();
+		
+		if (fixtureA.GetUserData() is PointBubble && fixtureB.GetUserData() is Ball)
+			contact.SetEnabled(false);
+		if (fixtureB.GetUserData() is PointBubble && fixtureA.GetUserData() is Ball)
+			contact.SetEnabled(false);
+		if (fixtureA.GetUserData() is PointBubble && fixtureB.GetUserData() is PointBubble)
+			contact.SetEnabled(false);
+			
+		
 		if (!(fixtureA.GetUserData() is Ball) && !(fixtureA.GetUserData() is Paddle))
 			return;
 		if (!(fixtureB.GetUserData() is Ball) && !(fixtureB.GetUserData() is Paddle))

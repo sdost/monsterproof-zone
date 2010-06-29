@@ -31,6 +31,13 @@ package com.bored.games.breakout.objects.bricks
 			super.notifyHit();
 		}//end notifyHit()
 		
+		override public function destroy():void 
+		{
+			removeAction(DisintegrateBrickAction.NAME);
+			
+			super.destroy();
+		}//end destroy()
+		
 	}//end SimpleBrick
 
 }//end package

@@ -5,6 +5,7 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.objects.PointBubble;
 	import com.bored.games.breakout.physics.PhysicsWorld;
+	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
 	
@@ -37,7 +38,9 @@ package com.bored.games.breakout.actions
 				var yOffset:Number = (brick.gridY + brick.gridHeight/2) * AppSettings.instance.defaultTileHeight;
 				
 				var pb:PointBubble = new PointBubble( xOffset, yOffset );
-				pb.physicsBody.ApplyForce( new b2Vec2( (Math.random() * 40 - 20) * pb.physicsBody.GetMass(), (Math.random() * -20) * pb.physicsBody.GetMass()), pb.physicsBody.GetWorldCenter() );
+				pb.physicsBody.ApplyImpulse( new b2Vec2( (Math.random() * 4 - 2) / PhysicsWorld.PhysScale, (Math.random() * -5) / PhysicsWorld.PhysScale ), pb.physicsBody.GetWorldCenter() );
+				
+				GameView.PointBubbles.push(pb);
 			}
 			
 			_finished = true;

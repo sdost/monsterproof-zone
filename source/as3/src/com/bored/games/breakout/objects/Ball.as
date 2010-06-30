@@ -17,18 +17,16 @@ package com.bored.games.breakout.objects
 	public class Ball extends GameElement
 	{
 		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Ball_BMP')]
-		private var imgCls:Class;
+		private static var imgCls:Class;
 		
-		private var _ballBmp:Bitmap;
+		private static var _ballBmp:Bitmap = new imgCls();
 		
 		private var _ballBody:b2Body;
 		
 		public static const SpeedLimit:Number = 25;
 		
 		public function Ball()
-		{
-			_ballBmp = new imgCls();
-			
+		{			
 			initializePhysicsBody();
 			initializeActions();
 		}//end constructor()

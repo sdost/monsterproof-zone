@@ -37,16 +37,20 @@ package com.bored.games.breakout.states.views
 	import flash.display.DisplayObjectContainer;
 	import flash.display.Loader;
 	import flash.display.MovieClip;
+	import flash.display.Shader;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
 	import flash.events.ProgressEvent;
 	import flash.filters.BlurFilter;
+	import flash.filters.ColorMatrixFilter;
 	import flash.filters.GlowFilter;
+	import flash.filters.ShaderFilter;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getTimer;
@@ -85,7 +89,13 @@ package com.bored.games.breakout.states.views
 	public class GameView extends StateView
 	{
 		public static var Contacts:Vector.<GameContact>;
+		//public static var PointBubbles:Vector.<PointBubble>;
 		public static var ParticleRenderer:Renderer;
+		
+		[Embed(source='../../filters/scanlines-adj.pbj', mimeType='application/octet-stream')]
+		private static var _filterCls:Class;
+		
+		private static var _shader:Shader = new Shader(new _filterCls as ByteArray);
 		
 		private var _grid:Grid;
 		private var _ball:Ball;
@@ -111,8 +121,6 @@ package com.bored.games.breakout.states.views
 		
 		private var _brickSprites:Dictionary;
 		
-		private var _animatedSprites:Vector.<AnimatedSprite>;
-		
 		private var _spriteLoader:Loader;
 		private var _spriteExplorer:SWFExplorer;
 		private var _levelLoader:Loader;
@@ -128,13 +136,25 @@ package com.bored.games.breakout.states.views
 		private var _mouseJoint:b2MouseJoint;
 		private var _lineJoint:b2LineJoint;
 		
+		private var _matrix:Array;
+		
 		private var _stats:Stats;
 		
 		public function GameView() 
 		{
 			super();
 			
+			_shader.data.lineSize.value = [1];
+			
 			Contacts = new Vector.<GameContact>();
+			
+			_matrix = new Array();
+			_matrix = _matrix.concat([0.86172, 0.12188, 0.0164, 0, 0]);  // red
+			_matrix = _matrix.concat([0.06172, 0.92188, 0.0164, 0, 0]);  // green
+			_matrix = _matrix.concat([0.06172, 0.12188, 0.8164, 0, 0]);  // blue
+			_matrix = _matrix.concat([0,   0,    0,    1, 0]);  // alpha
+			
+			//PointBubbles = new Vector.<PointBubble>();
 				
 			PhysicsWorld.InitializePhysics();
 			//PhysicsWorld.SetDebugDraw(this);
@@ -372,7 +392,13 @@ package com.bored.games.breakout.states.views
 			
 			//_backBuffer.copyPixels( (ParticleRenderer as BitmapRenderer).bitmapData, (ParticleRenderer as BitmapRenderer).canvas, new Point(), null, null, true );
 			
-			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());			
+			/*for ( var k:int = 0; k < PointBubbles.length; k++ )
+			{
+				var pb:PointBubble = PointBubbles[k];
+				_backBuffer.copyPixels( pb.bitmap.bitmapData, pb.bitmap.bitmapData.rect, new Point( pb.x - pb.width / 2, pb.y - pb.height / 2 ), null, null, true );
+			}*/
+			
+			_gameScreen.bitmapData.applyFilter(_backBuffer, _gameScreen.bitmapData.rect, new Point(), new ShaderFilter(_shader));			
 		}//end render()
 		
 		override public function update():void
@@ -408,13 +434,33 @@ package com.bored.games.breakout.states.views
 				{
 					if ( c.fixtureB.GetUserData() is Ball )
 						resetBall();
-					if ( c.fixtureB.GetUserData() is PointBubble )
+					/*if ( c.fixtureB.GetUserData() is PointBubble )
+					{
+						var ind:int = PointBubbles.indexOf(c.fixtureB.GetUserData());
+						PointBubbles.splice(ind, 1);
 						c.fixtureB.GetUserData().cleanupPhysics();
+					}*/
+				}
+				else if ( c.fixtureB.GetBody() == _bottomWall )
+				{
+					if ( c.fixtureA.GetUserData() is Ball )
+						resetBall();
+					/*if ( c.fixtureA.GetUserData() is PointBubble )
+					{
+						var ind:int = PointBubbles.indexOf(c.fixtureA.GetUserData());
+						PointBubbles.splice(ind, 1);
+						c.fixtureA.GetUserData().cleanupPhysics();
+					}*/
 				}
 				else if ( c.fixtureA.GetUserData() is Brick )
 				{
 					if ( c.fixtureB.GetUserData() is Ball )
 						c.fixtureA.GetUserData().notifyHit();
+				}
+				else if ( c.fixtureB.GetUserData() is Brick )
+				{
+					if ( c.fixtureA.GetUserData() is Ball )
+						c.fixtureB.GetUserData().notifyHit()
 				}
 			}	
 			

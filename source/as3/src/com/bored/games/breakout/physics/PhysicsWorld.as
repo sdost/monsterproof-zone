@@ -91,7 +91,7 @@ package com.bored.games.breakout.physics
 					{
 						if ( bb.GetUserData() is PointBubble )
 						{
-							var grav:b2Vec2 = new b2Vec2(0.0, 1.0 * bb.GetMass())
+							var grav:b2Vec2 = new b2Vec2(0.0, 5.0 * bb.GetMass())
 							bb.ApplyForce(grav, bb.GetWorldCenter());
 						}
 						

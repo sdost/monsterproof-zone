@@ -17,9 +17,9 @@ package com.bored.games.breakout.objects
 	public class Paddle extends GameElement
 	{
 		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Paddle_BMP')]
-		private var imgCls:Class;
+		private static var imgCls:Class;
 		
-		private var _paddleBmp:Bitmap;
+		private static var _paddleBmp:Bitmap = new imgCls();
 		
 		private var _paddleBody:b2Body;
 		

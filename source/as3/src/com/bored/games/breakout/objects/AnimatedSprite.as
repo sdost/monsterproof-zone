@@ -3,6 +3,7 @@ package com.bored.games.breakout.objects
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
 	import flash.display.BitmapData;
+	import flash.events.Event;
 	
 	/**
 	 * ...
@@ -51,11 +52,12 @@ package com.bored.games.breakout.objects
 			_lastUpdate = t;
 			
 			_currFrame += (delta * _frameRate) / 1000;
-			
 			_currFrameInd = Math.ceil(_currFrame);
-			
+				
 			if ( _currFrameInd >= _totalFrames )
-				_currFrameInd = _currFrame = 0;
+			{
+				_currFrame = _currFrameInd = 0;
+			}
 		}//end update()
 		
 		public function get currFrame():BitmapData
@@ -87,6 +89,21 @@ package com.bored.games.breakout.objects
 				destroyBitmapData();
 			}
 		}//end decrementReferenceCount()
+		
+		override public function get currentFrame():int 
+		{
+			return _currFrameInd;
+		}//end get currentFrame()
+		
+		override public function get totalFrames():int 
+		{
+			return _totalFrames;
+		}//end get totalFrames()
+		
+		override public function reset():void 
+		{
+			_currFrame = _currFrameInd = 0;
+		}//end reset()
 		
 		private function destroyBitmapData():void
 		{			

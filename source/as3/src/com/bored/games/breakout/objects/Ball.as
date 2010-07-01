@@ -7,6 +7,7 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
+	import com.sven.utils.AppSettings;
 	import flash.display.Bitmap;
 	import flash.geom.Point;
 	
@@ -23,10 +24,16 @@ package com.bored.games.breakout.objects
 		
 		private var _ballBody:b2Body;
 		
-		public static const SpeedLimit:Number = 25;
+		private var _speed:Number;
+		private var _minSpeed:Number;
+		private var _maxSpeed:Number;
 		
 		public function Ball()
 		{			
+			_speed = AppSettings.instance.defaultInitialBallSpeed;
+			_minSpeed = AppSettings.instance.defaultMinBallSpeed;
+			_maxSpeed = AppSettings.instance.defaultMaxBallSpeed;
+			
 			initializePhysicsBody();
 			initializeActions();
 		}//end constructor()
@@ -76,6 +83,51 @@ package com.bored.games.breakout.objects
 			return _ballBmp.bitmapData.height;
 		}//end get height()
 		
+		public function changeSpeed(a_per:Number):void
+		{
+			var newSpeed:Number;
+			
+			if (a_per < 0) a_per = 0;
+			if (a_per > 1) a_per = 1;
+			
+			newSpeed = (_maxSpeed - _minSpeed) * a_per + _minSpeed;
+			
+			if ( newSpeed < _minSpeed ) newSpeed = _minSpeed;
+			if ( newSpeed > _maxSpeed ) newSpeed = _maxSpeed;
+			
+			_speed = newSpeed;
+		}//end changeSpeed()
+		
+		public function increaseSpeed(a_per:Number):void
+		{
+			var newSpeed:Number;
+			
+			if (a_per < 0) a_per = 0;
+			if (a_per > 1) a_per = 1;
+			
+			newSpeed += (_maxSpeed - _minSpeed) * a_per + _minSpeed;
+			
+			if ( newSpeed < _minSpeed ) newSpeed = _minSpeed;
+			if ( newSpeed > _maxSpeed ) newSpeed = _maxSpeed;
+			
+			_speed = newSpeed;
+		}//end changeSpeed()
+		
+		public function decreaseSpeed(a_per:Number):void
+		{
+			var newSpeed:Number;
+			
+			if (a_per < 0) a_per = 0;
+			if (a_per > 1) a_per = 1;
+			
+			newSpeed -= (_maxSpeed - _minSpeed) * a_per + _minSpeed;
+			
+			if ( newSpeed < _minSpeed ) newSpeed = _minSpeed;
+			if ( newSpeed > _maxSpeed ) newSpeed = _maxSpeed;
+			
+			_speed = newSpeed;
+		}//end changeSpeed()
+		
 		override public function update(t:Number = 0):void
 		{
 			super.update(t);
@@ -86,14 +138,10 @@ package com.bored.games.breakout.objects
 			this.y = pos.y * PhysicsWorld.PhysScale;
 			
 			var bodyVelocity:b2Vec2 =_ballBody.GetLinearVelocity();
-			if (bodyVelocity.Length() > SpeedLimit) {
-				var limitVelocity:b2Vec2 = bodyVelocity.Copy();
-				limitVelocity.Normalize();
-				limitVelocity.Multiply(SpeedLimit);
-				var velocityDifference:b2Vec2 = bodyVelocity.Copy()
-				velocityDifference.Subtract(limitVelocity);
-				_ballBody.ApplyImpulse(velocityDifference.GetNegative(), _ballBody.GetPosition());
-			}
+			var limitVelocity:b2Vec2 = bodyVelocity.Copy();
+			limitVelocity.Normalize();
+			limitVelocity.Multiply(_speed);
+			_ballBody.SetLinearVelocity(limitVelocity);
 		}//end update()
 		
 	}//end Ball

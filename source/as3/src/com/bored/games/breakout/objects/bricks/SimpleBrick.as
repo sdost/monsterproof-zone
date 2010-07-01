@@ -3,7 +3,7 @@ package com.bored.games.breakout.objects.bricks
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
-	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import org.flintparticles.common.renderers.Renderer;
 	
@@ -13,9 +13,9 @@ package com.bored.games.breakout.objects.bricks
 	 */
 	public class SimpleBrick extends Brick
 	{
-		public function SimpleBrick(a_width:int, a_height:int, a_sprite:AnimatedSprite) 
+		public function SimpleBrick(a_width:int, a_height:int, a_set:AnimationSet) 
 		{
-			super(a_width, a_height, a_sprite);
+			super(a_width, a_height, a_set);
 		}//end constructor()
 		
 		override protected function initializeActions():void 

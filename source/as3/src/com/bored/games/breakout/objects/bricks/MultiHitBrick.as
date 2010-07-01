@@ -1,7 +1,7 @@
 package com.bored.games.breakout.objects.bricks 
 {
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
-	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.bored.games.breakout.objects.AnimationSet;
 	import flash.display.BitmapData;
 	
 	/**
@@ -10,18 +10,22 @@ package com.bored.games.breakout.objects.bricks
 	 */
 	public class MultiHitBrick extends Brick
 	{
+		public static const DAMAGE:Array = [ "Damage0", "Damage1", "Damage2" ];
+		
 		private var _disintegrate:DisintegrateBrickAction;
 		//private var _crack:CrackBrickAction;
 		
 		private var _hitsToBreak:uint;
 		private var _accumulatedHits:uint;
 		
-		public function MultiHitBrick(a_hits:uint, a_width:uint, a_height:uint, a_sprite:AnimatedSprite) 
+		public function MultiHitBrick(a_hits:uint, a_width:uint, a_height:uint, a_set:AnimationSet) 
 		{
-			super(a_width, a_height, a_sprite);
+			super(a_width, a_height, a_set);
 			
 			_hitsToBreak = a_hits;
 			_accumulatedHits = 0;
+			
+			_animatedSprite = _animationSet.getAnimation(DAMAGE[_accumulatedHits]);
 		}//end constructor()
 		
 		override protected function initializeActions():void 
@@ -49,14 +53,10 @@ package com.bored.games.breakout.objects.bricks
 			}
 			else
 			{
+				_animatedSprite = _animationSet.getAnimation(DAMAGE[_accumulatedHits]);
 				//activateAction(CrackBrickAction.NAME);
 			}
 		}//end notifyHit()
-		
-		override public function get currFrame():BitmapData
-		{
-			return _brickSprite.getFrame(_accumulatedHits);
-		}//end get brickSprite()
 		
 		override public function destroy():void 
 		{

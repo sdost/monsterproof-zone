@@ -14,12 +14,16 @@ package com.bored.games.breakout.states.views
 	import Box2D.Dynamics.Joints.b2MouseJointDef;
 	import com.bored.games.breakout.emitters.BrickCrumbs;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
+	import com.bored.games.breakout.factories.AnimationSetFactory;
+	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.bricks.Bomb;
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.objects.bricks.LimpBrick;
 	import com.bored.games.breakout.objects.bricks.MultiHitBrick;
+	import com.bored.games.breakout.objects.bricks.NanoBrick;
+	import com.bored.games.breakout.objects.bricks.Portal;
 	import com.bored.games.breakout.objects.bricks.SimpleBrick;
 	import com.bored.games.breakout.objects.bricks.UnbreakableBrick;
 	import com.bored.games.breakout.objects.Grid;
@@ -119,7 +123,7 @@ package com.bored.games.breakout.states.views
 		private var _glowFilter:GlowFilter;
 		private var _blurFilter:BlurFilter;
 		
-		private var _brickSprites:Dictionary;
+		private var _animationSets:Dictionary;
 		
 		private var _spriteLoader:Loader;
 		private var _spriteExplorer:SWFExplorer;
@@ -145,14 +149,9 @@ package com.bored.games.breakout.states.views
 			super();
 			
 			_shader.data.lineSize.value = [1];
+			//this.filters = [new ShaderFilter(_shader)];
 			
 			Contacts = new Vector.<GameContact>();
-			
-			_matrix = new Array();
-			_matrix = _matrix.concat([0.86172, 0.12188, 0.0164, 0, 0]);  // red
-			_matrix = _matrix.concat([0.06172, 0.92188, 0.0164, 0, 0]);  // green
-			_matrix = _matrix.concat([0.06172, 0.12188, 0.8164, 0, 0]);  // blue
-			_matrix = _matrix.concat([0,   0,    0,    1, 0]);  // alpha
 			
 			//PointBubbles = new Vector.<PointBubble>();
 				
@@ -167,12 +166,6 @@ package com.bored.games.breakout.states.views
 			
 			//_backgroundAnimation = AnimatedSpriteFactory.generateAnimatedSprite(new _bkgdMCCls());
 			_bkgdMC = new _bkgdMCCls();
-			
-			//_animatedSprites = new Vector.<AnimatedSprite>();
-			//_animatedSprites.push(_backgroundAnimation);
-			
-			//_glowFilter = new GlowFilter(0xFFFFFF, 1, 2, 2, 2, 5, true);
-			//_blurFilter = new BlurFilter(2, 2, 5);
 			
 			_backBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_effectsBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
@@ -269,16 +262,16 @@ package com.bored.games.breakout.states.views
 		
 		private function spriteAssetsParsed(e:SWFExplorerEvent):void
 		{
-			_brickSprites = new Dictionary(true);
+			_animationSets = new Dictionary(true);
 			
 			for ( var i:int = 0; i < e.definitions.length; i++ )
 			{
 				var cls:Class = _spriteLoader.contentLoaderInfo.applicationDomain.getDefinition(e.definitions[i]) as Class;
 				
-				var bs:AnimatedSprite = AnimatedSpriteFactory.generateAnimatedSprite(new cls() as MovieClip);
+				var anims:AnimationSet = AnimationSetFactory.generateAnimationSet(new cls() as MovieClip);
 				
 				//_animatedSprites.push(bs);
-				_brickSprites[e.definitions[i]] = bs;
+				_animationSets[e.definitions[i]] = anims;
 			}
 			
 			_levelLoader = new Loader();
@@ -302,39 +295,58 @@ package com.bored.games.breakout.states.views
 						brick = new Bomb(
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_brickSprites[getQualifiedClassName(obj)]);
+							_animationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedLimp": case "SmLimp":
 						brick = new LimpBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_brickSprites[getQualifiedClassName(obj)]);
+							_animationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedTwoHit": case "SmTwoHit":
 						brick = new MultiHitBrick(
 							2,
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_brickSprites[getQualifiedClassName(obj)]);
+							_animationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedThreeHit": case "SmThreeHit":
 						brick = new MultiHitBrick(
 							3,
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_brickSprites[getQualifiedClassName(obj)]);
+							_animationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedMetal": case "SmMetal":
 						brick = new UnbreakableBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_brickSprites[getQualifiedClassName(obj)]);
+							_animationSets[getQualifiedClassName(obj)]);
+						break;
+					case "Portal":
+						brick = new Portal( 
+							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
+							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
+							_animationSets[getQualifiedClassName(obj)]);
+						break;
+					case "MedNanoAlive":
+						brick = new NanoBrick( 
+							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
+							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
+							_animationSets[getQualifiedClassName(obj)]);
+						break;
+					case "MedNanoDead":
+						brick = new NanoBrick( 
+							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
+							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
+							_animationSets[getQualifiedClassName(obj)],
+							false);
 						break;
 					default:
 						brick = new SimpleBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_brickSprites[getQualifiedClassName(obj)]);
+							_animationSets[getQualifiedClassName(obj)]);
 						break;
 				}
 			
@@ -370,9 +382,7 @@ package com.bored.games.breakout.states.views
 			var objectDrawn:Vector.<GridObject> = new Vector.<GridObject>();
 			
 			_backBuffer.draw(_bkgdMC);
-			//_backBuffer.copyPixels( _backgroundAnimation.currFrame, _backgroundAnimation.currFrame.rect, new Point(), null, null, true );
-			_backBuffer.copyPixels( _ball.bitmap.bitmapData, _ball.bitmap.bitmapData.rect, new Point( _ball.x - _ball.width / 2, _ball.y - _ball.height / 2 ), null, null, true );
-
+			
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
 			{
 				for ( var j:int = 0; j < _grid.gridHeight; j++ )
@@ -390,15 +400,9 @@ package com.bored.games.breakout.states.views
 				
 			_backBuffer.copyPixels( _paddle.bitmap.bitmapData, _paddle.bitmap.bitmapData.rect, new Point( _paddle.x - _paddle.width / 2, _paddle.y - _paddle.height / 2 ), null, null, true );
 			
-			//_backBuffer.copyPixels( (ParticleRenderer as BitmapRenderer).bitmapData, (ParticleRenderer as BitmapRenderer).canvas, new Point(), null, null, true );
-			
-			/*for ( var k:int = 0; k < PointBubbles.length; k++ )
-			{
-				var pb:PointBubble = PointBubbles[k];
-				_backBuffer.copyPixels( pb.bitmap.bitmapData, pb.bitmap.bitmapData.rect, new Point( pb.x - pb.width / 2, pb.y - pb.height / 2 ), null, null, true );
-			}*/
-			
-			_gameScreen.bitmapData.applyFilter(_backBuffer, _gameScreen.bitmapData.rect, new Point(), new ShaderFilter(_shader));			
+			_backBuffer.copyPixels( _ball.bitmap.bitmapData, _ball.bitmap.bitmapData.rect, new Point( _ball.x - _ball.width / 2, _ball.y - _ball.height / 2 ), null, null, true );
+					
+			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());			
 		}//end render()
 		
 		override public function update():void

@@ -6,7 +6,9 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.ExplosionManagerAction;
+	import com.bored.games.breakout.actions.NanoManagerAction;
 	import com.bored.games.breakout.objects.bricks.Brick;
+	import com.bored.games.breakout.objects.bricks.NanoBrick;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
@@ -29,6 +31,8 @@ package com.bored.games.breakout.objects
 		private var _grid:Vector.<int>;
 		
 		private var _explosionManager:ExplosionManagerAction;
+		
+		private var _nanoManager:NanoManagerAction;
 		
 		private var _gridBody:b2Body;
 		
@@ -70,6 +74,16 @@ package com.bored.games.breakout.objects
 			
 			_explosionManager = new ExplosionManagerAction(this, obj);
 			addAction(_explosionManager);
+			
+			
+			obj =
+			{
+				delay: AppSettings.instance.defaultNanoCheckDelay
+			};
+			
+			_nanoManager = new NanoManagerAction(this, obj);
+			addAction(_nanoManager);
+			activateAction(NanoManagerAction.NAME);
 		}//end initializeActions()
 		
 		private function initializePhysics():void
@@ -95,6 +109,31 @@ package com.bored.games.breakout.objects
 		{
 			return _gridHeight;
 		}//end get gridHeight()
+		
+		public function getAllNeighbors(a_brick:Brick):Vector.<Brick>
+		{
+			var neighbors:Vector.<Brick> = new Vector.<Brick>();
+			var go:Brick;
+			
+			for ( var i:uint = a_brick.gridX - 1; i <= a_brick.gridX + a_brick.gridWidth; i++ )
+			{
+				for ( var j:uint = a_brick.gridY - 1; j <= a_brick.gridY + a_brick.gridHeight; j++ )
+				{
+					go = getGridObjectAt(i, j) as Brick;
+					if ( go && go != a_brick )
+					{
+						neighbors.push(go);
+					}
+				}
+			}
+			
+			return neighbors;
+		}//end getAllNeighbors()
+		
+		public function addNanoBrick(a_brick:NanoBrick):void
+		{
+			_nanoManager.addNanoBrick(a_brick);
+		}//end addNanoBrick()
 		
 		public function explodeBricks(a_vec:Vector.<Brick>):void
 		{

@@ -3,7 +3,11 @@ package com.bored.games.breakout.objects.bricks
 	import com.bored.games.breakout.actions.ExplodeBrickAction;
 	import com.bored.games.breakout.emitters.BrickExplosion;
 	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.bored.games.breakout.objects.AnimationController;
+	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.states.views.GameView;
+	import com.sven.utils.AppSettings;
+	import flash.display.BitmapData;
 	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.common.renderers.Renderer;
 	import org.flintparticles.twoD.emitters.Emitter2D;
@@ -14,9 +18,13 @@ package com.bored.games.breakout.objects.bricks
 	 */
 	public class Bomb extends Brick
 	{
-		public function Bomb(a_width:int, a_height:int, a_sprite:AnimatedSprite) 
+		private var _animController:AnimationController;
+		
+		public function Bomb(a_width:int, a_height:int, a_set:AnimationSet) 
 		{
-			super(a_width, a_height, a_sprite);
+			super(a_width, a_height, a_set);
+			
+			_animController = new AnimationController(_animatedSprite, true, (AppSettings.instance.defaultSpriteFrameRate + Math.random() * 5) );
 		}//end constructor()
 		
 		override protected function initializeActions():void 
@@ -26,7 +34,7 @@ package com.bored.games.breakout.objects.bricks
 		
 		override public function notifyHit():void 
 		{			
-			grid.explodeBricks(getAllNeighbors());
+			grid.explodeBricks(grid.getAllNeighbors(this));
 			
 			addAction(new ExplodeBrickAction(this));
 			activateAction(ExplodeBrickAction.NAME);
@@ -34,32 +42,17 @@ package com.bored.games.breakout.objects.bricks
 			super.notifyHit();
 		}//end notifyHit()
 		
-		public function getAllNeighbors():Vector.<Brick>
-		{
-			var neighbors:Vector.<Brick> = new Vector.<Brick>();
-			var go:Brick;
-			
-			for ( var i:uint = this.gridX - 1; i <= this.gridX + this.gridWidth; i++ )
-			{
-				for ( var j:uint = this.gridY - 1; j <= this.gridY + this.gridHeight; j++ )
-				{
-					go = this.grid.getGridObjectAt(i, j) as Brick;
-					if ( go && go != this )
-					{
-						neighbors.push(go);
-					}
-				}
-			}
-			
-			return neighbors;
-		}//end getAllNeighbors()
-		
 		override public function update(t:Number = 0):void 
-		{			
+		{
 			super.update(t);
 			
-			_brickSprite.update(t);
+			_animController.update(t);
 		}//end update()
+		
+		override public function get currFrame():BitmapData
+		{
+			return _animController.currFrame;
+		}//end currFrame()
 		
 		override public function destroy():void 
 		{

@@ -3,21 +3,34 @@ package com.bored.games.breakout.objects.bricks
 	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2FixtureDef;
-	import com.bored.games.breakout.actions.MeltBrickAction;
+	import com.bored.games.breakout.objects.AnimationController;
 	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.sven.utils.AppSettings;
+	import flash.display.BitmapData;
+	import flash.events.Event;
 	import flash.sampler.NewObjectSample;
 	
 	/**
 	 * ...
 	 * @author sam
 	 */
-	public class LimpBrick extends Brick
+	public class Portal extends Brick
 	{
-		public function LimpBrick(a_width:int, a_height:int, a_set:AnimationSet) 
+		// Animation States
+		public static const PORTAL_OPEN:String = "portal_open";
+		public static const PORTAL_LOOP:String = "portal_loop";
+		
+		private var _animController:AnimationController;
+		
+		public function Portal(a_width:int, a_height:int, a_set:AnimationSet) 
 		{
 			super(a_width, a_height, a_set);
+			
+			_animatedSprite = _animationSet.getAnimation(PORTAL_OPEN);
+			
+			_animController = new AnimationController(_animatedSprite);
+			_animController.addEventListener(AnimationController.ANIMATION_COMPLETE, animationComplete, false, 0, true);
 		}//end constructor()
 		
 		override protected function initializeActions():void 
@@ -46,20 +59,35 @@ package com.bored.games.breakout.objects.bricks
 		}//end initializePhysics()
 		
 		override public function notifyHit():void 
-		{
-			addAction(new MeltBrickAction(this));
-			activateAction(MeltBrickAction.NAME);
-			
-			super.notifyHit();
+		{			
+			//super.notifyHit();
 		}//end notifyHit()
 		
-		override public function destroy():void 
+		override public function update(t:Number = 0):void 
 		{
-			removeAction(MeltBrickAction.NAME);
+			super.update(t);
 			
+			_animController.update(t);
+		}//end update()
+		
+		override public function get currFrame():BitmapData
+		{
+			return _animController.currFrame;
+		}//end currFrame()
+		
+		private function animationComplete(e:Event):void
+		{
+			_animController.removeEventListener(AnimationController.ANIMATION_COMPLETE, animationComplete);
+			
+			_animatedSprite = _animationSet.getAnimation(PORTAL_LOOP);
+			_animController.setAnimation(_animatedSprite, true);
+		}//end animationComplete()
+		
+		override public function destroy():void 
+		{			
 			super.destroy();
 		}//end destroy()
 		
-	}//end LimpBrick
+	}//end Portal
 
 }//end package

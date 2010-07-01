@@ -8,6 +8,7 @@ package com.bored.games.breakout.objects.bricks
 	import com.bored.games.breakout.actions.RemoveGridObjectAction;
 	import com.bored.games.breakout.actions.SpawnPointBubbles;
 	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.physics.PhysicsWorld;
@@ -22,20 +23,22 @@ package com.bored.games.breakout.objects.bricks
 	 */
 	public class Brick extends GridObject
 	{
+		// Animation State
+		public static const DEFAULT:String = "default";
+		
 		protected var _brickFixture:b2Fixture;
 		
-		protected var _brickSprite:AnimatedSprite;
+		protected var _animatedSprite:AnimatedSprite;
 		
-		protected var _currFrame:uint;
+		protected var _animationSet:AnimationSet;
 		
-		public function Brick(a_width:int, a_height:int, a_sprite:AnimatedSprite)
+		public function Brick(a_width:int, a_height:int, a_set:AnimationSet)
 		{
 			super(a_width, a_height);
 			
-			_brickSprite = a_sprite;
-			_brickSprite.incrementReferenceCount();
+			_animationSet = a_set;
 			
-			_currFrame = 1;
+			_animatedSprite = _animationSet.getAnimation(DEFAULT);
 		}//end constructor()
 		
 		override public function addToGrid(a_grid:Grid, a_x:uint, a_y:uint):void 
@@ -90,8 +93,8 @@ package com.bored.games.breakout.objects.bricks
 		
 		public function get currFrame():BitmapData
 		{
-			return _brickSprite.currFrame;
-		}//end get brickSprite()
+			return _animatedSprite.currFrame;
+		}//end get currFrame()
 		
 		public function notifyHit():void
 		{
@@ -99,14 +102,17 @@ package com.bored.games.breakout.objects.bricks
 			//activateAction(SpawnPointBubbles.NAME);
 		}//end notifyHit()
 		
+		override public function update(t:Number = 0):void 
+		{
+			super.update(t);
+			
+			_animatedSprite.update(t);
+		}//end update()
+		
 		override public function destroy():void 
 		{			
 			//removeAction(SpawnPointBubbles.NAME);
-			
 			super.destroy();
-			
-			_brickSprite.decrementReferenceCount();
-			_brickSprite = null;
 		}//end destroy()
 			
 	}//end Brick

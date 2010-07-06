@@ -100,6 +100,16 @@ package com.bored.games.breakout.objects
 			return _totalFrames;
 		}//end get totalFrames()
 		
+		public function get frameRate():int
+		{
+			return _frameRate;
+		}//end get frameRate()
+		
+		public function set frameRate(a_fr:int):void
+		{
+			_frameRate = a_fr;
+		}//end set frameRate()
+		
 		override public function reset():void 
 		{
 			_currFrame = _currFrameInd = 0;

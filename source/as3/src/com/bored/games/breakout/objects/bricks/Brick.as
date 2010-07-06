@@ -6,7 +6,7 @@ package com.bored.games.breakout.objects.bricks
 	import Box2D.Dynamics.b2Fixture;
 	import Box2D.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.RemoveGridObjectAction;
-	import com.bored.games.breakout.actions.SpawnPointBubbles;
+	import com.bored.games.breakout.actions.SpawnCollectable;
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.objects.Grid;
@@ -99,7 +99,12 @@ package com.bored.games.breakout.objects.bricks
 		public function notifyHit():void
 		{
 			activateAction(RemoveGridObjectAction.NAME);
-			//activateAction(SpawnPointBubbles.NAME);
+			
+			if ( Math.random() < 0.3 )
+			{
+				addAction(new SpawnCollectable(this));
+				activateAction(SpawnCollectable.NAME);
+			}
 		}//end notifyHit()
 		
 		override public function update(t:Number = 0):void 
@@ -110,8 +115,7 @@ package com.bored.games.breakout.objects.bricks
 		}//end update()
 		
 		override public function destroy():void 
-		{			
-			//removeAction(SpawnPointBubbles.NAME);
+		{
 			super.destroy();
 		}//end destroy()
 			

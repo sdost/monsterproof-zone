@@ -26,10 +26,11 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.objects.bricks.Portal;
 	import com.bored.games.breakout.objects.bricks.SimpleBrick;
 	import com.bored.games.breakout.objects.bricks.UnbreakableBrick;
+	import com.bored.games.breakout.objects.Bullet;
+	import com.bored.games.breakout.objects.collectables.Collectable;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.objects.Paddle;
-	import com.bored.games.breakout.objects.PointBubble;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.input.Input;
 	import com.jac.fsm.StateView;
@@ -50,6 +51,7 @@ package com.bored.games.breakout.states.views
 	import flash.filters.ColorMatrixFilter;
 	import flash.filters.GlowFilter;
 	import flash.filters.ShaderFilter;
+	import flash.geom.Matrix;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLLoader;
@@ -93,7 +95,8 @@ package com.bored.games.breakout.states.views
 	public class GameView extends StateView
 	{
 		public static var Contacts:Vector.<GameContact>;
-		//public static var PointBubbles:Vector.<PointBubble>;
+		public static var Collectables:Vector.<Collectable>;
+		public static var Bullets:Vector.<Bullet>;
 		public static var ParticleRenderer:Renderer;
 		
 		[Embed(source='../../filters/scanlines-adj.pbj', mimeType='application/octet-stream')]
@@ -153,7 +156,8 @@ package com.bored.games.breakout.states.views
 			
 			Contacts = new Vector.<GameContact>();
 			
-			//PointBubbles = new Vector.<PointBubble>();
+			Collectables = new Vector.<Collectable>();
+			Bullets = new Vector.<Bullet>();
 				
 			PhysicsWorld.InitializePhysics();
 			//PhysicsWorld.SetDebugDraw(this);
@@ -398,9 +402,18 @@ package com.bored.games.breakout.states.views
 				}
 			}
 				
-			_backBuffer.copyPixels( _paddle.bitmap.bitmapData, _paddle.bitmap.bitmapData.rect, new Point( _paddle.x - _paddle.width / 2, _paddle.y - _paddle.height / 2 ), null, null, true );
+			_backBuffer.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x - _paddle.width / 2, _paddle.y - _paddle.height / 2 ), null, null, true );
+			_backBuffer.copyPixels( _ball.currFrame, _ball.currFrame.rect, new Point( _ball.x - _ball.width / 2, _ball.y - _ball.height / 2 ), null, null, true );
 			
-			_backBuffer.copyPixels( _ball.bitmap.bitmapData, _ball.bitmap.bitmapData.rect, new Point( _ball.x - _ball.width / 2, _ball.y - _ball.height / 2 ), null, null, true );
+			for each( var coll:Collectable in Collectables )
+			{
+				_backBuffer.copyPixels( coll.currFrame, coll.currFrame.rect, new Point( coll.x, coll.y ), null, null, true );
+			}
+			
+			for each( var bullet:Bullet in Bullets )
+			{
+				_backBuffer.copyPixels( bullet.currFrame, bullet.currFrame.rect, new Point(bullet.x, bullet.y), null, null, true );
+			}
 					
 			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());			
 		}//end render()
@@ -414,23 +427,6 @@ package com.bored.games.breakout.states.views
 			_mouseJoint.SetTarget(new b2Vec2(_mouseXWorldPhys, 500 / PhysicsWorld.PhysScale));
 			
 			PhysicsWorld.UpdateWorld();
-						
-			//var time:uint = getTimer();
-			//_grid.update(time);
-			//_ball.update(time);
-			//_paddle.update(time);
-			
-			/*
-			if ( Contacts.length > 0 ) 
-			{
-				var f:b2Fixture = Contacts[0].fixtureA;
-				var data:* = f.GetUserData();
-				if ( data && data is Brick )
-				{
-					data.notifyHit();
-				}
-			}
-			*/
 		
 			for each( var c:GameContact in Contacts )
 			{
@@ -438,23 +434,23 @@ package com.bored.games.breakout.states.views
 				{
 					if ( c.fixtureB.GetUserData() is Ball )
 						resetBall();
-					/*if ( c.fixtureB.GetUserData() is PointBubble )
+						
+					if ( c.fixtureB.GetUserData() is Collectable )
 					{
-						var ind:int = PointBubbles.indexOf(c.fixtureB.GetUserData());
-						PointBubbles.splice(ind, 1);
-						c.fixtureB.GetUserData().cleanupPhysics();
-					}*/
+						c.fixtureB.GetUserData().destroy();
+						Collectables.splice(Collectables.indexOf(c.fixtureB.GetUserData()), 1);
+					}
 				}
 				else if ( c.fixtureB.GetBody() == _bottomWall )
 				{
 					if ( c.fixtureA.GetUserData() is Ball )
 						resetBall();
-					/*if ( c.fixtureA.GetUserData() is PointBubble )
+						
+					if ( c.fixtureA.GetUserData() is Collectable )
 					{
-						var ind:int = PointBubbles.indexOf(c.fixtureA.GetUserData());
-						PointBubbles.splice(ind, 1);
-						c.fixtureA.GetUserData().cleanupPhysics();
-					}*/
+						c.fixtureA.GetUserData().destroy();
+						Collectables.splice(Collectables.indexOf(c.fixtureA.GetUserData()), 1);
+					}
 				}
 				else if ( c.fixtureA.GetUserData() is Brick )
 				{
@@ -465,6 +461,24 @@ package com.bored.games.breakout.states.views
 				{
 					if ( c.fixtureA.GetUserData() is Ball )
 						c.fixtureB.GetUserData().notifyHit()
+				}
+				else if ( c.fixtureA.GetUserData() is Paddle )
+				{
+					if ( c.fixtureB.GetUserData() is Collectable )
+					{
+						c.fixtureB.GetUserData().destroy();
+						c.fixtureA.GetUserData().activatePowerup(c.fixtureB.GetUserData().actionName);
+						Collectables.splice(Collectables.indexOf(c.fixtureB.GetUserData()), 1);
+					}
+				}
+				else if ( c.fixtureB.GetUserData() is Paddle )
+				{
+					if ( c.fixtureA.GetUserData() is Collectable )
+					{
+						c.fixtureA.GetUserData().destroy();
+						c.fixtureB.GetUserData().activatePowerup(c.fixtureA.GetUserData().actionName);
+						Collectables.splice(Collectables.indexOf(c.fixtureA.GetUserData()), 1);
+					}
 				}
 			}	
 			
@@ -498,9 +512,9 @@ import Box2D.Dynamics.Contacts.b2Contact;
 import com.bored.games.breakout.objects.Ball;
 import com.bored.games.breakout.objects.bricks.Brick;
 import com.bored.games.breakout.objects.Paddle;
-import com.bored.games.breakout.objects.PointBubble;
 import com.bored.games.breakout.physics.PhysicsWorld;
 import com.bored.games.breakout.states.views.GameView;
+import com.sven.utils.AppSettings;
 
 class GameContactListener extends b2ContactListener
 {
@@ -557,7 +571,7 @@ class GameContactListener extends b2ContactListener
 		var vB:b2Vec2 = bodyB.GetLinearVelocityFromWorldPoint(point);
 		
 		var newVel:b2Vec2 = vB.Copy();
-		newVel.x = ballXRatio * 10;
+		newVel.x = ballXRatio * AppSettings.instance.paddleReflectionMultiplier;
 		
 		var solvedYVel:Number = Math.sqrt(vB.LengthSquared() - (newVel.x * newVel.x));
 		
@@ -570,14 +584,6 @@ class GameContactListener extends b2ContactListener
 	{	
 		var fixtureA:b2Fixture = contact.GetFixtureA();
 		var fixtureB:b2Fixture = contact.GetFixtureB();
-		
-		if (fixtureA.GetUserData() is PointBubble && fixtureB.GetUserData() is Ball)
-			contact.SetEnabled(false);
-		if (fixtureB.GetUserData() is PointBubble && fixtureA.GetUserData() is Ball)
-			contact.SetEnabled(false);
-		if (fixtureA.GetUserData() is PointBubble && fixtureB.GetUserData() is PointBubble)
-			contact.SetEnabled(false);
-			
 		
 		if (!(fixtureA.GetUserData() is Ball) && !(fixtureA.GetUserData() is Paddle))
 			return;

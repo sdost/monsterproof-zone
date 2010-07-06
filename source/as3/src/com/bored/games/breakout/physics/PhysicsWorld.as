@@ -12,7 +12,6 @@ package com.bored.games.breakout.physics
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.Joints.b2Joint;
 	import Box2D.Dynamics.Joints.b2JointDef;
-	import com.bored.games.breakout.objects.PointBubble;
 	import com.bored.games.objects.GameElement;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
@@ -88,13 +87,7 @@ package com.bored.games.breakout.physics
 				while ( bb != null )
 				{
 					if ( bb.GetUserData() != null )
-					{
-						if ( bb.GetUserData() is PointBubble )
-						{
-							var grav:b2Vec2 = new b2Vec2(0.0, 5.0 * bb.GetMass())
-							bb.ApplyForce(grav, bb.GetWorldCenter());
-						}
-						
+					{						
 						bb.GetUserData().update(time);
 					}
 					

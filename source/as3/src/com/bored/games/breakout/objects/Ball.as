@@ -5,10 +5,14 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
+	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
+	import flash.display.MovieClip;
 	import flash.geom.Point;
 	
 	/**
@@ -17,10 +21,11 @@ package com.bored.games.breakout.objects
 	 */
 	public class Ball extends GameElement
 	{
-		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Ball_BMP')]
-		private static var imgCls:Class;
+		public static const NORMAL_BALL:String = "Normal";
+		public static const DESTRUCT_BALL:String = "Destructor";
 		
-		private static var _ballBmp:Bitmap = new imgCls();
+		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Ball_MC')]
+		private static var mcCls:Class;
 		
 		private var _ballBody:b2Body;
 		
@@ -28,8 +33,18 @@ package com.bored.games.breakout.objects
 		private var _minSpeed:Number;
 		private var _maxSpeed:Number;
 		
+		private var _animatedSprite:AnimatedSprite;
+		private var _animationSet:AnimationSet;
+		
 		public function Ball()
-		{			
+		{		
+			_animationSet = AnimationSetFactory.generateAnimationSet(new mcCls());
+			
+			//_animatedSprite = _animationSet.getAnimation(NORMAL_BALL);
+			_animatedSprite = _animationSet.getAnimation(DESTRUCT_BALL);
+			
+			//_animatedSprite.frameRate = 40;
+		
 			_speed = AppSettings.instance.defaultInitialBallSpeed;
 			_minSpeed = AppSettings.instance.defaultMinBallSpeed;
 			_maxSpeed = AppSettings.instance.defaultMaxBallSpeed;
@@ -42,13 +57,13 @@ package com.bored.games.breakout.objects
 		{
 			var bd:b2BodyDef = new b2BodyDef();
 			bd.type = b2Body.b2_dynamicBody;
-			bd.fixedRotation = true;
+			//bd.fixedRotation = true;
 			bd.bullet = true;
 			bd.allowSleep = false;
 			bd.userData = this;
 			
 			var fd:b2FixtureDef = new b2FixtureDef();
-			fd.shape = new b2CircleShape( (_ballBmp.bitmapData.width / 2) / PhysicsWorld.PhysScale );
+			fd.shape = new b2CircleShape( (_animatedSprite.width / 2) / PhysicsWorld.PhysScale );
 			fd.density = 1.0;
 			fd.friction = 0.0;
 			fd.restitution = 1.0;
@@ -68,19 +83,19 @@ package com.bored.games.breakout.objects
 			return _ballBody;
 		}//end get physicsBody()
 		
-		public function get bitmap():Bitmap
+		public function get currFrame():BitmapData
 		{
-			return _ballBmp;
+			return _animatedSprite.currFrame;
 		}//end get bitmap()
 		
 		override public function get width():Number
 		{
-			return _ballBmp.bitmapData.width;
+			return _animatedSprite.currFrame.width;
 		}//end get width()
 		
 		override public function get height():Number
 		{
-			return _ballBmp.bitmapData.height;
+			return _animatedSprite.currFrame.height;
 		}//end get height()
 		
 		public function changeSpeed(a_per:Number):void
@@ -131,6 +146,8 @@ package com.bored.games.breakout.objects
 		override public function update(t:Number = 0):void
 		{
 			super.update(t);
+			
+			_animatedSprite.update(t);
 			
 			var pos:b2Vec2 = _ballBody.GetPosition();
 			

@@ -1,5 +1,6 @@
 package com.bored.games.breakout.objects.bricks 
 {
+	import com.bored.games.breakout.actions.DisintegrateBrickAction;
 	import com.bored.games.breakout.objects.AnimationController;
 	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.objects.Grid;
@@ -27,16 +28,21 @@ package com.bored.games.breakout.objects.bricks
 			
 			_alive = a_alive;
 			
+			addAction(new DisintegrateBrickAction(this));
+			
+			var loop:Boolean = false;
+			
 			if (_alive)
 			{
 				_animatedSprite = _animationSet.getAnimation(NANO_LIVE);
+				loop = true;
 			}
 			else
 			{
 				_animatedSprite = _animationSet.getAnimation(NANO_DORMANT);
 			}
 			
-			_animController = new AnimationController(_animatedSprite);
+			_animController = new AnimationController(_animatedSprite, loop);
 			
 		}//end constructor()
 		
@@ -59,8 +65,11 @@ package com.bored.games.breakout.objects.bricks
 		
 		override public function notifyHit():void 
 		{
-			if( !_brickFixture.IsSensor() )
+			if ( !_brickFixture.IsSensor() )
+			{
+				activateAction(DisintegrateBrickAction.NAME);
 				sleep();
+			}
 		}//end notifyHit()
 			
 		override public function update(t:Number = 0):void 
@@ -73,28 +82,33 @@ package com.bored.games.breakout.objects.bricks
 		public function revive():void
 		{
 			_alive = true;
+			_brickFixture.SetSensor(false);
 			
 			_animatedSprite = _animationSet.getAnimation(NANO_REVIVE);
-			_animController.setAnimation(_animatedSprite);
+			_animController.setAnimation(_animatedSprite, false);
 			_animController.addEventListener( AnimationController.ANIMATION_COMPLETE, reviveAnimationComplete, false, 0, true );
 		}//end revive()
 		
 		private function reviveAnimationComplete(e:Event):void
 		{
 			_animController.removeEventListener( AnimationController.ANIMATION_COMPLETE, reviveAnimationComplete );
-			_brickFixture.SetSensor(false);
 			
 			_animatedSprite = _animationSet.getAnimation(NANO_LIVE);
-			_animController.setAnimation(_animatedSprite);
+			_animController.setAnimation(_animatedSprite, true);
 		}//end reviveAnimationComplete()
 		
 		public function sleep():void
 		{
+			if ( _animController.hasEventListener( AnimationController.ANIMATION_COMPLETE ) )
+			{
+				_animController.removeEventListener( AnimationController.ANIMATION_COMPLETE, reviveAnimationComplete );
+			}
+			
 			_alive = false;
 			_brickFixture.SetSensor(true);
 			
 			_animatedSprite = _animationSet.getAnimation(NANO_DORMANT);
-			_animController.setAnimation(_animatedSprite);
+			_animController.setAnimation(_animatedSprite, false);
 		}//end sleep()
 		
 		override public function get currFrame():BitmapData

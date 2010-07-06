@@ -5,6 +5,8 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.actions.LaserPaddleAction;
+	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
 	import flash.display.Bitmap;
@@ -16,10 +18,14 @@ package com.bored.games.breakout.objects
 	 */
 	public class Paddle extends GameElement
 	{
-		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Paddle_BMP')]
-		private static var imgCls:Class;
+		public static const PADDLE_NORMAL:String = "Normal";
+		public static const PADDLE_LASER:String = "Laser";
 		
-		private static var _paddleBmp:Bitmap = new imgCls();
+		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Paddle_MC')]
+		private static var mcCls:Class;
+		
+		private var _animationSet:AnimationSet;
+		private var _animatedSprite:AnimatedSprite;
 		
 		private var _paddleBody:b2Body;
 		
@@ -27,7 +33,9 @@ package com.bored.games.breakout.objects
 		{
 			super();
 			
-			_paddleBmp = new imgCls();
+			_animationSet = AnimationSetFactory.generateAnimationSet(new mcCls());
+			
+			_animatedSprite = _animationSet.getAnimation(PADDLE_NORMAL);
 			
 			initializePhysicsBody();
 			initializeActions();			
@@ -42,7 +50,7 @@ package com.bored.games.breakout.objects
 			bd.userData = this;
 			
 			var shape:b2PolygonShape = new b2PolygonShape();
-			shape.SetAsBox( (_paddleBmp.bitmapData.width / 2) / PhysicsWorld.PhysScale, (_paddleBmp.bitmapData.height / 2) / PhysicsWorld.PhysScale );
+			shape.SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.currFrame.height / 2) / PhysicsWorld.PhysScale );
 			
 			var fd:b2FixtureDef = new b2FixtureDef();
 			fd.shape = shape;
@@ -57,7 +65,7 @@ package com.bored.games.breakout.objects
 		
 		private function initializeActions():void
 		{
-			
+			addAction( new LaserPaddleAction(this, {"time": 10000, "fireRate": 250}) ) ;
 		}//end intializeActions()
 		
 		public function get physicsBody():b2Body
@@ -65,24 +73,39 @@ package com.bored.games.breakout.objects
 			return _paddleBody;
 		}//end get physicsBody()
 		
-		public function get bitmap():Bitmap
+		public function get currFrame():BitmapData
 		{
-			return _paddleBmp;
+			return _animatedSprite.currFrame;
 		}//end get bitmap()
 		
 		override public function get width():Number
 		{
-			return _paddleBmp.bitmapData.width;
+			return _animatedSprite.currFrame.width;
 		}//end get width()
 		
 		override public function get height():Number
 		{
-			return _paddleBmp.bitmapData.height;
+			return _animatedSprite.currFrame.height;
 		}//end get height()
+		
+		public function activatePowerup(str:String):void
+		{
+			if ( checkForActionNamed(str) )
+			{
+				activateAction(str);	
+			}
+		}//end activatePowerup()
+		
+		public function switchAnimation(a_str:String):void
+		{
+			_animatedSprite = _animationSet.getAnimation(a_str);
+		}//end switchAnimation()
 		
 		override public function update(t:Number = 0):void 
 		{
 			super.update(t);
+			
+			_animatedSprite.update();
 			
 			var pos:b2Vec2 = _paddleBody.GetPosition();
 			

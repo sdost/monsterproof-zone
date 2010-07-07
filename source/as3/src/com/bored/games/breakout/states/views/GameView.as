@@ -1,5 +1,6 @@
 package com.bored.games.breakout.states.views 
 {
+	import away3dlite.loaders.Collada;
 	import Box2D.Collision.b2Manifold;
 	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Common.Math.b2Vec2;
@@ -108,7 +109,9 @@ package com.bored.games.breakout.states.views
 		private var _ball:Ball;
 		private var _paddle:Paddle;
 		
-		private var _bottomWall:b2Body;
+		private var _walls:b2Body;
+		private var _topWall:b2Fixture;
+		private var _bottomWall:b2Fixture;
 		
 		private var _gameScreen:Bitmap;
 		
@@ -212,27 +215,20 @@ package com.bored.games.breakout.states.views
 		{			
 			var wall:b2PolygonShape = new b2PolygonShape();
 			var wallBd:b2BodyDef = new b2BodyDef();
-			var wallB:b2Body;
+			wallBd.type = b2Body.b2_staticBody;
+			_walls = PhysicsWorld.CreateBody(wallBd);
 			
-			wallBd.position.Set( -30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale);
-			wall.SetAsBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale);
-			wallB = PhysicsWorld.CreateBody(wallBd);
-			wallB.CreateFixture2(wall);
+			wall.SetAsOrientedBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new b2Vec2(-30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
+			_walls.CreateFixture2(wall);
 			
-			wallBd.position.Set( 336 / PhysicsWorld.PhysScale, -30 / PhysicsWorld.PhysScale);
-			wall.SetAsBox(336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale);
-			wallB = PhysicsWorld.CreateBody(wallBd);
-			wallB.CreateFixture2(wall);
+			wall.SetAsOrientedBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new b2Vec2(336 / PhysicsWorld.PhysScale, -30 / PhysicsWorld.PhysScale) );
+			_topWall = _walls.CreateFixture2(wall);
 			
-			wallBd.position.Set(704 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale);
-			wall.SetAsBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale);
-			wallB = PhysicsWorld.CreateBody(wallBd);
-			wallB.CreateFixture2(wall);
+			wall.SetAsOrientedBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new b2Vec2(704 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
+			_walls.CreateFixture2(wall);
 			
-			wallBd.position.Set(336 / PhysicsWorld.PhysScale, 574 / PhysicsWorld.PhysScale);
-			wall.SetAsBox(336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale);
-			_bottomWall = wallB = PhysicsWorld.CreateBody(wallBd);
-			wallB.CreateFixture2(wall);
+			wall.SetAsOrientedBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new b2Vec2(336 / PhysicsWorld.PhysScale, 574 / PhysicsWorld.PhysScale) );
+			_bottomWall = _walls.CreateFixture2(wall);
 			
 			_paddle.physicsBody.SetPosition( new b2Vec2( 336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale ) );
 			
@@ -402,8 +398,8 @@ package com.bored.games.breakout.states.views
 				}
 			}
 				
-			_backBuffer.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x - _paddle.width / 2, _paddle.y - _paddle.height / 2 ), null, null, true );
-			_backBuffer.copyPixels( _ball.currFrame, _ball.currFrame.rect, new Point( _ball.x - _ball.width / 2, _ball.y - _ball.height / 2 ), null, null, true );
+			_backBuffer.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x, _paddle.y ), null, null, true );
+			_backBuffer.copyPixels( _ball.currFrame, _ball.currFrame.rect, new Point( _ball.x, _ball.y ), null, null, true );
 			
 			for each( var coll:Collectable in Collectables )
 			{
@@ -418,6 +414,71 @@ package com.bored.games.breakout.states.views
 			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());			
 		}//end render()
 		
+		private function handleBallCollision(a_ball:b2Fixture, a_fixture:b2Fixture):void
+		{
+			if ( a_fixture == _bottomWall )
+			{
+				resetBall();
+			}
+			else if ( a_fixture.GetUserData() is Brick )
+			{
+				a_fixture.GetUserData().notifyHit();
+			}
+		}//end handleBallCollision()
+		
+		private function handleCollectableCollision(a_collectable:b2Fixture, a_fixture:b2Fixture):void
+		{
+			var ind:int;
+			
+			if ( a_fixture == _bottomWall )
+			{
+				a_collectable.GetUserData().destroy();
+				ind = Collectables.indexOf(a_collectable.GetUserData());
+				Collectables.splice(ind, 1);
+				return;
+			}
+			else if ( a_fixture.GetUserData() is Paddle )
+			{
+				a_collectable.GetUserData().destroy();
+				ind = Collectables.indexOf(a_collectable.GetUserData());
+				a_fixture.GetUserData().activatePowerup(a_collectable.GetUserData().actionName);
+				Collectables.splice(ind, 1);
+			}
+		}//end handleCollectableCollision()
+		
+		private function handleBulletCollision(a_bullet:b2Fixture, a_fixture:b2Fixture):void
+		{
+			var ind:int;
+			
+			if ( a_fixture == _topWall )
+			{
+				a_bullet.GetUserData().destroy();
+				ind = Bullets.indexOf(a_bullet.GetUserData());
+				Bullets.splice(ind, 1);
+			}
+			else if ( a_fixture.GetUserData() is NanoBrick )
+			{
+				if ( a_fixture.GetUserData().alive )
+				{
+					a_fixture.GetUserData().notifyHit();
+					a_bullet.GetUserData().destroy();
+					ind = Bullets.indexOf(a_bullet.GetUserData());
+					Bullets.splice(ind, 1);
+				}
+			}
+			else if ( a_fixture.GetUserData() is Portal )
+			{
+				return;
+			}
+			else if ( a_fixture.GetUserData() is Brick )
+			{
+				a_fixture.GetUserData().notifyHit();
+				a_bullet.GetUserData().destroy();
+				ind = Bullets.indexOf(a_bullet.GetUserData());
+				Bullets.splice(ind, 1);
+			}
+		}//end handleBulletCollision()
+		
 		override public function update():void
 		{
 			if ( _paused ) return;
@@ -430,55 +491,40 @@ package com.bored.games.breakout.states.views
 		
 			for each( var c:GameContact in Contacts )
 			{
-				if ( c.fixtureA.GetBody() == _bottomWall )
+				if ( c.fixtureA.GetUserData() is Ball )
 				{
-					if ( c.fixtureB.GetUserData() is Ball )
-						resetBall();
-						
-					if ( c.fixtureB.GetUserData() is Collectable )
-					{
-						c.fixtureB.GetUserData().destroy();
-						Collectables.splice(Collectables.indexOf(c.fixtureB.GetUserData()), 1);
-					}
+					handleBallCollision(c.fixtureA, c.fixtureB);
+					continue;
 				}
-				else if ( c.fixtureB.GetBody() == _bottomWall )
+				
+				if ( c.fixtureB.GetUserData() is Ball )
 				{
-					if ( c.fixtureA.GetUserData() is Ball )
-						resetBall();
-						
-					if ( c.fixtureA.GetUserData() is Collectable )
-					{
-						c.fixtureA.GetUserData().destroy();
-						Collectables.splice(Collectables.indexOf(c.fixtureA.GetUserData()), 1);
-					}
+					handleBallCollision(c.fixtureB, c.fixtureA);
+					continue;
 				}
-				else if ( c.fixtureA.GetUserData() is Brick )
+				
+				if ( c.fixtureA.GetUserData() is Collectable )
 				{
-					if ( c.fixtureB.GetUserData() is Ball )
-						c.fixtureA.GetUserData().notifyHit();
+					handleCollectableCollision(c.fixtureA, c.fixtureB);
+					continue;
 				}
-				else if ( c.fixtureB.GetUserData() is Brick )
+				
+				if ( c.fixtureB.GetUserData() is Collectable )
 				{
-					if ( c.fixtureA.GetUserData() is Ball )
-						c.fixtureB.GetUserData().notifyHit()
+					handleCollectableCollision(c.fixtureB, c.fixtureA);
+					continue;
 				}
-				else if ( c.fixtureA.GetUserData() is Paddle )
+				
+				if ( c.fixtureA.GetUserData() is Bullet )
 				{
-					if ( c.fixtureB.GetUserData() is Collectable )
-					{
-						c.fixtureB.GetUserData().destroy();
-						c.fixtureA.GetUserData().activatePowerup(c.fixtureB.GetUserData().actionName);
-						Collectables.splice(Collectables.indexOf(c.fixtureB.GetUserData()), 1);
-					}
+					handleBulletCollision(c.fixtureA, c.fixtureB);
+					continue;
 				}
-				else if ( c.fixtureB.GetUserData() is Paddle )
+				
+				if ( c.fixtureB.GetUserData() is Bullet )
 				{
-					if ( c.fixtureA.GetUserData() is Collectable )
-					{
-						c.fixtureA.GetUserData().destroy();
-						c.fixtureB.GetUserData().activatePowerup(c.fixtureA.GetUserData().actionName);
-						Collectables.splice(Collectables.indexOf(c.fixtureA.GetUserData()), 1);
-					}
+					handleBulletCollision(c.fixtureB, c.fixtureA);
+					continue;
 				}
 			}	
 			
@@ -498,11 +544,13 @@ package com.bored.games.breakout.states.views
 
 }//end package
 
+import Box2D.Collision.b2AABB;
 import Box2D.Collision.b2Bound;
 import Box2D.Collision.b2Manifold;
 import Box2D.Collision.b2WorldManifold;
 import Box2D.Collision.Shapes.b2CircleShape;
 import Box2D.Collision.Shapes.b2PolygonShape;
+import Box2D.Common.Math.b2Transform;
 import Box2D.Common.Math.b2Vec2;
 import Box2D.Dynamics.b2Body;
 import Box2D.Dynamics.b2ContactImpulse;
@@ -511,6 +559,7 @@ import Box2D.Dynamics.b2Fixture;
 import Box2D.Dynamics.Contacts.b2Contact;
 import com.bored.games.breakout.objects.Ball;
 import com.bored.games.breakout.objects.bricks.Brick;
+import com.bored.games.breakout.objects.Bullet;
 import com.bored.games.breakout.objects.Paddle;
 import com.bored.games.breakout.physics.PhysicsWorld;
 import com.bored.games.breakout.states.views.GameView;
@@ -548,16 +597,19 @@ class GameContactListener extends b2ContactListener
 	{
 		var fixtureA:b2Fixture = contact.GetFixtureA();
 		var fixtureB:b2Fixture = contact.GetFixtureB();
-		if (!(fixtureA.GetUserData() is Ball) && !(fixtureA.GetUserData() is Paddle))
-			return;
-		if (!(fixtureB.GetUserData() is Ball) && !(fixtureB.GetUserData() is Paddle))
+		
+		if (!(fixtureA.GetUserData() is Paddle && fixtureB.GetUserData() is Ball))
 			return;
 		
-		var paddle:Paddle = contact.GetFixtureA().GetUserData() as Paddle;
-		var ball:Ball = contact.GetFixtureB().GetUserData() as Ball;
+		var paddle:b2Vec2 = contact.GetFixtureA().GetBody().GetPosition();
+		var ball:b2Vec2 = contact.GetFixtureB().GetBody().GetPosition();
 		
 		var ballXDiff:Number = ball.x - paddle.x;
-		var ballXRatio:Number = ballXDiff / paddle.width;
+		
+		var rect:b2AABB = new b2AABB();
+		contact.GetFixtureA().GetShape().ComputeAABB(rect, new b2Transform());
+		
+		var ballXRatio:Number = ballXDiff / (rect.GetExtents().x * 2);
 		
 		if (ballXRatio < -0.95) ballXRatio = -0.95;
 		if (ballXRatio > 0.95) ballXRatio = 0.95;

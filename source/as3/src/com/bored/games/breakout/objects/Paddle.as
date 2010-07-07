@@ -4,7 +4,9 @@ package com.bored.games.breakout.objects
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
+	import Box2D.Dynamics.b2Fixture;
 	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.actions.ExtendPaddleAction;
 	import com.bored.games.breakout.actions.LaserPaddleAction;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
@@ -20,12 +22,16 @@ package com.bored.games.breakout.objects
 	{
 		public static const PADDLE_NORMAL:String = "Normal";
 		public static const PADDLE_LASER:String = "Laser";
+		public static const PADDLE_CATCH:String = "Catch";
+		public static const PADDLE_EXTEND:String = "Extend";
 		
 		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Paddle_MC')]
 		private static var mcCls:Class;
 		
 		private var _animationSet:AnimationSet;
 		private var _animatedSprite:AnimatedSprite;
+		
+		private var _normalHeight:Number;
 		
 		private var _paddleBody:b2Body;
 		
@@ -36,6 +42,8 @@ package com.bored.games.breakout.objects
 			_animationSet = AnimationSetFactory.generateAnimationSet(new mcCls());
 			
 			_animatedSprite = _animationSet.getAnimation(PADDLE_NORMAL);
+			
+			_normalHeight = _animatedSprite.currFrame.height;
 			
 			initializePhysicsBody();
 			initializeActions();			
@@ -65,8 +73,19 @@ package com.bored.games.breakout.objects
 		
 		private function initializeActions():void
 		{
-			addAction( new LaserPaddleAction(this, {"time": 10000, "fireRate": 250}) ) ;
+			addAction( new LaserPaddleAction(this, { "time": 10000, "fireRate": 250 } ) ) ;
+			addAction( new ExtendPaddleAction(this, { "time": 10000 } ) ) ;
 		}//end intializeActions()
+		
+		public function updateBody():void
+		{
+			var fixture:b2Fixture = _paddleBody.GetFixtureList();
+			
+			var shape:b2PolygonShape = new b2PolygonShape();
+			shape.SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.currFrame.height / 2) / PhysicsWorld.PhysScale );
+			
+			fixture.GetShape().Set(shape);
+		}//end updateBody()
 		
 		public function get physicsBody():b2Body
 		{
@@ -109,8 +128,8 @@ package com.bored.games.breakout.objects
 			
 			var pos:b2Vec2 = _paddleBody.GetPosition();
 			
-			this.x = pos.x * PhysicsWorld.PhysScale;
-			this.y = pos.y * PhysicsWorld.PhysScale;
+			this.x = (pos.x * PhysicsWorld.PhysScale - width / 2);
+			this.y = ((pos.y * PhysicsWorld.PhysScale + _normalHeight / 2) - height);
 		}//end update()
 		
 	}//end Paddle

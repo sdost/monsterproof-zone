@@ -4,6 +4,7 @@ package com.bored.games.breakout.actions
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.objects.collectables.Collectable;
+	import com.bored.games.breakout.objects.collectables.ExtendPowerup;
 	import com.bored.games.breakout.objects.collectables.LaserPowerup;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
@@ -33,8 +34,16 @@ package com.bored.games.breakout.actions
 					
 			var xOffset:Number = (brick.gridX + brick.gridWidth/2) * AppSettings.instance.defaultTileWidth;
 			var yOffset:Number = (brick.gridY + brick.gridHeight/2) * AppSettings.instance.defaultTileHeight;
-				
-			var pb:Collectable = new LaserPowerup();
+			
+			var die:Number = Math.random();
+			
+			var pb:Collectable;
+			
+			if( die < 0.5 )
+				pb = new LaserPowerup();
+			else
+				pb = new ExtendPowerup();
+			
 			pb.physicsBody.ApplyImpulse( new b2Vec2( 0, 10 * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
 			pb.physicsBody.SetPosition( new b2Vec2( (xOffset - pb.width / 2) / PhysicsWorld.PhysScale, (yOffset - pb.height / 2) / PhysicsWorld.PhysScale ) );
 			

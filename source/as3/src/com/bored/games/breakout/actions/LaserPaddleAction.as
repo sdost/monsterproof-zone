@@ -74,7 +74,7 @@ package com.bored.games.breakout.actions
 					if( getTimer() - _lastBullet > _fireRate )
 					{
 						var bullet:Bullet = new Bullet(_sprite);
-						var offsetX:Number = (_gameElement.x - _gameElement.width / 2) / PhysicsWorld.PhysScale;
+						var offsetX:Number = (_gameElement.x + 4) / PhysicsWorld.PhysScale;
 						var offsetY:Number = _gameElement.y / PhysicsWorld.PhysScale;
 						bullet.physicsBody.SetPosition( new b2Vec2( offsetX, offsetY ) );
 						bullet.physicsBody.ApplyImpulse( new b2Vec2( 0, -30 * bullet.physicsBody.GetMass() ), bullet.physicsBody.GetWorldCenter() );
@@ -82,7 +82,7 @@ package com.bored.games.breakout.actions
 						GameView.Bullets.push(bullet);
 						
 						bullet = new Bullet(_sprite);
-						offsetX = (_gameElement.x + _gameElement.width / 2) / PhysicsWorld.PhysScale;
+						offsetX = (_gameElement.x + _gameElement.width - 6) / PhysicsWorld.PhysScale;
 						bullet.physicsBody.SetPosition( new b2Vec2( offsetX, offsetY ) );
 						bullet.physicsBody.ApplyImpulse( new b2Vec2( 0, -30 * bullet.physicsBody.GetMass() ), bullet.physicsBody.GetWorldCenter() );
 						

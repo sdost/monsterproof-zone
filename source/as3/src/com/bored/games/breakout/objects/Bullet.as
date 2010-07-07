@@ -1,6 +1,7 @@
 package com.bored.games.breakout.objects 
 {
 	import Box2D.Collision.Shapes.b2CircleShape;
+	import Box2D.Collision.Shapes.b2PolygonShape;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
@@ -41,8 +42,11 @@ package com.bored.games.breakout.objects
 			bd.allowSleep = false;
 			bd.userData = this;
 			
+			var shape:b2PolygonShape = new b2PolygonShape();
+			shape.SetAsBox( (_animatedSprite.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.height / 2) / PhysicsWorld.PhysScale );
+			
 			var fd:b2FixtureDef = new b2FixtureDef();
-			fd.shape = new b2CircleShape( (_animatedSprite.width / 2) / PhysicsWorld.PhysScale );
+			fd.shape = shape;
 			fd.density = 1.0;
 			fd.friction = 0.0;
 			fd.restitution = 1.0;
@@ -52,6 +56,11 @@ package com.bored.games.breakout.objects
 			_bulletBody = PhysicsWorld.CreateBody(bd);
 			_bulletBody.CreateFixture(fd);
 		}//end initializePhysicsBody()
+		
+		private function cleanupPhysics():void
+		{
+			PhysicsWorld.DestroyBody(_bulletBody);
+		}//end cleanupPhysics()
 		
 		public function get physicsBody():b2Body
 		{
@@ -84,6 +93,11 @@ package com.bored.games.breakout.objects
 			this.x = pos.x * PhysicsWorld.PhysScale;
 			this.y = pos.y * PhysicsWorld.PhysScale;
 		}//end update()
+		
+		public function destroy():void 
+		{			
+			cleanupPhysics();
+		}//end destroy()
 		
 	}//end Bullet
 

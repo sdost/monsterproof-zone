@@ -151,8 +151,8 @@ package com.bored.games.breakout.objects
 			
 			var pos:b2Vec2 = _ballBody.GetPosition();
 			
-			this.x = pos.x * PhysicsWorld.PhysScale;
-			this.y = pos.y * PhysicsWorld.PhysScale;
+			this.x = (pos.x * PhysicsWorld.PhysScale - width / 2);
+			this.y = (pos.y * PhysicsWorld.PhysScale - height / 2);
 			
 			var bodyVelocity:b2Vec2 =_ballBody.GetLinearVelocity();
 			var limitVelocity:b2Vec2 = bodyVelocity.Copy();

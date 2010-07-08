@@ -51,6 +51,7 @@
   <!-- SWC Libraries -->
   <libraryPaths>
     <element path="libs\MonsterProofEngine.swc" />
+    <element path="libs\ds_release.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

@@ -12,6 +12,9 @@ package com.bored.games.breakout.objects
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
+	import de.polygonal.ds.SLL;
+	import de.polygonal.ds.SLLIterator;
+	import de.polygonal.ds.SLLNode;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	
@@ -26,9 +29,9 @@ package com.bored.games.breakout.objects
 		private var _gridWidth:int;
 		private var _gridHeight:int;
 		
-		private var _gridObjectList:Vector.<GridObject>;
+		private var _gridObjectList:SLL;
 		private var _gridRemoveList:Vector.<GridObject>;
-		private var _grid:Vector.<int>;
+		private var _grid:Vector.<GridObject>;
 		
 		private var _explosionManager:ExplosionManagerAction;
 		
@@ -39,6 +42,8 @@ package com.bored.games.breakout.objects
 		private var _count:int;
 			
 		private var _shift:int;
+		
+		private var _currentInd:uint;
 		
 		public function Grid( a_width:int, a_height:int ) 
 		{
@@ -54,7 +59,7 @@ package com.bored.games.breakout.objects
 				_shift++;
 			}
 			
-			_gridObjectList = new Vector.<GridObject>(MAX_GRID_OBJECTS, true);
+			_gridObjectList = new SLL(MAX_GRID_OBJECTS);
 			_gridRemoveList = new Vector.<GridObject>();
 			
 			_count = 0;
@@ -63,6 +68,8 @@ package com.bored.games.breakout.objects
 			
 			initializeActions();
 			initializePhysics();
+			
+			_currentInd = 0;
 		}//end constructor()
 		
 		private function initializeActions():void
@@ -144,11 +151,11 @@ package com.bored.games.breakout.objects
 		
 		private function generate():void
 		{
-			_grid = new Vector.<int>(100 << _shift, true);
+			_grid = new Vector.<GridObject>(100 << _shift, true);
 			
 			for ( var i:int = 0; i < _grid.length; i++)
 			{
-				_grid[i] = -1;
+				_grid[i] = null;
 			}
 		}//end generate()
 		
@@ -171,24 +178,19 @@ package com.bored.games.breakout.objects
 			{
 				for ( y = a_y; y < bottomBounds; y++ )
 				{
-					if ( _grid[(x << _shift) | y] >= 0 )
+					if ( _grid[(x << _shift) | y] )
 						return false;
 				}
 			}
 			
-			var i:uint;
-			for ( i = 0; i < MAX_GRID_OBJECTS; i++ )
-			{
-				if ( _gridObjectList[i] == null ) break;
-			}
-			_gridObjectList[i] = a_obj;
+			_gridObjectList.append(a_obj);
 			a_obj.addToGrid(this, a_x, a_y);
 			
 			for ( x = a_x; x < rightBounds; x++ )
 			{
 				for ( y = a_y; y < bottomBounds; y++ )
 				{
-					_grid[(x << _shift) | y] = i;
+					_grid[(x << _shift) | y] = a_obj;
 				}
 			}
 			
@@ -197,8 +199,7 @@ package com.bored.games.breakout.objects
 		
 		public function removeGridObject(a_go:GridObject):Boolean
 		{
-			var ind:uint = _gridObjectList.indexOf(a_go);
-			if ( ind < 0 ) return false;
+			if ( !_gridObjectList.contains(a_go) ) return false;
 			
 			var rightBounds:int = a_go.gridX + a_go.gridWidth;
 			var bottomBounds:int = a_go.gridY + a_go.gridHeight;
@@ -209,7 +210,7 @@ package com.bored.games.breakout.objects
 			{
 				for ( y = a_go.gridY; y < bottomBounds; y++ )
 				{
-					_grid[(x << _shift) | y] = -1; 
+					_grid[(x << _shift) | y] = null; 
 				}
 			}			
 			
@@ -221,14 +222,14 @@ package com.bored.games.breakout.objects
 		public function getGridObjectAt( a_x:int, a_y:int ):GridObject
 		{
 			if ( a_x < 0 || a_y < 0 ) return null;
-			
-			var ind:int = _grid[(a_x << _shift) | a_y];
-			
-			if( ind >= 0 )
-				return _gridObjectList[ind];
-			else 
-				return null;
+
+			return _grid[(a_x << _shift) | a_y];
 		}//end getGridObjectAt()
+		
+		public function get gridObjectList():SLL
+		{
+			return _gridObjectList;
+		}//end get gridObjectList()
 		
 		override public function update(t:Number = 0):void
 		{
@@ -238,18 +239,19 @@ package com.bored.games.breakout.objects
 			while( _gridRemoveList.length > 0 )
 			{
 				go = _gridRemoveList.pop();
-				var ind:int = _gridObjectList.indexOf(go);
-				if(ind > 0)
-					_gridObjectList[ind] = null;
+				
+				
+				var node:SLLNode = _gridObjectList.nodeOf(go);
+				if (node) node.remove();
 					
 				go.removeFromGrid();
 				go.destroy();
 			}
 			
-			for ( var i:uint = 0; i < _gridObjectList.length; i++ )
+			var iter:SLLIterator = new SLLIterator(_gridObjectList);
+			while ( iter.hasNext() )
 			{
-				if( _gridObjectList[i] )
-					_gridObjectList[i].update(t);
+				iter.next().update(t);
 			}
 		}//end update()
 		

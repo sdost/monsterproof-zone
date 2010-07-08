@@ -72,12 +72,12 @@ package com.bored.games.breakout.objects.collectables
 		
 		override public function get width():Number 
 		{
-			return _animatedSprite.currFrame.width;
+			return _animatedSprite.width;
 		}//end get width()
 		
 		override public function get height():Number 
 		{
-			return _animatedSprite.currFrame.height;
+			return _animatedSprite.height;
 		}//end get height()
 		
 		public function get currFrame():BitmapData

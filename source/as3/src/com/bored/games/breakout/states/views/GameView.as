@@ -36,6 +36,11 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.input.Input;
 	import com.jac.fsm.StateView;
 	import com.sven.utils.AppSettings;
+	import de.polygonal.ds.mem.MemoryManager;
+	import de.polygonal.ds.SLL;
+	import de.polygonal.ds.SLLIterator;
+	import de.polygonal.ds.SLLNode;
+	import flash.Boot;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.display.BlendMode;
@@ -95,9 +100,10 @@ package com.bored.games.breakout.states.views
 	 */
 	public class GameView extends StateView
 	{
-		public static var Contacts:Vector.<GameContact>;
-		public static var Collectables:Vector.<Collectable>;
-		public static var Bullets:Vector.<Bullet>;
+		public static var Contacts:ContactLL;// .<b2Contact>;
+		public static var Collectables:SLL;// .<Collectable>;
+		public static var Bullets:SLL;// .<Bullet>;
+		
 		public static var ParticleRenderer:Renderer;
 		
 		[Embed(source='../../filters/scanlines-adj.pbj', mimeType='application/octet-stream')]
@@ -106,12 +112,14 @@ package com.bored.games.breakout.states.views
 		private static var _shader:Shader = new Shader(new _filterCls as ByteArray);
 		
 		private var _grid:Grid;
-		private var _ball:Ball;
+		private var _balls:SLL;
 		private var _paddle:Paddle;
 		
 		private var _walls:b2Body;
 		private var _topWall:b2Fixture;
 		private var _bottomWall:b2Fixture;
+		
+		private var _drawnObjects:SLL;
 		
 		private var _gameScreen:Bitmap;
 		
@@ -153,14 +161,17 @@ package com.bored.games.breakout.states.views
 		public function GameView() 
 		{
 			super();
-			
+						
 			_shader.data.lineSize.value = [1];
-			//this.filters = [new ShaderFilter(_shader)];
+			this.filters = [new ShaderFilter(_shader)];
 			
-			Contacts = new Vector.<GameContact>();
+			_balls = new SLL();
 			
-			Collectables = new Vector.<Collectable>();
-			Bullets = new Vector.<Bullet>();
+			Contacts = new ContactLL();
+			Collectables = new SLL();
+			Bullets = new SLL();
+			
+			_drawnObjects = new SLL();
 				
 			PhysicsWorld.InitializePhysics();
 			//PhysicsWorld.SetDebugDraw(this);
@@ -183,7 +194,6 @@ package com.bored.games.breakout.states.views
 			addChild( _gameScreen );
 			
 			_grid = new Grid( AppSettings.instance.defaultGridWidth, AppSettings.instance.defaultGridHeight );
-			_ball = new Ball();
 			_paddle = new Paddle();
 			
 			_spriteLoader = new Loader();
@@ -354,23 +364,34 @@ package com.bored.games.breakout.states.views
 					_grid.addGridObject(brick, uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
 			}
 			
-			resetBall();
+			addBall();
+			addBall();
+			addBall();
 			
 			_paused = false;
 		}//end onComplete()
 		
-		private function resetBall():void
+		private function addBall():void
 		{
-			_ball.physicsBody.SetPosition( new b2Vec2( 336 / PhysicsWorld.PhysScale, 450 / PhysicsWorld.PhysScale ) );
+			var ball:Ball = new Ball();
+			
+			ball.physicsBody.SetPosition( new b2Vec2( 336 / PhysicsWorld.PhysScale, 450 / PhysicsWorld.PhysScale ) );
 			
 			var impulse:b2Vec2 = new b2Vec2(Math.random() * 30 - 15, -15);
-			_ball.physicsBody.SetLinearVelocity(impulse);
+			ball.physicsBody.SetLinearVelocity(impulse);
+			
+			_balls.append(ball);
 		}//end resetBall()
+		
+		private function ballLost():void
+		{
+			//if ( --_ballsLeft > 0 )
+				addBall();
+		}//end ballLost()
 		
 		override public function exit():void
 		{
 			_grid = null;
-			_ball = null;
 			_paddle = null;
 			
 			exitComplete();
@@ -379,46 +400,63 @@ package com.bored.games.breakout.states.views
 		private function renderFrame(e:Event):void
 		{			
 			var go:GridObject;
-			var objectDrawn:Vector.<GridObject> = new Vector.<GridObject>();
+			_drawnObjects.clear();
 			
 			_backBuffer.draw(_bkgdMC);
 			
+			var iter:SLLIterator = new SLLIterator(Collectables);
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
 			{
 				for ( var j:int = 0; j < _grid.gridHeight; j++ )
 				{
 					go = _grid.getGridObjectAt(i, j);
-					if (go && objectDrawn.indexOf(go) == -1) 
+					if (go && !_drawnObjects.contains(go)) 
 					{
 						var bmd:BitmapData = (go as Brick).currFrame;
 						_backBuffer.copyPixels( bmd, bmd.rect, new Point(i * AppSettings.instance.defaultTileWidth, j * AppSettings.instance.defaultTileHeight), null, null, true );
 						
-						objectDrawn.push(go);
+						_drawnObjects.append(go);
 					}
 				}
 			}
 				
 			_backBuffer.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x, _paddle.y ), null, null, true );
-			_backBuffer.copyPixels( _ball.currFrame, _ball.currFrame.rect, new Point( _ball.x, _ball.y ), null, null, true );
 			
-			for each( var coll:Collectable in Collectables )
+			iter = new SLLIterator(_balls);
+			while ( iter.hasNext() )
 			{
-				_backBuffer.copyPixels( coll.currFrame, coll.currFrame.rect, new Point( coll.x, coll.y ), null, null, true );
+				obj = iter.next();
+				_backBuffer.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
 			}
 			
-			for each( var bullet:Bullet in Bullets )
+			var obj:Object;
+			
+			iter = new SLLIterator(Collectables);
+			while ( iter.hasNext() )
 			{
-				_backBuffer.copyPixels( bullet.currFrame, bullet.currFrame.rect, new Point(bullet.x, bullet.y), null, null, true );
+				obj = iter.next();
+				_backBuffer.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
+			}
+			
+			iter = new SLLIterator(Bullets);
+			while ( iter.hasNext() )
+			{
+				obj = iter.next();
+				_backBuffer.copyPixels( obj.currFrame, obj.currFrame.rect, new Point(obj.x, obj.y), null, null, true );
 			}
 					
-			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());			
+			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());	
 		}//end render()
 		
 		private function handleBallCollision(a_ball:b2Fixture, a_fixture:b2Fixture):void
 		{
+			var node:SLLNode;
+			
 			if ( a_fixture == _bottomWall )
 			{
-				resetBall();
+				 node = _balls.nodeOf(a_ball.GetUserData(), _balls.head())
+				 if (node) node.remove();
+				 a_ball.GetUserData().destroy();
 			}
 			else if ( a_fixture.GetUserData() is Brick )
 			{
@@ -429,41 +467,44 @@ package com.bored.games.breakout.states.views
 		private function handleCollectableCollision(a_collectable:b2Fixture, a_fixture:b2Fixture):void
 		{
 			var ind:int;
+			var node:SLLNode;
 			
 			if ( a_fixture == _bottomWall )
 			{
+				node = Collectables.nodeOf(a_collectable.GetUserData(), Collectables.head());
+				if (node) node.remove();
 				a_collectable.GetUserData().destroy();
-				ind = Collectables.indexOf(a_collectable.GetUserData());
-				Collectables.splice(ind, 1);
 				return;
 			}
 			else if ( a_fixture.GetUserData() is Paddle )
 			{
-				a_collectable.GetUserData().destroy();
-				ind = Collectables.indexOf(a_collectable.GetUserData());
+				
+				node = Collectables.nodeOf(a_collectable.GetUserData(), Collectables.head());
+				if (node) node.remove();
 				a_fixture.GetUserData().activatePowerup(a_collectable.GetUserData().actionName);
-				Collectables.splice(ind, 1);
+				a_collectable.GetUserData().destroy();
 			}
 		}//end handleCollectableCollision()
 		
 		private function handleBulletCollision(a_bullet:b2Fixture, a_fixture:b2Fixture):void
 		{
 			var ind:int;
+			var node:SLLNode;
 			
 			if ( a_fixture == _topWall )
 			{
+				node = Bullets.nodeOf(a_bullet.GetUserData(), Bullets.head())
+				if (node) node.remove();
 				a_bullet.GetUserData().destroy();
-				ind = Bullets.indexOf(a_bullet.GetUserData());
-				Bullets.splice(ind, 1);
 			}
 			else if ( a_fixture.GetUserData() is NanoBrick )
 			{
 				if ( a_fixture.GetUserData().alive )
 				{
+					node = Bullets.nodeOf(a_bullet.GetUserData(), Bullets.head())
+					if (node) node.remove();
 					a_fixture.GetUserData().notifyHit();
 					a_bullet.GetUserData().destroy();
-					ind = Bullets.indexOf(a_bullet.GetUserData());
-					Bullets.splice(ind, 1);
 				}
 			}
 			else if ( a_fixture.GetUserData() is Portal )
@@ -472,10 +513,10 @@ package com.bored.games.breakout.states.views
 			}
 			else if ( a_fixture.GetUserData() is Brick )
 			{
+				node = Bullets.nodeOf(a_bullet.GetUserData(), Bullets.head())
+				if (node) node.remove();
 				a_fixture.GetUserData().notifyHit();
 				a_bullet.GetUserData().destroy();
-				ind = Bullets.indexOf(a_bullet.GetUserData());
-				Bullets.splice(ind, 1);
 			}
 		}//end handleBulletCollision()
 		
@@ -483,14 +524,19 @@ package com.bored.games.breakout.states.views
 		{
 			if ( _paused ) return;
 			
+			if ( _balls.isEmpty() ) ballLost();
+			
 			UpdateMouseWorld();
 			
 			_mouseJoint.SetTarget(new b2Vec2(_mouseXWorldPhys, 500 / PhysicsWorld.PhysScale));
 			
 			PhysicsWorld.UpdateWorld();
 		
-			for each( var c:GameContact in Contacts )
+			var iter:SLLIterator = new SLLIterator(Contacts);
+			while( iter.hasNext() )
 			{
+				var c:Object = iter.next();
+				
 				if ( c.fixtureA.GetUserData() is Ball )
 				{
 					handleBallCollision(c.fixtureA, c.fixtureB);
@@ -564,6 +610,8 @@ import com.bored.games.breakout.objects.Paddle;
 import com.bored.games.breakout.physics.PhysicsWorld;
 import com.bored.games.breakout.states.views.GameView;
 import com.sven.utils.AppSettings;
+import de.polygonal.ds.SLL;
+import de.polygonal.ds.SLLNode;
 
 class GameContactListener extends b2ContactListener
 {
@@ -572,25 +620,14 @@ class GameContactListener extends b2ContactListener
 		var fixtureA:b2Fixture = contact.GetFixtureA();
 		var fixtureB:b2Fixture = contact.GetFixtureB();
 		
-		if( contact.IsEnabled() )
-			GameView.Contacts.push( new GameContact(contact.GetFixtureA(), contact.GetFixtureB()) );
+		if ( contact.IsEnabled() ) GameView.Contacts.append( new GameContact(contact.GetFixtureA(), contact.GetFixtureB()) );
 	}//end BeginContact()
 	
 	override public function EndContact(contact:b2Contact):void
 	{
 		var obj:GameContact = new GameContact(contact.GetFixtureA(), contact.GetFixtureB());
 		
-		var pos:uint = 0;
-		for each( var c:GameContact in GameView.Contacts )
-		{
-			if ( c.equals(obj) )
-				break;
-				
-			pos++;
-		}
-		
-		if( pos < GameView.Contacts.length )
-			GameView.Contacts.splice(pos, 1);		
+		GameView.Contacts.nodeOf(obj, GameView.Contacts.head()).remove();		
 	}//end EndContact()
 	
 	override public function PostSolve(contact:b2Contact, impulse:b2ContactImpulse):void
@@ -637,9 +674,7 @@ class GameContactListener extends b2ContactListener
 		var fixtureA:b2Fixture = contact.GetFixtureA();
 		var fixtureB:b2Fixture = contact.GetFixtureB();
 		
-		if (!(fixtureA.GetUserData() is Ball) && !(fixtureA.GetUserData() is Paddle))
-			return;
-		if (!(fixtureB.GetUserData() is Ball) && !(fixtureB.GetUserData() is Paddle))
+		if (!(fixtureA.GetUserData() is Paddle && fixtureB.GetUserData() is Ball))
 			return;
 		
 		var positionPaddle:b2Vec2 = fixtureA.GetBody().GetPosition();
@@ -673,3 +708,18 @@ class GameContact
 	}//end equals()
 	
 }//end GameContact
+
+class ContactLL extends SLL
+{
+	override public function nodeOf(x:Object, from:SLLNode = null):SLLNode 
+	{		
+		var node:SLLNode = from;
+		while (_valid(node))
+		{
+			if (node.val.equals(x)) break;
+			node = node.next;
+		}
+		
+		return node;
+	}	
+}//end ContactLL

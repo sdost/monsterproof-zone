@@ -47,7 +47,8 @@ package com.bored.games.breakout.actions
 		
 		public function addBricks(a_bricks:Vector.<Brick>):void
 		{
-			for ( var i:int = 0; i < a_bricks.length; i++ )
+			var l:uint = a_bricks.length;
+			for ( var i:int = 0; i < l; i++ )
 			{
 				if ( _bombList.indexOf(a_bricks[i]) < 0 )
 				{

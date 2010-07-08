@@ -73,6 +73,11 @@ package com.bored.games.breakout.objects
 			_ballBody.CreateFixture(fd);
 		}//end initializePhysicsBody()
 		
+		private function cleanupPhysics():void
+		{
+			PhysicsWorld.DestroyBody(_ballBody);
+		}//end cleanupPhysics()
+		
 		private function initializeActions():void
 		{
 			// TODO add initial 
@@ -90,12 +95,12 @@ package com.bored.games.breakout.objects
 		
 		override public function get width():Number
 		{
-			return _animatedSprite.currFrame.width;
+			return _animatedSprite.width;
 		}//end get width()
 		
 		override public function get height():Number
 		{
-			return _animatedSprite.currFrame.height;
+			return _animatedSprite.height;
 		}//end get height()
 		
 		public function changeSpeed(a_per:Number):void
@@ -160,6 +165,11 @@ package com.bored.games.breakout.objects
 			limitVelocity.Multiply(_speed);
 			_ballBody.SetLinearVelocity(limitVelocity);
 		}//end update()
+		
+		public function destroy():void 
+		{			
+			cleanupPhysics();
+		}//end destroy()
 		
 	}//end Ball
 

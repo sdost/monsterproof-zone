@@ -50,22 +50,20 @@ package com.bored.games.breakout.actions
 		}//end initParams()
 		
 		override public function startAction():void 
-		{
-			_finished = false;
-			
+		{			
 			_startTime = getTimer();
 			
 			_lastBullet = 0;
 			
-			(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_LASER);
+			this.finished = false;
 		}//end startAction()
 		
 		override public function update(a_time:Number):void 
 		{
 			if ( (getTimer() - _startTime) > _effectTime )
 			{
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_NORMAL);
-				_finished = true;
+				
+				this.finished = true;
 			}
 			else	
 			{
@@ -79,14 +77,14 @@ package com.bored.games.breakout.actions
 						bullet.physicsBody.SetPosition( new b2Vec2( offsetX, offsetY ) );
 						bullet.physicsBody.ApplyImpulse( new b2Vec2( 0, -30 * bullet.physicsBody.GetMass() ), bullet.physicsBody.GetWorldCenter() );
 						
-						GameView.Bullets.push(bullet);
+						GameView.Bullets.append(bullet);
 						
 						bullet = new Bullet(_sprite);
 						offsetX = (_gameElement.x + _gameElement.width - 6) / PhysicsWorld.PhysScale;
 						bullet.physicsBody.SetPosition( new b2Vec2( offsetX, offsetY ) );
 						bullet.physicsBody.ApplyImpulse( new b2Vec2( 0, -30 * bullet.physicsBody.GetMass() ), bullet.physicsBody.GetWorldCenter() );
 						
-						GameView.Bullets.push(bullet);
+						GameView.Bullets.append(bullet);
 						
 						_lastBullet = getTimer();
 					}
@@ -94,6 +92,20 @@ package com.bored.games.breakout.actions
 			}
 			
 		}//end update()
+		
+		override public function set finished(value:Boolean):void 
+		{
+			_finished = value;
+			
+			if (_finished)
+			{
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_NORMAL);
+			}
+			else
+			{
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_LASER);
+			}
+		}//end set finished()
 		
 	}//end LaserPaddleAction
 

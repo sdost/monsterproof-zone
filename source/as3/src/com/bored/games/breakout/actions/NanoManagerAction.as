@@ -9,6 +9,9 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
+	import de.polygonal.ds.SLL;
+	import de.polygonal.ds.SLLIterator;
+	import de.polygonal.ds.SLLNode;
 	import flash.events.Event;
 	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.common.renderers.Renderer;
@@ -29,7 +32,7 @@ package com.bored.games.breakout.actions
 		
 		private var _nanoList:Vector.<NanoBrick>;
 		
-		private var _dormantList:Vector.<NanoBrick>;
+		private var _dormantList:SLL;
 		private var _reviveList:Vector.<NanoBrick>;
 		
 		public function NanoManagerAction(a_gameElement:GameElement, a_params:Object = null) 
@@ -48,7 +51,7 @@ package com.bored.games.breakout.actions
 			
 			_nanoList = new Vector.<NanoBrick>();
 			
-			_dormantList = new Vector.<NanoBrick>();
+			_dormantList = new SLL();
 			_reviveList = new Vector.<NanoBrick>();
 		}//end startAction()
 		
@@ -66,18 +69,25 @@ package com.bored.games.breakout.actions
 			
 			_delta = 0;
 			
+			var iter:SLLIterator = new SLLIterator(_dormantList);
 			var nano:NanoBrick;
-			
-			for each( nano in _dormantList )
+			while( iter.hasNext() )
 			{
+				nano = iter.next() as NanoBrick;
 				var neighbors:Vector.<Brick> = (_gameElement as Grid).getAllNeighbors(nano);
 				var b:Brick;
-				for each( b in neighbors )
+				var i:uint;
+				var node:SLLNode;
+				var l:uint = neighbors.length;
+				for ( i = 0; i < l; i++ )
 				{
+					b = neighbors[i];
+					
 					if ( b is NanoBrick && (b as NanoBrick).alive )
 					{
-						var ind:uint = _dormantList.indexOf(nano);
-						_dormantList.splice(ind, 1);
+						node = _dormantList.nodeOf(nano, _dormantList.head())
+						if(node) node.remove();
+						
 						_reviveList.push(nano);
 						break;
 					}
@@ -90,11 +100,15 @@ package com.bored.games.breakout.actions
 				nano.revive();
 			}
 			
-			for each( nano in _nanoList )
+			l = _nanoList.length;
+			for ( i = 0; i < l; i++ )
 			{
+				nano = _nanoList[i];
+				
 				if ( !nano.alive )
 				{
-					_dormantList.push(nano);
+					if( !_dormantList.contains(nano) )
+						_dormantList.append(nano);
 				}
 			}
 		}//end update()

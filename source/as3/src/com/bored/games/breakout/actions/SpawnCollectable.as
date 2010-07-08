@@ -47,7 +47,7 @@ package com.bored.games.breakout.actions
 			pb.physicsBody.ApplyImpulse( new b2Vec2( 0, 10 * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
 			pb.physicsBody.SetPosition( new b2Vec2( (xOffset - pb.width / 2) / PhysicsWorld.PhysScale, (yOffset - pb.height / 2) / PhysicsWorld.PhysScale ) );
 			
-			GameView.Collectables.push(pb);
+			GameView.Collectables.append(pb);
 			
 			_finished = true;
 		}//end startAction()

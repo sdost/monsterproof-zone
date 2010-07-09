@@ -6,6 +6,7 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2Fixture;
 	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.actions.CatchPaddleAction;
 	import com.bored.games.breakout.actions.ExtendPaddleAction;
 	import com.bored.games.breakout.actions.LaserPaddleAction;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
@@ -108,7 +109,7 @@ package com.bored.games.breakout.objects
 		{
 			return _animatedSprite.height;
 		}//end get height()
-		
+
 		public function activatePowerup(str:String):void
 		{
 			deactivateAction(_currentEffectAction);

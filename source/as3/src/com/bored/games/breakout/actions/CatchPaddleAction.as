@@ -26,25 +26,33 @@ package com.bored.games.breakout.actions
 		}//end initParams()
 		
 		override public function startAction():void 
-		{
-			_finished = false;
-			
+		{			
 			_startTime = getTimer();
 			
-			(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_CATCH);
+			this.finished = false;
 		}//end startAction()
 		
 		override public function update(a_time:Number):void 
 		{
 			if ( (getTimer() - _startTime) > _effectTime )
 			{
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_CATCH);
-				_finished = true;
+				this.finished = true;
 			}
-			else	
+		}//end update()
+		
+		override public function set finished(value:Boolean):void 
+		{
+			_finished = value;
+			
+			if ( _finished )
 			{
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_NORMAL);
 			}
-		}
+			else
+			{
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_CATCH);
+			}
+		}//end set finished()
 		
 	}//end CatchPaddleAction
 

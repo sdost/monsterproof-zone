@@ -6,6 +6,7 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.collectables.Collectable;
 	import com.bored.games.breakout.objects.collectables.ExtendPowerup;
 	import com.bored.games.breakout.objects.collectables.LaserPowerup;
+	import com.bored.games.breakout.objects.collectables.MultiballPowerup;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
@@ -39,10 +40,12 @@ package com.bored.games.breakout.actions
 			
 			var pb:Collectable;
 			
-			if( die < 0.5 )
+			if( die < 0.3 )
 				pb = new LaserPowerup();
-			else
+			else if( die < 0.6 )
 				pb = new ExtendPowerup();
+			else
+				pb = new MultiballPowerup();
 			
 			pb.physicsBody.ApplyImpulse( new b2Vec2( 0, 10 * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
 			pb.physicsBody.SetPosition( new b2Vec2( (xOffset - pb.width / 2) / PhysicsWorld.PhysScale, (yOffset - pb.height / 2) / PhysicsWorld.PhysScale ) );

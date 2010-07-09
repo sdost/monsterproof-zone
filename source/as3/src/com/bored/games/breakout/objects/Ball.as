@@ -51,6 +51,7 @@ package com.bored.games.breakout.objects
 			
 			initializePhysicsBody();
 			initializeActions();
+
 		}//end constructor()
 		
 		private function initializePhysicsBody():void
@@ -153,17 +154,29 @@ package com.bored.games.breakout.objects
 			super.update(t);
 			
 			_animatedSprite.update(t);
-			
+						
 			var pos:b2Vec2 = _ballBody.GetPosition();
 			
 			this.x = (pos.x * PhysicsWorld.PhysScale - width / 2);
 			this.y = (pos.y * PhysicsWorld.PhysScale - height / 2);
 			
-			var bodyVelocity:b2Vec2 =_ballBody.GetLinearVelocity();
+			var bodyVelocity:b2Vec2 = _ballBody.GetLinearVelocity();
 			var limitVelocity:b2Vec2 = bodyVelocity.Copy();
 			limitVelocity.Normalize();
 			limitVelocity.Multiply(_speed);
 			_ballBody.SetLinearVelocity(limitVelocity);
+			
+			bodyVelocity = _ballBody.GetLinearVelocity();
+			
+			if (bodyVelocity.x == 0)
+			{
+				_ballBody.ApplyForce(new b2Vec2(2 * _ballBody.GetMass(), 0), _ballBody.GetWorldCenter());
+			}
+			
+			if (bodyVelocity.y == 0)
+			{
+				_ballBody.ApplyForce(new b2Vec2(0, 2 * _ballBody.GetMass()), _ballBody.GetWorldCenter());
+			}
 		}//end update()
 		
 		public function destroy():void 

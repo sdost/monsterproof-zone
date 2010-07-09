@@ -17,7 +17,7 @@ package com.bored.games.breakout.objects.collectables
 	 * @author sam
 	 */
 	public class Collectable extends GameElement
-	{
+	{		
 		protected var _collectableBody:b2Body;
 		
 		protected var _animatedSprite:AnimatedSprite;
@@ -89,10 +89,6 @@ package com.bored.games.breakout.objects.collectables
 		{
 			return "";
 		}//end get actionName()
-		
-		public function notifyHit():void
-		{
-		}//end notifyHit()
 		
 		override public function update(t:Number = 0):void 
 		{

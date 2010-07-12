@@ -1,8 +1,10 @@
 package com.bored.games.breakout.states.views 
 {
 	import away3dlite.loaders.Collada;
+	import Box2D.Collision.b2AABB;
 	import Box2D.Collision.b2Manifold;
 	import Box2D.Collision.Shapes.b2PolygonShape;
+	import Box2D.Common.Math.b2Transform;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
@@ -14,6 +16,8 @@ package com.bored.games.breakout.states.views
 	import Box2D.Dynamics.Joints.b2LineJointDef;
 	import Box2D.Dynamics.Joints.b2MouseJoint;
 	import Box2D.Dynamics.Joints.b2MouseJointDef;
+	import Box2D.Dynamics.Joints.b2PrismaticJoint;
+	import Box2D.Dynamics.Joints.b2PrismaticJointDef;
 	import com.bored.games.breakout.emitters.BrickCrumbs;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
@@ -50,6 +54,7 @@ package com.bored.games.breakout.states.views
 	import flash.display.Loader;
 	import flash.display.MovieClip;
 	import flash.display.Shader;
+	import flash.display.StageQuality;
 	import flash.events.ErrorEvent;
 	import flash.events.Event;
 	import flash.events.IOErrorEvent;
@@ -154,7 +159,6 @@ package com.bored.games.breakout.states.views
 		
 		private var _mouseJoint:b2MouseJoint;
 		private var _lineJoint:b2LineJoint;
-		private var _stickyJoint:b2DistanceJoint;
 		
 		private var _matrix:Array;
 		
@@ -183,6 +187,8 @@ package com.bored.games.breakout.states.views
 		override protected function addedToStageHandler(e:Event):void
 		{
 			super.addedToStageHandler(e);
+			
+			stage.quality = StageQuality.BEST;
 			
 			//_backgroundAnimation = AnimatedSpriteFactory.generateAnimatedSprite(new _bkgdMCCls());
 			_bkgdMC = new _bkgdMCCls();
@@ -365,28 +371,32 @@ package com.bored.games.breakout.states.views
 				if ( brick )
 					_grid.addGridObject(brick, uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
 			}
+		
+			var ball:Ball = addBallAt();
 			
-			addBallAt( 336, 450 );
+			_paddle.catchBall(ball);
 			
+			stage.quality = StageQuality.LOW;
+		
 			_paused = false;
 		}//end onComplete()
 		
-		private function addBallAt(a_x:Number, a_y:Number):void
+		private function addBallAt(a_x:Number = 0, a_y:Number = 0):Ball
 		{
 			var ball:Ball = new Ball();
 			
 			ball.physicsBody.SetPosition( new b2Vec2( a_x / PhysicsWorld.PhysScale, a_y / PhysicsWorld.PhysScale ) );
 			
-			var impulse:b2Vec2 = new b2Vec2(Math.random() * 30 - 15, -15);
-			ball.physicsBody.SetLinearVelocity(impulse);
-			
 			_balls.append(ball);
+			
+			return ball;
 		}//end resetBall()
 		
 		private function ballLost():void
 		{
 			//if ( --_ballsLeft > 0 )
-				addBallAt(336, 450);
+			var ball:Ball = addBallAt();
+			_paddle.catchBall(ball);
 		}//end ballLost()
 		
 		override public function exit():void
@@ -419,8 +429,8 @@ package com.bored.games.breakout.states.views
 					}
 				}
 			}
-				
-			_backBuffer.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x, _paddle.y ), null, null, true );
+			
+			var obj:Object;
 			
 			iter = new SLLIterator(_balls);
 			while ( iter.hasNext() )
@@ -429,7 +439,7 @@ package com.bored.games.breakout.states.views
 				_backBuffer.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
 			}
 			
-			var obj:Object;
+			_backBuffer.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x, _paddle.y ), null, null, true );
 			
 			iter = new SLLIterator(Collectables);
 			while ( iter.hasNext() )
@@ -458,9 +468,21 @@ package com.bored.games.breakout.states.views
 				 if (node) node.remove();
 				 a_ball.GetUserData().destroy();
 			}
+			else if ( a_fixture.GetUserData() is Paddle )
+			{
+				if ( a_fixture.GetUserData().stickyMode && !a_fixture.GetUserData().occupied )
+				{
+					a_fixture.GetUserData().catchBall(a_ball.GetUserData() as Ball);
+				}
+			}
 			else if ( a_fixture.GetUserData() is Brick )
 			{
 				a_fixture.GetUserData().notifyHit();
+				
+				if ( a_ball.GetUserData().ballMode == Ball.SUPER_BALL )
+				{
+					_grid.explodeBricks(_grid.getAllNeighbors(a_fixture.GetUserData() as Brick));
+				}
 			}
 		}//end handleBallCollision()
 		
@@ -478,7 +500,6 @@ package com.bored.games.breakout.states.views
 			}
 			else if ( a_fixture.GetUserData() is Paddle )
 			{
-				
 				node = Collectables.nodeOf(a_collectable.GetUserData(), Collectables.head());
 				if (node) node.remove();
 				if ( a_collectable.GetUserData().actionName == "multiball" )
@@ -535,6 +556,8 @@ package com.bored.games.breakout.states.views
 			if ( _balls.isEmpty() ) ballLost();
 			
 			UpdateMouseWorld();
+			
+			if ( Input.mouseDown ) _paddle.releaseBall();
 			
 			_mouseJoint.SetTarget(new b2Vec2(_mouseXWorldPhys, 500 / PhysicsWorld.PhysScale));
 			

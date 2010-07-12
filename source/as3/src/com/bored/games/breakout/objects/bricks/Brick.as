@@ -82,6 +82,11 @@ package com.bored.games.breakout.objects.bricks
 			_brickFixture = _grid.gridBody.CreateFixture(fd);
 		}//end initializePhysics()
 		
+		public function isCollidable():Boolean
+		{
+			return !_brickFixture.IsSensor();
+		}//end isCollidable()
+		
 		private function cleanupPhysics():void
 		{
 			if ( _grid ) 

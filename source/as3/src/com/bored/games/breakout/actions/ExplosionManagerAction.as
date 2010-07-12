@@ -74,8 +74,11 @@ package com.bored.games.breakout.actions
 				
 				if ( go && go.grid )
 				{
-					go.addAction(new ExplodeBrickAction(go));
-					go.activateAction(ExplodeBrickAction.NAME);
+					if ( go.isCollidable() )
+					{
+						go.addAction(new ExplodeBrickAction(go));
+						go.activateAction(ExplodeBrickAction.NAME);
+					}
 					
 					go.notifyHit();
 				}

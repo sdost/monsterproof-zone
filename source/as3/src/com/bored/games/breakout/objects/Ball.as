@@ -5,6 +5,8 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
+	import com.bored.games.breakout.actions.DestructBallAction;
+	import com.bored.games.breakout.actions.SuperBallAction;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
@@ -22,7 +24,8 @@ package com.bored.games.breakout.objects
 	public class Ball extends GameElement
 	{
 		public static const NORMAL_BALL:String = "Normal";
-		public static const DESTRUCT_BALL:String = "Destructor";
+		public static const SUPER_BALL:String = "Super";
+		public static const DESTRUCT_BALL:String = "Destruct";
 		
 		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Ball_MC')]
 		private static var mcCls:Class;
@@ -33,17 +36,21 @@ package com.bored.games.breakout.objects
 		private var _minSpeed:Number;
 		private var _maxSpeed:Number;
 		
+		private var _ballMode:String;
+		
+		private var _sleeping:Boolean;
+		
 		private var _animatedSprite:AnimatedSprite;
 		private var _animationSet:AnimationSet;
 		
 		public function Ball()
-		{		
+		{	
+			_ballMode = NORMAL_BALL;
+			
 			_animationSet = AnimationSetFactory.generateAnimationSet(new mcCls());
 			
-			//_animatedSprite = _animationSet.getAnimation(NORMAL_BALL);
-			_animatedSprite = _animationSet.getAnimation(DESTRUCT_BALL);
-			
-			//_animatedSprite.frameRate = 40;
+			_animatedSprite = _animationSet.getAnimation(NORMAL_BALL);
+			//_animatedSprite = _animationSet.getAnimation(DESTRUCT_BALL);
 		
 			_speed = AppSettings.instance.defaultInitialBallSpeed;
 			_minSpeed = AppSettings.instance.defaultMinBallSpeed;
@@ -58,7 +65,6 @@ package com.bored.games.breakout.objects
 		{
 			var bd:b2BodyDef = new b2BodyDef();
 			bd.type = b2Body.b2_dynamicBody;
-			//bd.fixedRotation = true;
 			bd.bullet = true;
 			bd.allowSleep = false;
 			bd.userData = this;
@@ -81,7 +87,8 @@ package com.bored.games.breakout.objects
 		
 		private function initializeActions():void
 		{
-			// TODO add initial 
+			addAction( new SuperBallAction(this) );
+			addAction( new DestructBallAction(this) );
 		}//end initializeAction
 		
 		public function get physicsBody():b2Body
@@ -149,6 +156,40 @@ package com.bored.games.breakout.objects
 			_speed = newSpeed;
 		}//end changeSpeed()
 		
+		public function get speed():Number
+		{
+			return _speed;
+		}//end get speed()
+		
+		public function set sleeping(a_sleep:Boolean):void
+		{
+			_sleeping = a_sleep;
+			
+			if ( _sleeping )
+			{
+				_ballBody.SetLinearDamping(Number.POSITIVE_INFINITY);
+			}
+			else
+			{
+				_ballBody.SetLinearDamping(0.0);
+			}
+		}//end set sleeping()
+		
+		public function get sleeping():Boolean
+		{
+			return _sleeping;
+		}//end get sleeping()
+		
+		public function get ballMode():String
+		{
+			return _ballMode;
+		}//end get ballMode()
+		
+		public function switchAnimation(a_str:String):void
+		{
+			_animatedSprite = _animationSet.getAnimation(a_str);
+		}//end switchAnimation()
+		
 		override public function update(t:Number = 0):void
 		{
 			super.update(t);
@@ -159,6 +200,8 @@ package com.bored.games.breakout.objects
 			
 			this.x = (pos.x * PhysicsWorld.PhysScale - width / 2);
 			this.y = (pos.y * PhysicsWorld.PhysScale - height / 2);
+			
+			if (_sleeping) return;
 			
 			var bodyVelocity:b2Vec2 = _ballBody.GetLinearVelocity();
 			var limitVelocity:b2Vec2 = bodyVelocity.Copy();
@@ -177,6 +220,7 @@ package com.bored.games.breakout.objects
 			{
 				_ballBody.ApplyForce(new b2Vec2(0, 2 * _ballBody.GetMass()), _ballBody.GetWorldCenter());
 			}
+		
 		}//end update()
 		
 		public function destroy():void 

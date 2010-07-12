@@ -1,17 +1,22 @@
 package com.bored.games.breakout.objects 
 {
+	import Box2D.Collision.b2AABB;
 	import Box2D.Collision.Shapes.b2PolygonShape;
+	import Box2D.Common.Math.b2Transform;
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2Fixture;
 	import Box2D.Dynamics.b2FixtureDef;
+	import Box2D.Dynamics.Joints.b2PrismaticJoint;
+	import Box2D.Dynamics.Joints.b2PrismaticJointDef;
 	import com.bored.games.breakout.actions.CatchPaddleAction;
 	import com.bored.games.breakout.actions.ExtendPaddleAction;
 	import com.bored.games.breakout.actions.LaserPaddleAction;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
+	import com.sven.utils.AppSettings;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	
@@ -38,6 +43,10 @@ package com.bored.games.breakout.objects
 		
 		private var _currentEffectAction:String;
 		
+		private var _paddleJoint:b2PrismaticJoint;
+		
+		private var _stickyMode:Boolean;
+			
 		public function Paddle() 
 		{
 			super();
@@ -49,7 +58,9 @@ package com.bored.games.breakout.objects
 			_normalHeight = _animatedSprite.height;
 			
 			initializePhysicsBody();
-			initializeActions();			
+			initializeActions();
+			
+			_stickyMode = false;
 		}//end constructor()
 		
 		private function initializePhysicsBody():void
@@ -78,6 +89,7 @@ package com.bored.games.breakout.objects
 		{
 			addAction( new LaserPaddleAction(this, { "time": 10000, "fireRate": 250 } ) ) ;
 			addAction( new ExtendPaddleAction(this, { "time": 10000 } ) ) ;
+			addAction( new CatchPaddleAction(this, { "time": 10000 } ) ) ;
 		}//end intializeActions()
 		
 		public function updateBody():void
@@ -126,17 +138,87 @@ package com.bored.games.breakout.objects
 			_animatedSprite = _animationSet.getAnimation(a_str);
 		}//end switchAnimation()
 		
+		public function catchBall(a_ball:Ball):void
+		{
+			var worldAxis:b2Vec2 = new b2Vec2(1.0, 0.0);
+			
+			a_ball.sleeping = true;
+			
+			var pos:b2Vec2 = _paddleBody.GetWorldCenter();
+			pos.y -= a_ball.height / PhysicsWorld.PhysScale;
+			a_ball.physicsBody.SetPosition( pos );
+			
+			var jointDef:b2PrismaticJointDef = new b2PrismaticJointDef();
+			jointDef.Initialize(
+				a_ball.physicsBody, 
+				_paddleBody, 
+				a_ball.physicsBody.GetWorldCenter(),
+				worldAxis);
+				
+			jointDef.lowerTranslation = -(this.width / 2) / PhysicsWorld.PhysScale;
+			jointDef.upperTranslation = (this.width / 2) / PhysicsWorld.PhysScale;
+			jointDef.enableLimit = true;
+			
+			_paddleJoint = PhysicsWorld.CreateJoint(jointDef) as b2PrismaticJoint;
+		}//end catchBall()
+		
+		public function releaseBall():void
+		{
+			if (_paddleJoint)
+			{				
+				var ball:b2Vec2 = _paddleJoint.GetBodyA().GetPosition();
+				var paddle:b2Vec2 = _paddleJoint.GetBodyB().GetPosition();
+				
+				var ballXDiff:Number = ball.x - paddle.x;
+				
+				var rect:b2AABB = new b2AABB();
+				_paddleJoint.GetBodyA().GetFixtureList().GetShape().ComputeAABB(rect, new b2Transform());
+				
+				var ballXRatio:Number = ballXDiff / (rect.GetExtents().x * 2);
+				
+				if (ballXRatio < -0.95) ballXRatio = -0.95;
+				if (ballXRatio > 0.95) ballXRatio = 0.95;
+				
+				var b:Ball = _paddleJoint.GetBodyA().GetUserData() as Ball;
+				
+				var vel:b2Vec2 = new b2Vec2();
+				vel.x = ballXRatio * AppSettings.instance.paddleReflectionMultiplier;
+				vel.y = -Math.sqrt((b.speed * b.speed) - (vel.x * vel.x));
+				
+				PhysicsWorld.DestroyJoint(_paddleJoint);
+				_paddleJoint = null;
+				
+				b.sleeping = false;
+				b.physicsBody.SetLinearVelocity(vel);	
+			}
+		}//end releaseBall()
+		
 		override public function update(t:Number = 0):void 
 		{
 			super.update(t);
 			
-			_animatedSprite.update();
+			_animatedSprite.update(t);
 			
 			var pos:b2Vec2 = _paddleBody.GetPosition();
 			
 			this.x = (pos.x * PhysicsWorld.PhysScale - width / 2);
 			this.y = ((pos.y * PhysicsWorld.PhysScale + _normalHeight / 2) - height);
 		}//end update()
+		
+		public function get occupied():Boolean
+		{
+			return (_paddleJoint != null);
+		}//end get occupied()
+		
+		public function set stickyMode(a_mode:Boolean):void
+		{
+			_stickyMode = a_mode;
+		}//end set stickyMode()
+		
+		public function get stickyMode():Boolean
+		{
+			return _stickyMode;
+		}//end get stickyMode()
 		
 	}//end Paddle
 

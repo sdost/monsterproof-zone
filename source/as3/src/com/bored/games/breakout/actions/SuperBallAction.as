@@ -1,6 +1,7 @@
 package com.bored.games.breakout.actions 
 {
 	import com.bored.games.actions.Action;
+	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.Paddle;
 	import com.bored.games.objects.GameElement;
 	import flash.utils.getTimer;
@@ -9,36 +10,26 @@ package com.bored.games.breakout.actions
 	 * ...
 	 * @author sam
 	 */
-	public class CatchPaddleAction extends Action
+	public class SuperBallAction extends Action
 	{
-		public static const NAME:String = "com.bored.games.breakout.actions.CatchPaddleAction";
+		public static const NAME:String = "com.bored.games.breakout.actions.SuperBallAction";
 		
-		private var _startTime:int;
-		private var _effectTime:int;
-		
-		public function CatchPaddleAction(a_gameElement:GameElement, a_params:Object = null) 
+		public function SuperBallAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
 			super(NAME, a_gameElement, a_params);
 		}//end constructor()
 		
 		override public function initParams(a_params:Object):void 
 		{
-			_effectTime = a_params.time;
 		}//end initParams()
 		
 		override public function startAction():void 
-		{	
-			_startTime = getTimer();
-			
+		{				
 			this.finished = false;
 		}//end startAction()
 		
 		override public function update(a_time:Number):void 
 		{
-			if ( (getTimer() - _startTime) > _effectTime )
-			{				
-				this.finished = true;
-			}
 		}//end update()
 		
 		override public function set finished(value:Boolean):void 
@@ -47,17 +38,14 @@ package com.bored.games.breakout.actions
 			
 			if (_finished)
 			{
-				(_gameElement as Paddle).stickyMode = false;
-				(_gameElement as Paddle).releaseBall();
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_NORMAL);
+				(_gameElement as Ball).switchAnimation(Ball.NORMAL_BALL);
 			}
 			else
 			{
-				(_gameElement as Paddle).stickyMode = true;
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_CATCH);
+				(_gameElement as Ball).switchAnimation(Ball.DESTRUCT_BALL);
 			}
 		}//end set finished()
 		
-	}//end CatchPaddleAction
+	}//end SuperBallAction
 
 }//end package

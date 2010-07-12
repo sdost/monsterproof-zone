@@ -101,6 +101,11 @@ package com.bored.games.breakout.physics
 			_world.DestroyBody(a_body);				
 		}//end CleanupBody()
 		
+		public static function DestroyJoint( a_joint:b2Joint ):void
+		{
+			_world.DestroyJoint(a_joint);
+		}//end DestroyJoint()
+		
 		public static function IsLocked():Boolean
 		{
 			return _world.IsLocked();

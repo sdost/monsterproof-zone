@@ -3,6 +3,7 @@ package com.bored.games.breakout.actions
 	import Box2D.Common.Math.b2Vec2;
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.objects.bricks.Brick;
+	import com.bored.games.breakout.objects.collectables.CatchPowerup;
 	import com.bored.games.breakout.objects.collectables.Collectable;
 	import com.bored.games.breakout.objects.collectables.ExtendPowerup;
 	import com.bored.games.breakout.objects.collectables.LaserPowerup;
@@ -40,12 +41,14 @@ package com.bored.games.breakout.actions
 			
 			var pb:Collectable;
 			
-			if( die < 0.3 )
+			if( die < 0.25 )
 				pb = new LaserPowerup();
-			else if( die < 0.6 )
+			else if( die < 0.5 )
 				pb = new ExtendPowerup();
-			else
+			else if( die < 0.75 )
 				pb = new MultiballPowerup();
+			else 
+				pb = new CatchPowerup();
 			
 			pb.physicsBody.ApplyImpulse( new b2Vec2( 0, 10 * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
 			pb.physicsBody.SetPosition( new b2Vec2( (xOffset - pb.width / 2) / PhysicsWorld.PhysScale, (yOffset - pb.height / 2) / PhysicsWorld.PhysScale ) );

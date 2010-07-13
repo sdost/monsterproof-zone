@@ -5,8 +5,8 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
 	import Box2D.Dynamics.b2FixtureDef;
-	import com.bored.games.breakout.actions.DestructBallAction;
-	import com.bored.games.breakout.actions.SuperBallAction;
+	import com.bored.games.breakout.actions.DestructoballAction;
+	import com.bored.games.breakout.actions.InvinciballAction;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
@@ -37,6 +37,8 @@ package com.bored.games.breakout.objects
 		private var _maxSpeed:Number;
 		
 		private var _ballMode:String;
+		
+		private var _currentEffectAction:String;
 		
 		private var _sleeping:Boolean;
 		
@@ -87,8 +89,8 @@ package com.bored.games.breakout.objects
 		
 		private function initializeActions():void
 		{
-			addAction( new SuperBallAction(this) );
-			addAction( new DestructBallAction(this) );
+			addAction( new DestructoballAction(this) );
+			addAction( new InvinciballAction(this) );
 		}//end initializeAction
 		
 		public function get physicsBody():b2Body
@@ -110,6 +112,17 @@ package com.bored.games.breakout.objects
 		{
 			return _animatedSprite.height;
 		}//end get height()
+		
+		public function activatePowerup(str:String):void
+		{
+			deactivateAction(_currentEffectAction);
+			
+			if ( checkForActionNamed(str) )
+			{
+				activateAction(str);
+				_currentEffectAction = str;
+			}
+		}//end activatePowerup()
 		
 		public function changeSpeed(a_per:Number):void
 		{
@@ -180,6 +193,11 @@ package com.bored.games.breakout.objects
 			return _sleeping;
 		}//end get sleeping()
 		
+		public function set ballMode(a_str:String):void
+		{
+			_ballMode = a_str;
+		}//end get ballMode()
+		
 		public function get ballMode():String
 		{
 			return _ballMode;
@@ -213,12 +231,12 @@ package com.bored.games.breakout.objects
 			
 			if (bodyVelocity.x == 0)
 			{
-				_ballBody.ApplyForce(new b2Vec2(2 * _ballBody.GetMass(), 0), _ballBody.GetWorldCenter());
+				_ballBody.ApplyForce(new b2Vec2(AppSettings.instance.ballTrajectoryAdjustFactor * _ballBody.GetMass(), 0), _ballBody.GetWorldCenter());
 			}
 			
 			if (bodyVelocity.y == 0)
 			{
-				_ballBody.ApplyForce(new b2Vec2(0, 2 * _ballBody.GetMass()), _ballBody.GetWorldCenter());
+				_ballBody.ApplyForce(new b2Vec2(0, AppSettings.instance.ballTrajectoryAdjustFactor * _ballBody.GetMass()), _ballBody.GetWorldCenter());
 			}
 		
 		}//end update()

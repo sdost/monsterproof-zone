@@ -10,11 +10,11 @@ package com.bored.games.breakout.actions
 	 * ...
 	 * @author sam
 	 */
-	public class DestructBallAction extends Action
+	public class DestructoballAction extends Action
 	{
-		public static const NAME:String = "com.bored.games.breakout.actions.DestructBallAction";
+		public static const NAME:String = "com.bored.games.breakout.actions.DestructoballAction";
 		
-		public function DestructBallAction(a_gameElement:GameElement, a_params:Object = null) 
+		public function DestructoballAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
 			super(NAME, a_gameElement, a_params);
 		}//end constructor()
@@ -24,14 +24,7 @@ package com.bored.games.breakout.actions
 		}//end initParams()
 		
 		override public function startAction():void 
-		{	
-			/*
-			var emitter:BrickExplosion = new BrickExplosion( (_gameElement as Brick) );
-			emitter.addEventListener( EmitterEvent.EMITTER_EMPTY, finishAction, false, 0, true );
-			GameView.ParticleRenderer.addEmitter(emitter);
-			emitter.start();
-			*/
-			
+		{				
 			this.finished = false;
 		}//end startAction()
 		
@@ -45,14 +38,16 @@ package com.bored.games.breakout.actions
 			
 			if (_finished)
 			{
+				(_gameElement as Ball).ballMode = Ball.NORMAL_BALL;
 				(_gameElement as Ball).switchAnimation(Ball.NORMAL_BALL);
 			}
 			else
 			{
-				(_gameElement as Ball).switchAnimation(Ball.DESTRUCT_BALL);
+				(_gameElement as Ball).ballMode = Ball.SUPER_BALL;
+				(_gameElement as Ball).switchAnimation(Ball.SUPER_BALL);
 			}
 		}//end set finished()
 		
-	}//end DestructBallAction
+	}//end DestructoballAction
 
 }//end package

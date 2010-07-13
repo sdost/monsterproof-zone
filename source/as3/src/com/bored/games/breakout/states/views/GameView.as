@@ -18,6 +18,8 @@ package com.bored.games.breakout.states.views
 	import Box2D.Dynamics.Joints.b2MouseJointDef;
 	import Box2D.Dynamics.Joints.b2PrismaticJoint;
 	import Box2D.Dynamics.Joints.b2PrismaticJointDef;
+	import com.bored.games.breakout.actions.DestructoballAction;
+	import com.bored.games.breakout.actions.InvinciballAction;
 	import com.bored.games.breakout.actions.LaserPaddleAction;
 	import com.bored.games.breakout.emitters.BrickCrumbs;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
@@ -36,11 +38,11 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.objects.Bullet;
 	import com.bored.games.breakout.objects.collectables.CatchPowerup;
 	import com.bored.games.breakout.objects.collectables.Collectable;
-	import com.bored.games.breakout.objects.collectables.DestructballPowerup;
+	import com.bored.games.breakout.objects.collectables.DestructoballPowerup;
 	import com.bored.games.breakout.objects.collectables.ExtendPowerup;
+	import com.bored.games.breakout.objects.collectables.InvinciballPowerup;
 	import com.bored.games.breakout.objects.collectables.LaserPowerup;
 	import com.bored.games.breakout.objects.collectables.MultiballPowerup;
-	import com.bored.games.breakout.objects.collectables.SuperballPowerup;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.objects.Paddle;
@@ -198,11 +200,11 @@ package com.bored.games.breakout.states.views
 			stage.quality = StageQuality.BEST;
 			
 			new CatchPowerup();
-			new DestructballPowerup();
+			new InvinciballPowerup();
 			new ExtendPowerup();
 			new LaserPowerup();
 			new MultiballPowerup();
-			//new SuperballPowerup();
+			new DestructoballPowerup();
 			
 			new LaserPaddleAction(null, null);
 			
@@ -525,8 +527,19 @@ package com.bored.games.breakout.states.views
 					addBallAt(obj.x, obj.y);
 					addBallAt(obj.x, obj.y);
 				}
+				else if ( a_collectable.GetUserData().actionName == DestructoballAction.NAME || a_collectable.GetUserData().actionName == InvinciballAction.NAME )
+				{
+					var iter:SLLIterator = new SLLIterator(_balls);
+					while ( iter.hasNext() )
+					{
+						obj = iter.next();
+						obj.activatePowerup( a_collectable.GetUserData().actionName );
+					}
+				}
 				else
+				{
 					a_fixture.GetUserData().activatePowerup(a_collectable.GetUserData().actionName);
+				}
 				a_collectable.GetUserData().destroy();
 			}
 		}//end handleCollectableCollision()
@@ -675,7 +688,10 @@ class GameContactListener extends b2ContactListener
 		
 		var point:b2Vec2 = wm.m_points[0];
 		
-		if ( contact.IsEnabled() ) GameView.Contacts.append( new GameContact(contact.GetFixtureA(), contact.GetFixtureB(), point) );
+		if ( contact.IsEnabled() ) 
+		{
+			GameView.Contacts.append( new GameContact(contact.GetFixtureA(), contact.GetFixtureB(), point) );
+		}
 	}//end BeginContact()
 	
 	override public function EndContact(contact:b2Contact):void
@@ -728,6 +744,14 @@ class GameContactListener extends b2ContactListener
 	{	
 		var fixtureA:b2Fixture = contact.GetFixtureA();
 		var fixtureB:b2Fixture = contact.GetFixtureB();
+		
+		if (fixtureA.GetUserData() is Brick && fixtureB.GetUserData() is Ball)
+		{
+			if ( fixtureB.GetUserData().ballMode == Ball.DESTRUCT_BALL )
+			{
+				contact.SetSensor(true);
+			}
+		}
 		
 		if (!(fixtureA.GetUserData() is Paddle && fixtureB.GetUserData() is Ball))
 			return;

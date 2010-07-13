@@ -1,6 +1,6 @@
 package com.bored.games.breakout.objects.collectables 
 {
-	import com.bored.games.breakout.actions.LaserPaddleAction;
+	import com.bored.games.breakout.actions.CatchPaddleAction;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	
@@ -8,22 +8,22 @@ package com.bored.games.breakout.objects.collectables
 	 * ...
 	 * @author sam
 	 */
-	public class LaserPowerup extends Collectable
+	public class DestructballPowerup extends Collectable
 	{
-		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.LaserPowerup_MC')]
-		private static var mcCls:Class;	
+		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.DestructballPowerup_MC')]
+		private static var mcCls:Class;
 		private static var sprite:AnimatedSprite = AnimatedSpriteFactory.generateAnimatedSprite(new mcCls());
 		
-		public function LaserPowerup() 
+		public function DestructballPowerup() 
 		{
 			super(sprite);
 		}//end constructor()
 		
 		override public function get actionName():String 
 		{
-			return LaserPaddleAction.NAME;
+			return CatchPaddleAction.NAME;
 		}//end get actionName()
 		
-	}//end LaserPowerup
+	}//end DestructballPowerup
 
 }//end package

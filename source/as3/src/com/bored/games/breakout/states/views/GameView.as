@@ -18,6 +18,7 @@ package com.bored.games.breakout.states.views
 	import Box2D.Dynamics.Joints.b2MouseJointDef;
 	import Box2D.Dynamics.Joints.b2PrismaticJoint;
 	import Box2D.Dynamics.Joints.b2PrismaticJointDef;
+	import com.bored.games.breakout.actions.LaserPaddleAction;
 	import com.bored.games.breakout.emitters.BrickCrumbs;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
@@ -33,7 +34,13 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.objects.bricks.SimpleBrick;
 	import com.bored.games.breakout.objects.bricks.UnbreakableBrick;
 	import com.bored.games.breakout.objects.Bullet;
+	import com.bored.games.breakout.objects.collectables.CatchPowerup;
 	import com.bored.games.breakout.objects.collectables.Collectable;
+	import com.bored.games.breakout.objects.collectables.DestructballPowerup;
+	import com.bored.games.breakout.objects.collectables.ExtendPowerup;
+	import com.bored.games.breakout.objects.collectables.LaserPowerup;
+	import com.bored.games.breakout.objects.collectables.MultiballPowerup;
+	import com.bored.games.breakout.objects.collectables.SuperballPowerup;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.objects.Paddle;
@@ -189,6 +196,15 @@ package com.bored.games.breakout.states.views
 			super.addedToStageHandler(e);
 			
 			stage.quality = StageQuality.BEST;
+			
+			new CatchPowerup();
+			new DestructballPowerup();
+			new ExtendPowerup();
+			new LaserPowerup();
+			new MultiballPowerup();
+			//new SuperballPowerup();
+			
+			new LaserPaddleAction(null, null);
 			
 			//_backgroundAnimation = AnimatedSpriteFactory.generateAnimatedSprite(new _bkgdMCCls());
 			_bkgdMC = new _bkgdMCCls();

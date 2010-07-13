@@ -27,6 +27,7 @@ package com.bored.games.breakout.actions
 		
 		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.LaserBullet_MC')]
 		private static var mcCls:Class;
+		private static var sprite:AnimatedSprite = AnimatedSpriteFactory.generateAnimatedSprite(new mcCls());
 		
 		private var _sprite:AnimatedSprite;
 		
@@ -40,7 +41,7 @@ package com.bored.games.breakout.actions
 		{
 			super(NAME, a_gameElement, a_params);
 			
-			_sprite = AnimatedSpriteFactory.generateAnimatedSprite(new mcCls());
+			_sprite = sprite;
 		}//end constructor()
 		
 		override public function initParams(a_params:Object):void 

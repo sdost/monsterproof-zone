@@ -11,11 +11,12 @@ package com.bored.games.breakout.objects.collectables
 	public class MultiballPowerup extends Collectable
 	{
 		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.MultiballPowerup_MC')]
-		private static var mcCls:Class;		
+		private static var mcCls:Class;	
+		private static var sprite:AnimatedSprite = AnimatedSpriteFactory.generateAnimatedSprite(new mcCls());
 		
 		public function MultiballPowerup() 
 		{
-			super( AnimatedSpriteFactory.generateAnimatedSprite(new mcCls()) );
+			super(sprite);
 		}//end constructor()
 		
 		override public function get actionName():String 

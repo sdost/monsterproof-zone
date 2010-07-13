@@ -25,6 +25,13 @@ package com.bored.games.breakout.actions
 		
 		override public function startAction():void 
 		{	
+			/*
+			var emitter:BrickExplosion = new BrickExplosion( (_gameElement as Brick) );
+			emitter.addEventListener( EmitterEvent.EMITTER_EMPTY, finishAction, false, 0, true );
+			GameView.ParticleRenderer.addEmitter(emitter);
+			emitter.start();
+			*/
+			
 			this.finished = false;
 		}//end startAction()
 		

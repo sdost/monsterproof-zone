@@ -9,6 +9,7 @@ package com.bored.games.breakout.objects.bricks
 	import com.bored.games.breakout.actions.SpawnCollectable;
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.objects.AnimationSet;
+	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.physics.PhysicsWorld;

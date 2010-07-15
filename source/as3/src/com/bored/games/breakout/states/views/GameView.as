@@ -19,8 +19,10 @@ package com.bored.games.breakout.states.views
 	import Box2D.Dynamics.Joints.b2PrismaticJoint;
 	import Box2D.Dynamics.Joints.b2PrismaticJointDef;
 	import com.bored.games.breakout.actions.DestructoballAction;
+	import com.bored.games.breakout.actions.DisintegrateBrickAction;
 	import com.bored.games.breakout.actions.InvinciballAction;
 	import com.bored.games.breakout.actions.LaserPaddleAction;
+	import com.bored.games.breakout.actions.RemoveGridObjectAction;
 	import com.bored.games.breakout.emitters.BrickCrumbs;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
@@ -121,11 +123,6 @@ package com.bored.games.breakout.states.views
 		
 		public static var ParticleRenderer:Renderer;
 		
-		[Embed(source='../../filters/scanlines-adj.pbj', mimeType='application/octet-stream')]
-		private static var _filterCls:Class;
-		
-		private static var _shader:Shader = new Shader(new _filterCls as ByteArray);
-		
 		private var _grid:Grid;
 		private var _balls:SLL;
 		private var _paddle:Paddle;
@@ -177,9 +174,6 @@ package com.bored.games.breakout.states.views
 		{
 			super();
 						
-			_shader.data.lineSize.value = [1];
-			//this.filters = [new ShaderFilter(_shader)];
-			
 			_balls = new SLL();
 			
 			Contacts = new ContactLL();
@@ -230,8 +224,8 @@ package com.bored.games.breakout.states.views
 			//(ParticleRenderer as BitmapRenderer).blendMode = BlendMode.SCREEN;
 			addChild((ParticleRenderer as BitmapRenderer));
 			
-			_stats = new Stats();
-			addChild(_stats);
+			//_stats = new Stats();
+			//addChild(_stats);
 			
 			stage.invalidate();
 			
@@ -495,11 +489,22 @@ package com.bored.games.breakout.states.views
 			}
 			else if ( a_fixture.GetUserData() is Brick )
 			{
-				a_fixture.GetUserData().notifyHit();
-				
 				if ( a_ball.GetUserData().ballMode == Ball.SUPER_BALL )
 				{
 					_grid.explodeBricks(_grid.getAllNeighbors(a_fixture.GetUserData() as Brick));
+					
+					a_fixture.GetUserData().notifyHit();
+				}
+				else if ( a_ball.GetUserData().ballMode == Ball.DESTRUCT_BALL )
+				{
+					a_fixture.GetUserData().addAction(new DisintegrateBrickAction(a_fixture.GetUserData() as Brick));
+					a_fixture.GetUserData().activateAction(DisintegrateBrickAction.NAME);
+					
+					a_fixture.GetUserData().activateAction(RemoveGridObjectAction.NAME);
+				}
+				else
+				{
+					a_fixture.GetUserData().notifyHit();
 				}
 			}
 		}//end handleBallCollision()

@@ -23,12 +23,12 @@ package com.bored.games.breakout.objects.bricks
 			super.initializeActions();
 		}//end initializeActions()
 		
-		override public function notifyHit():void 
+		override public function notifyHit():Boolean
 		{
 			addAction(new DisintegrateBrickAction(this));
 			activateAction(DisintegrateBrickAction.NAME);
 			
-			super.notifyHit();
+			return super.notifyHit();
 		}//end notifyHit()
 		
 		override public function destroy():void 

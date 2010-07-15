@@ -19,9 +19,9 @@ package com.bored.games.breakout.objects.bricks
 			super.initializeActions();
 		}//end initializeActions()
 		
-		override public function notifyHit():void 
+		override public function notifyHit():Boolean 
 		{
-			// DO NOTHING!
+			return false;
 		}//end notifyHit()
 		
 	}//end UnbreakableBrick

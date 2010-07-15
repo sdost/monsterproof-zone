@@ -41,7 +41,7 @@ package com.bored.games.breakout.objects.bricks
 			*/
 		}//end initializeActions()
 		
-		override public function notifyHit():void 
+		override public function notifyHit():Boolean 
 		{
 			_accumulatedHits++;
 			
@@ -49,12 +49,13 @@ package com.bored.games.breakout.objects.bricks
 			{
 				activateAction(DisintegrateBrickAction.NAME);
 								
-				super.notifyHit()
+				return super.notifyHit()
 			}
 			else
 			{
 				_animatedSprite = _animationSet.getAnimation(DAMAGE[_accumulatedHits]);
 				//activateAction(CrackBrickAction.NAME);
+				return false;
 			}
 		}//end notifyHit()
 		

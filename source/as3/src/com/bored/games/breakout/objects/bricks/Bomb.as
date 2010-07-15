@@ -30,14 +30,14 @@ package com.bored.games.breakout.objects.bricks
 			super.initializeActions();
 		}//end initializeActions()
 		
-		override public function notifyHit():void 
+		override public function notifyHit():Boolean 
 		{			
 			grid.explodeBricks(grid.getAllNeighbors(this));
 			
 			addAction(new ExplodeBrickAction(this));
 			activateAction(ExplodeBrickAction.NAME);
 			
-			super.notifyHit();
+			return super.notifyHit();
 		}//end notifyHit()
 		
 		override public function update(t:Number = 0):void 

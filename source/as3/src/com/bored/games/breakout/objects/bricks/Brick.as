@@ -102,7 +102,7 @@ package com.bored.games.breakout.objects.bricks
 			return _animatedSprite.currFrame;
 		}//end get currFrame()
 		
-		public function notifyHit():void
+		public function notifyHit():Boolean
 		{
 			activateAction(RemoveGridObjectAction.NAME);
 			
@@ -111,6 +111,8 @@ package com.bored.games.breakout.objects.bricks
 				addAction(new SpawnCollectable(this));
 				activateAction(SpawnCollectable.NAME);
 			}
+			
+			return true;
 		}//end notifyHit()
 		
 		override public function update(t:Number = 0):void 

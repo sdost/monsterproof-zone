@@ -58,9 +58,9 @@ package com.bored.games.breakout.objects.bricks
 			_brickFixture = _grid.gridBody.CreateFixture(fd);
 		}//end initializePhysics()
 		
-		override public function notifyHit():void 
+		override public function notifyHit():Boolean 
 		{			
-			//super.notifyHit();
+			return false;
 		}//end notifyHit()
 		
 		override public function update(t:Number = 0):void 

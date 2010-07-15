@@ -406,9 +406,17 @@ package com.bored.games.breakout.states.views
 		
 		private function ballLost():void
 		{
-			//if ( --_ballsLeft > 0 )
-			var ball:Ball = addBallAt();
-			_paddle.catchBall(ball);
+			HUDView.Profile.decrementLives();
+			
+			if (HUDView.Profile.lives > 0)
+			{
+				var ball:Ball = addBallAt();
+				_paddle.catchBall(ball);
+			}
+			else
+			{
+				_paused = true;
+			}
 		}//end ballLost()
 		
 		override public function exit():void
@@ -491,9 +499,15 @@ package com.bored.games.breakout.states.views
 			{
 				if ( a_ball.GetUserData().ballMode == Ball.SUPER_BALL )
 				{
-					_grid.explodeBricks(_grid.getAllNeighbors(a_fixture.GetUserData() as Brick));
+					var neighbors:Vector.<Brick> = _grid.getAllNeighbors(a_fixture.GetUserData() as Brick);
+					_grid.explodeBricks(neighbors);
 					
-					a_fixture.GetUserData().notifyHit();
+					if (a_fixture.GetUserData().notifyHit())
+					{
+						HUDView.Profile.addPoints(AppSettings.instance.brickPoints);
+					
+						HUDView.Profile.addPoints(neighbors.length * AppSettings.instance.brickPoints);
+					}
 				}
 				else if ( a_ball.GetUserData().ballMode == Ball.DESTRUCT_BALL )
 				{
@@ -501,10 +515,15 @@ package com.bored.games.breakout.states.views
 					a_fixture.GetUserData().activateAction(DisintegrateBrickAction.NAME);
 					
 					a_fixture.GetUserData().activateAction(RemoveGridObjectAction.NAME);
+					
+					HUDView.Profile.addPoints(AppSettings.instance.brickPoints);
 				}
 				else
 				{
-					a_fixture.GetUserData().notifyHit();
+					if (a_fixture.GetUserData().notifyHit())
+					{
+						HUDView.Profile.addPoints(AppSettings.instance.brickPoints);
+					}
 				}
 			}
 		}//end handleBallCollision()

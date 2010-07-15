@@ -45,12 +45,12 @@ package com.bored.games.breakout.objects.bricks
 			_brickFixture = _grid.gridBody.CreateFixture(fd);
 		}//end initializePhysics()
 		
-		override public function notifyHit():void 
+		override public function notifyHit():Boolean 
 		{
 			addAction(new MeltBrickAction(this));
 			activateAction(MeltBrickAction.NAME);
 			
-			super.notifyHit();
+			return super.notifyHit();
 		}//end notifyHit()
 		
 		override public function destroy():void 

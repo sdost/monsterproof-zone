@@ -2,6 +2,7 @@ package com.bored.games.breakout.states.views
 {
 	import com.bored.games.breakout.objects.hud.LivesDisplay;
 	import com.bored.games.breakout.objects.hud.ScoreDisplay;
+	import com.bored.games.breakout.profiles.UserProfile;
 	import com.jac.fsm.StateView;
 	import com.sven.text.BitmapFont;
 	import com.sven.text.BitmapFontFactory;
@@ -16,6 +17,8 @@ package com.bored.games.breakout.states.views
 	 */
 	public class HUDView extends StateView
 	{
+		public static var Profile:UserProfile;
+		
 		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.BreakoutFont')]
 		private static var fontCls:Class;
 		
@@ -30,22 +33,25 @@ package com.bored.games.breakout.states.views
 		
 		private var _bmp:Bitmap;
 		
+		private var _paused:Boolean;
+		
 		public function HUDView() 
 		{
 			super();
 			
-			var bitmapFont:BitmapFont = BitmapFontFactory.generateBitmapFont(new fontCls());
-			
-			_score = 0;
-			_lives = 3;
-			
-			_livesDisp = new LivesDisplay(_lives, bitmapFont);
-			_scoreDisp = new ScoreDisplay(_score, bitmapFont);
+			_paused = true;
 		}//end constructor()
 		
 		override protected function addedToStageHandler(e:Event):void
 		{
 			super.addedToStageHandler(e);
+			
+			var bitmapFont:BitmapFont = BitmapFontFactory.generateBitmapFont(new fontCls());
+			
+			Profile = new UserProfile();
+			
+			_livesDisp = new LivesDisplay(Profile.lives, bitmapFont);
+			_scoreDisp = new ScoreDisplay(Profile.score, bitmapFont);
 			
 			_backBuffer = new BitmapData(stage.stageWidth, stage.stageHeight, true, 0x00000000);
 			_mainBuffer = new BitmapData(stage.stageWidth, stage.stageHeight, true, 0x00000000);
@@ -56,6 +62,8 @@ package com.bored.games.breakout.states.views
 			stage.invalidate();
 			
 			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
+			
+			_paused = false;
 		}//end addedToStageHandler()
 		
 		override protected function removedFromStageHandler(e:Event):void
@@ -65,14 +73,15 @@ package com.bored.games.breakout.states.views
 		
 		override public function update():void 
 		{
-			_score++;
+			if (_paused) return;
 			
-			_scoreDisp.score = _score;
-			
-			if (stage) stage.invalidate();
+			_scoreDisp.score = Profile.score;
+			_livesDisp.lives = Profile.lives;
 			
 			_livesDisp.update();
 			_scoreDisp.update();
+			
+			if (stage) stage.invalidate();
 		}//end update()
 		
 		public function renderFrame(e:Event):void

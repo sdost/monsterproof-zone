@@ -21,14 +21,9 @@ package com.bored.games.breakout.objects.hud
 			super("Lives:" + _livesRemaining, a_font);
 		}//end constructor()
 		
-		public function increaseLives():void
+		public function set lives(a_lives:int):void
 		{
-			_livesRemaining++;
-		}//end increaseLives()
-		
-		public function decreaseLives():void
-		{
-			_livesRemaining--;
+			_livesRemaining = a_lives;
 		}//end increaseLives()
 		
 		override public function update(t:Number = 0):void 

@@ -63,13 +63,17 @@ package com.bored.games.breakout.objects.bricks
 			super.initializeActions();
 		}//end initializeActions()
 		
-		override public function notifyHit():void 
+		override public function notifyHit():Boolean 
 		{
 			if ( !_brickFixture.IsSensor() )
 			{
 				activateAction(DisintegrateBrickAction.NAME);
 				sleep();
+				
+				return true;
 			}
+			
+			return false;
 		}//end notifyHit()
 			
 		override public function update(t:Number = 0):void 

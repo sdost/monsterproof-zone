@@ -221,7 +221,7 @@ package com.bored.games.breakout.states.views
 			_spriteLoader.load( new URLRequest("../assets/BrickSpriteLibrary.swf") );
 			
 			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), false );
-			//(ParticleRenderer as BitmapRenderer).blendMode = BlendMode.SCREEN;
+			//(ParticleRenderer as BitmapRenderer).blendMode = BlendMode.LAYER;
 			addChild((ParticleRenderer as BitmapRenderer));
 			
 			//_stats = new Stats();
@@ -306,7 +306,7 @@ package com.bored.games.breakout.states.views
 			
 			_levelLoader = new Loader();
 			_levelLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, levelLoaded, false, 0, true);
-			_levelLoader.load( new URLRequest("../assets/TestLevel.swf") );
+			_levelLoader.load( new URLRequest(HUDView.Level.levelDataURL) );
 		}//end spriteAssetsParsed()
 		
 		private function levelLoaded(e:Event):void
@@ -605,6 +605,8 @@ package com.bored.games.breakout.states.views
 		override public function update():void
 		{
 			if ( _paused ) return;
+			
+			if ( HUDView.Profile.time <= 0 ) _paused = true;
 			
 			if ( _balls.isEmpty() ) ballLost();
 			

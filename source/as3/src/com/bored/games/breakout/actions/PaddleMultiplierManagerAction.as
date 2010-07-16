@@ -7,25 +7,38 @@ package com.bored.games.breakout.actions
 	 * ...
 	 * @author sam
 	 */
-	public class BrickMultiplierManagerAction extends Action
+	public class PaddleMultiplierManagerAction extends Action
 	{
-		public static const NAME:String = "com.bored.games.breakout.actions.BrickMultiplierManagerAction";
+		public static const NAME:String = "com.bored.games.breakout.actions.PaddleMultiplierManagerAction";
 		
-		public function BrickMultiplierManagerAction(a_gameElement:GameElement, a_params:Object = null) 
+		private var _multiplierMax:int;
+		
+		private var _multiplier:int;
+		
+		public function PaddleMultiplierManagerAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
 			super(NAME, a_gameElement, a_params);
-			
 		}//end constructor()
 	
 		override public function initParams(a_params:Object):void 
 		{
-		
+			_multiplierMax = a_params.maxMultiplier;
 		}//end initParams()
 		
 		override public function startAction():void 
 		{
+			_multiplier = 1;
+			
 			this.finished = false;
 		}//end startAction()
+		
+		public function increaseMultiplier():void
+		{
+			_multiplier++;
+			
+			if ( _multiplier > _multiplierMax )
+				_multiplier = _multiplierMax;
+		}//end increaseMultiplier()
 		
 		override public function update(a_time:Number):void 
 		{
@@ -47,6 +60,6 @@ package com.bored.games.breakout.actions
 			
 		}//end set finished() 
 		
-	}//end BrickMultiplierManagerAction
+	}//end PaddleMultiplierManagerAction
 
 }//end package

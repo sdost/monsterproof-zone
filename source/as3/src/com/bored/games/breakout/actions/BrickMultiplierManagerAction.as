@@ -43,6 +43,11 @@ package com.bored.games.breakout.actions
 			_startTime = getTimer();
 		}//end increaseMultiplier()
 		
+		public function get multiplier():int
+		{
+			return _multplier;
+		}//end get multiplier()
+		
 		override public function update(a_time:Number):void 
 		{
 			if ( (getTimer() - _startTime) > _multiplierTimeout )

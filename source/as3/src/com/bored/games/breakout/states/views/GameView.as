@@ -18,10 +18,12 @@ package com.bored.games.breakout.states.views
 	import Box2D.Dynamics.Joints.b2MouseJointDef;
 	import Box2D.Dynamics.Joints.b2PrismaticJoint;
 	import Box2D.Dynamics.Joints.b2PrismaticJointDef;
+	import com.bored.games.breakout.actions.BrickMultiplierManagerAction;
 	import com.bored.games.breakout.actions.DestructoballAction;
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
 	import com.bored.games.breakout.actions.InvinciballAction;
 	import com.bored.games.breakout.actions.LaserPaddleAction;
+	import com.bored.games.breakout.actions.PaddleMultiplierManagerAction;
 	import com.bored.games.breakout.actions.RemoveGridObjectAction;
 	import com.bored.games.breakout.emitters.BrickCrumbs;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
@@ -50,6 +52,7 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.objects.Paddle;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.input.Input;
+	import com.bored.games.objects.GameElement;
 	import com.jac.fsm.StateView;
 	import com.sven.utils.AppSettings;
 	import de.polygonal.ds.mem.MemoryManager;
@@ -170,6 +173,10 @@ package com.bored.games.breakout.states.views
 		
 		private var _stats:Stats;
 		
+		private var _multiplier:GameElement;
+		private var _brickMultiplierManager:BrickMultiplierManagerAction;
+		private var _paddleMultiplierManager:PaddleMultiplierManagerAction;
+		
 		public function GameView() 
 		{
 			super();
@@ -181,6 +188,12 @@ package com.bored.games.breakout.states.views
 			Bullets = new SLL();
 			
 			_drawnObjects = new SLL();
+			
+			_multiplier = new GameElement();
+			_brickMultiplierManager = new BrickMultiplierManagerAction(_multiplier, {"timeout":5000} );
+			_paddleMultiplierManager = new PaddleMultiplierManagerAction(_multiplier, { "maxMultiplier":5 } );
+			_multiplier.addAction(_brickMultiplierManager);
+			_multiplier.addAction(_paddleMultiplierManager);
 				
 			PhysicsWorld.InitializePhysics();
 			//PhysicsWorld.SetDebugDraw(this);
@@ -494,6 +507,13 @@ package com.bored.games.breakout.states.views
 				{
 					a_fixture.GetUserData().catchBall(a_ball.GetUserData() as Ball);
 				}
+				
+				if ( _paddleMultiplierManager.finished )
+				{
+					_multiplier.activateAction(PaddleMultiplierManagerAction.NAME);
+				}
+				
+				_paddleMultiplierManager.increaseMultiplier();
 			}
 			else if ( a_fixture.GetUserData() is Brick )
 			{
@@ -504,9 +524,14 @@ package com.bored.games.breakout.states.views
 					
 					if (a_fixture.GetUserData().notifyHit())
 					{
-						HUDView.Profile.addPoints(AppSettings.instance.brickPoints);
-					
-						HUDView.Profile.addPoints(neighbors.length * AppSettings.instance.brickPoints);
+						if ( _brickMultiplierManager.finished )
+						{
+							_multiplier.activateAction(BrickMultiplierManagerAction.NAME)
+						}
+						
+						_brickMultiplierManager.increaseMultiplier();
+						
+						HUDView.Profile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
 					}
 				}
 				else if ( a_ball.GetUserData().ballMode == Ball.DESTRUCT_BALL )
@@ -516,13 +541,27 @@ package com.bored.games.breakout.states.views
 					
 					a_fixture.GetUserData().activateAction(RemoveGridObjectAction.NAME);
 					
-					HUDView.Profile.addPoints(AppSettings.instance.brickPoints);
+					if ( _brickMultiplierManager.finished )
+					{
+						_multiplier.activateAction(BrickMultiplierManagerAction.NAME)
+					}
+					
+					_brickMultiplierManager.increaseMultiplier();
+					
+					HUDView.Profile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
 				}
 				else
 				{
 					if (a_fixture.GetUserData().notifyHit())
 					{
-						HUDView.Profile.addPoints(AppSettings.instance.brickPoints);
+						if ( _brickMultiplierManager.finished )
+						{
+							_multiplier.activateAction(BrickMultiplierManagerAction.NAME)
+						}
+						
+						_brickMultiplierManager.increaseMultiplier();
+						
+						HUDView.Profile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
 					}
 				}
 			}

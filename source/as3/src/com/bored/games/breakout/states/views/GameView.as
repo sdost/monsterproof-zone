@@ -166,12 +166,17 @@ package com.bored.games.breakout.states.views
 		private var _mouseXWorld:Number;
 		private var _mouseYWorld:Number;
 		
+		private var _mouseXDelta:Number;
+		private var _mouseXLast:Number;
+		
 		private var _mouseJoint:b2MouseJoint;
 		private var _lineJoint:b2LineJoint;
 		
 		private var _matrix:Array;
 		
 		private var _stats:Stats;
+		
+		private var _cursorTarget:Point;
 		
 		private var _multiplier:GameElement;
 		private var _brickMultiplierManager:BrickMultiplierManagerAction;
@@ -190,7 +195,7 @@ package com.bored.games.breakout.states.views
 			_drawnObjects = new SLL();
 			
 			_multiplier = new GameElement();
-			_brickMultiplierManager = new BrickMultiplierManagerAction(_multiplier, {"timeout":5000} );
+			_brickMultiplierManager = new BrickMultiplierManagerAction(_multiplier, { "timeout":250 } );
 			_paddleMultiplierManager = new PaddleMultiplierManagerAction(_multiplier, { "maxMultiplier":5 } );
 			_multiplier.addAction(_brickMultiplierManager);
 			_multiplier.addAction(_paddleMultiplierManager);
@@ -275,10 +280,14 @@ package com.bored.games.breakout.states.views
 			
 			_paddle.physicsBody.SetPosition( new b2Vec2( 336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale ) );
 			
+			_cursorTarget = new Point(336, 500);
+			_mouseXDelta = 0;
+			_mouseXLast = 336;
+			
 			var md:b2MouseJointDef = new b2MouseJointDef();
 			md.bodyA = PhysicsWorld.GetGroundBody();
 			md.bodyB = _paddle.physicsBody;
-			md.target.Set(336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale);
+			md.target.Set(_cursorTarget.x / PhysicsWorld.PhysScale, _cursorTarget.y / PhysicsWorld.PhysScale);
 			md.maxForce = 10000.0 * _paddle.physicsBody.GetMass();
 			md.dampingRatio = 0;
 			md.frequencyHz = 100;
@@ -419,6 +428,9 @@ package com.bored.games.breakout.states.views
 		
 		private function ballLost():void
 		{
+			_multiplier.deactivateAction(BrickMultiplierManagerAction.NAME);
+			_multiplier.deactivateAction(PaddleMultiplierManagerAction.NAME);
+			
 			HUDView.Profile.decrementLives();
 			
 			if (HUDView.Profile.lives > 0)
@@ -653,7 +665,13 @@ package com.bored.games.breakout.states.views
 			
 			if ( Input.mouseDown ) _paddle.releaseBall();
 			
-			_mouseJoint.SetTarget(new b2Vec2(_mouseXWorldPhys, 500 / PhysicsWorld.PhysScale));
+			_cursorTarget.x += _mouseXDelta;
+			if ( _cursorTarget.x < 0 ) _cursorTarget.x = 0;
+			else if ( _cursorTarget.x > stage.stageWidth ) _cursorTarget.x = stage.stageWidth;
+			
+			trace("cursor: " + _cursorTarget);
+			
+			_mouseJoint.SetTarget(new b2Vec2(_cursorTarget.x / PhysicsWorld.PhysScale, _cursorTarget.y / PhysicsWorld.PhysScale));
 			
 			_lineJoint.SetLimits( -(330 - _paddle.width / 2) / PhysicsWorld.PhysScale, (330 - _paddle.width / 2) / PhysicsWorld.PhysScale );
 			
@@ -710,7 +728,10 @@ package com.bored.games.breakout.states.views
 			_mouseYWorldPhys = (Input.mouseY) / PhysicsWorld.PhysScale;
 			
 			_mouseXWorld = (Input.mouseX);
-			_mouseXWorld = (Input.mouseY);
+			_mouseYWorld = (Input.mouseY);
+			
+			_mouseXDelta = _mouseXWorld - _mouseXLast;
+			_mouseXLast = _mouseXWorld;
 		}//end UpdateMouseWorld()
 	
 	}//end GameView

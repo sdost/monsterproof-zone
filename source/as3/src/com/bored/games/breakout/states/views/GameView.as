@@ -224,8 +224,8 @@ package com.bored.games.breakout.states.views
 			
 			new LaserPaddleAction(null, null);
 			
-			_currBkgd = 0;
-			
+			_grid = new Grid( AppSettings.instance.defaultGridWidth, AppSettings.instance.defaultGridHeight );
+					
 			_backBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_effectsBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			
@@ -233,10 +233,7 @@ package com.bored.games.breakout.states.views
 			_gameScreen.bitmapData = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_gameScreen.smoothing = true;
 			addChild( _gameScreen );
-			
-			_grid = new Grid( AppSettings.instance.defaultGridWidth, AppSettings.instance.defaultGridHeight );
-			_paddle = new Paddle();
-			
+					
 			_spriteLoader = new Loader();
 			_spriteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, spritesLoaded, false, 0, true);
 			_spriteLoader.load( new URLRequest("../assets/BrickSpriteLibrary.swf") );
@@ -281,6 +278,7 @@ package com.bored.games.breakout.states.views
 			wall.SetAsOrientedBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new b2Vec2(336 / PhysicsWorld.PhysScale, 574 / PhysicsWorld.PhysScale) );
 			_bottomWall = _walls.CreateFixture2(wall);
 			
+			_paddle = new Paddle();
 			_paddle.physicsBody.SetPosition( new b2Vec2( 336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale ) );
 						
 			var md:b2MouseJointDef = new b2MouseJointDef();
@@ -350,10 +348,13 @@ package com.bored.games.breakout.states.views
 				_backgrounds[i] = new cls() as MovieClip;
 			}
 			
+			_currBkgd = Math.floor(Math.random() * _backgrounds.length);
+			
 			_backgroundsLoaded = true;
 			
 			if ( _spritesLoaded && _backgroundsLoaded )
 			{
+				stage.quality = StageQuality.LOW;
 				loadNextLevel();
 			}
 		}//end backgroundAssetsParsed()
@@ -365,13 +366,21 @@ package com.bored.games.breakout.states.views
 			_levelLoader.load( new URLRequest(HUDView.Level.levelDataURL) );
 		}//end loadNextLevel()
 		
-		private function levelLoaded(e:Event):void
+		private function levelLoaded(e:Event = null):void
 		{
-			var parent:DisplayObjectContainer = _levelLoader.content as DisplayObjectContainer;
+			_levelLoader.removeEventListener(Event.COMPLETE, levelLoaded);
 			
-			for ( var i:int = 0; i < parent.numChildren; i++ )
+			parseLevel(_levelLoader.content as DisplayObjectContainer);
+			startGame();
+		}//end levelLoaded()
+		
+		private function parseLevel(a_level:DisplayObjectContainer):void
+		{	
+			_grid.clear();
+			
+			for ( var i:int = 0; i < a_level.numChildren; i++ )
 			{
-				var obj:DisplayObject = parent.getChildAt(i);
+				var obj:DisplayObject = a_level.getChildAt(i);
 				
 				var brick:Brick;
 				
@@ -439,13 +448,12 @@ package com.bored.games.breakout.states.views
 				if ( brick )
 					_grid.addGridObject(brick, uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
 			}
+		}
 		
-			var ball:Ball = addBallAt();
-			
-			_paddle.catchBall(ball);
-			
-			stage.quality = StageQuality.LOW;
-		
+		private function startGame():void
+		{		
+			var ball:Ball = addBallAt();	
+			_paddle.catchBall(ball);		
 			_paused = false;
 		}//end onComplete()
 		
@@ -690,17 +698,25 @@ package com.bored.games.breakout.states.views
 		
 		override public function update():void
 		{
-			if ( _paused ) return;
-			
-			if ( HUDView.Profile.time <= 0 ) _paused = true;
-			
-			if ( _balls.isEmpty() ) ballLost();
-			
 			if ( Input.isKeyReleased(Keyboard.F1) ) 
 			{
 				_currBkgd ++;
 				if ( _currBkgd >= _backgrounds.length ) _currBkgd = 0;
 			}
+			
+			if ( Input.isKeyReleased(Keyboard.F2) )
+			{
+				HUDView.Profile.incrementLives();
+				HUDView.Profile.incrementLives();
+				HUDView.Profile.incrementLives();
+				parseLevel(_levelLoader.content as DisplayObjectContainer);
+			}
+			
+			if ( _paused ) return;
+			
+			if ( HUDView.Profile.time <= 0 ) _paused = true;
+			
+			if ( _balls.isEmpty() ) ballLost();
 			
 			UpdateMouseWorld();
 			

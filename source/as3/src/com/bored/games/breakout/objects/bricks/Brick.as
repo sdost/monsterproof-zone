@@ -106,7 +106,7 @@ package com.bored.games.breakout.objects.bricks
 		{
 			activateAction(RemoveGridObjectAction.NAME);
 			
-			if ( Math.random() < 0.3 )
+			if ( Math.random() < 0.1 )
 			{
 				addAction(new SpawnCollectable(this));
 				activateAction(SpawnCollectable.NAME);

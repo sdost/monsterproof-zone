@@ -159,6 +159,20 @@ package com.bored.games.breakout.objects
 			}
 		}//end generate()
 		
+		public function clear():void
+		{
+			var iter:SLLIterator = new SLLIterator(_gridObjectList);
+			while ( iter.hasNext() )
+			{
+				var obj:* = iter.next();
+				obj.removeFromGrid();
+				obj.destroy();
+			}
+			
+			_gridObjectList.clear();
+			generate();
+		}//end clear()
+		
 		public function addGridObject( a_obj:GridObject, a_x:int, a_y:int ):Boolean
 		{			
 			var rightBounds:int = a_x + a_obj.gridWidth;

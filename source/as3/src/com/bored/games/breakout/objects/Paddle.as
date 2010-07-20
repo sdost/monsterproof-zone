@@ -19,6 +19,7 @@ package com.bored.games.breakout.objects
 	import com.sven.utils.AppSettings;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.events.Event;
 	
 	/**
 	 * ...
@@ -26,16 +27,22 @@ package com.bored.games.breakout.objects
 	 */
 	public class Paddle extends GameElement
 	{
+		// Paddle States
 		public static const PADDLE_NORMAL:String = "Normal";
 		public static const PADDLE_LASER:String = "Laser";
-		public static const PADDLE_CATCH:String = "Catch";
+		public static const PADDLE_CATCH:String = "Catch";		
 		public static const PADDLE_EXTEND:String = "Extend";
+		
+		// Paddle Transitions
+		public static const PADDLE_EXTEND_IN:String = "Grow";
+		public static const PADDLE_EXTEND_OUT:String = "Shrink";
 		
 		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Paddle_MC')]
 		private static var mcCls:Class;
 		
 		private var _animationSet:AnimationSet;
 		private var _animatedSprite:AnimatedSprite;
+		private var _animationController:AnimationController;
 		
 		private var _normalHeight:Number;
 		
@@ -54,6 +61,8 @@ package com.bored.games.breakout.objects
 			_animationSet = AnimationSetFactory.generateAnimationSet(new mcCls());
 			
 			_animatedSprite = _animationSet.getAnimation(PADDLE_NORMAL);
+			
+			_animationController = new AnimationController(_animatedSprite, true);
 			
 			_normalHeight = _animatedSprite.height;
 			
@@ -109,17 +118,17 @@ package com.bored.games.breakout.objects
 		
 		public function get currFrame():BitmapData
 		{
-			return _animatedSprite.currFrame;
+			return _animationController.currFrame;
 		}//end get bitmap()
 		
 		override public function get width():Number
 		{
-			return _animatedSprite.width;
+			return _animationController.currFrame.width;
 		}//end get width()
 		
 		override public function get height():Number
 		{
-			return _animatedSprite.height;
+			return _animationController.currFrame.height;
 		}//end get height()
 
 		public function activatePowerup(str:String):void
@@ -136,7 +145,37 @@ package com.bored.games.breakout.objects
 		public function switchAnimation(a_str:String):void
 		{
 			_animatedSprite = _animationSet.getAnimation(a_str);
+						
+			if (a_str == PADDLE_EXTEND_IN)
+			{
+				_animationController.setAnimation(_animatedSprite, false);
+				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, extendInComplete, false, 0, true);
+			}
+			else if (a_str == PADDLE_EXTEND_OUT)
+			{
+				_animationController.setAnimation(_animatedSprite, false);
+				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, extendOutComplete, false, 0, true);
+			}
+			else
+			{
+				_animationController.setAnimation(_animatedSprite, true);
+			}
+			
+			updateBody();
+			
 		}//end switchAnimation()
+		
+		private function extendInComplete(e:Event):void
+		{
+			_animationController.removeEventListener(AnimationController.ANIMATION_COMPLETE, extendInComplete);
+			switchAnimation(PADDLE_EXTEND);
+		}//end extendInComplete()
+		
+		private function extendOutComplete(e:Event):void
+		{
+			_animationController.removeEventListener(AnimationController.ANIMATION_COMPLETE, extendOutComplete);
+			switchAnimation(PADDLE_NORMAL);
+		}//end extendOutComplete()
 		
 		public function catchBall(a_ball:Ball):void
 		{
@@ -197,7 +236,7 @@ package com.bored.games.breakout.objects
 		{
 			super.update(t);
 			
-			_animatedSprite.update(t);
+			_animationController.update(t);
 			
 			var pos:b2Vec2 = _paddleBody.GetPosition();
 			

@@ -23,7 +23,7 @@ package com.bored.games.breakout.states.views
 		public static var Profile:UserProfile;
 		public static var Level:LevelProfile;
 		
-		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.BreakoutFont')]
+		[Embed(source='../../../../../../../assets/GameAssets.swf', fontFamily='04b31')]
 		private static var fontCls:Class;
 		
 		private var _lastUpdate:Number;

@@ -3,6 +3,7 @@ package com.bored.games.breakout.actions
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.objects.Paddle;
 	import com.bored.games.objects.GameElement;
+	import flash.events.Event;
 	import flash.utils.getTimer;
 	
 	/**
@@ -47,14 +48,12 @@ package com.bored.games.breakout.actions
 			
 			if (_finished)
 			{
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_NORMAL);
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_EXTEND_OUT);
 			}
 			else
 			{
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_EXTEND);
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_EXTEND_IN);
 			}
-			
-			(_gameElement as Paddle).updateBody();
 		}//end set finished()
 		
 	}//end ExtendPaddleAction

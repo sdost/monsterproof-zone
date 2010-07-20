@@ -82,6 +82,7 @@ package com.bored.games.breakout.states.views
 	import flash.geom.Rectangle;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.ui.Keyboard;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
@@ -120,9 +121,9 @@ package com.bored.games.breakout.states.views
 	 */
 	public class GameView extends StateView
 	{
-		public static var Contacts:ContactLL;// .<b2Contact>;
-		public static var Collectables:SLL;// .<Collectable>;
-		public static var Bullets:SLL;// .<Bullet>;
+		public static var Contacts:ContactLL;
+		public static var Collectables:SLL;
+		public static var Bullets:SLL;
 		
 		public static var ParticleRenderer:Renderer;
 		
@@ -138,11 +139,7 @@ package com.bored.games.breakout.states.views
 		
 		private var _gameScreen:Bitmap;
 		
-		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Background_MC')]
-		private var _bkgdMCCls:Class;	
 		private var _bkgdMC:MovieClip;
-		
-		//private var _backgroundAnimation:AnimatedSprite;
 		
 		private var _backBuffer:BitmapData;
 		private var _effectsBuffer:BitmapData;
@@ -153,9 +150,18 @@ package com.bored.games.breakout.states.views
 		private var _blurFilter:BlurFilter;
 		
 		private var _animationSets:Dictionary;
+		private var _backgrounds:Vector.<MovieClip>;
 		
 		private var _spriteLoader:Loader;
+		private var _backgroundLoader:Loader;
 		private var _spriteExplorer:SWFExplorer;
+		private var _backgroundExplorer:SWFExplorer;
+		
+		private var _spritesLoaded:Boolean = false;
+		private var _backgroundsLoaded:Boolean = false;
+		
+		private var _currBkgd:int;
+		
 		private var _levelLoader:Loader;
 		
 		private var _paused:Boolean = true;
@@ -175,8 +181,6 @@ package com.bored.games.breakout.states.views
 		private var _matrix:Array;
 		
 		private var _stats:Stats;
-		
-		private var _cursorTarget:Point;
 		
 		private var _multiplier:GameElement;
 		private var _brickMultiplierManager:BrickMultiplierManagerAction;
@@ -220,8 +224,7 @@ package com.bored.games.breakout.states.views
 			
 			new LaserPaddleAction(null, null);
 			
-			//_backgroundAnimation = AnimatedSpriteFactory.generateAnimatedSprite(new _bkgdMCCls());
-			_bkgdMC = new _bkgdMCCls();
+			_currBkgd = 0;
 			
 			_backBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_effectsBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
@@ -238,12 +241,12 @@ package com.bored.games.breakout.states.views
 			_spriteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, spritesLoaded, false, 0, true);
 			_spriteLoader.load( new URLRequest("../assets/BrickSpriteLibrary.swf") );
 			
-			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), false );
-			//(ParticleRenderer as BitmapRenderer).blendMode = BlendMode.LAYER;
-			addChild((ParticleRenderer as BitmapRenderer));
+			_backgroundLoader = new Loader();
+			_backgroundLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, backgroundsLoaded, false, 0, true);
+			_backgroundLoader.load( new URLRequest("../assets/BackgroundLibrary.swf") );
 			
-			//_stats = new Stats();
-			//addChild(_stats);
+			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), false );
+			addChild((ParticleRenderer as BitmapRenderer));
 			
 			stage.invalidate();
 			
@@ -279,15 +282,11 @@ package com.bored.games.breakout.states.views
 			_bottomWall = _walls.CreateFixture2(wall);
 			
 			_paddle.physicsBody.SetPosition( new b2Vec2( 336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale ) );
-			
-			_cursorTarget = new Point(336, 500);
-			_mouseXDelta = 0;
-			_mouseXLast = 336;
-			
+						
 			var md:b2MouseJointDef = new b2MouseJointDef();
 			md.bodyA = PhysicsWorld.GetGroundBody();
 			md.bodyB = _paddle.physicsBody;
-			md.target.Set(_cursorTarget.x / PhysicsWorld.PhysScale, _cursorTarget.y / PhysicsWorld.PhysScale);
+			md.target.Set( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale);
 			md.maxForce = 10000.0 * _paddle.physicsBody.GetMass();
 			md.dampingRatio = 0;
 			md.frequencyHz = 100;
@@ -312,6 +311,13 @@ package com.bored.games.breakout.states.views
 			_spriteExplorer.parse(_spriteLoader.contentLoaderInfo.bytes);
 		}//end spritesLoaded()
 		
+		private function backgroundsLoaded(e:Event):void
+		{
+			_backgroundExplorer = new SWFExplorer();
+			_backgroundExplorer.addEventListener(SWFExplorerEvent.COMPLETE, backgroundAssetsParsed, false, 0, true);
+			_backgroundExplorer.parse(_backgroundLoader.contentLoaderInfo.bytes);
+		}//end backgroundsLoaded()
+		
 		private function spriteAssetsParsed(e:SWFExplorerEvent):void
 		{
 			_animationSets = new Dictionary(true);
@@ -322,14 +328,42 @@ package com.bored.games.breakout.states.views
 				
 				var anims:AnimationSet = AnimationSetFactory.generateAnimationSet(new cls() as MovieClip);
 				
-				//_animatedSprites.push(bs);
 				_animationSets[e.definitions[i]] = anims;
 			}
 			
+			_spritesLoaded = true;
+			
+			if ( _spritesLoaded && _backgroundsLoaded )
+			{
+				loadNextLevel();
+			}
+		}//end spriteAssetsParsed()
+		
+		private function backgroundAssetsParsed(e:SWFExplorerEvent):void
+		{
+			_backgrounds = new Vector.<MovieClip>(e.definitions.length);
+			
+			for ( var i:int = 0; i < e.definitions.length; i++ )
+			{
+				var cls:Class = _backgroundLoader.contentLoaderInfo.applicationDomain.getDefinition(e.definitions[i]) as Class;
+				
+				_backgrounds[i] = new cls() as MovieClip;
+			}
+			
+			_backgroundsLoaded = true;
+			
+			if ( _spritesLoaded && _backgroundsLoaded )
+			{
+				loadNextLevel();
+			}
+		}//end backgroundAssetsParsed()
+		
+		private function loadNextLevel():void
+		{			
 			_levelLoader = new Loader();
 			_levelLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, levelLoaded, false, 0, true);
 			_levelLoader.load( new URLRequest(HUDView.Level.levelDataURL) );
-		}//end spriteAssetsParsed()
+		}//end loadNextLevel()
 		
 		private function levelLoaded(e:Event):void
 		{
@@ -457,7 +491,8 @@ package com.bored.games.breakout.states.views
 			var go:GridObject;
 			_drawnObjects.clear();
 			
-			_backBuffer.draw(_bkgdMC);
+			if( _backgroundsLoaded )
+				_backBuffer.draw(_backgrounds[_currBkgd]);
 			
 			var iter:SLLIterator = new SLLIterator(Collectables);
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
@@ -661,17 +696,17 @@ package com.bored.games.breakout.states.views
 			
 			if ( _balls.isEmpty() ) ballLost();
 			
+			if ( Input.isKeyReleased(Keyboard.F1) ) 
+			{
+				_currBkgd ++;
+				if ( _currBkgd >= _backgrounds.length ) _currBkgd = 0;
+			}
+			
 			UpdateMouseWorld();
 			
 			if ( Input.mouseDown ) _paddle.releaseBall();
 			
-			_cursorTarget.x += _mouseXDelta;
-			if ( _cursorTarget.x < 0 ) _cursorTarget.x = 0;
-			else if ( _cursorTarget.x > stage.stageWidth ) _cursorTarget.x = stage.stageWidth;
-			
-			trace("cursor: " + _cursorTarget);
-			
-			_mouseJoint.SetTarget(new b2Vec2(_cursorTarget.x / PhysicsWorld.PhysScale, _cursorTarget.y / PhysicsWorld.PhysScale));
+			_mouseJoint.SetTarget(new b2Vec2(_mouseXWorldPhys, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale));
 			
 			_lineJoint.SetLimits( -(330 - _paddle.width / 2) / PhysicsWorld.PhysScale, (330 - _paddle.width / 2) / PhysicsWorld.PhysScale );
 			
@@ -729,9 +764,6 @@ package com.bored.games.breakout.states.views
 			
 			_mouseXWorld = (Input.mouseX);
 			_mouseYWorld = (Input.mouseY);
-			
-			_mouseXDelta = _mouseXWorld - _mouseXLast;
-			_mouseXLast = _mouseXWorld;
 		}//end UpdateMouseWorld()
 	
 	}//end GameView

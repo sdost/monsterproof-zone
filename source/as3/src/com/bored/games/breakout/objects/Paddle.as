@@ -96,9 +96,9 @@ package com.bored.games.breakout.objects
 		
 		private function initializeActions():void
 		{
-			addAction( new LaserPaddleAction(this, { "time": 10000, "fireRate": 250 } ) ) ;
-			addAction( new ExtendPaddleAction(this, { "time": 10000 } ) ) ;
-			addAction( new CatchPaddleAction(this, { "time": 10000 } ) ) ;
+			addAction( new LaserPaddleAction(this, { "time": AppSettings.instance.defaultLaserTimer, "fireRate": AppSettings.instance.defaultLaserFireRate } ) ) ;
+			addAction( new ExtendPaddleAction(this, { "time": AppSettings.instance.defaultExtendTimer } ) ) ;
+			addAction( new CatchPaddleAction(this, { "time": AppSettings.instance.defaultCatchTimer } ) ) ;
 		}//end intializeActions()
 		
 		public function updateBody():void

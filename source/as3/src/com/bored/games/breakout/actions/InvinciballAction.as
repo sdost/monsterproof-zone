@@ -14,6 +14,9 @@ package com.bored.games.breakout.actions
 	{
 		public static const NAME:String = "com.bored.games.breakout.actions.InvinciballAction";
 		
+		private var _startTime:int;
+		private var _effectTime:int;
+		
 		public function InvinciballAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
 			super(NAME, a_gameElement, a_params);
@@ -21,22 +24,22 @@ package com.bored.games.breakout.actions
 		
 		override public function initParams(a_params:Object):void 
 		{
+			_effectTime = a_params.time;
 		}//end initParams()
 		
 		override public function startAction():void 
 		{	
-			/*
-			var emitter:BrickExplosion = new BrickExplosion( (_gameElement as Brick) );
-			emitter.addEventListener( EmitterEvent.EMITTER_EMPTY, finishAction, false, 0, true );
-			GameView.ParticleRenderer.addEmitter(emitter);
-			emitter.start();
-			*/
+			_startTime = getTimer();
 			
 			this.finished = false;
 		}//end startAction()
 		
 		override public function update(a_time:Number):void 
 		{
+			if ( (getTimer() - _startTime) > _effectTime )
+			{
+				this.finished = true;
+			}
 		}//end update()
 		
 		override public function set finished(value:Boolean):void 

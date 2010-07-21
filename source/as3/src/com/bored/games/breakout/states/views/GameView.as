@@ -152,14 +152,6 @@ package com.bored.games.breakout.states.views
 		private var _animationSets:Dictionary;
 		private var _backgrounds:Vector.<MovieClip>;
 		
-		private var _spriteLoader:Loader;
-		private var _backgroundLoader:Loader;
-		private var _spriteExplorer:SWFExplorer;
-		private var _backgroundExplorer:SWFExplorer;
-		
-		private var _spritesLoaded:Boolean = false;
-		private var _backgroundsLoaded:Boolean = false;
-		
 		private var _currBkgd:int;
 		
 		private var _levelLoader:Loader;
@@ -233,14 +225,6 @@ package com.bored.games.breakout.states.views
 			_gameScreen.bitmapData = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_gameScreen.smoothing = true;
 			addChild( _gameScreen );
-					
-			_spriteLoader = new Loader();
-			_spriteLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, spritesLoaded, false, 0, true);
-			_spriteLoader.load( new URLRequest("../assets/BrickSpriteLibrary.swf") );
-			
-			_backgroundLoader = new Loader();
-			_backgroundLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, backgroundsLoaded, false, 0, true);
-			_backgroundLoader.load( new URLRequest("../assets/BackgroundLibrary.swf") );
 			
 			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), false );
 			addChild((ParticleRenderer as BitmapRenderer));
@@ -302,68 +286,11 @@ package com.bored.games.breakout.states.views
 			enterComplete();
 		}//end enter()
 		
-		private function spritesLoaded(e:Event):void
-		{
-			_spriteExplorer = new SWFExplorer();
-			_spriteExplorer.addEventListener(SWFExplorerEvent.COMPLETE, spriteAssetsParsed, false, 0, true);
-			_spriteExplorer.parse(_spriteLoader.contentLoaderInfo.bytes);
-		}//end spritesLoaded()
-		
-		private function backgroundsLoaded(e:Event):void
-		{
-			_backgroundExplorer = new SWFExplorer();
-			_backgroundExplorer.addEventListener(SWFExplorerEvent.COMPLETE, backgroundAssetsParsed, false, 0, true);
-			_backgroundExplorer.parse(_backgroundLoader.contentLoaderInfo.bytes);
-		}//end backgroundsLoaded()
-		
-		private function spriteAssetsParsed(e:SWFExplorerEvent):void
-		{
-			_animationSets = new Dictionary(true);
-			
-			for ( var i:int = 0; i < e.definitions.length; i++ )
-			{
-				var cls:Class = _spriteLoader.contentLoaderInfo.applicationDomain.getDefinition(e.definitions[i]) as Class;
-				
-				var anims:AnimationSet = AnimationSetFactory.generateAnimationSet(new cls() as MovieClip);
-				
-				_animationSets[e.definitions[i]] = anims;
-			}
-			
-			_spritesLoaded = true;
-			
-			if ( _spritesLoaded && _backgroundsLoaded )
-			{
-				loadNextLevel();
-			}
-		}//end spriteAssetsParsed()
-		
-		private function backgroundAssetsParsed(e:SWFExplorerEvent):void
-		{
-			_backgrounds = new Vector.<MovieClip>(e.definitions.length);
-			
-			for ( var i:int = 0; i < e.definitions.length; i++ )
-			{
-				var cls:Class = _backgroundLoader.contentLoaderInfo.applicationDomain.getDefinition(e.definitions[i]) as Class;
-				
-				_backgrounds[i] = new cls() as MovieClip;
-			}
-			
-			_currBkgd = Math.floor(Math.random() * _backgrounds.length);
-			
-			_backgroundsLoaded = true;
-			
-			if ( _spritesLoaded && _backgroundsLoaded )
-			{
-				stage.quality = StageQuality.LOW;
-				loadNextLevel();
-			}
-		}//end backgroundAssetsParsed()
-		
 		private function loadNextLevel():void
 		{			
 			_levelLoader = new Loader();
 			_levelLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, levelLoaded, false, 0, true);
-			_levelLoader.load( new URLRequest(HUDView.Level.levelDataURL) );
+			_levelLoader.load( new URLRequest(AppSettings.instance.currentLevel.levelDataURL) );
 		}//end loadNextLevel()
 		
 		private function levelLoaded(e:Event = null):void
@@ -448,7 +375,7 @@ package com.bored.games.breakout.states.views
 				if ( brick )
 					_grid.addGridObject(brick, uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
 			}
-		}
+		}//end parseLevel()
 		
 		private function startGame():void
 		{		
@@ -473,9 +400,9 @@ package com.bored.games.breakout.states.views
 			_multiplier.deactivateAction(BrickMultiplierManagerAction.NAME);
 			_multiplier.deactivateAction(PaddleMultiplierManagerAction.NAME);
 			
-			HUDView.Profile.decrementLives();
+			AppSettings.instance.userProfile.decrementLives();
 			
-			if (HUDView.Profile.lives > 0)
+			if (AppSettings.instance.userProfile.lives > 0)
 			{
 				var ball:Ball = addBallAt();
 				_paddle.catchBall(ball);
@@ -499,8 +426,7 @@ package com.bored.games.breakout.states.views
 			var go:GridObject;
 			_drawnObjects.clear();
 			
-			if( _backgroundsLoaded )
-				_backBuffer.draw(_backgrounds[_currBkgd]);
+			_backBuffer.draw(_backgrounds[_currBkgd]);
 			
 			var iter:SLLIterator = new SLLIterator(Collectables);
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
@@ -586,7 +512,7 @@ package com.bored.games.breakout.states.views
 						
 						_brickMultiplierManager.increaseMultiplier();
 						
-						HUDView.Profile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
+						AppSettings.instance.userProfile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
 					}
 				}
 				else if ( a_ball.GetUserData().ballMode == Ball.DESTRUCT_BALL )
@@ -603,7 +529,7 @@ package com.bored.games.breakout.states.views
 					
 					_brickMultiplierManager.increaseMultiplier();
 					
-					HUDView.Profile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
+					AppSettings.instance.userProfile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
 				}
 				else
 				{
@@ -616,7 +542,7 @@ package com.bored.games.breakout.states.views
 						
 						_brickMultiplierManager.increaseMultiplier();
 						
-						HUDView.Profile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
+						AppSettings.instance.userProfile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
 					}
 				}
 			}
@@ -706,15 +632,15 @@ package com.bored.games.breakout.states.views
 			
 			if ( Input.isKeyReleased(Keyboard.F2) )
 			{
-				HUDView.Profile.incrementLives();
-				HUDView.Profile.incrementLives();
-				HUDView.Profile.incrementLives();
+				while( AppSettings.instance.userProfile.lives < 3 )
+					AppSettings.instance.userProfile.incrementLives();
+				
 				parseLevel(_levelLoader.content as DisplayObjectContainer);
 			}
 			
 			if ( _paused ) return;
 			
-			if ( HUDView.Profile.time <= 0 ) _paused = true;
+			if ( AppSettings.instance.userProfile.time <= 0 ) _paused = true;
 			
 			if ( _balls.isEmpty() ) ballLost();
 			

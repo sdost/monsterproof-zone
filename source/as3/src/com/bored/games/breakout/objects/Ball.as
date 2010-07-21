@@ -89,8 +89,8 @@ package com.bored.games.breakout.objects
 		
 		private function initializeActions():void
 		{
-			addAction( new DestructoballAction(this) );
-			addAction( new InvinciballAction(this) );
+			addAction( new DestructoballAction(this, {"time":AppSettings.instance.defaultDestructoballTimer} ) );
+			addAction( new InvinciballAction(this, {"time":AppSettings.instance.defaultInvinciballTimer}) );
 		}//end initializeAction
 		
 		public function get physicsBody():b2Body

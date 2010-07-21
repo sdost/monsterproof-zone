@@ -1,9 +1,9 @@
 ﻿package com.bored.games.breakout
 {
 	import com.bored.games.breakout.states.controllers.GameplayController;
+	import com.bored.games.breakout.states.controllers.LoadingController;
 	import com.bored.games.input.Input;
 	import com.bored.services.BoredServices;
-	import com.inassets.statemachines.Finite.FiniteStateMachine;
 	import com.jac.fsm.StateController;
 	import com.jac.fsm.StateMachine;
 	import com.jac.fsm.StateViewController;
@@ -24,9 +24,9 @@
 	public class GPBreakout extends Panel
 	{
 		private var _sm:StateMachine;
-		private var _sc:StateController;
 		
-		private var _screen:MovieClip;
+		private var _loader:StateController;
+		private var _gameplay:StateController;
 		
 		public function GPBreakout() 
 		{		
@@ -51,9 +51,6 @@
 		{
 			super.addedToStage();
 			
-			_screen = new MovieClip();
-			addChild(_screen);
-		
 			addStates();
 			
 			stage.align = StageAlign.TOP_LEFT;
@@ -65,14 +62,17 @@
 		
 		private function onConfigReady(a_evt:Event):void
 		{
+			trace("GPBreakout::onConfigReady()");
+			
 			AppSettings.instance.removeEventListener(Event.COMPLETE, onConfigReady);
 			
-			_sm.changeState(_sc);			
+			_sm.changeState(_loader);			
 		}//end addedToStage()
 		
 		protected function addStates():void
 		{
-			_sc = new GameplayController(_screen);
+			_loader = new LoadingController(this);
+			_gameplay = new GameplayController(this);
 		}//end addStates()
 		
 	}//end class GPBreakout

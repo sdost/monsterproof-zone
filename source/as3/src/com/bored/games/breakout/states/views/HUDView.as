@@ -8,6 +8,7 @@ package com.bored.games.breakout.states.views
 	import com.jac.fsm.StateView;
 	import com.sven.text.BitmapFont;
 	import com.sven.text.BitmapFontFactory;
+	import com.sven.utils.AppSettings;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
 	import flash.events.Event;
@@ -20,9 +21,6 @@ package com.bored.games.breakout.states.views
 	 */
 	public class HUDView extends StateView
 	{
-		public static var Profile:UserProfile;
-		public static var Level:LevelProfile;
-		
 		[Embed(source='../../../../../../../assets/GameAssets.swf', fontFamily='04b31')]
 		private static var fontCls:Class;
 		
@@ -54,14 +52,14 @@ package com.bored.games.breakout.states.views
 			
 			var bitmapFont:BitmapFont = BitmapFontFactory.generateBitmapFont(new fontCls());
 						
-			Profile = new UserProfile();
-			Level = new LevelProfile(150000, "../assets/TestLevel.swf");
+			AppSettings.instance.userProfile = new UserProfile();
+			AppSettings.instance.currentLevel = new LevelProfile(150000, "../assets/TestLevel.swf", Math.floor(Math.random() * 10));
 			
-			Profile.time = Level.timeLimit;
+			AppSettings.instance.userProfile.time = AppSettings.instance.currentLevel.timeLimit;
 			
-			_livesDisp = new LivesDisplay(Profile.lives, bitmapFont);
-			_timeDisp = new TimerDisplay(Profile.time, bitmapFont);
-			_scoreDisp = new ScoreDisplay(Profile.score, bitmapFont);
+			_livesDisp = new LivesDisplay(AppSettings.instance.userProfile.lives, bitmapFont);
+			_timeDisp = new TimerDisplay(AppSettings.instance.userProfile.time, bitmapFont);
+			_scoreDisp = new ScoreDisplay(AppSettings.instance.userProfile.score, bitmapFont);
 			
 			_timeDisp.x = stage.stageWidth / 2;
 			
@@ -93,11 +91,11 @@ package com.bored.games.breakout.states.views
 			
 			_lastUpdate = getTimer();
 			
-			Profile.decreaseTime(delta);
+			AppSettings.instance.userProfile.decreaseTime(delta);
 			
-			_scoreDisp.score = Profile.score;
-			_timeDisp.time = Profile.time;
-			_livesDisp.lives = Profile.lives;
+			_scoreDisp.score = AppSettings.instance.userProfile.score;
+			_timeDisp.time = AppSettings.instance.userProfile.time;
+			_livesDisp.lives = AppSettings.instance.userProfile.lives;
 			
 			_livesDisp.update(delta);
 			_timeDisp.update(delta);

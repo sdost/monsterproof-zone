@@ -149,9 +149,6 @@ package com.bored.games.breakout.states.views
 		private var _glowFilter:GlowFilter;
 		private var _blurFilter:BlurFilter;
 		
-		private var _animationSets:Dictionary;
-		private var _backgrounds:Vector.<MovieClip>;
-		
 		private var _currBkgd:int;
 		
 		private var _levelLoader:Loader;
@@ -203,9 +200,9 @@ package com.bored.games.breakout.states.views
 		
 		override protected function addedToStageHandler(e:Event):void
 		{
-			super.addedToStageHandler(e);
+			//trace("GameView::addedToStageHandler()");
 			
-			stage.quality = StageQuality.BEST;
+			super.addedToStageHandler(e);
 			
 			new CatchPowerup();
 			new InvinciballPowerup();
@@ -229,8 +226,11 @@ package com.bored.games.breakout.states.views
 			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), false );
 			addChild((ParticleRenderer as BitmapRenderer));
 			
-			stage.invalidate();
+			_stats = new Stats();
+			addChild(_stats);
 			
+			stage.invalidate();
+						
 			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
 		}//end addedToStageHandler()
 		
@@ -244,7 +244,9 @@ package com.bored.games.breakout.states.views
 		}//end reset()
 		
 		override public function enter():void
-		{			
+		{		
+			//trace("GameView::enter()");
+			
 			var wall:b2PolygonShape = new b2PolygonShape();
 			var wallBd:b2BodyDef = new b2BodyDef();
 			wallBd.type = b2Body.b2_staticBody;
@@ -286,7 +288,7 @@ package com.bored.games.breakout.states.views
 			enterComplete();
 		}//end enter()
 		
-		private function loadNextLevel():void
+		public function loadNextLevel():void
 		{			
 			_levelLoader = new Loader();
 			_levelLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, levelLoaded, false, 0, true);
@@ -317,58 +319,58 @@ package com.bored.games.breakout.states.views
 						brick = new Bomb(
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_animationSets[getQualifiedClassName(obj)]);
+							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedLimp": case "SmLimp":
 						brick = new LimpBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_animationSets[getQualifiedClassName(obj)]);
+							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedTwoHit": case "SmTwoHit":
 						brick = new MultiHitBrick(
 							2,
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_animationSets[getQualifiedClassName(obj)]);
+							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedThreeHit": case "SmThreeHit":
 						brick = new MultiHitBrick(
 							3,
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_animationSets[getQualifiedClassName(obj)]);
+							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedMetal": case "SmMetal":
 						brick = new UnbreakableBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_animationSets[getQualifiedClassName(obj)]);
+							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
 					case "Portal":
 						brick = new Portal( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_animationSets[getQualifiedClassName(obj)]);
+							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedNanoAlive":
 						brick = new NanoBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_animationSets[getQualifiedClassName(obj)]);
+							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
 					case "MedNanoDead":
 						brick = new NanoBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_animationSets[getQualifiedClassName(obj)],
+							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)],
 							false);
 						break;
 					default:
 						brick = new SimpleBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
-							_animationSets[getQualifiedClassName(obj)]);
+							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
 				}
 			
@@ -426,7 +428,7 @@ package com.bored.games.breakout.states.views
 			var go:GridObject;
 			_drawnObjects.clear();
 			
-			_backBuffer.draw(_backgrounds[_currBkgd]);
+			_backBuffer.draw(AppSettings.instance.backgrounds[_currBkgd]);
 			
 			var iter:SLLIterator = new SLLIterator(Collectables);
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
@@ -627,7 +629,7 @@ package com.bored.games.breakout.states.views
 			if ( Input.isKeyReleased(Keyboard.F1) ) 
 			{
 				_currBkgd ++;
-				if ( _currBkgd >= _backgrounds.length ) _currBkgd = 0;
+				if ( _currBkgd >= AppSettings.instance.backgrounds.length ) _currBkgd = 0;
 			}
 			
 			if ( Input.isKeyReleased(Keyboard.F2) )

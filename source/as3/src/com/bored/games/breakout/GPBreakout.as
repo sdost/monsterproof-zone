@@ -5,6 +5,7 @@
 	import com.bored.games.input.Input;
 	import com.bored.services.BoredServices;
 	import com.jac.fsm.StateController;
+	import com.jac.fsm.stateEvents.StateEvent;
 	import com.jac.fsm.StateMachine;
 	import com.jac.fsm.StateViewController;
 	import com.sven.containers.Panel;
@@ -13,6 +14,7 @@
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.display.StageAlign;
+	import flash.display.StageQuality;
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
@@ -62,12 +64,31 @@
 		
 		private function onConfigReady(a_evt:Event):void
 		{
-			trace("GPBreakout::onConfigReady()");
-			
 			AppSettings.instance.removeEventListener(Event.COMPLETE, onConfigReady);
 			
-			_sm.changeState(_loader);			
+			stage.quality = StageQuality.BEST;
+			
+			_loader.addEventListener(Event.COMPLETE, loadingComplete, false, 0, true);
+			_sm.changeState(_loader);
 		}//end addedToStage()
+		
+		private function loadingComplete(e:Event):void
+		{
+			_loader.removeEventListener(Event.COMPLETE, loadingComplete);
+			
+			_loader = null;
+			
+			_gameplay.addEventListener(StateEvent.ENTER_COMPLETE, enterComplete, false, 0, true);
+			_sm.changeState(_gameplay);
+		}//end loadingComplete()
+		
+		private function enterComplete(e:StateEvent):void
+		{
+			stage.quality = StageQuality.LOW;
+			
+			_gameplay.removeEventListener(StateEvent.ENTER_COMPLETE, enterComplete);
+			(_gameplay as GameplayController).startGame();
+		}//end enterComplete()
 		
 		protected function addStates():void
 		{

@@ -49,12 +49,12 @@ package com.bored.games.breakout.actions
 			{
 				(_gameElement as Paddle).stickyMode = false;
 				(_gameElement as Paddle).releaseBall();
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_NORMAL);
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_CATCH_OUT);
 			}
 			else
 			{
 				(_gameElement as Paddle).stickyMode = true;
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_CATCH);
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_CATCH_IN);
 			}
 		}//end set finished()
 		

@@ -43,18 +43,18 @@ package com.bored.games.breakout.actions
 			
 			var pb:Collectable;
 			
-			if( die < 0.17 )
-				pb = new LaserPowerup();
-			else if( die < 0.33 )
-				pb = new ExtendPowerup();
-			else if( die < 0.5 )
-				pb = new MultiballPowerup();
-			else if( die < 0.66 )
+			//if( die < 0.17 )
+				//pb = new LaserPowerup();
+			//else if( die < 0.33 )
+				//pb = new ExtendPowerup();
+			//else if( die < 0.5 )
+				//pb = new MultiballPowerup();
+			//else if( die < 0.66 )
 				pb = new CatchPowerup();
-			else if( die < 0.83 )
-				pb = new InvinciballPowerup();
-			else
-				pb = new DestructoballPowerup();
+			//else if( die < 0.83 )
+				//pb = new InvinciballPowerup();
+			//else
+				//pb = new DestructoballPowerup();
 			
 			pb.physicsBody.ApplyImpulse( new b2Vec2( 0, 10 * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
 			pb.physicsBody.SetPosition( new b2Vec2( (xOffset - pb.width / 2) / PhysicsWorld.PhysScale, (yOffset - pb.height / 2) / PhysicsWorld.PhysScale ) );

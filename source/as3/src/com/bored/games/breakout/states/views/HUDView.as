@@ -48,6 +48,8 @@ package com.bored.games.breakout.states.views
 		
 		override protected function addedToStageHandler(e:Event):void
 		{
+			//trace("HUDView::addedToStageHandler()");
+			
 			super.addedToStageHandler(e);
 			
 			var bitmapFont:BitmapFont = BitmapFontFactory.generateBitmapFont(new fontCls());
@@ -77,6 +79,13 @@ package com.bored.games.breakout.states.views
 			
 			_paused = false;
 		}//end addedToStageHandler()
+		
+		override public function enter():void 
+		{
+			//trace("HUDView::enter()");
+			
+			enterComplete();
+		}//end enter()
 		
 		override protected function removedFromStageHandler(e:Event):void
 		{

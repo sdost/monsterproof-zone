@@ -100,11 +100,11 @@ package com.bored.games.breakout.actions
 			
 			if (_finished)
 			{
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_NORMAL);
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_LASER_OUT);
 			}
 			else
 			{
-				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_LASER);
+				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_LASER_IN);
 			}
 		}//end set finished()
 		

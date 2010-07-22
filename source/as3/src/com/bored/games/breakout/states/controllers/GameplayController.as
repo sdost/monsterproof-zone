@@ -3,6 +3,7 @@ package com.bored.games.breakout.states.controllers
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.breakout.states.views.HUDView;
 	import com.bored.games.input.Input;
+	import com.jac.fsm.stateEvents.StateEvent;
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
 	import flash.display.MovieClip;
@@ -30,18 +31,23 @@ package com.bored.games.breakout.states.controllers
 			_hudView = new HUDView();
 			
 			super([_gameView, _hudView], a_container);
-			
+		}//end constructor()
+		
+		public function startGame():void
+		{
 			_updateTimer = new Timer(16);
 			_updateTimer.addEventListener(TimerEvent.TIMER, timerUpdate, false, 0, true);
 			_updateTimer.start();
-		}//end constructor()
+			
+			(_gameView as GameView).loadNextLevel();
+		}//end startGame()
 		
 		private function timerUpdate(e:Event):void
 		{
 			this.update();
 			
 			Input.update();
-		}//end onEnterFrame()
+		}//end timerUpdate()
 		
 	}//end GameplayController
 

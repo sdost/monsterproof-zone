@@ -34,8 +34,12 @@ package com.bored.games.breakout.objects
 		public static const PADDLE_EXTEND:String = "Extend";
 		
 		// Paddle Transitions
-		public static const PADDLE_EXTEND_IN:String = "Grow";
-		public static const PADDLE_EXTEND_OUT:String = "Shrink";
+		public static const PADDLE_EXTEND_IN:String = "ExtendIn";
+		public static const PADDLE_EXTEND_OUT:String = "ExtendOut";
+		public static const PADDLE_LASER_IN:String = "LaserIn";
+		public static const PADDLE_LASER_OUT:String = "LaserOut";
+		public static const PADDLE_CATCH_IN:String = "CatchIn";
+		public static const PADDLE_CATCH_OUT:String = "CatchOut";
 		
 		[Embed(source='../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Paddle_MC')]
 		private static var mcCls:Class;
@@ -106,7 +110,7 @@ package com.bored.games.breakout.objects
 			var fixture:b2Fixture = _paddleBody.GetFixtureList();
 			
 			var shape:b2PolygonShape = new b2PolygonShape();
-			shape.SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.currFrame.height / 2) / PhysicsWorld.PhysScale );
+			shape.SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_normalHeight / 2) / PhysicsWorld.PhysScale );
 			
 			fixture.GetShape().Set(shape);
 		}//end updateBody()
@@ -156,6 +160,26 @@ package com.bored.games.breakout.objects
 				_animationController.setAnimation(_animatedSprite, false);
 				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, extendOutComplete, false, 0, true);
 			}
+			else if (a_str == PADDLE_LASER_IN)
+			{
+				_animationController.setAnimation(_animatedSprite, false);
+				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, laserInComplete, false, 0, true);
+			}
+			else if (a_str == PADDLE_LASER_OUT)
+			{
+				_animationController.setAnimation(_animatedSprite, false);
+				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, laserOutComplete, false, 0, true);
+			}
+			else if (a_str == PADDLE_CATCH_IN)
+			{
+				_animationController.setAnimation(_animatedSprite, false);
+				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, catchInComplete, false, 0, true);
+			}
+			else if (a_str == PADDLE_CATCH_OUT)
+			{
+				_animationController.setAnimation(_animatedSprite, false);
+				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, catchOutComplete, false, 0, true);
+			}
 			else
 			{
 				_animationController.setAnimation(_animatedSprite, true);
@@ -174,6 +198,30 @@ package com.bored.games.breakout.objects
 		private function extendOutComplete(e:Event):void
 		{
 			_animationController.removeEventListener(AnimationController.ANIMATION_COMPLETE, extendOutComplete);
+			switchAnimation(PADDLE_NORMAL);
+		}//end extendOutComplete()
+		
+		private function laserInComplete(e:Event):void
+		{
+			_animationController.removeEventListener(AnimationController.ANIMATION_COMPLETE, laserInComplete);
+			switchAnimation(PADDLE_LASER);
+		}//end extendInComplete()
+		
+		private function laserOutComplete(e:Event):void
+		{
+			_animationController.removeEventListener(AnimationController.ANIMATION_COMPLETE, laserOutComplete);
+			switchAnimation(PADDLE_NORMAL);
+		}//end extendOutComplete()
+		
+		private function catchInComplete(e:Event):void
+		{
+			_animationController.removeEventListener(AnimationController.ANIMATION_COMPLETE, catchInComplete);
+			switchAnimation(PADDLE_CATCH);
+		}//end extendInComplete()
+		
+		private function catchOutComplete(e:Event):void
+		{
+			_animationController.removeEventListener(AnimationController.ANIMATION_COMPLETE, catchOutComplete);
 			switchAnimation(PADDLE_NORMAL);
 		}//end extendOutComplete()
 		

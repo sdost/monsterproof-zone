@@ -229,12 +229,12 @@ package com.bored.games.breakout.objects
 			
 			bodyVelocity = _ballBody.GetLinearVelocity();
 			
-			if (bodyVelocity.x == 0)
+			if (Math.abs(bodyVelocity.x) <= AppSettings.instance.ballTrajectoryThreshold)
 			{
 				_ballBody.ApplyForce(new b2Vec2(AppSettings.instance.ballTrajectoryAdjustFactor * _ballBody.GetMass(), 0), _ballBody.GetWorldCenter());
 			}
 			
-			if (bodyVelocity.y == 0)
+			if (Math.abs(bodyVelocity.y) <= AppSettings.instance.ballTrajectoryThreshold)
 			{
 				_ballBody.ApplyForce(new b2Vec2(0, AppSettings.instance.ballTrajectoryAdjustFactor * _ballBody.GetMass()), _ballBody.GetWorldCenter());
 			}

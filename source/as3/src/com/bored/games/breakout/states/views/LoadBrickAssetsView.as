@@ -57,7 +57,8 @@ package com.bored.games.breakout.states.views
 			_loader = new Loader();
 			_loader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, loadingProgress, false, 0, true);
 			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadingComplete, false, 0, true);
-			_loader.load( new URLRequest("../assets/BrickSpriteLibrary.swf") );
+			
+			_loader.load( new URLRequest(AppSettings.instance.brickSpriteLibraryURL) );
 			
 			enterComplete();
 		}//end enter()
@@ -66,7 +67,6 @@ package com.bored.games.breakout.states.views
 		{
 			_textField.text = Math.ceil(e.bytesLoaded / e.bytesTotal * 100) + "%";
 			_textField.setTextFormat(_textFormat);
-			//trace("LoadBrickAssetsView::loadingProgress(" + Math.ceil(e.bytesLoaded / e.bytesTotal * 100) + ")");
 		}//end loadingProgress()
 		
 		private function loadingComplete(e:Event):void

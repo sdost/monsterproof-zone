@@ -12,49 +12,32 @@ package com.bored.games.breakout.objects.bricks
 	{
 		public static const DAMAGE:Array = [ "Damage0", "Damage1", "Damage2" ];
 		
-		private var _disintegrate:DisintegrateBrickAction;
-		//private var _crack:CrackBrickAction;
-		
-		private var _hitsToBreak:uint;
-		private var _accumulatedHits:uint;
+		private var _animation:int;
 		
 		public function MultiHitBrick(a_hits:uint, a_width:uint, a_height:uint, a_set:AnimationSet) 
 		{
 			super(a_width, a_height, a_set);
 			
-			_hitsToBreak = a_hits;
-			_accumulatedHits = 0;
+			this.hitPoints = a_hits;
 			
-			_animatedSprite = _animationSet.getAnimation(DAMAGE[_accumulatedHits]);
+			_animation = 0;
+			
+			_animatedSprite = _animationSet.getAnimation(DAMAGE[_animation]);
 		}//end constructor()
 		
-		override protected function initializeActions():void 
+		override public function notifyHit(a_damage:int):Boolean 
 		{
-			super.initializeActions();
-			
-			_disintegrate = new DisintegrateBrickAction(this);
-			addAction(_disintegrate);
-			
-			/*
-			_crack = new CrackBrickAction(this);
-			addAction(_crack);
-			*/
-		}//end initializeActions()
-		
-		override public function notifyHit():Boolean 
-		{
-			_accumulatedHits++;
-			
-			if ( _accumulatedHits >= _hitsToBreak ) 
+			if ( super.notifyHit(a_damage) )
 			{
-				activateAction(DisintegrateBrickAction.NAME);
-								
-				return super.notifyHit()
+				addAction(new DisintegrateBrickAction(this));
+				activateAction(DisintegrateBrickAction.NAME);			
+				return true;
 			}
 			else
 			{
-				_animatedSprite = _animationSet.getAnimation(DAMAGE[_accumulatedHits]);
-				//activateAction(CrackBrickAction.NAME);
+				_animation++;
+				
+				_animatedSprite = _animationSet.getAnimation(DAMAGE[_animation]);
 				return false;
 			}
 		}//end notifyHit()
@@ -62,7 +45,6 @@ package com.bored.games.breakout.objects.bricks
 		override public function destroy():void 
 		{
 			removeAction(DisintegrateBrickAction.NAME);
-			//removeAction(CrackBrickAction.NAME);
 			
 			super.destroy();
 		}

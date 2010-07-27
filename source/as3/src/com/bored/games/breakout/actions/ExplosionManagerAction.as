@@ -3,6 +3,7 @@ package com.bored.games.breakout.actions
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.emitters.BrickExplosion;
 	import com.bored.games.breakout.objects.bricks.Brick;
+	import com.bored.games.breakout.objects.bricks.NanoBrick;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.states.views.GameView;
@@ -20,6 +21,7 @@ package com.bored.games.breakout.actions
 	public class ExplosionManagerAction extends Action
 	{
 		public static const NAME:String = "com.bored.games.breakout.actions.ExplosionManagerAction";
+		public static const EXPLODE_DAMAGE:int = 5;
 
 		private var _delay:uint;
 		
@@ -50,6 +52,12 @@ package com.bored.games.breakout.actions
 			var l:uint = a_bricks.length;
 			for ( var i:int = 0; i < l; i++ )
 			{
+				if ( a_bricks[i] is NanoBrick )
+				{
+					if ( !(a_bricks[i] as NanoBrick).alive )
+						continue;
+				}
+				
 				if ( _bombList.indexOf(a_bricks[i]) < 0 )
 				{
 					_bombList.push(a_bricks[i]);
@@ -80,7 +88,7 @@ package com.bored.games.breakout.actions
 						go.activateAction(ExplodeBrickAction.NAME);
 					}
 					
-					go.notifyHit();
+					go.notifyHit(EXPLODE_DAMAGE);
 				}
 			}
 			else

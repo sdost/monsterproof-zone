@@ -13,6 +13,7 @@ package com.bored.games.breakout.objects
 	import com.bored.games.breakout.actions.CatchPaddleAction;
 	import com.bored.games.breakout.actions.ExtendPaddleAction;
 	import com.bored.games.breakout.actions.LaserPaddleAction;
+	import com.bored.games.breakout.actions.SuperLaserPaddleAction;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
@@ -103,6 +104,7 @@ package com.bored.games.breakout.objects
 			addAction( new LaserPaddleAction(this, { "time": AppSettings.instance.defaultLaserTimer, "fireRate": AppSettings.instance.defaultLaserFireRate } ) ) ;
 			addAction( new ExtendPaddleAction(this, { "time": AppSettings.instance.defaultExtendTimer } ) ) ;
 			addAction( new CatchPaddleAction(this, { "time": AppSettings.instance.defaultCatchTimer } ) ) ;
+			addAction( new SuperLaserPaddleAction(this) );
 		}//end intializeActions()
 		
 		public function updateBody():void

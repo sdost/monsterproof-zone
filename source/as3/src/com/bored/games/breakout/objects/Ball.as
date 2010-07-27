@@ -4,6 +4,7 @@ package com.bored.games.breakout.objects
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
+	import Box2D.Dynamics.b2FilterData;
 	import Box2D.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.DestructoballAction;
 	import com.bored.games.breakout.actions.InvinciballAction;
@@ -45,6 +46,8 @@ package com.bored.games.breakout.objects
 		private var _animatedSprite:AnimatedSprite;
 		private var _animationSet:AnimationSet;
 		
+		private var _damagePoints:int;
+		
 		public function Ball()
 		{	
 			_ballMode = NORMAL_BALL;
@@ -60,8 +63,20 @@ package com.bored.games.breakout.objects
 			
 			initializePhysicsBody();
 			initializeActions();
+			
+			_damagePoints = 1;
 
 		}//end constructor()
+		
+		public function set damagePoints(a_dmg:int):void
+		{
+			_damagePoints = a_dmg;
+		}//end set damagePoints()
+		
+		public function get damagePoints():int
+		{
+			return _damagePoints;
+		}//end get damagePoints()
 		
 		private function initializePhysicsBody():void
 		{
@@ -70,7 +85,7 @@ package com.bored.games.breakout.objects
 			bd.bullet = true;
 			bd.allowSleep = false;
 			bd.userData = this;
-			
+
 			var fd:b2FixtureDef = new b2FixtureDef();
 			fd.shape = new b2CircleShape( (_animatedSprite.width / 2) / PhysicsWorld.PhysScale );
 			fd.density = 1.0;
@@ -244,6 +259,11 @@ package com.bored.games.breakout.objects
 		public function destroy():void 
 		{			
 			cleanupPhysics();
+			
+			if ( _ballMode == DESTRUCT_BALL )
+			{
+				this.deactivateAction(InvinciballAction.NAME);
+			}
 		}//end destroy()
 		
 	}//end Ball

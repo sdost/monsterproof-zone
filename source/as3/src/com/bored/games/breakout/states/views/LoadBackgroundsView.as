@@ -57,7 +57,7 @@ package com.bored.games.breakout.states.views
 			_loader = new Loader();
 			_loader.contentLoaderInfo.addEventListener(ProgressEvent.PROGRESS, loadingProgress, false, 0, true);
 			_loader.contentLoaderInfo.addEventListener(Event.COMPLETE, loadingComplete, false, 0, true);
-			_loader.load( new URLRequest("../assets/BackgroundLibrary.swf") );
+			_loader.load( new URLRequest(AppSettings.instance.backgroundLibraryURL) );
 			
 			enterComplete();
 		}//end enter()

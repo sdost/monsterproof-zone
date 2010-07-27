@@ -85,9 +85,7 @@ package com.bored.games.breakout.actions
 					
 					if ( b is NanoBrick && (b as NanoBrick).alive )
 					{
-						node = _dormantList.nodeOf(nano, _dormantList.head())
-						if(node) node.remove();
-						
+						_dormantList.remove(nano);
 						_reviveList.push(nano);
 						break;
 					}

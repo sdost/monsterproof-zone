@@ -15,6 +15,7 @@ package com.bored.games.breakout.emitters
 	import org.flintparticles.common.displayObjects.RadialDot;
 	import org.flintparticles.common.displayObjects.Star;
 	import org.flintparticles.common.initializers.ColorInit;
+	import org.flintparticles.common.initializers.ImageClass;
 	import org.flintparticles.common.initializers.Lifetime;
 	import org.flintparticles.common.initializers.SharedImage;
 	import org.flintparticles.twoD.actions.DeathZone;
@@ -47,9 +48,9 @@ package com.bored.games.breakout.emitters
 			var xOffset:Number = a_brick.gridX * AppSettings.instance.defaultTileWidth;
 			var yOffset:Number = a_brick.gridY * AppSettings.instance.defaultTileHeight;
 			
+			addInitializer( new ImageClass( Dot, 2, 0x57d8dd, BlendMode.SCREEN ) );
 			addInitializer( new Lifetime( 0.5, 0.8 ) );
 			addInitializer( new Position( new BitmapDataZone( a_brick.currFrame, xOffset, yOffset ) ) );
-			addInitializer( new SharedImage( new Dot( 2, 0x57d8dd, BlendMode.SCREEN ) ) );
 			
 			addAction( 
 				new Explosion( 

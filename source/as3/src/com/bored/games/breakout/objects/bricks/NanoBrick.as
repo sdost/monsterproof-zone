@@ -1,5 +1,6 @@
 package com.bored.games.breakout.objects.bricks 
 {
+	import Box2D.Dynamics.b2FilterData;
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
 	import com.bored.games.breakout.objects.AnimationController;
 	import com.bored.games.breakout.objects.AnimationSet;
@@ -50,10 +51,22 @@ package com.bored.games.breakout.objects.bricks
 		{
 			super.addToGrid(a_grid, a_x, a_y);
 			
+			var filter:b2FilterData;
+			
 			if (_alive)
-				_brickFixture.SetSensor(false)
+			{
+				filter = new b2FilterData();
+				filter.maskBits = 0x1111;
+				
+				_brickFixture.SetFilterData(filter);
+			}
 			else
-				_brickFixture.SetSensor(true);
+			{
+				filter = new b2FilterData();
+				filter.maskBits = 0x0000;
+				
+				_brickFixture.SetFilterData(filter);
+			}
 			
 			_grid.addNanoBrick(this);
 		}//end addToGrid()
@@ -63,7 +76,7 @@ package com.bored.games.breakout.objects.bricks
 			super.initializeActions();
 		}//end initializeActions()
 		
-		override public function notifyHit():Boolean 
+		override public function notifyHit(a_damage:int):Boolean 
 		{
 			if ( !_brickFixture.IsSensor() )
 			{
@@ -86,7 +99,10 @@ package com.bored.games.breakout.objects.bricks
 		public function revive():void
 		{
 			_alive = true;
-			_brickFixture.SetSensor(false);
+			var filter:b2FilterData = new b2FilterData();
+			filter.maskBits = 0x1111;
+				
+			_brickFixture.SetFilterData(filter);
 			
 			_animatedSprite = _animationSet.getAnimation(NANO_REVIVE);
 			_animController.setAnimation(_animatedSprite, false);
@@ -109,7 +125,10 @@ package com.bored.games.breakout.objects.bricks
 			}
 			
 			_alive = false;
-			_brickFixture.SetSensor(true);
+			var filter:b2FilterData = new b2FilterData();
+			filter.maskBits = 0x0000;
+				
+			_brickFixture.SetFilterData(filter);
 			
 			_animatedSprite = _animationSet.getAnimation(NANO_DORMANT);
 			_animController.setAnimation(_animatedSprite, false);

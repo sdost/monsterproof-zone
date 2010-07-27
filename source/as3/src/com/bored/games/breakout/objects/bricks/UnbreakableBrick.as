@@ -12,17 +12,9 @@ package com.bored.games.breakout.objects.bricks
 		public function UnbreakableBrick(a_width:int, a_height:int, a_set:AnimationSet) 
 		{
 			super(a_width, a_height, a_set);
+			
+			this.hitPoints = 9999;
 		}//end constructor()
-		
-		override protected function initializeActions():void 
-		{
-			super.initializeActions();
-		}//end initializeActions()
-		
-		override public function notifyHit():Boolean 
-		{
-			return false;
-		}//end notifyHit()
 		
 	}//end UnbreakableBrick
 

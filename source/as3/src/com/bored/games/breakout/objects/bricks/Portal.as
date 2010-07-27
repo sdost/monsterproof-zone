@@ -18,19 +18,25 @@ package com.bored.games.breakout.objects.bricks
 	public class Portal extends Brick
 	{
 		// Animation States
+		public static const PORTAL_CLOSED:String = "portal_closed";
 		public static const PORTAL_OPEN:String = "portal_open";
 		public static const PORTAL_LOOP:String = "portal_loop";
 		
 		private var _animController:AnimationController;
 		
+		private var _open:Boolean;
+		
 		public function Portal(a_width:int, a_height:int, a_set:AnimationSet) 
 		{
 			super(a_width, a_height, a_set);
 			
-			_animatedSprite = _animationSet.getAnimation(PORTAL_OPEN);
+			_animatedSprite = _animationSet.getAnimation(PORTAL_CLOSED);
 			
 			_animController = new AnimationController(_animatedSprite);
-			_animController.addEventListener(AnimationController.ANIMATION_COMPLETE, animationComplete, false, 0, true);
+			
+			this.hitPoints = 9999;
+			
+			_open = false;
 		}//end constructor()
 		
 		override protected function initializeActions():void 
@@ -58,17 +64,30 @@ package com.bored.games.breakout.objects.bricks
 			_brickFixture = _grid.gridBody.CreateFixture(fd);
 		}//end initializePhysics()
 		
-		override public function notifyHit():Boolean 
-		{			
-			return false;
-		}//end notifyHit()
-		
 		override public function update(t:Number = 0):void 
 		{
 			super.update(t);
 			
 			_animController.update(t);
 		}//end update()
+		
+		public function openPortal():void
+		{
+			if ( !_open )
+			{	
+				_open  = true;
+				
+				_animatedSprite = _animationSet.getAnimation(PORTAL_OPEN)
+			
+				_animController = new AnimationController(_animatedSprite);
+				_animController.addEventListener(AnimationController.ANIMATION_COMPLETE, animationComplete, false, 0, true);
+			}
+		}//end openPortal()
+		
+		public function get open():Boolean
+		{
+			return _open;
+		}//end get open()
 		
 		override public function get currFrame():BitmapData
 		{

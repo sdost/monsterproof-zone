@@ -1,8 +1,11 @@
 package com.bored.games.breakout.states.views 
 {
+	import com.bored.games.breakout.objects.hud.GameOverDisplay;
+	import com.bored.games.breakout.objects.hud.GameStartDisplay;
 	import com.bored.games.breakout.objects.hud.LivesDisplay;
 	import com.bored.games.breakout.objects.hud.ScoreDisplay;
 	import com.bored.games.breakout.objects.hud.TimerDisplay;
+	import com.bored.games.breakout.profiles.LevelList;
 	import com.bored.games.breakout.profiles.LevelProfile;
 	import com.bored.games.breakout.profiles.UserProfile;
 	import com.jac.fsm.StateView;
@@ -11,8 +14,11 @@ package com.bored.games.breakout.states.views
 	import com.sven.utils.AppSettings;
 	import flash.display.Bitmap;
 	import flash.display.BitmapData;
+	import flash.display.Loader;
 	import flash.events.Event;
 	import flash.geom.Point;
+	import flash.net.URLLoader;
+	import flash.net.URLRequest;
 	import flash.utils.getTimer;
 	
 	/**
@@ -21,14 +27,17 @@ package com.bored.games.breakout.states.views
 	 */
 	public class HUDView extends StateView
 	{
-		[Embed(source='../../../../../../../assets/GameAssets.swf', fontFamily='04b31')]
+		[Embed(source='../../../../../../../assets/GameAssets.swf', fontFamily='Enter Sansman')]
 		private static var fontCls:Class;
 		
 		private var _lastUpdate:Number;
 		
 		private var _livesDisp:LivesDisplay;
 		private var _timeDisp:TimerDisplay;
-		private var _scoreDisp:ScoreDisplay;		
+		private var _scoreDisp:ScoreDisplay;
+		
+		private var _gameStart:GameStartDisplay;
+		private var _gameOver:GameOverDisplay;
 		
 		private var _backBuffer:BitmapData;
 		private var _mainBuffer:BitmapData;
@@ -36,6 +45,8 @@ package com.bored.games.breakout.states.views
 		private var _time:int;
 		
 		private var _bmp:Bitmap;
+		
+		private var _loader:URLLoader;
 		
 		private var _paused:Boolean;
 		
@@ -54,14 +65,14 @@ package com.bored.games.breakout.states.views
 			
 			var bitmapFont:BitmapFont = BitmapFontFactory.generateBitmapFont(new fontCls());
 						
-			AppSettings.instance.userProfile = new UserProfile();
-			AppSettings.instance.currentLevel = new LevelProfile(150000, "../assets/TestLevel.swf", Math.floor(Math.random() * 10));
+			AppSettings.instance.userProfile = new UserProfile();			
 			
-			AppSettings.instance.userProfile.time = AppSettings.instance.currentLevel.timeLimit;
+			_livesDisp = new LivesDisplay(0, bitmapFont);
+			_timeDisp = new TimerDisplay(0, bitmapFont);
+			_scoreDisp = new ScoreDisplay(0, bitmapFont);
 			
-			_livesDisp = new LivesDisplay(AppSettings.instance.userProfile.lives, bitmapFont);
-			_timeDisp = new TimerDisplay(AppSettings.instance.userProfile.time, bitmapFont);
-			_scoreDisp = new ScoreDisplay(AppSettings.instance.userProfile.score, bitmapFont);
+			_gameStart = new GameStartDisplay(bitmapFont);
+			_gameOver = new GameOverDisplay(bitmapFont);
 			
 			_timeDisp.x = stage.stageWidth / 2;
 			
@@ -80,12 +91,34 @@ package com.bored.games.breakout.states.views
 			_paused = false;
 		}//end addedToStageHandler()
 		
-		override public function enter():void 
+		public function showGameStartMessage():void
 		{
-			//trace("HUDView::enter()");
+			_gameStart.show(true);
+		}//end showGameStart()
+		
+		public function showGameOverMessage():void
+		{
+			_gameOver.show();
+		}//end showGameStart()
+		
+		override public function enter():void 
+		{			
+			_loader = new URLLoader( new URLRequest(AppSettings.instance.levelListURL) );
+			_loader.addEventListener(Event.COMPLETE, levelListComplete, false, 0, true);
+		}//end enter()
+		
+		private function levelListComplete(e:Event):void
+		{
+			AppSettings.instance.levelList = new LevelList(XML(_loader.data));
+			
+			AppSettings.instance.currentLevelInd = 0;
+			
+			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
+			
+			AppSettings.instance.userProfile.time = AppSettings.instance.currentLevel.timeLimit;
 			
 			enterComplete();
-		}//end enter()
+		}//end levelListComplete()
 		
 		override protected function removedFromStageHandler(e:Event):void
 		{

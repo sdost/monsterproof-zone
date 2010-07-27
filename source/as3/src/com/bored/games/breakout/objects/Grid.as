@@ -9,6 +9,8 @@ package com.bored.games.breakout.objects
 	import com.bored.games.breakout.actions.NanoManagerAction;
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.objects.bricks.NanoBrick;
+	import com.bored.games.breakout.objects.bricks.Portal;
+	import com.bored.games.breakout.objects.bricks.UnbreakableBrick;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
@@ -45,6 +47,8 @@ package com.bored.games.breakout.objects
 		
 		private var _currentInd:uint;
 		
+		private var _empty:Boolean;
+		
 		public function Grid( a_width:int, a_height:int ) 
 		{
 			_gridWidth = a_width;
@@ -68,6 +72,8 @@ package com.bored.games.breakout.objects
 			
 			initializeActions();
 			initializePhysics();
+			
+			_empty = false;
 			
 			_currentInd = 0;
 		}//end constructor()
@@ -145,7 +151,7 @@ package com.bored.games.breakout.objects
 		public function explodeBricks(a_vec:Vector.<Brick>):void
 		{
 			if ( _explosionManager.finished ) activateAction(ExplosionManagerAction.NAME);
-			
+					
 			_explosionManager.addBricks(a_vec);
 		}//end explodeBricks()
 		
@@ -171,6 +177,8 @@ package com.bored.games.breakout.objects
 			
 			_gridObjectList.clear();
 			generate();
+			
+			_empty = false;
 		}//end clear()
 		
 		public function addGridObject( a_obj:GridObject, a_x:int, a_y:int ):Boolean
@@ -245,6 +253,11 @@ package com.bored.games.breakout.objects
 			return _gridObjectList;
 		}//end get gridObjectList()
 		
+		public function isEmpty():Boolean
+		{
+			return _empty;
+		}//end isEmpty()
+		
 		override public function update(t:Number = 0):void
 		{
 			super.update(t);
@@ -254,18 +267,31 @@ package com.bored.games.breakout.objects
 			{
 				go = _gridRemoveList.pop();
 				
-				
-				var node:SLLNode = _gridObjectList.nodeOf(go);
-				if (node) node.remove();
+				_gridObjectList.remove(go);
 					
 				go.removeFromGrid();
 				go.destroy();
 			}
 			
+			_empty = true;
+			
 			var iter:SLLIterator = new SLLIterator(_gridObjectList);
 			while ( iter.hasNext() )
 			{
-				iter.next().update(t);
+				var obj:* = iter.next();
+				obj.update(t);
+				if ( obj is Brick )
+				{
+					if ( obj is NanoBrick || obj is UnbreakableBrick ) continue;
+					else if ( obj is Portal ) 
+					{
+						if ( _gridObjectList.size() < AppSettings.instance.portalOpenThreshold )
+						{
+							(obj as Portal).openPortal();
+						}
+					}
+					else _empty = false;
+				}
 			}
 		}//end update()
 		

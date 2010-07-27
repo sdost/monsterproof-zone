@@ -24,7 +24,7 @@ package com.bored.games.breakout.objects
 	{
 		private var _bulletBody:b2Body;
 		
-		private var _animatedSprite:AnimatedSprite;
+		protected var _animatedSprite:AnimatedSprite;
 		
 		public function Bullet(a_sprite:AnimatedSprite)
 		{		
@@ -33,7 +33,7 @@ package com.bored.games.breakout.objects
 			initializePhysicsBody();
 		}//end constructor()
 		
-		private function initializePhysicsBody():void
+		protected function initializePhysicsBody():void
 		{
 			var bd:b2BodyDef = new b2BodyDef();
 			bd.type = b2Body.b2_dynamicBody;
@@ -57,7 +57,7 @@ package com.bored.games.breakout.objects
 			_bulletBody.CreateFixture(fd);
 		}//end initializePhysicsBody()
 		
-		private function cleanupPhysics():void
+		protected function cleanupPhysics():void
 		{
 			PhysicsWorld.DestroyBody(_bulletBody);
 		}//end cleanupPhysics()

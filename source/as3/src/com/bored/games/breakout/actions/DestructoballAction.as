@@ -50,11 +50,13 @@ package com.bored.games.breakout.actions
 			{
 				(_gameElement as Ball).ballMode = Ball.NORMAL_BALL;
 				(_gameElement as Ball).switchAnimation(Ball.NORMAL_BALL);
+				(_gameElement as Ball).damagePoints = 1;
 			}
 			else
 			{
 				(_gameElement as Ball).ballMode = Ball.SUPER_BALL;
 				(_gameElement as Ball).switchAnimation(Ball.SUPER_BALL);
+				(_gameElement as Ball).damagePoints = 3;
 			}
 		}//end set finished()
 		

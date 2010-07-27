@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<levels>
+<level src="../assets/TestLevel.swf" time="300000" background="0" />
+<level src="../assets/TestLevel_alt.swf" time="450000" background="1" />
+</levels>

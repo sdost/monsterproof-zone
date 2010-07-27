@@ -57,6 +57,8 @@
 			
 			stage.align = StageAlign.TOP_LEFT;
 			
+			var appSetting:AppSettings = AppSettings.instance;
+			
 			AppSettings.instance.load("development.config");
 			
 			AppSettings.instance.addEventListener(Event.COMPLETE, onConfigReady);

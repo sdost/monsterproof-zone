@@ -40,8 +40,10 @@ package com.bored.games.breakout.states.controllers
 			_updateTimer.start();
 			
 			(_gameView as GameView).loadNextLevel();
+						
+			(_hudView as HUDView).showGameStartMessage();
 		}//end startGame()
-		
+				
 		private function timerUpdate(e:Event):void
 		{
 			this.update();

@@ -26,10 +26,13 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.actions.PaddleMultiplierManagerAction;
 	import com.bored.games.breakout.actions.RemoveGridObjectAction;
 	import com.bored.games.breakout.emitters.BrickCrumbs;
+	import com.bored.games.breakout.emitters.ImpactSparks;
+	import com.bored.games.breakout.emitters.PortalVortex;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.objects.Ball;
+	import com.bored.games.breakout.objects.Beam;
 	import com.bored.games.breakout.objects.bricks.Bomb;
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.objects.AnimatedSprite;
@@ -44,9 +47,11 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.objects.collectables.Collectable;
 	import com.bored.games.breakout.objects.collectables.DestructoballPowerup;
 	import com.bored.games.breakout.objects.collectables.ExtendPowerup;
+	import com.bored.games.breakout.objects.collectables.ExtraLifePowerup;
 	import com.bored.games.breakout.objects.collectables.InvinciballPowerup;
 	import com.bored.games.breakout.objects.collectables.LaserPowerup;
 	import com.bored.games.breakout.objects.collectables.MultiballPowerup;
+	import com.bored.games.breakout.objects.collectables.SuperLaserPowerup;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.objects.Paddle;
@@ -120,7 +125,7 @@ package com.bored.games.breakout.states.views
 	 * @author sam
 	 */
 	public class GameView extends StateView
-	{
+	{		
 		public static var Contacts:ContactLL;
 		public static var Collectables:SLL;
 		public static var Bullets:SLL;
@@ -210,6 +215,8 @@ package com.bored.games.breakout.states.views
 			new LaserPowerup();
 			new MultiballPowerup();
 			new DestructoballPowerup();
+			new SuperLaserPowerup();
+			new ExtraLifePowerup();
 			
 			new LaserPaddleAction(null, null);
 			
@@ -428,7 +435,7 @@ package com.bored.games.breakout.states.views
 			var go:GridObject;
 			_drawnObjects.clear();
 			
-			_backBuffer.draw(AppSettings.instance.backgrounds[_currBkgd]);
+			_backBuffer.draw(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
 			
 			var iter:SLLIterator = new SLLIterator(Collectables);
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
@@ -480,8 +487,7 @@ package com.bored.games.breakout.states.views
 			
 			if ( a_fixture == _bottomWall )
 			{
-				 node = _balls.nodeOf(a_ball.GetUserData(), _balls.head())
-				 if (node) node.remove();
+				 _balls.remove(a_ball.GetUserData());
 				 a_ball.GetUserData().destroy();
 			}
 			else if ( a_fixture.GetUserData() is Paddle )
@@ -495,7 +501,7 @@ package com.bored.games.breakout.states.views
 				{
 					_multiplier.activateAction(PaddleMultiplierManagerAction.NAME);
 				}
-				
+								
 				_paddleMultiplierManager.increaseMultiplier();
 			}
 			else if ( a_fixture.GetUserData() is Brick )
@@ -504,26 +510,10 @@ package com.bored.games.breakout.states.views
 				{
 					var neighbors:Vector.<Brick> = _grid.getAllNeighbors(a_fixture.GetUserData() as Brick);
 					_grid.explodeBricks(neighbors);
-					
-					if (a_fixture.GetUserData().notifyHit())
-					{
-						if ( _brickMultiplierManager.finished )
-						{
-							_multiplier.activateAction(BrickMultiplierManagerAction.NAME)
-						}
-						
-						_brickMultiplierManager.increaseMultiplier();
-						
-						AppSettings.instance.userProfile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
-					}
 				}
-				else if ( a_ball.GetUserData().ballMode == Ball.DESTRUCT_BALL )
+				
+				if (a_fixture.GetUserData().notifyHit(a_ball.GetUserData().damagePoints))
 				{
-					a_fixture.GetUserData().addAction(new DisintegrateBrickAction(a_fixture.GetUserData() as Brick));
-					a_fixture.GetUserData().activateAction(DisintegrateBrickAction.NAME);
-					
-					a_fixture.GetUserData().activateAction(RemoveGridObjectAction.NAME);
-					
 					if ( _brickMultiplierManager.finished )
 					{
 						_multiplier.activateAction(BrickMultiplierManagerAction.NAME)
@@ -533,22 +523,60 @@ package com.bored.games.breakout.states.views
 					
 					AppSettings.instance.userProfile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
 				}
+				else if ( a_fixture.GetUserData() is Portal )
+				{
+					if ( a_fixture.GetUserData().open )
+					{
+						resetGame();
+					
+						var vortex:PortalVortex = new PortalVortex(_gameScreen, a_fixture.GetUserData() as Portal);
+						vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
+						GameView.ParticleRenderer.addEmitter(vortex);
+						vortex.start();
+						
+						_grid.clear();
+									
+						AppSettings.instance.currentLevelInd++;
+				
+						if (AppSettings.instance.currentLevelInd >= AppSettings.instance.levelList.levelCount)
+						{
+							AppSettings.instance.currentLevelInd = 0;
+						}
+				
+						AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
+				
+						AppSettings.instance.userProfile.time = AppSettings.instance.currentLevel.timeLimit;
+					}
+				}
 				else
 				{
-					if (a_fixture.GetUserData().notifyHit())
+					if ( !a_fixture.IsSensor() )
 					{
-						if ( _brickMultiplierManager.finished )
-						{
-							_multiplier.activateAction(BrickMultiplierManagerAction.NAME)
-						}
+						var vel:b2Vec2 = a_ball.GetBody().GetLinearVelocity();
 						
-						_brickMultiplierManager.increaseMultiplier();
-						
-						AppSettings.instance.userProfile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
+						var angle:Number = Math.atan2(vel.x, vel.y);
+					
+						var emitter:ImpactSparks = new ImpactSparks(
+							new Point( a_point.x * PhysicsWorld.PhysScale, a_point.y * PhysicsWorld.PhysScale ), 
+							angle + Math.PI / 2
+						);
+						emitter.addEventListener(EmitterEvent.EMITTER_EMPTY, 
+						function(e:EmitterEvent):void {
+							GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
+						},
+						false, 0, true);						
+						GameView.ParticleRenderer.addEmitter(emitter);
+						emitter.start();
 					}
 				}
 			}
 		}//end handleBallCollision()
+		
+		private function vortexComplete(e:EmitterEvent):void
+		{
+			GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
+			loadNextLevel();
+		}//end vortexComplete()
 		
 		private function handleCollectableCollision(a_collectable:b2Fixture, a_fixture:b2Fixture):void
 		{
@@ -557,21 +585,23 @@ package com.bored.games.breakout.states.views
 			
 			if ( a_fixture == _bottomWall )
 			{
-				node = Collectables.nodeOf(a_collectable.GetUserData(), Collectables.head());
-				if (node) node.remove();
+				Collectables.remove(a_collectable.GetUserData());
 				a_collectable.GetUserData().destroy();
 				return;
 			}
 			else if ( a_fixture.GetUserData() is Paddle )
 			{
-				node = Collectables.nodeOf(a_collectable.GetUserData(), Collectables.head());
-				if (node) node.remove();
+				Collectables.remove(a_collectable.GetUserData());
 				if ( a_collectable.GetUserData().actionName == "multiball" )
 				{
 					var obj:Object = _balls.getNodeAt(0).val;
 					
 					addBallAt(obj.x, obj.y);
 					addBallAt(obj.x, obj.y);
+				}
+				else if ( a_collectable.GetUserData().actionName == "extralife" )
+				{
+					AppSettings.instance.userProfile.incrementLives();
 				}
 				else if ( a_collectable.GetUserData().actionName == DestructoballAction.NAME || a_collectable.GetUserData().actionName == InvinciballAction.NAME )
 				{
@@ -597,17 +627,15 @@ package com.bored.games.breakout.states.views
 			
 			if ( a_fixture == _topWall )
 			{
-				node = Bullets.nodeOf(a_bullet.GetUserData(), Bullets.head())
-				if (node) node.remove();
+				Bullets.remove(a_bullet.GetUserData());
 				a_bullet.GetUserData().destroy();
 			}
 			else if ( a_fixture.GetUserData() is NanoBrick )
 			{
 				if ( a_fixture.GetUserData().alive )
 				{
-					node = Bullets.nodeOf(a_bullet.GetUserData(), Bullets.head())
-					if (node) node.remove();
-					a_fixture.GetUserData().notifyHit();
+					Bullets.remove(a_bullet.GetUserData());
+					a_fixture.GetUserData().notifyHit(1);
 					a_bullet.GetUserData().destroy();
 				}
 			}
@@ -617,32 +645,57 @@ package com.bored.games.breakout.states.views
 			}
 			else if ( a_fixture.GetUserData() is Brick )
 			{
-				node = Bullets.nodeOf(a_bullet.GetUserData(), Bullets.head())
-				if (node) node.remove();
-				a_fixture.GetUserData().notifyHit();
+				Bullets.remove(a_bullet.GetUserData());
+				a_fixture.GetUserData().notifyHit(1);
 				a_bullet.GetUserData().destroy();
 			}
 		}//end handleBulletCollision()
 		
-		override public function update():void
+		private function handleBeamCollision(a_bullet:b2Fixture, a_fixture:b2Fixture):void
 		{
-			if ( Input.isKeyReleased(Keyboard.F1) ) 
-			{
-				_currBkgd ++;
-				if ( _currBkgd >= AppSettings.instance.backgrounds.length ) _currBkgd = 0;
-			}
+			var ind:int;
+			var node:SLLNode;
 			
-			if ( Input.isKeyReleased(Keyboard.F2) )
+			if ( a_fixture.GetUserData() is NanoBrick )
 			{
-				while( AppSettings.instance.userProfile.lives < 3 )
-					AppSettings.instance.userProfile.incrementLives();
-				
-				parseLevel(_levelLoader.content as DisplayObjectContainer);
+				if ( a_fixture.GetUserData().alive )
+				{
+					a_fixture.GetUserData().notifyHit(10);
+				}
 			}
+			else if ( a_fixture.GetUserData() is Portal )
+			{
+				return;
+			}
+			else if ( a_fixture.GetUserData() is Brick )
+			{
+				a_fixture.GetUserData().notifyHit(10);
+			}
+		}//end handleBeamCollision()
+		
+		public function resetGame():void
+		{
+			_paused = true;
+			
+			Contacts.clear();
+			Collectables.clear();
+			Bullets.clear();
+			
+			var iter:SLLIterator = new SLLIterator(_balls);
+			var obj:Object;
+			while ( iter.hasNext() )
+			{
+				obj = iter.next();
+				obj.destroy();
+			}
+			_balls.clear();
+		}//end resetGame()
+		
+		override public function update():void
+		{						
+			if ( AppSettings.instance.userProfile.time <= 0 ) _paused = true;
 			
 			if ( _paused ) return;
-			
-			if ( AppSettings.instance.userProfile.time <= 0 ) _paused = true;
 			
 			if ( _balls.isEmpty() ) ballLost();
 			
@@ -660,6 +713,8 @@ package com.bored.games.breakout.states.views
 			while( iter.hasNext() )
 			{
 				var c:Object = iter.next();
+				
+				if ( c == null ) continue;
 				
 				if ( c.fixtureA.GetUserData() is Ball )
 				{
@@ -696,7 +751,49 @@ package com.bored.games.breakout.states.views
 					handleBulletCollision(c.fixtureB, c.fixtureA);
 					continue;
 				}
-			}	
+				
+				if ( c.fixtureA.GetUserData() is Beam )
+				{
+					handleBeamCollision(c.fixtureA, c.fixtureB);
+					continue;
+				}
+				
+				if ( c.fixtureB.GetUserData() is Beam )
+				{
+					handleBeamCollision(c.fixtureB, c.fixtureA);
+					continue;
+				}
+			}
+			
+			iter = new SLLIterator(Bullets);
+			while( iter.hasNext() )
+			{
+				var obj:Object = iter.next();
+				
+				if ( obj is Beam )
+				{
+					if( !obj.physicsBody )
+						Bullets.remove(obj);
+				}
+			}
+			
+			if ( _grid.isEmpty() ) 
+			{
+				resetGame();
+				
+				AppSettings.instance.currentLevelInd++;
+				
+				if (AppSettings.instance.currentLevelInd >= AppSettings.instance.levelList.levelCount)
+				{
+					AppSettings.instance.currentLevelInd = 0;
+				}
+				
+				AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
+				
+				AppSettings.instance.userProfile.time = AppSettings.instance.currentLevel.timeLimit;
+					
+				loadNextLevel();
+			}
 			
 			if( stage )	stage.invalidate();
 		}//end update()
@@ -760,7 +857,7 @@ class GameContactListener extends b2ContactListener
 	{
 		var obj:GameContact = new GameContact(contact.GetFixtureA(), contact.GetFixtureB());
 		
-		GameView.Contacts.nodeOf(obj, GameView.Contacts.head()).remove();		
+		GameView.Contacts.remove(obj);		
 	}//end EndContact()
 	
 	override public function PostSolve(contact:b2Contact, impulse:b2ContactImpulse):void
@@ -855,15 +952,53 @@ class GameContact
 
 class ContactLL extends SLL
 {
-	override public function nodeOf(x:Object, from:SLLNode = null):SLLNode 
-	{		
-		var node:SLLNode = from;
-		while (_valid(node))
+	override public function remove(x:Object):Boolean
+	{
+		var s:int = size();
+		if (s == 0) return false;
+		
+		var node0:SLLNode = head;
+		var node1:SLLNode = head.next;
+		
+		var NULL:Dynamic = null;
+		
+		while (node1 != null)
 		{
-			if (node.val.equals(x)) break;
-			node = node.next;
+			if (node1.val.equals(x))
+			{
+				if (node1 == tail) tail = node0;
+				var node2:SLLNode = node1.next;
+				node0.next = node2;
+				
+				node1.next = null;
+				node1.val = NULL;
+				__nullify(node1);
+				_size--;
+				
+				node1 = node2;
+			}
+			else
+			{
+				node0 = node1;
+				node1 = node1.next;
+			}
 		}
 		
-		return node;
-	}	
+		if (head.val.equals(x))
+		{
+			var head1:SLLNode = head.next;
+			
+			head.val = NULL;
+			__nullify(head);
+			head.next = null;
+			
+			head = head1;
+			
+			if (head == null) tail = null;
+			
+			_size--;
+		}
+		
+		return size() < s;
+	}
 }//end ContactLL

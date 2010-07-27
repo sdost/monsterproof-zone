@@ -33,6 +33,8 @@ package com.bored.games.breakout.objects.bricks
 		
 		protected var _animationSet:AnimationSet;
 		
+		private var _hitPoints:int;
+		
 		public function Brick(a_width:int, a_height:int, a_set:AnimationSet)
 		{
 			super(a_width, a_height);
@@ -40,7 +42,19 @@ package com.bored.games.breakout.objects.bricks
 			_animationSet = a_set;
 			
 			_animatedSprite = _animationSet.getAnimation(DEFAULT);
+			
+			_hitPoints = 1;
 		}//end constructor()
+		
+		public function get hitPoints():int
+		{
+			return _hitPoints;
+		}//end hitPoint()
+		
+		public function set hitPoints(a_hp:int):void
+		{
+			_hitPoints = a_hp;
+		}//end set hitPoint()
 		
 		override public function addToGrid(a_grid:Grid, a_x:uint, a_y:uint):void 
 		{
@@ -102,17 +116,24 @@ package com.bored.games.breakout.objects.bricks
 			return _animatedSprite.currFrame;
 		}//end get currFrame()
 		
-		public function notifyHit():Boolean
+		public function notifyHit(a_damage:int):Boolean
 		{
-			activateAction(RemoveGridObjectAction.NAME);
+			_hitPoints -= a_damage;
 			
-			if ( Math.random() < 0.1 )
+			if ( _hitPoints <= 0 )
 			{
-				addAction(new SpawnCollectable(this));
-				activateAction(SpawnCollectable.NAME);
+				activateAction(RemoveGridObjectAction.NAME);
+			
+				if ( Math.random() < 0.1 )
+				{
+					addAction(new SpawnCollectable(this));
+					activateAction(SpawnCollectable.NAME);
+				}
+			
+				return true;
 			}
 			
-			return true;
+			return false;
 		}//end notifyHit()
 		
 		override public function update(t:Number = 0):void 

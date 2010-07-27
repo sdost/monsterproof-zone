@@ -26,6 +26,7 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.actions.PaddleMultiplierManagerAction;
 	import com.bored.games.breakout.actions.RemoveGridObjectAction;
 	import com.bored.games.breakout.emitters.BrickCrumbs;
+	import com.bored.games.breakout.emitters.CollectionFizzle;
 	import com.bored.games.breakout.emitters.ImpactSparks;
 	import com.bored.games.breakout.emitters.PortalVortex;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
@@ -592,6 +593,16 @@ package com.bored.games.breakout.states.views
 			else if ( a_fixture.GetUserData() is Paddle )
 			{
 				Collectables.remove(a_collectable.GetUserData());
+				
+				var emitter:CollectionFizzle = new CollectionFizzle(a_fixture.GetUserData() as Paddle);
+				emitter.addEventListener(EmitterEvent.EMITTER_EMPTY,
+				function(e:EmitterEvent):void {
+					GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
+				},
+				false, 0, true);						
+				GameView.ParticleRenderer.addEmitter(emitter);
+				emitter.start();				
+				
 				if ( a_collectable.GetUserData().actionName == "multiball" )
 				{
 					var obj:Object = _balls.getNodeAt(0).val;

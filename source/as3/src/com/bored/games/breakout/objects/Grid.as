@@ -7,6 +7,7 @@ package com.bored.games.breakout.objects
 	import Box2D.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.ExplosionManagerAction;
 	import com.bored.games.breakout.actions.NanoManagerAction;
+	import com.bored.games.breakout.actions.SpawnCollectable;
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.objects.bricks.NanoBrick;
 	import com.bored.games.breakout.objects.bricks.Portal;
@@ -19,6 +20,7 @@ package com.bored.games.breakout.objects
 	import de.polygonal.ds.SLLNode;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
+	import flash.utils.Dictionary;
 	
 	/**
 	 * ...
@@ -33,6 +35,8 @@ package com.bored.games.breakout.objects
 		
 		private var _gridObjectList:SLL;
 		private var _gridRemoveList:Vector.<GridObject>;
+		private var _collectables:Dictionary;
+		
 		private var _grid:Vector.<GridObject>;
 		
 		private var _explosionManager:ExplosionManagerAction;
@@ -65,6 +69,7 @@ package com.bored.games.breakout.objects
 			
 			_gridObjectList = new SLL(MAX_GRID_OBJECTS);
 			_gridRemoveList = new Vector.<GridObject>();
+			_collectables = new Dictionary(true);
 			
 			_count = 0;
 		
@@ -241,6 +246,13 @@ package com.bored.games.breakout.objects
 			return true;
 		}//end removeGridObject()
 		
+		public function addCollectable(a_name:String, a_x:int, a_y:int):void
+		{
+			var go:GridObject = _grid[(a_x << _shift) | a_y];
+			
+			if (go)	_collectables[go] = a_name;
+		}//end addCollectable()
+		
 		public function getGridObjectAt( a_x:int, a_y:int ):GridObject
 		{
 			if ( a_x < 0 || a_y < 0 ) return null;
@@ -268,7 +280,17 @@ package com.bored.games.breakout.objects
 				go = _gridRemoveList.pop();
 				
 				_gridObjectList.remove(go);
+				
+				if ( _collectables[go] )
+				{
+					trace("Collectable: " + _collectables[go]);
 					
+					go.addAction(new SpawnCollectable(go, { "type": _collectables[go] } ));
+					go.activateAction(SpawnCollectable.NAME);
+					
+					_collectables[go] = null;
+				}
+				
 				go.removeFromGrid();
 				go.destroy();
 			}

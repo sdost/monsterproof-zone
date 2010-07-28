@@ -1,5 +1,6 @@
 package com.bored.games.breakout.objects.bricks 
 {
+	import com.bored.games.breakout.actions.DisintegrateBrickAction;
 	import com.bored.games.breakout.objects.AnimationSet;
 	
 	/**
@@ -13,8 +14,21 @@ package com.bored.games.breakout.objects.bricks
 		{
 			super(a_width, a_height, a_set);
 			
-			this.hitPoints = 9999;
+			this.hitPoints = 500;
 		}//end constructor()
+		
+		override public function notifyHit(a_damage:int):Boolean 
+		{
+			if ( super.notifyHit(a_damage) )
+			{
+				addAction(new DisintegrateBrickAction(this));
+				activateAction(DisintegrateBrickAction.NAME);
+				
+				return true;
+			}
+			
+			return false;
+		}//end notifyHit()
 		
 	}//end UnbreakableBrick
 

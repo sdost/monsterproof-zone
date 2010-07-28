@@ -89,6 +89,11 @@ package com.bored.games.breakout.objects.bricks
 			return _open;
 		}//end get open()
 		
+		override public function notifyHit(a_damage:int):Boolean
+		{			
+			return false;
+		}//end notifyHit()
+		
 		override public function get currFrame():BitmapData
 		{
 			return _animController.currFrame;

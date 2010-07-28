@@ -236,10 +236,6 @@ package com.bored.games.breakout.states.views
 			
 			_stats = new Stats();
 			addChild(_stats);
-			
-			stage.invalidate();
-						
-			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
 		}//end addedToStageHandler()
 		
 		override protected function removedFromStageHandler(e:Event):void
@@ -293,6 +289,8 @@ package com.bored.games.breakout.states.views
 			
 			_lineJoint = PhysicsWorld.CreateJoint(ljd) as b2LineJoint;
 			
+			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
+			
 			enterComplete();
 		}//end enter()
 		
@@ -320,6 +318,40 @@ package com.bored.games.breakout.states.views
 				var obj:DisplayObject = a_level.getChildAt(i);
 				
 				var brick:Brick;
+				
+				var className:String = getQualifiedClassName(obj);
+				
+				if ( className.search("Placeholder") >= 0 )
+				{
+					switch(className)
+					{
+						case "PlaceholderExtend":
+							_grid.addCollectable("extend", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
+							break;
+						case "PlaceholderCatch":
+							_grid.addCollectable("catch", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
+							break;
+						case "PlaceholderLaser":
+							_grid.addCollectable("laser", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
+							break;
+						case "PlaceholderSuperLaser":
+							_grid.addCollectable("superlaser", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
+							break;
+						case "PlaceholderMultiball":
+							_grid.addCollectable("multiball", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
+							break;
+						case "PlaceholderInviciball":
+							_grid.addCollectable("invinciball", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
+							break;
+						case "PlaceholderDestructoball":
+							_grid.addCollectable("destructoball", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
+							break;
+						case "PlaceholderExtraLife":
+							_grid.addCollectable("extralife", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
+							break;
+					}
+					continue;
+				}
 				
 				switch(getQualifiedClassName(obj))
 				{

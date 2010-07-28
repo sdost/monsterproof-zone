@@ -122,14 +122,7 @@ package com.bored.games.breakout.objects.bricks
 			
 			if ( _hitPoints <= 0 )
 			{
-				activateAction(RemoveGridObjectAction.NAME);
-			
-				if ( Math.random() < 0.1 )
-				{
-					addAction(new SpawnCollectable(this));
-					activateAction(SpawnCollectable.NAME);
-				}
-			
+				activateAction(RemoveGridObjectAction.NAME);			
 				return true;
 			}
 			

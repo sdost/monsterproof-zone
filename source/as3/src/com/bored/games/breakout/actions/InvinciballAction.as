@@ -77,7 +77,7 @@ package com.bored.games.breakout.actions
 			{
 				(_gameElement as Ball).ballMode = Ball.DESTRUCT_BALL;
 				(_gameElement as Ball).switchAnimation(Ball.DESTRUCT_BALL);
-				(_gameElement as Ball).damagePoints = 100;
+				(_gameElement as Ball).damagePoints = 500;
 			}
 		}//end set finished()
 		

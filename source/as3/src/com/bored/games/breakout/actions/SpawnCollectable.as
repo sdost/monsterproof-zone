@@ -7,6 +7,7 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.collectables.Collectable;
 	import com.bored.games.breakout.objects.collectables.DestructoballPowerup;
 	import com.bored.games.breakout.objects.collectables.ExtendPowerup;
+	import com.bored.games.breakout.objects.collectables.ExtraLifePowerup;
 	import com.bored.games.breakout.objects.collectables.InvinciballPowerup;
 	import com.bored.games.breakout.objects.collectables.LaserPowerup;
 	import com.bored.games.breakout.objects.collectables.MultiballPowerup;
@@ -24,6 +25,8 @@ package com.bored.games.breakout.actions
 	{
 		public static const NAME:String = "com.bored.games.breakout.actions.SpawnCollectable";
 		
+		private var _type:String;
+		
 		public function SpawnCollectable(a_gameElement:GameElement, a_params:Object = null) 
 		{
 			super(NAME, a_gameElement, a_params);
@@ -31,6 +34,7 @@ package com.bored.games.breakout.actions
 		
 		override public function initParams(a_params:Object):void 
 		{
+			_type = a_params.type;
 		}//end initParams()
 		
 		override public function startAction():void 
@@ -44,20 +48,33 @@ package com.bored.games.breakout.actions
 			
 			var pb:Collectable;
 			
-			if( die < 0.14 )
-				pb = new LaserPowerup();
-			else if( die < 0.28 )
-				pb = new ExtendPowerup();
-			else if( die < 0.42 )
-				pb = new MultiballPowerup();
-			else if( die < 0.56 )
-				pb = new CatchPowerup();
-			else if( die < 0.7 )
-				pb = new InvinciballPowerup();
-			else if( die < 0.84 )
-				pb = new DestructoballPowerup();
-			else
-				pb = new SuperLaserPowerup();
+			switch(_type)
+			{
+				case "extend":
+					pb = new ExtendPowerup();
+					break;
+				case "catch":
+					pb = new CatchPowerup();
+					break;
+				case "laser":
+					pb = new LaserPowerup();
+					break;
+				case "superlaser":
+					pb = new SuperLaserPowerup();
+					break;
+				case "multiball":
+					pb = new MultiballPowerup();
+					break;
+				case "invinciball":
+					pb = new InvinciballPowerup();
+					break;
+				case "destructoball":
+					pb = new DestructoballPowerup();
+					break;
+				case "extralife":
+					pb = new ExtraLifePowerup();
+					break;
+			}
 			
 			pb.physicsBody.ApplyImpulse( new b2Vec2( 0, AppSettings.instance.defaultCollectableFallSpeed * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
 			pb.physicsBody.SetPosition( new b2Vec2( (xOffset - pb.width / 2) / PhysicsWorld.PhysScale, (yOffset - pb.height / 2) / PhysicsWorld.PhysScale ) );

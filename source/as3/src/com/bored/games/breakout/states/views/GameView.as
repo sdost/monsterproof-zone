@@ -44,6 +44,7 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.objects.bricks.SimpleBrick;
 	import com.bored.games.breakout.objects.bricks.UnbreakableBrick;
 	import com.bored.games.breakout.objects.Bullet;
+	import com.bored.games.breakout.objects.collectables.Bonus;
 	import com.bored.games.breakout.objects.collectables.CatchPowerup;
 	import com.bored.games.breakout.objects.collectables.Collectable;
 	import com.bored.games.breakout.objects.collectables.DestructoballPowerup;
@@ -352,6 +353,16 @@ package com.bored.games.breakout.states.views
 					continue;
 				}
 				
+				if ( className.search("Bonus") >= 0 )
+				{
+					var pb:Collectable = new Bonus();
+					//pb.physicsBody.ApplyImpulse( new b2Vec2( 0, AppSettings.instance.defaultCollectableFallSpeed * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
+					pb.physicsBody.SetPosition( new b2Vec2( (obj.x + obj.width / 2) / PhysicsWorld.PhysScale, (obj.y + obj.height / 2) / PhysicsWorld.PhysScale) );
+			
+					GameView.Collectables.append(pb);
+					continue;
+				}
+				
 				switch(getQualifiedClassName(obj))
 				{
 					case "Bomb":
@@ -467,7 +478,10 @@ package com.bored.games.breakout.states.views
 			var go:GridObject;
 			_drawnObjects.clear();
 			
-			_backBuffer.draw(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
+			if ( AppSettings.instance.currentLevel )
+			{
+				_backBuffer.draw(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
+			}
 			
 			var iter:SLLIterator = new SLLIterator(Collectables);
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
@@ -874,6 +888,7 @@ import Box2D.Dynamics.Joints.b2DistanceJointDef;
 import com.bored.games.breakout.objects.Ball;
 import com.bored.games.breakout.objects.bricks.Brick;
 import com.bored.games.breakout.objects.Bullet;
+import com.bored.games.breakout.objects.collectables.Collectable;
 import com.bored.games.breakout.objects.Paddle;
 import com.bored.games.breakout.physics.PhysicsWorld;
 import com.bored.games.breakout.states.views.GameView;
@@ -956,6 +971,11 @@ class GameContactListener extends b2ContactListener
 			{
 				contact.SetSensor(true);
 			}
+		}
+		
+		if (fixtureA.GetUserData() is Collectable && fixtureB.GetUserData() is Ball)
+		{
+			contact.SetEnabled(false);
 		}
 		
 		if (!(fixtureA.GetUserData() is Paddle && fixtureB.GetUserData() is Ball))

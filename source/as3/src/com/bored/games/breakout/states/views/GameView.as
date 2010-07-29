@@ -663,6 +663,10 @@ package com.bored.games.breakout.states.views
 				{
 					AppSettings.instance.userProfile.incrementLives();
 				}
+				else if ( a_collectable.GetUserData().actionName == "bonus" )
+				{
+					AppSettings.instance.userProfile.addPoints(1000);
+				}
 				else if ( a_collectable.GetUserData().actionName == DestructoballAction.NAME || a_collectable.GetUserData().actionName == InvinciballAction.NAME )
 				{
 					var iter:SLLIterator = new SLLIterator(_balls);
@@ -887,6 +891,7 @@ import Box2D.Dynamics.Contacts.b2Contact;
 import Box2D.Dynamics.Joints.b2DistanceJointDef;
 import com.bored.games.breakout.objects.Ball;
 import com.bored.games.breakout.objects.bricks.Brick;
+import com.bored.games.breakout.objects.bricks.SimpleBrick;
 import com.bored.games.breakout.objects.Bullet;
 import com.bored.games.breakout.objects.collectables.Collectable;
 import com.bored.games.breakout.objects.Paddle;
@@ -973,7 +978,7 @@ class GameContactListener extends b2ContactListener
 			}
 		}
 		
-		if (fixtureA.GetUserData() is Collectable && fixtureB.GetUserData() is Ball)
+		if (fixtureA.GetUserData() is Collectable && !(fixtureB.GetUserData() is SimpleBrick))
 		{
 			contact.SetEnabled(false);
 		}

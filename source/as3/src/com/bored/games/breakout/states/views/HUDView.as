@@ -125,7 +125,7 @@ package com.bored.games.breakout.states.views
 		{
 			_presentEmitter = new Emitter2D();
 			
-			_presentEmitter.counter = new Blast(10000);
+			_presentEmitter.counter = new Blast(3000);
 			
 			_presentEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToTransition );
 			_presentEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter );

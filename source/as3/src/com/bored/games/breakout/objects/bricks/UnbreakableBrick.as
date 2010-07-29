@@ -7,7 +7,7 @@ package com.bored.games.breakout.objects.bricks
 	 * ...
 	 * @author sam
 	 */
-	public class UnbreakableBrick extends Brick
+	public class UnbreakableBrick extends SimpleBrick
 	{
 		
 		public function UnbreakableBrick(a_width:int, a_height:int, a_set:AnimationSet) 
@@ -16,19 +16,6 @@ package com.bored.games.breakout.objects.bricks
 			
 			this.hitPoints = 500;
 		}//end constructor()
-		
-		override public function notifyHit(a_damage:int):Boolean 
-		{
-			if ( super.notifyHit(a_damage) )
-			{
-				addAction(new DisintegrateBrickAction(this));
-				activateAction(DisintegrateBrickAction.NAME);
-				
-				return true;
-			}
-			
-			return false;
-		}//end notifyHit()
 		
 	}//end UnbreakableBrick
 

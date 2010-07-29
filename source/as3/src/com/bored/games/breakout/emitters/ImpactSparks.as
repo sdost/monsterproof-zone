@@ -16,6 +16,7 @@ package com.bored.games.breakout.emitters
 	import org.flintparticles.common.displayObjects.Dot;
 	import org.flintparticles.common.displayObjects.RadialDot;
 	import org.flintparticles.common.displayObjects.Star;
+	import org.flintparticles.common.initializers.ColorInit;
 	import org.flintparticles.common.initializers.ImageClass;
 	import org.flintparticles.common.initializers.Lifetime;
 	import org.flintparticles.common.initializers.ScaleImageInit;
@@ -44,21 +45,17 @@ package com.bored.games.breakout.emitters
 		
 		public function ImpactSparks(a_pos:Point, a_angle:Number) 
 		{
-			this.counter = new Blast( 5 );
+			this.counter = new Blast( 8 );
 			
-			addInitializer( new ImageClass( RadialDot, 3, 0xFFFFFFFF ) );
-			addInitializer( new Lifetime( 0.275, 0.329 ) );			
-			addInitializer( new Position( new PointZone( a_pos ) ) );
-			addInitializer( new Velocity( new DiscSectorZone( new Point(0,0), 100, 0, a_angle - Math.PI/2, a_angle + Math.PI/2  ) ) );
-			addInitializer( new ScaleImageInit( 0.5, 1.0 ) );
+			addInitializer( new ImageClass( Dot, 1, 0xffff00 ) );
+			addInitializer( new Lifetime( 0.1, 0.5 ) );			
+			addInitializer( new Position( new DiscZone( a_pos, 1, 1 ) ) );
+			addInitializer( new Velocity( new DiscSectorZone( new Point(0,0), 200, 1, a_angle - Math.PI/2, a_angle + Math.PI/2  ) ) );
 			
-			addAction( new ScaleAll( 1, 0.8 ) );
-			addAction( new ColorChange( 0xFFFF88, 0xFFCC00 ) );
+			
 			addAction( new Move() );
 			addAction( new Age() );
-			addAction( new Fade(0.8, 0.5) );
-			addAction( new Accelerate( 0, 200 ) );
-			addAction( new RandomDrift( 300.0, 300.0 ) );
+			addAction( new Fade() );
 		}//end constructor()
 		
 	}//end ImpactSparks

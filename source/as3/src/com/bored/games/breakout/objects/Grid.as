@@ -283,8 +283,6 @@ package com.bored.games.breakout.objects
 				
 				if ( _collectables[go] )
 				{
-					trace("Collectable: " + _collectables[go]);
-					
 					go.addAction(new SpawnCollectable(go, { "type": _collectables[go] } ));
 					go.activateAction(SpawnCollectable.NAME);
 					

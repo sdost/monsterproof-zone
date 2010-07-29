@@ -306,7 +306,6 @@ package com.bored.games.breakout.states.views
 			_levelLoader.removeEventListener(Event.COMPLETE, levelLoaded);
 			
 			parseLevel(_levelLoader.content as DisplayObjectContainer);
-			startGame();
 		}//end levelLoaded()
 		
 		private function parseLevel(a_level:DisplayObjectContainer):void
@@ -419,8 +418,8 @@ package com.bored.games.breakout.states.views
 			}
 		}//end parseLevel()
 		
-		private function startGame():void
-		{		
+		public function startGame():void
+		{			
 			var ball:Ball = addBallAt();	
 			_paddle.catchBall(ball);		
 			_paused = false;
@@ -579,6 +578,10 @@ package com.bored.games.breakout.states.views
 						AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
 				
 						AppSettings.instance.userProfile.time = AppSettings.instance.currentLevel.timeLimit;
+						
+						_paddle.activatePowerup(null);
+						
+						loadNextLevel();
 					}
 				}
 				else
@@ -608,7 +611,7 @@ package com.bored.games.breakout.states.views
 		private function vortexComplete(e:EmitterEvent):void
 		{
 			GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
-			loadNextLevel();
+			startGame();
 		}//end vortexComplete()
 		
 		private function handleCollectableCollision(a_collectable:b2Fixture, a_fixture:b2Fixture):void
@@ -703,7 +706,7 @@ package com.bored.games.breakout.states.views
 			{
 				if ( a_fixture.GetUserData().alive )
 				{
-					a_fixture.GetUserData().notifyHit(10);
+					a_fixture.GetUserData().notifyHit(500);
 				}
 			}
 			else if ( a_fixture.GetUserData() is Portal )
@@ -712,7 +715,7 @@ package com.bored.games.breakout.states.views
 			}
 			else if ( a_fixture.GetUserData() is Brick )
 			{
-				a_fixture.GetUserData().notifyHit(10);
+				a_fixture.GetUserData().notifyHit(500);
 			}
 		}//end handleBeamCollision()
 		

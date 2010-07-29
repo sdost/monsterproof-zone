@@ -6,6 +6,7 @@ package com.bored.games.breakout.emitters
 	import org.flintparticles.common.actions.Fade;
 	import org.flintparticles.common.counters.PerformanceAdjusted;
 	import org.flintparticles.common.counters.Steady;
+	import org.flintparticles.common.displayObjects.Dot;
 	import org.flintparticles.common.displayObjects.RadialDot;
 	import org.flintparticles.common.initializers.ColorInit;
 	import org.flintparticles.common.initializers.ImageClass;
@@ -29,7 +30,7 @@ package com.bored.games.breakout.emitters
 		{	
 			counter = new PerformanceAdjusted( 15, 50, 24 );
 			
-			addInitializer( new ImageClass( RadialDot, 5, 0xFFFFFF ) );
+			addInitializer( new ImageClass( Dot, 2, 0xFFFFFF ) );
 			addInitializer( new ColorInit( 0x00ffff, 0x80ffff ) );
 			addInitializer( new Lifetime( 0.5, 2.0 ) );
 			addInitializer( new Position( new LineZone( new Point(), new Point(a_paddle.width, 0) ) ) );

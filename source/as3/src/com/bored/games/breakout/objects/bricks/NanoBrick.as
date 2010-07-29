@@ -78,7 +78,7 @@ package com.bored.games.breakout.objects.bricks
 		
 		override public function notifyHit(a_damage:int):Boolean 
 		{
-			if ( !_brickFixture.IsSensor() )
+			if ( _alive )
 			{
 				activateAction(DisintegrateBrickAction.NAME);
 				sleep();

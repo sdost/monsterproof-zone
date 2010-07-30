@@ -6,10 +6,12 @@ package com.bored.games.breakout.states.controllers
 	import com.jac.fsm.stateEvents.StateEvent;
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
+	import com.sven.utils.AppSettings;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.TimerEvent;
 	import flash.utils.Timer;
+	import flash.utils.getTimer;
 	
 	/**
 	 * ...
@@ -21,14 +23,26 @@ package com.bored.games.breakout.states.controllers
 		private var _hudView:StateView;
 		private var _input:Input;
 		
+		private var _running:Boolean;
+		
 		private var _updateTimer:Timer;
+		
+		private var _timeLeft:Number;
+		private var _lastUpdate:Number;
 		
 		public function GameplayController(a_container:MovieClip) 
 		{			
 			_input = new Input(a_container);
 			
+			_running = false;
+			
 			_gameView = new GameView();
 			_hudView = new HUDView();
+			
+			_gameView.addEventListener("levelLoaded", levelLoaded, false, 0, true);
+			
+			_hudView.addEventListener("gameStartComplete", gameStartComplete, false, 0, true);
+			_hudView.addEventListener("gameOverComplete", gameOverComplete, false, 0, true);
 			
 			super([_gameView, _hudView], a_container);
 		}//end constructor()
@@ -39,22 +53,108 @@ package com.bored.games.breakout.states.controllers
 			_updateTimer.addEventListener(TimerEvent.TIMER, timerUpdate, false, 0, true);
 			_updateTimer.start();
 			
-			(_gameView as GameView).loadNextLevel();
+			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
 			
-			(_hudView as HUDView).showGameStart();
-			(_hudView as HUDView).addEventListener(Event.COMPLETE, gameStartComplete, false, 0, true);
+			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
+			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
 		}//end startGame()
+		
+		private function levelLoaded(e:Event):void
+		{
+			(_hudView as HUDView).showGameStart();
+			(_gameView as GameView).resetPaddle();
+		}//end levelLoaded()
 		
 		private function gameStartComplete(e:Event):void
 		{
-			(_gameView as GameView).startGame();
+			(_gameView as GameView).newBall();
+			_timeLeft = AppSettings.instance.currentLevel.timeLimit;
+			_lastUpdate = getTimer();
+			
+			_running = true;
+			
+			(_gameView as GameView).addEventListener("ballLost", ballLost, false, 0, true);
+			(_gameView as GameView).addEventListener("levelFinished", levelFinished, false, 0, true);
 		}//end gameStartComplete()
+		
+		private function gameOverComplete(e:Event):void
+		{
+			_updateTimer.stop();
+			_updateTimer.removeEventListener(TimerEvent.TIMER, timerUpdate);
+			_updateTimer = null;
+			
+			startGame();
+		}//end gameOverComplete()
+		
+		private function ballLost(e:Event):void
+		{
+			AppSettings.instance.userProfile.decrementLives();
+			
+			if (AppSettings.instance.userProfile.lives > 0)
+			{
+				(_gameView as GameView).newBall();
+			}
+			else
+			{
+				endGame();
+			}
+		}//end ballLost()
+		
+		private function endGame():void
+		{
+			(_gameView as GameView).removeEventListener("ballLost", ballLost);
+			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
+			
+			_running = false;
+			
+			AppSettings.instance.userProfile.reset();
+			
+			(_hudView as HUDView).showGameOver();
+		}//end endGame()
+				
+		private function levelFinished(e:Event):void
+		{
+			(_gameView as GameView).removeEventListener("ballLost", ballLost);
+			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
+			
+			_running = false;
+			
+			(_gameView as GameView).resetGame();
+				
+			AppSettings.instance.currentLevelInd++;
+			
+			if (AppSettings.instance.currentLevelInd >= AppSettings.instance.levelList.levelCount)
+			{
+				AppSettings.instance.currentLevelInd = 0;
+			}
+			
+			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
+			
+			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
+			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
+		}//end gridEmpty()
 				
 		private function timerUpdate(e:Event):void
 		{
 			this.update();
 			
 			Input.update();
+			
+			if (_running)
+			{
+				var delta:Number = getTimer() - _lastUpdate;
+				_lastUpdate = getTimer();
+				_timeLeft -= delta;
+				
+				(_hudView as HUDView).scoreDisp = AppSettings.instance.userProfile.score;
+				(_hudView as HUDView).timerDisp = _timeLeft;
+				(_hudView as HUDView).livesDisp = AppSettings.instance.userProfile.lives;
+				
+				if ( _timeLeft <= 0 )
+				{
+					endGame();
+				}
+			}
 		}//end timerUpdate()
 		
 	}//end GameplayController

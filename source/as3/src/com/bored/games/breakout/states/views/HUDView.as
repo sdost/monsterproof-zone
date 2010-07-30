@@ -19,6 +19,7 @@ package com.bored.games.breakout.states.views
 	import flash.events.Event;
 	import flash.filters.BlurFilter;
 	import flash.filters.ColorMatrixFilter;
+	import flash.filters.GlowFilter;
 	import flash.geom.Point;
 	import flash.geom.Rectangle;
 	import flash.net.URLLoader;
@@ -28,6 +29,7 @@ package com.bored.games.breakout.states.views
 	import org.flintparticles.common.actions.Age;
 	import org.flintparticles.common.actions.Fade;
 	import org.flintparticles.common.counters.Blast;
+	import org.flintparticles.common.counters.Counter;
 	import org.flintparticles.common.energyEasing.Quadratic;
 	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.common.events.ParticleEvent;
@@ -40,6 +42,14 @@ package com.bored.games.breakout.states.views
 	import org.flintparticles.twoD.emitters.Emitter2D;
 	import org.flintparticles.twoD.renderers.PixelRenderer;
 	import org.flintparticles.twoD.zones.BitmapDataZone;
+	
+	/**
+	 * Dispatched when game start has finished showing
+	 *
+ 	 */
+	[Event(name = 'gameStartComplete', type = 'flash.events.Event')]
+	
+	[Event(name = 'gameOverComplete', type = 'flash.events.Event')]
 	
 	/**
 	 * ...
@@ -111,7 +121,7 @@ package com.bored.games.breakout.states.views
 			_lastUpdate = getTimer();
 			
 			_renderer = new PixelRenderer(new Rectangle(0, 0, stage.stageWidth, stage.stageHeight));
-			_renderer.addFilter( new BlurFilter( 5, 5, 5 ) );
+			_renderer.addFilter( new BlurFilter( 2, 2, 1 ) );
 			_renderer.addFilter( new ColorMatrixFilter( [ 1, 0, 0, 0, 0,
 														  0, 1, 0, 0, 0,
 														  0, 0, 1, 0, 0,
@@ -125,7 +135,7 @@ package com.bored.games.breakout.states.views
 		{
 			_presentEmitter = new Emitter2D();
 			
-			_presentEmitter.counter = new Blast(3000);
+			_presentEmitter.counter = new Blast(10000);
 			
 			_presentEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToTransition );
 			_presentEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter );
@@ -137,7 +147,7 @@ package com.bored.games.breakout.states.views
 			_renderer.addEmitter(_presentEmitter);
 			
 			_transitionEmitter = new Emitter2D();
-			_transitionEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToFade );
+			_transitionEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToFade );			
 			_transitionEmitter.addInitializer( new Lifetime( 0.9 ) );
 			
 			_transitionEmitter.addAction( new Age( Quadratic.easeOut ) );
@@ -145,6 +155,35 @@ package com.bored.games.breakout.states.views
 			_renderer.addEmitter(_transitionEmitter);
 			
 			_fadeEmitter = new Emitter2D();
+			_fadeEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, gameStartComplete );			
+			_fadeEmitter.addInitializer( new Lifetime( 1.0, 3.0 ) );
+		
+			_fadeEmitter.addAction( new Age( Quadratic.easeIn ) );
+			_fadeEmitter.addAction( new Fade() );
+			_fadeEmitter.addAction( new Move() );
+			//_fadeEmitter.addAction( new Accelerate( 0, 100 ) );
+			_renderer.addEmitter(_fadeEmitter);
+				
+			_presentEmitter.start();
+		}//end showGameStart()
+		
+		public function showGameOver():void
+		{
+			_presentEmitter = new Emitter2D();
+			
+			_presentEmitter.counter = new Blast(10000);
+			
+			_presentEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToFade );
+			_presentEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter );
+			_presentEmitter.addInitializer( new ColorInit( 0xFFFFFF00, 0xFFFFCC66 ) );
+			_presentEmitter.addInitializer( new Lifetime( 2.0 ) );
+			_presentEmitter.addInitializer( new Position( new BitmapDataZone(gameOverBMP, stage.stageWidth / 2 - gameOverBMP.width / 2, stage.stageHeight / 2 - gameOverBMP.height / 2) ) );
+			
+			_presentEmitter.addAction( new Age() );
+			_renderer.addEmitter(_presentEmitter);
+			
+			_fadeEmitter = new Emitter2D();
+			_fadeEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, gameOverComplete );	
 			_fadeEmitter.addInitializer( new Lifetime( 1.0, 3.0 ) );
 			
 			_fadeEmitter.addAction( new Age( Quadratic.easeIn ) );
@@ -154,8 +193,6 @@ package com.bored.games.breakout.states.views
 			_renderer.addEmitter(_fadeEmitter);
 				
 			_presentEmitter.start();
-			_transitionEmitter.start();
-			_fadeEmitter.start();
 		}//end showGameStart()
 		
 		private function moveToTransition(e:ParticleEvent):void
@@ -163,6 +200,7 @@ package com.bored.games.breakout.states.views
 			e.particle.revive();
 			_transitionEmitter.addExistingParticles( [ e.particle ], true );
 			_transitionEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter );
+			if( !_transitionEmitter.running ) _transitionEmitter.start();
 		}//end moveToTransition()
 		
 		private function moveToFade(e:ParticleEvent):void
@@ -170,16 +208,26 @@ package com.bored.games.breakout.states.views
 			e.particle.revive();
 			_fadeEmitter.addExistingParticles( [ e.particle ], true );
 			_fadeEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter );
+			if( !_fadeEmitter.running ) _fadeEmitter.start();
 		}//end moveToFade()
 		
 		private function removeEmitter(e:Event):void
 		{
 			Emitter2D(e.currentTarget).removeEventListener(EmitterEvent.EMITTER_EMPTY, removeEmitter);
 			_renderer.removeEmitter(Emitter2D(e.currentTarget));
-			
-			if ( e.currentTarget == _fadeEmitter )
-				dispatchEvent(new Event(Event.COMPLETE));
 		}//end trasitionComplete()
+		
+		private function gameStartComplete(e:Event):void
+		{
+			Emitter2D(e.currentTarget).removeEventListener(EmitterEvent.EMITTER_EMPTY, gameStartComplete);
+			dispatchEvent(new Event("gameStartComplete"));
+		}//end gameStartComplete()
+		
+		private function gameOverComplete(e:Event):void
+		{
+			Emitter2D(e.currentTarget).removeEventListener(EmitterEvent.EMITTER_EMPTY, gameOverComplete);
+			dispatchEvent(new Event("gameOverComplete"));
+		}//end gameStartComplete()
 		
 		public function get readyBMP():BitmapData
 		{
@@ -205,8 +253,8 @@ package com.bored.games.breakout.states.views
 		{
 			var gameOver:GameOverDisplay = new GameOverDisplay(bitmapFont);
 			
-			var bmd:BitmapData = new BitmapData(gameOver.width, gameOver.height, true, 0x00000000)
-			gameOver.draw(bmd, 0xFFFFFF);
+			var bmd:BitmapData = new BitmapData(gameOver.width * 4, gameOver.height * 4, true, 0x00000000)
+			gameOver.draw(bmd, 0xFFFFFF, 4);
 			
 			return bmd;
 		}//end get GameOverBMP()
@@ -221,12 +269,6 @@ package com.bored.games.breakout.states.views
 		{
 			AppSettings.instance.levelList = new LevelList(XML(_loader.data));
 			
-			AppSettings.instance.currentLevelInd = 0;
-			
-			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
-			
-			AppSettings.instance.userProfile.time = AppSettings.instance.currentLevel.timeLimit;
-			
 			enterComplete();
 		}//end levelListComplete()
 		
@@ -235,23 +277,28 @@ package com.bored.games.breakout.states.views
 			super.removedFromStageHandler(e);
 		}//end removedFromStageHandler()
 		
+		public function set scoreDisp(a_num:Number):void
+		{
+			_scoreDisp.score = a_num;
+		}//end set scoreDisp()
+		
+		public function set timerDisp(a_num:Number):void
+		{
+			_timeDisp.time = a_num;
+		}//end set scoreDisp()
+		
+		public function set livesDisp(a_num:Number):void
+		{
+			_livesDisp.lives = a_num;
+		}//end set scoreDisp()
+		
 		override public function update():void 
 		{
 			if (_paused) return;
 			
-			var delta:Number = getTimer() - _lastUpdate;
-			
-			_lastUpdate = getTimer();
-			
-			AppSettings.instance.userProfile.decreaseTime(delta);
-			
-			_scoreDisp.score = AppSettings.instance.userProfile.score;
-			_timeDisp.time = AppSettings.instance.userProfile.time;
-			_livesDisp.lives = AppSettings.instance.userProfile.lives;
-			
-			_livesDisp.update(delta);
-			_timeDisp.update(delta);
-			_scoreDisp.update(delta);
+			_livesDisp.update();
+			_timeDisp.update();
+			_scoreDisp.update();
 			
 			if (stage) stage.invalidate();
 		}//end update()

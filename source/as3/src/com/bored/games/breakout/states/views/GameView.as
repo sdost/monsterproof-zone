@@ -123,6 +123,16 @@ package com.bored.games.breakout.states.views
 	import org.flintparticles.twoD.zones.DisplayObjectZone;
 	
 	/**
+	 * Dispatched when level is finished loading
+	 *
+ 	 */
+	[Event(name = 'levelLoaded', type = 'flash.events.Event')]
+	
+	[Event(name = 'levelFinished', type = 'flash.events.Event')]
+	
+	[Event(name = 'ballLost', type = 'flash.events.Event')]
+	
+	/**
 	 * ...
 	 * @author sam
 	 */
@@ -137,6 +147,7 @@ package com.bored.games.breakout.states.views
 		private var _grid:Grid;
 		private var _balls:SLL;
 		private var _paddle:Paddle;
+		private var _backgroundMC:MovieClip;
 		
 		private var _walls:b2Body;
 		private var _topWall:b2Fixture;
@@ -295,11 +306,11 @@ package com.bored.games.breakout.states.views
 			enterComplete();
 		}//end enter()
 		
-		public function loadNextLevel():void
+		public function loadNextLevel(url:String):void
 		{			
 			_levelLoader = new Loader();
 			_levelLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, levelLoaded, false, 0, true);
-			_levelLoader.load( new URLRequest(AppSettings.instance.currentLevel.levelDataURL) );
+			_levelLoader.load( new URLRequest(url) );
 		}//end loadNextLevel()
 		
 		private function levelLoaded(e:Event = null):void
@@ -307,6 +318,8 @@ package com.bored.games.breakout.states.views
 			_levelLoader.removeEventListener(Event.COMPLETE, levelLoaded);
 			
 			parseLevel(_levelLoader.content as DisplayObjectContainer);
+			
+			dispatchEvent(new Event("levelLoaded"));
 		}//end levelLoaded()
 		
 		private function parseLevel(a_level:DisplayObjectContainer):void
@@ -429,12 +442,18 @@ package com.bored.games.breakout.states.views
 			}
 		}//end parseLevel()
 		
-		public function startGame():void
+		public function resetPaddle():void
+		{		
+			_paddle.activatePowerup(null);
+			
+			_paused = false;
+		}//end initializePaddle()
+		
+		public function newBall():void
 		{			
 			var ball:Ball = addBallAt();	
 			_paddle.catchBall(ball);		
-			_paused = false;
-		}//end onComplete()
+		}//end newBall()
 		
 		private function addBallAt(a_x:Number = 0, a_y:Number = 0):Ball
 		{
@@ -452,17 +471,7 @@ package com.bored.games.breakout.states.views
 			_multiplier.deactivateAction(BrickMultiplierManagerAction.NAME);
 			_multiplier.deactivateAction(PaddleMultiplierManagerAction.NAME);
 			
-			AppSettings.instance.userProfile.decrementLives();
-			
-			if (AppSettings.instance.userProfile.lives > 0)
-			{
-				var ball:Ball = addBallAt();
-				_paddle.catchBall(ball);
-			}
-			else
-			{
-				_paused = true;
-			}
+			dispatchEvent(new Event("ballLost"));
 		}//end ballLost()
 		
 		override public function exit():void
@@ -473,16 +482,18 @@ package com.bored.games.breakout.states.views
 			exitComplete();
 		}//end exit()
 		
+		public function setBackground(a_mc:MovieClip):void
+		{
+			_backgroundMC = a_mc;
+		}//end setBackground()
+		
 		private function renderFrame(e:Event):void
 		{			
 			var go:GridObject;
 			_drawnObjects.clear();
 			
-			if ( AppSettings.instance.currentLevel )
-			{
-				_backBuffer.draw(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
-			}
-			
+			_backBuffer.draw(_backgroundMC);
+						
 			var iter:SLLIterator = new SLLIterator(Collectables);
 			for ( var i:int = 0; i < _grid.gridWidth; i++)
 			{
@@ -573,29 +584,12 @@ package com.bored.games.breakout.states.views
 				{
 					if ( a_fixture.GetUserData().open )
 					{
-						resetGame();
-					
 						var vortex:PortalVortex = new PortalVortex(_gameScreen, a_fixture.GetUserData() as Portal);
 						vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
 						GameView.ParticleRenderer.addEmitter(vortex);
 						vortex.start();
 						
-						_grid.clear();
-									
-						AppSettings.instance.currentLevelInd++;
-				
-						if (AppSettings.instance.currentLevelInd >= AppSettings.instance.levelList.levelCount)
-						{
-							AppSettings.instance.currentLevelInd = 0;
-						}
-				
-						AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
-				
-						AppSettings.instance.userProfile.time = AppSettings.instance.currentLevel.timeLimit;
-						
-						_paddle.activatePowerup(null);
-						
-						loadNextLevel();
+						dispatchEvent(new Event("levelFinished"));
 					}
 				}
 				else
@@ -625,7 +619,6 @@ package com.bored.games.breakout.states.views
 		private function vortexComplete(e:EmitterEvent):void
 		{
 			GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
-			startGame();
 		}//end vortexComplete()
 		
 		private function handleCollectableCollision(a_collectable:b2Fixture, a_fixture:b2Fixture):void
@@ -757,8 +750,6 @@ package com.bored.games.breakout.states.views
 		
 		override public function update():void
 		{						
-			if ( AppSettings.instance.userProfile.time <= 0 ) _paused = true;
-			
 			if ( _paused ) return;
 			
 			if ( _balls.isEmpty() ) ballLost();
@@ -843,20 +834,7 @@ package com.bored.games.breakout.states.views
 			
 			if ( _grid.isEmpty() ) 
 			{
-				resetGame();
-				
-				AppSettings.instance.currentLevelInd++;
-				
-				if (AppSettings.instance.currentLevelInd >= AppSettings.instance.levelList.levelCount)
-				{
-					AppSettings.instance.currentLevelInd = 0;
-				}
-				
-				AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
-				
-				AppSettings.instance.userProfile.time = AppSettings.instance.currentLevel.timeLimit;
-					
-				loadNextLevel();
+				dispatchEvent(new Event("levelFinished"));
 			}
 			
 			if( stage )	stage.invalidate();

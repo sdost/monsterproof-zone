@@ -9,9 +9,7 @@ package com.bored.games.breakout.profiles
 	{
 		private var _lives:int;
 		private var _score:int;
-		
-		private var _timeRemaining:int;
-		
+	
 		public function UserProfile() 
 		{			
 			_lives = AppSettings.instance.defaultStartingLives;
@@ -38,28 +36,16 @@ package com.bored.games.breakout.profiles
 			_lives--;
 		}//end decrementLives()
 		
-		public function set time(a_time:int):void
-		{
-			_timeRemaining = a_time;
-		}//end set time()
-		
-		public function get time():int
-		{
-			return _timeRemaining;
-		}//end get time()
-		
-		public function decreaseTime(a_delta:int):void
-		{
-			_timeRemaining -= a_delta;
-			
-			if ( _timeRemaining <= 0 )
-				_timeRemaining = 0;
-		}//end decreaseTime()
-		
 		public function get lives():int
 		{
 			return _lives;
 		}//end get lives()
+		
+		public function reset():void
+		{
+			_lives = AppSettings.instance.defaultStartingLives;
+			_score = 0;
+		}//end reset()
 		
 	}//end UserProfile
 

@@ -25,6 +25,7 @@ package com.bored.games.breakout.physics
 		private static var _world:b2World;
 		private static var _doSleep:Boolean = true;
 		
+		private static var _lastUpdate:Number = 0;		
 		private static var _timeStep:Number = 1.0 / 60.0;
 		private static var _velIterations:int = 20;
 		private static var _posIterations:int = 20;
@@ -73,11 +74,14 @@ package com.bored.games.breakout.physics
 			return _world.GetGroundBody();
 		}//end GetGroundBody()
 		
-		public static function UpdateWorld():void
+		public static function UpdateWorld(t:Number = 0):void
 		{
 			if ( _world )
 			{
-				_world.Step(_timeStep, _velIterations, _posIterations);				
+				var delta:Number = t - _lastUpdate;
+				_lastUpdate = t;
+				
+				_world.Step(delta / 1000, _velIterations, _posIterations);				
 				_world.ClearForces();
 				_world.DrawDebugData();
 				
@@ -88,7 +92,7 @@ package com.bored.games.breakout.physics
 				{
 					if ( bb.GetUserData() != null )
 					{						
-						bb.GetUserData().update(time);
+						bb.GetUserData().update(t);
 					}
 					
 					bb = bb.GetNext();

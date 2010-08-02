@@ -4,11 +4,13 @@ package com.bored.games.breakout.objects.collectables
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
+	import Box2D.Dynamics.b2FilterData;
 	import Box2D.Dynamics.b2FixtureDef;
 	import com.bored.games.animations.AnimatedShot;
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
+	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
 	import flash.display.BitmapData;
 	
@@ -48,8 +50,13 @@ package com.bored.games.breakout.objects.collectables
 			
 			shape.SetAsBox( (b2Width / PhysicsWorld.PhysScale) / 2,  (b2Height / PhysicsWorld.PhysScale) / 2 );
 			
+			var filter:b2FilterData = new b2FilterData();
+			filter.categoryBits = GameView.id_Collectable;
+			filter.maskBits = GameView.id_Paddle;
+			
 			var fd:b2FixtureDef = new b2FixtureDef();
 			fd.shape = shape;
+			fd.filter = filter;
 			fd.density = 1.0;
 			fd.friction = 0.0;
 			fd.restitution = 1.0;

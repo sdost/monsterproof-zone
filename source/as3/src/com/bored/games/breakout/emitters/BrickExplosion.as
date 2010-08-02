@@ -22,6 +22,7 @@ package com.bored.games.breakout.emitters
 	import org.flintparticles.twoD.actions.Move;
 	import org.flintparticles.twoD.emitters.Emitter2D;
 	import org.flintparticles.twoD.zones.BitmapDataZone;
+	import org.flintparticles.twoD.zones.RectangleZone;
 	
 	/**
 	 * ...
@@ -37,9 +38,12 @@ package com.bored.games.breakout.emitters
 			var xOffset:Number = a_brick.gridX * AppSettings.instance.defaultTileWidth;
 			var yOffset:Number = a_brick.gridY * AppSettings.instance.defaultTileHeight;
 			
+			var wOffset:Number = a_brick.gridWidth * AppSettings.instance.defaultTileWidth;
+			var hOffset:Number = a_brick.gridHeight * AppSettings.instance.defaultTileHeight;
+			
 			addInitializer( new ImageClass( RadialDot, 20 ) );
 			addInitializer( new Lifetime( 0.2, 0.5 ) );
-			addInitializer( new Position( new BitmapDataZone( a_brick.currFrame, xOffset, yOffset ) ) );
+			addInitializer( new Position( new RectangleZone(xOffset, yOffset, xOffset + wOffset, yOffset + hOffset) ) );
 			
 			addAction( new MultiColorChange([0xFFFF00, 0xFF8200, 0xc00000]) );
 			addAction( new Fade(0.8, 0.4) );

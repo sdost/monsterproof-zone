@@ -6,6 +6,7 @@ package com.bored.games.breakout.objects
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
+	import Box2D.Dynamics.b2FilterData;
 	import Box2D.Dynamics.b2Fixture;
 	import Box2D.Dynamics.b2FixtureDef;
 	import Box2D.Dynamics.Joints.b2PrismaticJoint;
@@ -16,6 +17,7 @@ package com.bored.games.breakout.objects
 	import com.bored.games.breakout.actions.SuperLaserPaddleAction;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
+	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
 	import flash.display.Bitmap;
@@ -88,11 +90,16 @@ package com.bored.games.breakout.objects
 			var shape:b2PolygonShape = new b2PolygonShape();
 			shape.SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.currFrame.height / 2) / PhysicsWorld.PhysScale );
 			
+			var filter:b2FilterData = new b2FilterData();
+			filter.categoryBits = GameView.id_Paddle;
+			filter.maskBits = GameView.id_Collectable | GameView.id_Ball;
+			
 			var fd:b2FixtureDef = new b2FixtureDef();
 			fd.shape = shape;
+			fd.filter = filter;
 			fd.density = 1.0;
 			fd.friction = 0.0;
-			fd.restitution = 1.0;
+			fd.restitution = 1.0;			
 			fd.userData = this;
 			
 			_paddleBody = PhysicsWorld.CreateBody(bd);

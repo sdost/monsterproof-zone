@@ -33,6 +33,7 @@ package com.bored.games.breakout.emitters
 	import org.flintparticles.twoD.zones.BitmapDataZone;
 	import org.flintparticles.twoD.zones.DiscZone;
 	import org.flintparticles.twoD.zones.PointZone;
+	import org.flintparticles.twoD.zones.RectangleZone;
 	
 	/**
 	 * ...
@@ -48,9 +49,12 @@ package com.bored.games.breakout.emitters
 			var xOffset:Number = a_brick.gridX * AppSettings.instance.defaultTileWidth;
 			var yOffset:Number = a_brick.gridY * AppSettings.instance.defaultTileHeight;
 			
+			var wOffset:Number = a_brick.gridWidth * AppSettings.instance.defaultTileWidth;
+			var hOffset:Number = a_brick.gridHeight * AppSettings.instance.defaultTileHeight;
+			
 			addInitializer( new ImageClass( Dot, 2, 0x57d8dd, BlendMode.SCREEN ) );
 			addInitializer( new Lifetime( 0.5, 0.8 ) );
-			addInitializer( new Position( new BitmapDataZone( a_brick.currFrame, xOffset, yOffset ) ) );
+			addInitializer( new Position( new RectangleZone(xOffset, yOffset, xOffset + wOffset, yOffset + hOffset) ) );
 			
 			addAction( 
 				new Explosion( 

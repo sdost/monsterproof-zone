@@ -8,7 +8,9 @@ package com.bored.games.breakout.states.views
 	import Box2D.Common.Math.b2Vec2;
 	import Box2D.Dynamics.b2Body;
 	import Box2D.Dynamics.b2BodyDef;
+	import Box2D.Dynamics.b2FilterData;
 	import Box2D.Dynamics.b2Fixture;
+	import Box2D.Dynamics.b2FixtureDef;
 	import Box2D.Dynamics.Contacts.b2Contact;
 	import Box2D.Dynamics.Joints.b2DistanceJoint;
 	import Box2D.Dynamics.Joints.b2DistanceJointDef;
@@ -138,6 +140,13 @@ package com.bored.games.breakout.states.views
 	 */
 	public class GameView extends StateView
 	{		
+		public static const id_Ball:uint = 0x000001;
+		public static const id_Brick:uint = 0x000010;
+		public static const id_Paddle:uint = 0x000100;
+		public static const id_Bullet:uint = 0x001000;
+		public static const id_Collectable:uint = 0x010000;
+		public static const id_Wall:uint = 0x100000;
+		
 		public static var Contacts:ContactLL;
 		public static var Collectables:SLL;
 		public static var Bullets:SLL;
@@ -198,6 +207,8 @@ package com.bored.games.breakout.states.views
 			super();
 						
 			_balls = new SLL();
+			
+			_backgroundMC = new MovieClip();
 			
 			Contacts = new ContactLL();
 			Collectables = new SLL();
@@ -263,22 +274,33 @@ package com.bored.games.breakout.states.views
 		{		
 			//trace("GameView::enter()");
 			
+			var filter:b2FilterData = new b2FilterData();
+			filter.categoryBits = GameView.id_Wall;
+			filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
+			
+			var fixture:b2FixtureDef = new b2FixtureDef();
+			fixture.filter = filter;
+			
 			var wall:b2PolygonShape = new b2PolygonShape();
 			var wallBd:b2BodyDef = new b2BodyDef();
 			wallBd.type = b2Body.b2_staticBody;
 			_walls = PhysicsWorld.CreateBody(wallBd);
 			
 			wall.SetAsOrientedBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new b2Vec2(-30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
-			_walls.CreateFixture2(wall);
+			fixture.shape = wall;
+			_walls.CreateFixture(fixture);
 			
 			wall.SetAsOrientedBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new b2Vec2(336 / PhysicsWorld.PhysScale, -30 / PhysicsWorld.PhysScale) );
-			_topWall = _walls.CreateFixture2(wall);
+			fixture.shape = wall;
+			_topWall = _walls.CreateFixture(fixture);
 			
 			wall.SetAsOrientedBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new b2Vec2(704 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
-			_walls.CreateFixture2(wall);
+			fixture.shape = wall;
+			_walls.CreateFixture(fixture);
 			
 			wall.SetAsOrientedBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new b2Vec2(336 / PhysicsWorld.PhysScale, 574 / PhysicsWorld.PhysScale) );
-			_bottomWall = _walls.CreateFixture2(wall);
+			fixture.shape = wall;
+			_bottomWall = _walls.CreateFixture(fixture);
 			
 			_paddle = new Paddle();
 			_paddle.physicsBody.SetPosition( new b2Vec2( 336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale ) );
@@ -493,24 +515,21 @@ package com.bored.games.breakout.states.views
 			_drawnObjects.clear();
 			
 			_backBuffer.draw(_backgroundMC);
-						
-			var iter:SLLIterator = new SLLIterator(Collectables);
-			for ( var i:int = 0; i < _grid.gridWidth; i++)
-			{
-				for ( var j:int = 0; j < _grid.gridHeight; j++ )
-				{
-					go = _grid.getGridObjectAt(i, j);
-					if (go && !_drawnObjects.contains(go)) 
-					{
-						var bmd:BitmapData = (go as Brick).currFrame;
-						_backBuffer.copyPixels( bmd, bmd.rect, new Point(i * AppSettings.instance.defaultTileWidth, j * AppSettings.instance.defaultTileHeight), null, null, true );
-						
-						_drawnObjects.append(go);
-					}
-				}
-			}
 			
 			var obj:Object;
+			
+			var iter:SLLIterator = new SLLIterator(_grid.gridObjectList);
+			while ( iter.hasNext() )
+			{
+				obj = iter.next();
+				if (!_drawnObjects.contains(obj)) 
+				{
+					var bmd:BitmapData = obj.currFrame;
+					_backBuffer.copyPixels( bmd, bmd.rect, new Point(obj.gridX * AppSettings.instance.defaultTileWidth, obj.gridY * AppSettings.instance.defaultTileHeight), null, null, true );
+					
+					_drawnObjects.append(obj);
+				}
+			}
 			
 			iter = new SLLIterator(_balls);
 			while ( iter.hasNext() )
@@ -762,7 +781,7 @@ package com.bored.games.breakout.states.views
 			
 			_lineJoint.SetLimits( -(330 - _paddle.width / 2) / PhysicsWorld.PhysScale, (330 - _paddle.width / 2) / PhysicsWorld.PhysScale );
 			
-			PhysicsWorld.UpdateWorld();
+			PhysicsWorld.UpdateWorld(getTimer());
 		
 			var iter:SLLIterator = new SLLIterator(Contacts);
 			while( iter.hasNext() )
@@ -954,11 +973,6 @@ class GameContactListener extends b2ContactListener
 			{
 				contact.SetSensor(true);
 			}
-		}
-		
-		if (fixtureA.GetUserData() is Collectable && !(fixtureB.GetUserData() is SimpleBrick))
-		{
-			contact.SetEnabled(false);
 		}
 		
 		if (!(fixtureA.GetUserData() is Paddle && fixtureB.GetUserData() is Ball))

@@ -11,6 +11,7 @@ package com.bored.games.breakout.objects
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
+	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
 	import flash.display.Bitmap;
@@ -86,8 +87,13 @@ package com.bored.games.breakout.objects
 			bd.allowSleep = false;
 			bd.userData = this;
 
+			var filter:b2FilterData = new b2FilterData();
+			filter.categoryBits = GameView.id_Ball;
+			filter.maskBits = GameView.id_Brick | GameView.id_Paddle | GameView.id_Wall;
+			
 			var fd:b2FixtureDef = new b2FixtureDef();
 			fd.shape = new b2CircleShape( (_animatedSprite.width / 2) / PhysicsWorld.PhysScale );
+			fd.filter = filter;
 			fd.density = 1.0;
 			fd.friction = 0.0;
 			fd.restitution = 1.0;

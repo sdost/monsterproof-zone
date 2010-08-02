@@ -5,6 +5,7 @@ package com.bored.games.breakout.objects.bricks
 	import com.bored.games.breakout.objects.AnimationController;
 	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.objects.Grid;
+	import com.bored.games.breakout.states.views.GameView;
 	import flash.display.BitmapData;
 	import flash.events.Event;
 	
@@ -56,14 +57,16 @@ package com.bored.games.breakout.objects.bricks
 			if (_alive)
 			{
 				filter = new b2FilterData();
-				filter.maskBits = 0x1111;
+				filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
+				filter.categoryBits = GameView.id_Brick;
 				
 				_brickFixture.SetFilterData(filter);
 			}
 			else
 			{
 				filter = new b2FilterData();
-				filter.maskBits = 0x0000;
+				filter.maskBits = 0x000000;
+				filter.categoryBits = GameView.id_Brick;
 				
 				_brickFixture.SetFilterData(filter);
 			}
@@ -99,8 +102,9 @@ package com.bored.games.breakout.objects.bricks
 		public function revive():void
 		{
 			_alive = true;
-			var filter:b2FilterData = new b2FilterData();
-			filter.maskBits = 0x1111;
+			var filter:b2FilterData = new b2FilterData()
+			filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
+			filter.categoryBits = GameView.id_Brick;
 				
 			_brickFixture.SetFilterData(filter);
 			
@@ -125,8 +129,9 @@ package com.bored.games.breakout.objects.bricks
 			}
 			
 			_alive = false;
-			var filter:b2FilterData = new b2FilterData();
-			filter.maskBits = 0x0000;
+			var filter:b2FilterData = new b2FilterData()
+			filter.maskBits = 0;
+			filter.categoryBits = GameView.id_Brick;
 				
 			_brickFixture.SetFilterData(filter);
 			

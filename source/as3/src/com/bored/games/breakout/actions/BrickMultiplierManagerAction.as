@@ -16,12 +16,13 @@ package com.bored.games.breakout.actions
 		
 		private var _startTime:int;
 		
-		private var _multplier:int;
+		private var _multiplier:int;
 		
 		public function BrickMultiplierManagerAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
 			super(NAME, a_gameElement, a_params);
 			
+			_multiplier = 1;
 		}//end constructor()
 	
 		override public function initParams(a_params:Object):void 
@@ -31,26 +32,26 @@ package com.bored.games.breakout.actions
 		
 		override public function startAction():void 
 		{			
-			_multplier = 0;
+			_multiplier = 1;
 			
 			this.finished = false;
 		}//end startAction()
 		
 		public function increaseMultiplier():void
 		{
-			_multplier++;
+			_multiplier++;
 			
 			_startTime = getTimer();
 		}//end increaseMultiplier()
 		
 		public function get multiplier():int
 		{
-			return _multplier;
+			return _multiplier;
 		}//end get multiplier()
 		
 		override public function update(a_time:Number):void 
 		{
-			if ( (getTimer() - _startTime) > _multiplierTimeout )
+			if ( (a_time - _startTime) > _multiplierTimeout )
 			{				
 				this.finished = true;
 			}
@@ -62,11 +63,7 @@ package com.bored.games.breakout.actions
 			
 			if (_finished)
 			{
-				
-			}
-			else
-			{
-				
+				_multiplier = 1;
 			}
 			
 		}//end set finished() 

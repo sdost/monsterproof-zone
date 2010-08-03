@@ -3,6 +3,7 @@ package com.bored.games.breakout.states.controllers
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.breakout.states.views.HUDView;
 	import com.bored.games.input.Input;
+	import com.inassets.events.ObjectEvent;
 	import com.jac.fsm.stateEvents.StateEvent;
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
@@ -75,6 +76,8 @@ package com.bored.games.breakout.states.controllers
 			
 			(_gameView as GameView).addEventListener("ballLost", ballLost, false, 0, true);
 			(_gameView as GameView).addEventListener("levelFinished", levelFinished, false, 0, true);
+			(_gameView as GameView).addEventListener("addPoints", addUserPoints, false, 0, true);
+			(_gameView as GameView).addEventListener("ballGained", ballGained, false, 0, true);
 		}//end gameStartComplete()
 		
 		private function gameOverComplete(e:Event):void
@@ -100,12 +103,28 @@ package com.bored.games.breakout.states.controllers
 			}
 		}//end ballLost()
 		
+		private function ballGained(e:Event):void
+		{
+			AppSettings.instance.userProfile.incrementLives();
+		}//end ballGained()
+		
+		private function addUserPoints(e:ObjectEvent):void
+		{
+			AppSettings.instance.userProfile.addPoints(e.obj.points);
+			
+			(_hudView as HUDView).addPopupText( e.obj.points, e.obj.x, e.obj.y );
+		}//end ballGained()
+		
 		private function endGame():void
 		{
 			(_gameView as GameView).removeEventListener("ballLost", ballLost);
 			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
+			(_gameView as GameView).removeEventListener("addPoints", addUserPoints);
+			(_gameView as GameView).removeEventListener("ballGained", ballGained);
 			
 			_running = false;
+			
+			(_gameView as GameView).resetGame();
 			
 			AppSettings.instance.userProfile.reset();
 			
@@ -116,6 +135,8 @@ package com.bored.games.breakout.states.controllers
 		{
 			(_gameView as GameView).removeEventListener("ballLost", ballLost);
 			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
+			(_gameView as GameView).removeEventListener("addPoints", addUserPoints);
+			(_gameView as GameView).removeEventListener("ballGained", ballGained);
 			
 			_running = false;
 			

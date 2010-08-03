@@ -35,6 +35,7 @@ package com.bored.games.breakout.actions
 		
 		private function finishAction(e:Event):void
 		{
+			Emitter2D(e.currentTarget).stop();
 			Emitter2D(e.currentTarget).removeEventListener( EmitterEvent.EMITTER_EMPTY, finishAction);
 			
 			_finished = true;

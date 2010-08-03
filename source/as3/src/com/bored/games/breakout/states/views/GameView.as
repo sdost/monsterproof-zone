@@ -62,6 +62,7 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.input.Input;
 	import com.bored.games.objects.GameElement;
+	import com.inassets.events.ObjectEvent;
 	import com.jac.fsm.StateView;
 	import com.sven.utils.AppSettings;
 	import de.polygonal.ds.mem.MemoryManager;
@@ -133,6 +134,10 @@ package com.bored.games.breakout.states.views
 	[Event(name = 'levelFinished', type = 'flash.events.Event')]
 	
 	[Event(name = 'ballLost', type = 'flash.events.Event')]
+	
+	[Event(name = 'ballGained', type = 'flash.events.Event')]
+	
+	[Event(name = 'addPoints', type = 'com.inassets.events.ObjectEvent')]
 	
 	/**
 	 * ...
@@ -217,8 +222,8 @@ package com.bored.games.breakout.states.views
 			_drawnObjects = new SLL();
 			
 			_multiplier = new GameElement();
-			_brickMultiplierManager = new BrickMultiplierManagerAction(_multiplier, { "timeout":250 } );
-			_paddleMultiplierManager = new PaddleMultiplierManagerAction(_multiplier, { "maxMultiplier":5 } );
+			_brickMultiplierManager = new BrickMultiplierManagerAction(_multiplier, { "timeout": 250 } );
+			_paddleMultiplierManager = new PaddleMultiplierManagerAction(_multiplier, { "maxMultiplier": 5 } );
 			_multiplier.addAction(_brickMultiplierManager);
 			_multiplier.addAction(_paddleMultiplierManager);
 				
@@ -257,8 +262,8 @@ package com.bored.games.breakout.states.views
 			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), false );
 			addChild((ParticleRenderer as BitmapRenderer));
 			
-			_stats = new Stats();
-			addChild(_stats);
+			//_stats = new Stats();
+			//addChild(_stats);
 		}//end addedToStageHandler()
 		
 		override protected function removedFromStageHandler(e:Event):void
@@ -588,7 +593,7 @@ package com.bored.games.breakout.states.views
 					_grid.explodeBricks(neighbors);
 				}
 				
-				if (a_fixture.GetUserData().notifyHit(a_ball.GetUserData().damagePoints))
+				if ( a_fixture.GetUserData().notifyHit( a_ball.GetUserData().damagePoints ) )
 				{
 					if ( _brickMultiplierManager.finished )
 					{
@@ -597,7 +602,7 @@ package com.bored.games.breakout.states.views
 					
 					_brickMultiplierManager.increaseMultiplier();
 					
-					AppSettings.instance.userProfile.addPoints(AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier);
+					dispatchEvent( new ObjectEvent( "addPoints", { "points": AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier, "x": a_point.x * PhysicsWorld.PhysScale, "y": a_point.y * PhysicsWorld.PhysScale } ) );
 				}
 				else if ( a_fixture.GetUserData() is Portal )
 				{
@@ -625,6 +630,7 @@ package com.bored.games.breakout.states.views
 						);
 						emitter.addEventListener(EmitterEvent.EMITTER_EMPTY, 
 						function(e:EmitterEvent):void {
+							Emitter2D(e.currentTarget).stop();
 							GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
 						},
 						false, 0, true);						
@@ -637,6 +643,7 @@ package com.bored.games.breakout.states.views
 		
 		private function vortexComplete(e:EmitterEvent):void
 		{
+			Emitter2D(e.currentTarget).stop();
 			GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
 		}//end vortexComplete()
 		
@@ -658,6 +665,7 @@ package com.bored.games.breakout.states.views
 				var emitter:CollectionFizzle = new CollectionFizzle(a_fixture.GetUserData() as Paddle);
 				emitter.addEventListener(EmitterEvent.EMITTER_EMPTY,
 				function(e:EmitterEvent):void {
+					Emitter2D(e.currentTarget).stop();
 					GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
 				},
 				false, 0, true);						
@@ -673,11 +681,11 @@ package com.bored.games.breakout.states.views
 				}
 				else if ( a_collectable.GetUserData().actionName == "extralife" )
 				{
-					AppSettings.instance.userProfile.incrementLives();
+					dispatchEvent(new Event("ballGained"));
 				}
 				else if ( a_collectable.GetUserData().actionName == "bonus" )
 				{
-					AppSettings.instance.userProfile.addPoints(1000);
+					dispatchEvent(new ObjectEvent("addPoints", { "points": 1000, "x": a_collectable.GetUserData().x, "y": a_collectable.GetUserData().x } ));
 				}
 				else if ( a_collectable.GetUserData().actionName == DestructoballAction.NAME || a_collectable.GetUserData().actionName == InvinciballAction.NAME )
 				{
@@ -770,6 +778,9 @@ package com.bored.games.breakout.states.views
 		override public function update():void
 		{						
 			if ( _paused ) return;
+			
+			_brickMultiplierManager.update(getTimer());
+			_paddleMultiplierManager.update(getTimer());
 			
 			if ( _balls.isEmpty() ) ballLost();
 			
@@ -955,7 +966,7 @@ class GameContactListener extends b2ContactListener
 		var newVel:b2Vec2 = vB.Copy();
 		newVel.x = ballXRatio * AppSettings.instance.paddleReflectionMultiplier;
 		
-		var solvedYVel:Number = Math.sqrt(vB.LengthSquared() - (newVel.x * newVel.x));
+		var solvedYVel:Number = Math.sqrt(Math.abs(vB.LengthSquared() - (newVel.x * newVel.x)));
 		
 		newVel.y = -solvedYVel;
 		

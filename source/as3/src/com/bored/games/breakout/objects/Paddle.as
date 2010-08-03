@@ -279,7 +279,7 @@ package com.bored.games.breakout.objects
 				
 				var vel:b2Vec2 = new b2Vec2();
 				vel.x = ballXRatio * AppSettings.instance.paddleReflectionMultiplier;
-				vel.y = -Math.sqrt((b.speed * b.speed) - (vel.x * vel.x));
+				vel.y = -Math.sqrt(Math.abs((b.speed * b.speed) - (vel.x * vel.x)));
 				
 				PhysicsWorld.DestroyJoint(_paddleJoint);
 				_paddleJoint = null;

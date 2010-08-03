@@ -89,7 +89,7 @@ package com.bored.games.breakout.objects
 
 			var filter:b2FilterData = new b2FilterData();
 			filter.categoryBits = GameView.id_Ball;
-			filter.maskBits = GameView.id_Brick | GameView.id_Paddle | GameView.id_Wall;
+			filter.maskBits = GameView.id_Brick | GameView.id_Paddle | GameView.id_Wall | GameView.id_Ball;
 			
 			var fd:b2FixtureDef = new b2FixtureDef();
 			fd.shape = new b2CircleShape( (_animatedSprite.width / 2) / PhysicsWorld.PhysScale );

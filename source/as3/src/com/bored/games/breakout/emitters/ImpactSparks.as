@@ -43,6 +43,8 @@ package com.bored.games.breakout.emitters
 	public class ImpactSparks extends Emitter2D
 	{
 		
+		private static const p:Point = new Point();
+		
 		public function ImpactSparks(a_pos:Point, a_angle:Number) 
 		{
 			this.counter = new Blast( 8 );
@@ -50,8 +52,7 @@ package com.bored.games.breakout.emitters
 			addInitializer( new ImageClass( Dot, 1, 0xffff00 ) );
 			addInitializer( new Lifetime( 0.1, 0.5 ) );			
 			addInitializer( new Position( new DiscZone( a_pos, 1, 1 ) ) );
-			addInitializer( new Velocity( new DiscSectorZone( new Point(0,0), 200, 1, a_angle - Math.PI/2, a_angle + Math.PI/2  ) ) );
-			
+			addInitializer( new Velocity( new DiscSectorZone( p, 200, 1, a_angle - Math.PI/2, a_angle + Math.PI/2  ) ) );
 			
 			addAction( new Move() );
 			addAction( new Age() );

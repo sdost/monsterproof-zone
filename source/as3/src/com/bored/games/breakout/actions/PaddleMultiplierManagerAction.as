@@ -18,6 +18,8 @@ package com.bored.games.breakout.actions
 		public function PaddleMultiplierManagerAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
 			super(NAME, a_gameElement, a_params);
+			
+			_multiplier = 1;
 		}//end constructor()
 	
 		override public function initParams(a_params:Object):void 

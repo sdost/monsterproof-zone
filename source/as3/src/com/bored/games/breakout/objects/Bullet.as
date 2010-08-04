@@ -58,7 +58,6 @@ package com.bored.games.breakout.objects
 			fd.friction = 0.0;
 			fd.restitution = 1.0;
 			fd.userData = this;
-			fd.isSensor = true;
 			
 			_bulletBody = PhysicsWorld.CreateBody(bd);
 			_bulletBody.CreateFixture(fd);

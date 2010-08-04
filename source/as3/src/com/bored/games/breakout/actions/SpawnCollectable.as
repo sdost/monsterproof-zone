@@ -3,6 +3,7 @@ package com.bored.games.breakout.actions
 	import Box2D.Common.Math.b2Vec2;
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.objects.bricks.Brick;
+	import com.bored.games.breakout.objects.collectables.BlockBonus;
 	import com.bored.games.breakout.objects.collectables.CatchPowerup;
 	import com.bored.games.breakout.objects.collectables.Collectable;
 	import com.bored.games.breakout.objects.collectables.DestructoballPowerup;
@@ -50,6 +51,9 @@ package com.bored.games.breakout.actions
 			
 			switch(_type)
 			{
+				case "bonus":
+					pb = new BlockBonus();
+					break;
 				case "extend":
 					pb = new ExtendPowerup();
 					break;
@@ -76,7 +80,6 @@ package com.bored.games.breakout.actions
 					break;
 			}
 			
-			pb.physicsBody.ApplyImpulse( new b2Vec2( 0, AppSettings.instance.defaultCollectableFallSpeed * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
 			pb.physicsBody.SetPosition( new b2Vec2( (xOffset - pb.width / 2) / PhysicsWorld.PhysScale, (yOffset - pb.height / 2) / PhysicsWorld.PhysScale ) );
 			
 			GameView.Collectables.append(pb);

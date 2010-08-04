@@ -368,6 +368,9 @@ package com.bored.games.breakout.states.views
 				{
 					switch(className)
 					{
+						case "PlaceholderGem":
+							_grid.addCollectable("bonus", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
+							break;
 						case "PlaceholderExtend":
 							_grid.addCollectable("extend", uint(obj.x / AppSettings.instance.defaultTileWidth  + 0.5), uint(obj.y / AppSettings.instance.defaultTileHeight + 0.5));
 							break;
@@ -400,7 +403,7 @@ package com.bored.games.breakout.states.views
 				{
 					var pb:Collectable = new Bonus();
 					//pb.physicsBody.ApplyImpulse( new b2Vec2( 0, AppSettings.instance.defaultCollectableFallSpeed * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
-					pb.physicsBody.SetPosition( new b2Vec2( (obj.x + obj.width / 2) / PhysicsWorld.PhysScale, (obj.y + obj.height / 2) / PhysicsWorld.PhysScale) );
+					pb.physicsBody.SetPosition( new b2Vec2( obj.x / PhysicsWorld.PhysScale, obj.y / PhysicsWorld.PhysScale) );
 			
 					GameView.Collectables.append(pb);
 					continue;
@@ -533,7 +536,7 @@ package com.bored.games.breakout.states.views
 				if (!_drawnObjects.contains(obj)) 
 				{
 					var bmd:BitmapData = obj.currFrame;
-					_backBuffer.copyPixels( bmd, bmd.rect, new Point(obj.gridX * AppSettings.instance.defaultTileWidth, obj.gridY * AppSettings.instance.defaultTileHeight), null, null, true );
+					_backBuffer.copyPixels( bmd, bmd.rect, new Point(obj.x, obj.y), null, null, true );
 					
 					_drawnObjects.append(obj);
 				}
@@ -611,6 +614,13 @@ package com.bored.games.breakout.states.views
 				{
 					if ( a_fixture.GetUserData().open )
 					{
+						var dx:Number = a_ball.GetUserData().x - a_fixture.GetUserData().x;
+						var dy:Number = a_ball.GetUserData().y - a_fixture.GetUserData().y;
+						
+						var dist:Number = Math.sqrt(dx * dx + dy * dy);
+						
+						if ( dist > 30 ) return;
+						
 						var vortex:PortalVortex = new PortalVortex(_gameScreen, a_fixture.GetUserData() as Portal);
 						vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
 						GameView.ParticleRenderer.addEmitter(vortex);
@@ -765,11 +775,25 @@ package com.bored.games.breakout.states.views
 			_paused = true;
 			
 			Contacts.clear();
+			
+			var iter:SLLIterator = new SLLIterator(Collectables);
+			var obj:Object;
+			while ( iter.hasNext() )
+			{
+				obj = iter.next();
+				obj.destroy();
+			}
 			Collectables.clear();
+			
+			iter = new SLLIterator(Bullets);
+			while ( iter.hasNext() )
+			{
+				obj = iter.next();
+				obj.destroy();
+			}
 			Bullets.clear();
 			
-			var iter:SLLIterator = new SLLIterator(_balls);
-			var obj:Object;
+			iter = new SLLIterator(_balls);
 			while ( iter.hasNext() )
 			{
 				obj = iter.next();

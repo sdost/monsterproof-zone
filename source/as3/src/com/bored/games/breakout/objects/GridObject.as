@@ -67,6 +67,9 @@ package com.bored.games.breakout.objects
 			_grid = a_grid;
 			_gridX = a_x;
 			_gridY = a_y;
+			
+			this.x = this.gridX * AppSettings.instance.defaultTileWidth + _grid.x;
+			this.y = this.gridY * AppSettings.instance.defaultTileHeight + _grid.y;
 		}//end addToGrid()
 		
 		public function removeFromGrid():void
@@ -74,6 +77,9 @@ package com.bored.games.breakout.objects
 			_grid = null;
 			_gridX = 0;
 			_gridY = 0;
+			
+			this.x = 0;
+			this.y = 0;
 		}//end addToGrid()
 		
 		public function destroy():void

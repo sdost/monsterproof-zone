@@ -60,7 +60,7 @@ package com.bored.games.breakout.objects.collectables
 			fd.density = 1.0;
 			fd.friction = 0.0;
 			fd.restitution = 1.0;
-			fd.isSensor = true;
+			//fd.isSensor = true;
 			fd.userData = this;
 			
 			_collectableBody = PhysicsWorld.CreateBody(bd);
@@ -107,6 +107,8 @@ package com.bored.games.breakout.objects.collectables
 			
 			this.x = pos.x * PhysicsWorld.PhysScale;
 			this.y = pos.y * PhysicsWorld.PhysScale;
+			
+			_collectableBody.ApplyForce(new b2Vec2(0, 10 * _collectableBody.GetMass()), _collectableBody.GetWorldCenter());
 		}//end update()
 		
 		public function destroy():void 

@@ -18,7 +18,7 @@ package com.bored.games.breakout.objects.collectables
 	 */
 	public class Bonus extends Collectable
 	{
-		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Bonus_MC')]
+		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.BonusBlue_MC')]
 		private static var mcCls:Class;
 		private static var sprite:AnimatedSprite = AnimatedSpriteFactory.generateAnimatedSprite(new mcCls());
 		
@@ -62,18 +62,6 @@ package com.bored.games.breakout.objects.collectables
 		{
 			return "bonus";
 		}//end get actionName()
-		
-		override public function update(t:Number = 0):void 
-		{
-			_animatedSprite.update(t);
-			
-			var pos:b2Vec2 = _collectableBody.GetPosition();
-			
-			this.x = pos.x * PhysicsWorld.PhysScale - width / 2;
-			this.y = pos.y * PhysicsWorld.PhysScale - height / 2;
-			
-			_collectableBody.ApplyForce(new b2Vec2(0, 10 * _collectableBody.GetMass()), _collectableBody.GetWorldCenter());
-		}//end update()
 		
 	}//end Bonus
 

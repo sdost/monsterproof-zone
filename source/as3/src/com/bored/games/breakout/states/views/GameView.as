@@ -222,7 +222,7 @@ package com.bored.games.breakout.states.views
 			_drawnObjects = new SLL();
 			
 			_multiplier = new GameElement();
-			_brickMultiplierManager = new BrickMultiplierManagerAction(_multiplier, { "timeout": 250 } );
+			_brickMultiplierManager = new BrickMultiplierManagerAction(_multiplier, { "timeout": 250, "maxMultiplier": 10 } );
 			_paddleMultiplierManager = new PaddleMultiplierManagerAction(_multiplier, { "maxMultiplier": 5 } );
 			_multiplier.addAction(_brickMultiplierManager);
 			_multiplier.addAction(_paddleMultiplierManager);
@@ -602,7 +602,7 @@ package com.bored.games.breakout.states.views
 					
 					_brickMultiplierManager.increaseMultiplier();
 					
-					dispatchEvent( new ObjectEvent( "addPoints", { "points": AppSettings.instance.brickPoints * _brickMultiplierManager.multiplier * _paddleMultiplierManager.multiplier, "x": a_point.x * PhysicsWorld.PhysScale, "y": a_point.y * PhysicsWorld.PhysScale } ) );
+					dispatchEvent( new ObjectEvent( "addPoints", { "basePoints": AppSettings.instance.brickPoints, "brickMult": _brickMultiplierManager.multiplier, "paddleMult": _paddleMultiplierManager.multiplier, "x": a_point.x * PhysicsWorld.PhysScale, "y": a_point.y * PhysicsWorld.PhysScale } ) );
 				}
 				else if ( a_fixture.GetUserData() is Portal )
 				{
@@ -685,7 +685,7 @@ package com.bored.games.breakout.states.views
 				}
 				else if ( a_collectable.GetUserData().actionName == "bonus" )
 				{
-					dispatchEvent(new ObjectEvent("addPoints", { "points": 1000, "x": a_collectable.GetUserData().x, "y": a_collectable.GetUserData().x } ));
+					dispatchEvent(new ObjectEvent("addPoints", { "basePoints": 1000, "brickMult": 1, "paddleMult": 1, "x": a_collectable.GetUserData().x, "y": a_collectable.GetUserData().x } ));
 				}
 				else if ( a_collectable.GetUserData().actionName == DestructoballAction.NAME || a_collectable.GetUserData().actionName == InvinciballAction.NAME )
 				{

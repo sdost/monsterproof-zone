@@ -47,6 +47,11 @@ package com.bored.games.breakout.actions
 			return _multiplier;
 		}//end get multiplier()
 		
+		public function get maxMultiplier():int
+		{
+			return _multiplierMax;
+		}//end get maxMultiplier()
+		
 		override public function update(a_time:Number):void 
 		{
 			

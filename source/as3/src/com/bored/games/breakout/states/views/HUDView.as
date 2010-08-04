@@ -289,9 +289,9 @@ package com.bored.games.breakout.states.views
 			super.removedFromStageHandler(e);
 		}//end removedFromStageHandler()
 		
-		public function addPopupText(a_str:String, a_x:Number, a_y:Number):void
+		public function addPopupText(a_base:int, a_brickMult:int, a_paddleMult:int, a_x:Number, a_y:Number):void
 		{
-			var popup:FadingText = new FadingText(a_str, bitmapFont);
+			var popup:FadingText = new FadingText( new String(a_base * a_brickMult * a_paddleMult), bitmapFont, a_brickMult / 10);
 			popup.x = a_x;
 			popup.y = a_y;
 			

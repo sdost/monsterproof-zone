@@ -110,9 +110,9 @@ package com.bored.games.breakout.states.controllers
 		
 		private function addUserPoints(e:ObjectEvent):void
 		{
-			AppSettings.instance.userProfile.addPoints(e.obj.points);
+			AppSettings.instance.userProfile.addPoints( e.obj.basePoints * e.obj.brickMult * e.obj.paddleMult );
 			
-			(_hudView as HUDView).addPopupText( e.obj.points, e.obj.x, e.obj.y );
+			(_hudView as HUDView).addPopupText( e.obj.basePoints, e.obj.brickMult, e.obj.paddleMult, e.obj.x, e.obj.y );
 		}//end ballGained()
 		
 		private function endGame():void

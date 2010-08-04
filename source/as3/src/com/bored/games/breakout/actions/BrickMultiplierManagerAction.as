@@ -17,6 +17,7 @@ package com.bored.games.breakout.actions
 		private var _startTime:int;
 		
 		private var _multiplier:int;
+		private var _maxMultiplier:int;
 		
 		public function BrickMultiplierManagerAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
@@ -28,6 +29,7 @@ package com.bored.games.breakout.actions
 		override public function initParams(a_params:Object):void 
 		{
 			_multiplierTimeout = a_params.timeout;
+			_maxMultiplier = a_params.maxMultiplier;
 		}//end initParams()
 		
 		override public function startAction():void 
@@ -41,8 +43,16 @@ package com.bored.games.breakout.actions
 		{
 			_multiplier++;
 			
+			if ( _multiplier > _maxMultiplier )
+				_multiplier = _maxMultiplier;
+			
 			_startTime = getTimer();
 		}//end increaseMultiplier()
+		
+		public function get maxMultiplier():int
+		{
+			return _maxMultiplier;
+		}//end get maxMultiplier()
 		
 		public function get multiplier():int
 		{

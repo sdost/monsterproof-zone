@@ -3,6 +3,7 @@ package com.bored.games.breakout.objects.hud
 	import com.sven.text.BitmapFont;
 	import com.sven.text.GameWord;
 	import com.sven.utils.AppSettings;
+	import flash.display.BitmapData;
 	import flash.utils.getTimer;
 	
 	/**
@@ -13,12 +14,24 @@ package com.bored.games.breakout.objects.hud
 	{
 		private var _fadeTime:int;
 		private var _startTime:int;
+		private var _color:uint;
+		
+		private var _strength:Number;
 		
 		private var _complete:Boolean;
 		
-		public function FadingText(a_str:String, a_font:BitmapFont) 
+		public function FadingText(a_str:String, a_font:BitmapFont, a_strength:Number) 
 		{
 			super(a_str, a_font);
+			
+			_strength = a_strength;
+			
+			var intensity:int = 255 / 3 * _strength + (2 * 255 / 3);
+			
+			if( _strength < 1 )
+				_color = intensity << 16 | intensity << 8 | intensity;
+			else 
+				_color = Math.random() * 0xFFFFFF;
 			
 			_startTime = getTimer();
 			_complete = false;
@@ -37,6 +50,18 @@ package com.bored.games.breakout.objects.hud
 				_complete = true;
 			}
 		}//end update()
+		
+		override public function draw(a_bmd:BitmapData, a_color:uint, a_scale:Number = 1):void 
+		{
+			var intensity:int = 255 / 3 * _strength + (2 * 255 / 3);
+			
+			if( _strength < 1 )
+				_color = intensity << 16 | intensity << 8 | intensity;
+			else 
+				_color = Math.random() * 0xFFFFFF;
+			
+			super.draw(a_bmd, _color, a_scale);
+		}//end draw()
 		
 	}//end FadingText()
 

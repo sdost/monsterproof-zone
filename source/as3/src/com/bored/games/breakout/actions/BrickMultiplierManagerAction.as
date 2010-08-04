@@ -27,7 +27,7 @@ package com.bored.games.breakout.actions
 		}//end constructor()
 	
 		override public function initParams(a_params:Object):void 
-		{
+		{			
 			_multiplierTimeout = a_params.timeout;
 			_maxMultiplier = a_params.maxMultiplier;
 		}//end initParams()

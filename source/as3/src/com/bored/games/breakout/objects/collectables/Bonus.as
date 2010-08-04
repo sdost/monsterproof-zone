@@ -18,7 +18,7 @@ package com.bored.games.breakout.objects.collectables
 	 */
 	public class Bonus extends Collectable
 	{
-		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.SmallBlue_MC')]
+		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.Bonus_MC')]
 		private static var mcCls:Class;
 		private static var sprite:AnimatedSprite = AnimatedSpriteFactory.generateAnimatedSprite(new mcCls());
 		

@@ -222,8 +222,8 @@ package com.bored.games.breakout.states.views
 			_drawnObjects = new SLL();
 			
 			_multiplier = new GameElement();
-			_brickMultiplierManager = new BrickMultiplierManagerAction(_multiplier, { "timeout": 250, "maxMultiplier": 10 } );
-			_paddleMultiplierManager = new PaddleMultiplierManagerAction(_multiplier, { "maxMultiplier": 5 } );
+			_brickMultiplierManager = new BrickMultiplierManagerAction(_multiplier);
+			_paddleMultiplierManager = new PaddleMultiplierManagerAction(_multiplier);
 			_multiplier.addAction(_brickMultiplierManager);
 			_multiplier.addAction(_paddleMultiplierManager);
 				
@@ -327,6 +327,9 @@ package com.bored.games.breakout.states.views
 			ljd.enableLimit = true;
 			
 			_lineJoint = PhysicsWorld.CreateJoint(ljd) as b2LineJoint;
+			
+			_brickMultiplierManager.initParams({ "timeout": AppSettings.instance.brickMultiplierTimeout, "maxMultiplier": AppSettings.instance.brickMultiplierMax });
+			_paddleMultiplierManager.initParams({ "maxMultiplier": AppSettings.instance.paddleMultiplierMax });
 			
 			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
 			
@@ -495,8 +498,8 @@ package com.bored.games.breakout.states.views
 		
 		private function ballLost():void
 		{
-			_multiplier.deactivateAction(BrickMultiplierManagerAction.NAME);
-			_multiplier.deactivateAction(PaddleMultiplierManagerAction.NAME);
+			_paddleMultiplierManager.finished = true;
+			_brickMultiplierManager.finished = true;
 			
 			dispatchEvent(new Event("ballLost"));
 		}//end ballLost()

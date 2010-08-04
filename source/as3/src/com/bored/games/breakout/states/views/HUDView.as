@@ -1,6 +1,6 @@
 package com.bored.games.breakout.states.views 
 {
-	import com.bored.games.breakout.objects.hud.FadingText;
+	import com.bored.games.breakout.objects.hud.PopupText;
 	import com.bored.games.breakout.objects.hud.GameOverDisplay;
 	import com.bored.games.breakout.objects.hud.GameStartDisplay;
 	import com.bored.games.breakout.objects.hud.LivesDisplay;
@@ -245,8 +245,8 @@ package com.bored.games.breakout.states.views
 		{
 			var ready:ReadyDisplay = new ReadyDisplay(bitmapFont);
 			
-			var bmd:BitmapData = new BitmapData(ready.width * 4, ready.height * 4, true, 0x00000000)
-			ready.draw(bmd, 0xFFFFFF, 4);
+			var bmd:BitmapData = new BitmapData(ready.width * 3, ready.height * 3, true, 0x00000000)
+			ready.draw(bmd, 0xFFFFFF, 3);
 			
 			return bmd;
 		}//end get GameOverBMP()
@@ -255,8 +255,8 @@ package com.bored.games.breakout.states.views
 		{
 			var gameStart:GameStartDisplay = new GameStartDisplay(bitmapFont);
 						
-			var bmd:BitmapData = new BitmapData(gameStart.width * 4, gameStart.height * 4, true, 0x00000000)
-			gameStart.draw(bmd, 0xFFFFFF, 4);
+			var bmd:BitmapData = new BitmapData(gameStart.width * 3, gameStart.height * 3, true, 0x00000000)
+			gameStart.draw(bmd, 0xFFFFFF, 3);
 			
 			return bmd;
 		}//end get GameStartBMP()
@@ -265,8 +265,8 @@ package com.bored.games.breakout.states.views
 		{
 			var gameOver:GameOverDisplay = new GameOverDisplay(bitmapFont);
 			
-			var bmd:BitmapData = new BitmapData(gameOver.width * 4, gameOver.height * 4, true, 0x00000000)
-			gameOver.draw(bmd, 0xFFFFFF, 4);
+			var bmd:BitmapData = new BitmapData(gameOver.width * 3, gameOver.height * 3, true, 0x00000000)
+			gameOver.draw(bmd, 0xFFFFFF, 3);
 			
 			return bmd;
 		}//end get GameOverBMP()
@@ -291,9 +291,10 @@ package com.bored.games.breakout.states.views
 		
 		public function addPopupText(a_base:int, a_brickMult:int, a_paddleMult:int, a_x:Number, a_y:Number):void
 		{
-			var popup:FadingText = new FadingText( new String(a_base * a_brickMult * a_paddleMult), bitmapFont, a_brickMult / 10);
+			var popup:PopupText = new PopupText( new String(a_base * a_brickMult * a_paddleMult), bitmapFont, a_brickMult / 10);
 			popup.x = a_x;
 			popup.y = a_y;
+			popup.centered = true;
 			
 			_popups.append(popup);
 		}//end addPopupText()
@@ -338,15 +339,15 @@ package com.bored.games.breakout.states.views
 			
 			_scoreDisp.x = stage.stageWidth - _scoreDisp.width;
 			
-			_livesDisp.draw(_backBuffer, 0x33FFFFFF, 1.0);
-			_timeDisp.draw(_backBuffer, 0x33FFFFFF, 1.0);
-			_scoreDisp.draw(_backBuffer, 0x33FFFFFF, 1.0);
+			_livesDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
+			_timeDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
+			_scoreDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
 			
 			var iter:SLLIterator = new SLLIterator(_popups);
 			while ( iter.hasNext() )
 			{
 				var obj:Object = iter.next();
-				obj.draw(_backBuffer, 0x33AAAAAA, 1.0);
+				obj.draw(_backBuffer, 0xFFFFFF);
 			}
 						
 			_mainBuffer.copyPixels(_backBuffer, _backBuffer.rect, new Point());

@@ -25,6 +25,8 @@ package com.bored.games.breakout.objects.collectables
 		public function BlockBonus() 
 		{
 			super(sprite);
+			
+			_collectableBody.ApplyImpulse( new b2Vec2( Math.random() * 30, -5 ), _collectableBody.GetWorldCenter() );			
 		}//end constructor()
 		
 		override public function get actionName():String 
@@ -40,8 +42,6 @@ package com.bored.games.breakout.objects.collectables
 			
 			this.x = pos.x * PhysicsWorld.PhysScale - width / 2;
 			this.y = pos.y * PhysicsWorld.PhysScale - height / 2;
-			
-			_collectableBody.ApplyForce(new b2Vec2(0, 10 * _collectableBody.GetMass()), _collectableBody.GetWorldCenter());
 		}//end update()
 		
 	}//end BlockBonus

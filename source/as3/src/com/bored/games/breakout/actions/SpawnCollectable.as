@@ -80,7 +80,7 @@ package com.bored.games.breakout.actions
 					break;
 			}
 			
-			pb.physicsBody.SetPosition( new b2Vec2( (xOffset - pb.width / 2) / PhysicsWorld.PhysScale, (yOffset - pb.height / 2) / PhysicsWorld.PhysScale ) );
+			pb.physicsBody.SetPosition( new b2Vec2( xOffset / PhysicsWorld.PhysScale, yOffset / PhysicsWorld.PhysScale ) );
 			
 			GameView.Collectables.append(pb);
 			

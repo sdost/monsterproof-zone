@@ -52,7 +52,7 @@ package com.bored.games.breakout.objects.collectables
 			
 			var filter:b2FilterData = new b2FilterData();
 			filter.categoryBits = GameView.id_Collectable;
-			filter.maskBits = GameView.id_Paddle;
+			filter.maskBits = GameView.id_Paddle | GameView.id_Wall;
 			
 			var fd:b2FixtureDef = new b2FixtureDef();
 			fd.shape = shape;
@@ -105,8 +105,8 @@ package com.bored.games.breakout.objects.collectables
 			
 			var pos:b2Vec2 = _collectableBody.GetPosition();
 			
-			this.x = pos.x * PhysicsWorld.PhysScale;
-			this.y = pos.y * PhysicsWorld.PhysScale;
+			this.x = pos.x * PhysicsWorld.PhysScale - width / 2;
+			this.y = pos.y * PhysicsWorld.PhysScale - height / 2;
 			
 			_collectableBody.ApplyForce(new b2Vec2(0, 10 * _collectableBody.GetMass()), _collectableBody.GetWorldCenter());
 		}//end update()

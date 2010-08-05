@@ -238,14 +238,14 @@ package com.bored.games.breakout.states.views
 			
 			super.addedToStageHandler(e);
 			
-			new CatchPowerup();
-			new InvinciballPowerup();
-			new ExtendPowerup();
-			new LaserPowerup();
-			new MultiballPowerup();
-			new DestructoballPowerup();
-			new SuperLaserPowerup();
-			new ExtraLifePowerup();
+			(new CatchPowerup()).destroy();
+			(new InvinciballPowerup()).destroy();
+			(new ExtendPowerup()).destroy();
+			(new LaserPowerup()).destroy();
+			(new MultiballPowerup()).destroy();
+			(new DestructoballPowerup()).destroy();
+			(new SuperLaserPowerup()).destroy();
+			(new ExtraLifePowerup()).destroy();
 			
 			new LaserPaddleAction(null, null);
 			
@@ -257,6 +257,7 @@ package com.bored.games.breakout.states.views
 			_gameScreen = new Bitmap();
 			_gameScreen.bitmapData = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_gameScreen.smoothing = true;
+			//_gameScreen.alpha = 0.3;
 			addChild( _gameScreen );
 			
 			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), false );
@@ -403,7 +404,7 @@ package com.bored.games.breakout.states.views
 				{
 					var pb:Collectable = new Bonus();
 					//pb.physicsBody.ApplyImpulse( new b2Vec2( 0, AppSettings.instance.defaultCollectableFallSpeed * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
-					pb.physicsBody.SetPosition( new b2Vec2( obj.x / PhysicsWorld.PhysScale, obj.y / PhysicsWorld.PhysScale) );
+					pb.physicsBody.SetPosition( new b2Vec2( (obj.x + obj.width / 2) / PhysicsWorld.PhysScale, (obj.y + obj.height / 2) / PhysicsWorld.PhysScale ) );
 			
 					GameView.Collectables.append(pb);
 					continue;
@@ -411,7 +412,7 @@ package com.bored.games.breakout.states.views
 				
 				switch(getQualifiedClassName(obj))
 				{
-					case "Bomb":
+					case "MedBomb": case "SmBomb":
 						brick = new Bomb(
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
@@ -449,13 +450,13 @@ package com.bored.games.breakout.states.views
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
 							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
-					case "MedNanoAlive":
+					case "MedNanoAlive": case "SmNanoAlive":
 						brick = new NanoBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
 							AppSettings.instance.brickAnimationSets[getQualifiedClassName(obj)]);
 						break;
-					case "MedNanoDead":
+					case "MedNanoDead": case "SmNanoDead":
 						brick = new NanoBrick( 
 							uint(obj.width / AppSettings.instance.defaultTileWidth + 0.5),
 							uint(obj.height / AppSettings.instance.defaultTileHeight  + 0.5),
@@ -554,7 +555,7 @@ package com.bored.games.breakout.states.views
 			iter = new SLLIterator(Collectables);
 			while ( iter.hasNext() )
 			{
-				obj = iter.next();
+				obj = iter.next();				
 				_backBuffer.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
 			}
 			

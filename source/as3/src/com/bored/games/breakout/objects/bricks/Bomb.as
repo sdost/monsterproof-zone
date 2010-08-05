@@ -5,6 +5,7 @@ package com.bored.games.breakout.objects.bricks
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.objects.AnimationController;
 	import com.bored.games.breakout.objects.AnimationSet;
+	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.sven.utils.AppSettings;
 	import flash.display.BitmapData;

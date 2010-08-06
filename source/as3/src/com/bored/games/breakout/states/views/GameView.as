@@ -622,12 +622,9 @@ package com.bored.games.breakout.states.views
 						
 						if ( dist > 30 ) return;
 						
-						var vortex:PortalVortex = new PortalVortex(_gameScreen, a_fixture.GetUserData() as Portal);
-						vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
-						GameView.ParticleRenderer.addEmitter(vortex);
-						vortex.start();
+						_paused = true;
 						
-						dispatchEvent(new Event("levelFinished"));
+						dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size(), "callback": startVortex } ));
 					}
 				}
 				else
@@ -654,6 +651,16 @@ package com.bored.games.breakout.states.views
 				}
 			}
 		}//end handleBallCollision()
+		
+		public function startVortex():void
+		{
+			resetGame();
+			
+			var vortex:PortalVortex = new PortalVortex(_gameScreen);
+			vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
+			GameView.ParticleRenderer.addEmitter(vortex);
+			vortex.start();
+		}//end startVortex()
 		
 		private function vortexComplete(e:EmitterEvent):void
 		{
@@ -892,7 +899,7 @@ package com.bored.games.breakout.states.views
 			
 			if ( _grid.isEmpty() ) 
 			{
-				dispatchEvent(new Event("levelFinished"));
+				dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() }));
 			}
 			
 			if( stage )	stage.invalidate();

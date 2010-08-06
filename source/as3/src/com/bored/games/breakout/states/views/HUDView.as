@@ -5,6 +5,7 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.objects.hud.GameStartDisplay;
 	import com.bored.games.breakout.objects.hud.LivesDisplay;
 	import com.bored.games.breakout.objects.hud.ReadyDisplay;
+	import com.bored.games.breakout.objects.hud.ResultsDisplay;
 	import com.bored.games.breakout.objects.hud.ScoreDisplay;
 	import com.bored.games.breakout.objects.hud.TimerDisplay;
 	import com.bored.games.breakout.profiles.LevelList;
@@ -56,6 +57,8 @@ package com.bored.games.breakout.states.views
 	
 	[Event(name = 'gameOverComplete', type = 'flash.events.Event')]
 	
+	[Event(name = 'resultsComplete', type = 'flash.events.Event')]
+	
 	/**
 	 * ...
 	 * @author sam
@@ -76,6 +79,7 @@ package com.bored.games.breakout.states.views
 		private var _livesDisp:LivesDisplay;
 		private var _timeDisp:TimerDisplay;
 		private var _scoreDisp:ScoreDisplay;
+		private var _resultsDisp:ResultsDisplay;
 		
 		private var _gameStart:GameStartDisplay;
 		private var _gameOver:GameOverDisplay;
@@ -97,12 +101,14 @@ package com.bored.games.breakout.states.views
 		private var _renderer:PixelRenderer;
 		
 		private var _hideHUD:Boolean;
+		private var _hideResults:Boolean;
 		
 		public function HUDView() 
 		{
 			super();
 			
 			_hideHUD = true;
+			_hideResults = true;
 			
 			_paused = true;
 		}//end constructor()
@@ -303,9 +309,10 @@ package com.bored.games.breakout.states.views
 			_popups.append(popup);
 		}//end addPopupText()
 		
-		public function showResults(a_type:int, a_timeRemaining:int, a_blocksRemaining:int):void
+		public function showResults(a_type:int, a_finalScore:int, a_timeRemaining:int, a_blocksRemaining:int):void
 		{
-			
+			_resultsDisp = new ResultsDisplay(a_type, a_finalScore, a_timeRemaining, a_blocksRemaining, bitmapFont);
+			_hideResults = false;
 		}//end showResults()
 		
 		public function set scoreDisp(a_num:Number):void
@@ -338,6 +345,17 @@ package com.bored.games.breakout.states.views
 				obj.update();
 				if (obj.complete) _popups.remove(obj);
 			}
+			
+			if (_resultsDisp) 
+			{
+				_resultsDisp.update();
+				if (_resultsDisp.complete)
+				{
+					dispatchEvent(new Event("resultsComplete"));
+					_hideResults = true;
+					_resultsDisp = null;
+				}
+			}
 		
 			if (stage) stage.invalidate();
 		}//end update()
@@ -369,6 +387,10 @@ package com.bored.games.breakout.states.views
 					var obj:Object = iter.next();
 					obj.draw(_backBuffer, 0xFFFFFF);
 				}
+			}
+			
+			if ( !_hideResults ) {
+				_resultsDisp.draw(_backBuffer);
 			}
 						
 			_mainBuffer.copyPixels(_backBuffer, _backBuffer.rect, new Point());

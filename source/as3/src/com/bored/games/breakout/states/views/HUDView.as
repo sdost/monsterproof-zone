@@ -96,9 +96,13 @@ package com.bored.games.breakout.states.views
 		
 		private var _renderer:PixelRenderer;
 		
+		private var _hideHUD:Boolean;
+		
 		public function HUDView() 
 		{
 			super();
+			
+			_hideHUD = true;
 			
 			_paused = true;
 		}//end constructor()
@@ -299,6 +303,11 @@ package com.bored.games.breakout.states.views
 			_popups.append(popup);
 		}//end addPopupText()
 		
+		public function showResults(a_type:int, a_timeRemaining:int, a_blocksRemaining:int):void
+		{
+			
+		}//end showResults()
+		
 		public function set scoreDisp(a_num:Number):void
 		{
 			_scoreDisp.score = a_num;
@@ -333,21 +342,33 @@ package com.bored.games.breakout.states.views
 			if (stage) stage.invalidate();
 		}//end update()
 		
-		public function renderFrame(e:Event):void
+		public function showHUD():void
 		{
+			_hideHUD = false;
+		}//end showHUD()
+		
+		public function hideHUD():void
+		{
+			_hideHUD = true;
+		}//end hideHUD()
+		
+		public function renderFrame(e:Event):void
+		{			
 			_backBuffer.fillRect(_backBuffer.rect, 0x00000000);
 			
-			_scoreDisp.x = stage.stageWidth - _scoreDisp.width;
-			
-			_livesDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
-			_timeDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
-			_scoreDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
-			
-			var iter:SLLIterator = new SLLIterator(_popups);
-			while ( iter.hasNext() )
-			{
-				var obj:Object = iter.next();
-				obj.draw(_backBuffer, 0xFFFFFF);
+			if ( !_hideHUD ) {
+				_scoreDisp.x = stage.stageWidth - _scoreDisp.width;
+				
+				_livesDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
+				_timeDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
+				_scoreDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
+				
+				var iter:SLLIterator = new SLLIterator(_popups);
+				while ( iter.hasNext() )
+				{
+					var obj:Object = iter.next();
+					obj.draw(_backBuffer, 0xFFFFFF);
+				}
 			}
 						
 			_mainBuffer.copyPixels(_backBuffer, _backBuffer.rect, new Point());

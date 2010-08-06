@@ -74,6 +74,8 @@ package com.bored.games.breakout.states.controllers
 			
 			_running = true;
 			
+			(_hudView as HUDView).showHUD();
+			
 			(_gameView as GameView).addEventListener("ballLost", ballLost, false, 0, true);
 			(_gameView as GameView).addEventListener("levelFinished", levelFinished, false, 0, true);
 			(_gameView as GameView).addEventListener("addPoints", addUserPoints, false, 0, true);
@@ -122,6 +124,8 @@ package com.bored.games.breakout.states.controllers
 			(_gameView as GameView).removeEventListener("addPoints", addUserPoints);
 			(_gameView as GameView).removeEventListener("ballGained", ballGained);
 			
+			(_hudView as HUDView).hideHUD();
+			
 			_running = false;
 			
 			(_gameView as GameView).resetGame();
@@ -137,6 +141,8 @@ package com.bored.games.breakout.states.controllers
 			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
 			(_gameView as GameView).removeEventListener("addPoints", addUserPoints);
 			(_gameView as GameView).removeEventListener("ballGained", ballGained);
+			
+			(_hudView as HUDView).hideHUD();
 			
 			_running = false;
 			

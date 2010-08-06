@@ -12,7 +12,7 @@ package com.bored.games.breakout.objects.hud
 	 */
 	public class LivesDisplay extends GameWord
 	{		
-		private var _livesRemaining:int;		
+		private var _livesRemaining:int;
 		
 		public function LivesDisplay(a_lives:int, a_font:BitmapFont) 
 		{

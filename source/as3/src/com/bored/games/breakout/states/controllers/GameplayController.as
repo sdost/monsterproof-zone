@@ -58,6 +58,8 @@ package com.bored.games.breakout.states.controllers
 			_updateTimer.addEventListener(TimerEvent.TIMER, timerUpdate, false, 0, true);
 			_updateTimer.start();
 			
+			AppSettings.instance.currentLevelInd = 0;
+			
 			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
 			
 			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);

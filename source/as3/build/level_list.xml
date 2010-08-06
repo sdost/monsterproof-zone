@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <levels>
-<level src="../assets/TestLevel.swf" time="300000" background="0" />
+<level src="../assets/alpha00.swf" time="300000" background="2" />
+<level src="../assets/alpha01.swf" time="300000" background="7" />
+<level src="../assets/alpha02.swf" time="300000" background="1" />
+<level src="../assets/alpha03.swf" time="300000" background="8" />
+<level src="../assets/alpha04.swf" time="300000" background="7" />
+<level src="../assets/alpha05.swf" time="300000" background="0" />
 </levels>

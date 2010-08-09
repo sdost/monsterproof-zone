@@ -242,6 +242,18 @@ package com.bored.games.breakout.states.views
 		private function gameStartComplete(e:Event):void
 		{
 			Emitter2D(e.currentTarget).removeEventListener(EmitterEvent.EMITTER_EMPTY, gameStartComplete);
+			
+			_presentEmitter.killAllParticles();
+			_presentEmitter = null;
+			
+			_transitionEmitter.killAllParticles();
+			_transitionEmitter = null;
+			
+			_fadeEmitter.killAllParticles();
+			_fadeEmitter = null;
+			
+			Emitter2D.defaultParticleFactory.clearAllParticles();
+			
 			dispatchEvent(new Event("gameStartComplete"));
 		}//end gameStartComplete()
 		

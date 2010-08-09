@@ -615,12 +615,12 @@ package com.bored.games.breakout.states.views
 				{
 					if ( a_fixture.GetUserData().open )
 					{
-						var dx:Number = a_ball.GetUserData().x - a_fixture.GetUserData().x;
-						var dy:Number = a_ball.GetUserData().y - a_fixture.GetUserData().y;
+						var dx:Number = a_ball.GetAABB().GetCenter().x - a_fixture.GetAABB().GetCenter().x;
+						var dy:Number = a_ball.GetAABB().GetCenter().y - a_fixture.GetAABB().GetCenter().y;
 						
 						var dist:Number = Math.sqrt(dx * dx + dy * dy);
 						
-						if ( dist > 30 ) return;
+						if ( dist > 0.5 ) return;
 						
 						_paused = true;
 						

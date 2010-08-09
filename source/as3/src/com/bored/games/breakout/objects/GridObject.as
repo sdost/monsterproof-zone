@@ -46,7 +46,6 @@ package com.bored.games.breakout.objects
 			return _gridHeight;
 		}//end get gridHeight()
 		
-		
 		public function get gridX():uint
 		{
 			return _gridX;

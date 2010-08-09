@@ -86,6 +86,9 @@ package com.bored.games.breakout.objects.bricks
 			var b2Width:Number = this.gridWidth * AppSettings.instance.defaultTileWidth;
 			var b2Height:Number = this.gridHeight * AppSettings.instance.defaultTileHeight;
 			
+			this.width = b2Width;
+			this.height = b2Height;
+			
 			var b2X:Number = this.gridX * AppSettings.instance.defaultTileWidth + b2Width / 2;
 			var b2Y:Number = this.gridY * AppSettings.instance.defaultTileHeight + b2Height / 2;			
 			

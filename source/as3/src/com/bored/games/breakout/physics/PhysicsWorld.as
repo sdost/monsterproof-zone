@@ -81,7 +81,7 @@ package com.bored.games.breakout.physics
 				var delta:Number = t - _lastUpdate;
 				_lastUpdate = t;
 				
-				_world.Step(_timeStep, _velIterations, _posIterations);				
+				_world.Step(delta / 1000, _velIterations, _posIterations);				
 				_world.ClearForces();
 				//_world.DrawDebugData();
 				

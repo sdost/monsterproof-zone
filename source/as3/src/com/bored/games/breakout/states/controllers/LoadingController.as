@@ -2,6 +2,7 @@ package com.bored.games.breakout.states.controllers
 {
 	import com.bored.games.breakout.states.views.LoadBackgroundsView;
 	import com.bored.games.breakout.states.views.LoadBrickAssetsView;
+	import com.bored.games.breakout.states.views.LoadSoundsView;
 	import com.jac.fsm.stateEvents.StateEvent;
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
@@ -18,6 +19,7 @@ package com.bored.games.breakout.states.controllers
 	{		
 		private var _brickLoader:StateView;
 		private var _backgroundLoader:StateView;
+		private var _soundLoader:StateView;
 		
 		private var _totalLoaded:int;
 		
@@ -25,13 +27,15 @@ package com.bored.games.breakout.states.controllers
 		{
 			_brickLoader = new LoadBrickAssetsView();
 			_backgroundLoader = new LoadBackgroundsView();
+			_soundLoader = new LoadSoundsView();
 			
 			_totalLoaded = 0;
 			
 			_brickLoader.addEventListener(Event.COMPLETE, loadingComplete, false, 0, true);
 			_backgroundLoader.addEventListener(Event.COMPLETE, loadingComplete, false, 0, true);
+			_soundLoader.addEventListener(Event.COMPLETE, loadingComplete, false, 0, true);
 			
-			super([_brickLoader, _backgroundLoader], a_container);
+			super([_brickLoader, _backgroundLoader, _soundLoader], a_container);
 		}//end constructor()
 		
 		private function loadingComplete(e:Event):void
@@ -52,6 +56,7 @@ package com.bored.games.breakout.states.controllers
 			
 			_brickLoader = null;
 			_backgroundLoader = null;
+			_soundLoader = null;
 		}//end exitComplete()
 		
 	}//end LoadingController

@@ -2,7 +2,9 @@ package com.bored.games.breakout.actions
 {
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.objects.Paddle;
+	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
+	import com.jac.soundManager.SoundManager;
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	
@@ -30,6 +32,8 @@ package com.bored.games.breakout.actions
 		override public function startAction():void 
 		{	
 			_startTime = getTimer();
+			
+			SoundManager.getInstance().getSoundControllerByID("sfxController").play(GameView.sfx_PaddleExtend);
 			
 			this.finished = false;
 		}//end startAction()

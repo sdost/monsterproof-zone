@@ -5,6 +5,7 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
+	import com.jac.soundManager.SoundManager;
 	import flash.events.Event;
 	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.common.renderers.Renderer;
@@ -26,6 +27,8 @@ package com.bored.games.breakout.actions
 		override public function startAction():void 
 		{
 			_finished = false;
+			
+			SoundManager.getInstance().getSoundControllerByID("sfxController").play(GameView.sfx_BrickDisintegrate);
 			
 			var emitter:BrickCrumbs = new BrickCrumbs( (_gameElement as Brick) );
 			emitter.addEventListener( EmitterEvent.EMITTER_EMPTY, finishAction, false, 0, true );

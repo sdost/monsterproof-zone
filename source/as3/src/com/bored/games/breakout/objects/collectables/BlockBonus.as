@@ -11,6 +11,10 @@ package com.bored.games.breakout.objects.collectables
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
+	import flash.display.BitmapData;
+	import flash.filters.GlowFilter;
+	import flash.geom.ColorTransform;
+	import flash.geom.Point;
 	
 	/**
 	 * ...
@@ -18,7 +22,7 @@ package com.bored.games.breakout.objects.collectables
 	 */
 	public class BlockBonus extends Collectable
 	{
-		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.BlockBonusBlue_MC')]
+		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.BlockBonus_MC')]
 		private static var mcCls:Class;
 		private static var sprite:AnimatedSprite = AnimatedSpriteFactory.generateAnimatedSprite(new mcCls());
 		
@@ -26,14 +30,19 @@ package com.bored.games.breakout.objects.collectables
 		{
 			super(sprite);
 			
-			_collectableBody.ApplyImpulse( new b2Vec2( Math.random() * 30, -5 ), _collectableBody.GetWorldCenter() );			
+			var angle:Number = Math.random() * (2 * Math.PI);
+			
+			var vx:Number = 5 * Math.cos(angle);
+			var vy:Number = 5 * Math.sin(angle);
+			
+			_collectableBody.ApplyImpulse( new b2Vec2( vx, vy ), _collectableBody.GetWorldCenter() );			
 		}//end constructor()
 		
 		override public function get actionName():String 
 		{
 			return "bonus";
 		}//end get actionName()
-		
+				
 		override public function update(t:Number = 0):void 
 		{
 			_animatedSprite.update(t);

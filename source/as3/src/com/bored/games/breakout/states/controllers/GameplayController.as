@@ -4,15 +4,20 @@ package com.bored.games.breakout.states.controllers
 	import com.bored.games.breakout.objects.hud.ResultsDisplay;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.breakout.states.views.HUDView;
+	import com.bored.games.breakout.states.views.TitleView;
 	import com.bored.games.input.Input;
 	import com.inassets.events.ObjectEvent;
 	import com.jac.fsm.stateEvents.StateEvent;
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
+	import com.jac.soundManager.SMSound;
+	import com.jac.soundManager.SoundController;
+	import com.jac.soundManager.SoundManager;
 	import com.sven.utils.AppSettings;
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.TimerEvent;
+	import flash.ui.Keyboard;
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
 	
@@ -25,6 +30,7 @@ package com.bored.games.breakout.states.controllers
 		private var _gameView:StateView;
 		private var _hudView:StateView;
 		private var _input:Input;
+		private var _sm:SoundManager;
 		
 		private var _running:Boolean;
 		
@@ -39,6 +45,10 @@ package com.bored.games.breakout.states.controllers
 		{			
 			_input = new Input(a_container);
 			
+			_sm = SoundManager.getInstance();
+			_sm.addSoundController( new SoundController("sfxController") );
+			_sm.setVolume(0.1);
+			
 			_running = false;
 			
 			_gameView = new GameView();
@@ -47,7 +57,6 @@ package com.bored.games.breakout.states.controllers
 			_gameView.addEventListener("levelLoaded", levelLoaded, false, 0, true);
 			
 			_hudView.addEventListener("gameStartComplete", gameStartComplete, false, 0, true);
-			_hudView.addEventListener("gameOverComplete", gameOverComplete, false, 0, true);
 			
 			super([_gameView, _hudView], a_container);
 		}//end constructor()
@@ -88,36 +97,25 @@ package com.bored.games.breakout.states.controllers
 			(_gameView as GameView).addEventListener("ballGained", ballGained, false, 0, true);
 		}//end gameStartComplete()
 		
-		private function gameOverComplete(e:Event):void
+		private function restart():void
 		{
 			_updateTimer.stop();
 			_updateTimer.removeEventListener(TimerEvent.TIMER, timerUpdate);
 			_updateTimer = null;
 			
 			startGame();
-		}//end gameOverComplete()
+		}//end restart()
 		
 		private function resultsComplete(e:Event):void
 		{
 			(_hudView as HUDView).removeEventListener("resultsComplete", resultsComplete);
 			
-			AppSettings.instance.currentLevelInd++;
-			
-			if (AppSettings.instance.currentLevelInd >= AppSettings.instance.levelList.levelCount)
-			{
-				AppSettings.instance.currentLevelInd = 0;
-			}
-			
-			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
-			
-			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
-			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
-			
-			if ( _callback != null ) _callback();
+			_callback();
 		}//end resultsComplete()
 		
 		private function ballLost(e:Event):void
 		{
+			(_gameView as GameView).resetPaddle(); 
 			AppSettings.instance.userProfile.decrementLives();
 			
 			if (AppSettings.instance.userProfile.lives > 0)
@@ -151,28 +149,46 @@ package com.bored.games.breakout.states.controllers
 			
 			(_hudView as HUDView).hideHUD();
 			(_hudView as HUDView).showResults(ResultsDisplay.GAME_OVER, AppSettings.instance.userProfile.score, _timeLeft, 0);
+			(_hudView as HUDView).addEventListener("resultsComplete", resultsComplete, false, 0, true);
 			
-			_callback = null;
+			_callback = restart;
 			
 			_running = false;
 			
-			(_gameView as GameView).resetGame();
-			
 			//AppSettings.instance.userProfile.reset();
 		}//end endGame()
+		
+		private function advanceLevel():void
+		{
+			(_gameView as GameView).resetGame();
+			
+			AppSettings.instance.currentLevelInd++;
+			
+			if (AppSettings.instance.currentLevelInd >= AppSettings.instance.levelList.levelCount)
+			{
+				AppSettings.instance.currentLevelInd = 0;
+			}
+			
+			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
+			
+			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
+			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
+		}//end advanceLevel()
 				
-		private function levelFinished(e:ObjectEvent):void
+		private function levelFinished(e:ObjectEvent = null):void
 		{
 			(_gameView as GameView).removeEventListener("ballLost", ballLost);
 			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
 			(_gameView as GameView).removeEventListener("addPoints", addUserPoints);
 			(_gameView as GameView).removeEventListener("ballGained", ballGained);
 			
+			var blockRemaining:int = e == null ? 0 : e.obj.blocksRemaining;
+			
 			(_hudView as HUDView).hideHUD();
-			(_hudView as HUDView).showResults(ResultsDisplay.LEVEL_COMPLETE, AppSettings.instance.userProfile.score, _timeLeft, e.obj.blocksRemaining);
+			(_hudView as HUDView).showResults(ResultsDisplay.LEVEL_COMPLETE, AppSettings.instance.userProfile.score, _timeLeft, blockRemaining);
 			(_hudView as HUDView).addEventListener("resultsComplete", resultsComplete, false, 0, true);
 			
-			_callback = e.obj.callback;
+			_callback = advanceLevel;
 			
 			_running = false;
 		}//end gridEmpty()
@@ -185,6 +201,11 @@ package com.bored.games.breakout.states.controllers
 			
 			if (_running)
 			{
+				if ( Input.isKeyDown(Keyboard.F2) )
+				{
+					levelFinished();
+				}
+				
 				var delta:Number = getTimer() - _lastUpdate;
 				_lastUpdate = getTimer();
 				_timeLeft -= delta;

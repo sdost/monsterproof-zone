@@ -324,7 +324,7 @@ package com.bored.games.breakout.states.views
 			b2Def.mouseJoint.Initialize(_paddle.physicsBody, new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ));
 			b2Def.mouseJoint.maxForce = 10000.0 * _paddle.physicsBody.GetMass();
 			b2Def.mouseJoint.dampingRatio = 0;
-			b2Def.mouseJoint.frequencyHz = 1000;
+			b2Def.mouseJoint.frequencyHz = 5000;
 			_mouseJoint = PhysicsWorld.CreateJoint(b2Def.mouseJoint) as b2MouseJoint;
 			
 			b2Def.lineJoint.Initialize( PhysicsWorld.GetGroundBody(), _paddle.physicsBody, _paddle.physicsBody.GetPosition(), new V2( 1.0, 0.0 ) );

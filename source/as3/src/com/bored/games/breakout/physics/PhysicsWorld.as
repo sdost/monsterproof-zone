@@ -27,7 +27,7 @@ package com.bored.games.breakout.physics
 	{
 		private static var _world:b2World;
 		private static var _debugDraw:b2DebugDraw;
-		private static var _doSleep:Boolean = true;
+		private static var _doSleep:Boolean = false;
 		
 		private static var _lastUpdate:Number = 0;		
 		private static var _timeStep:Number = 1.0 / 40.0;
@@ -41,9 +41,9 @@ package com.bored.games.breakout.physics
 			b2Base.initialize();
 			b2Def.initialize();
 			_world = new b2World( new V2(0, 0), _doSleep );
-			//_world.SetWarmStarting(true);
+			_world.SetWarmStarting(true);
 			_world.SetAutoClearForces(true);
-			//_world.SetContinuousPhysics(true);
+			_world.SetContinuousPhysics(true);
 		}//end InitializePhysics()
 		
 		public static function SetContactListener(a_listener:b2ContactListener):void

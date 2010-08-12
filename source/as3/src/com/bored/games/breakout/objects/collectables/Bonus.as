@@ -32,7 +32,7 @@ package com.bored.games.breakout.objects.collectables
 		{
 			b2Def.body.type = b2Body.b2_dynamicBody;
 			b2Def.body.fixedRotation = true;
-			b2Def.body.allowSleep = false;
+			b2Def.body.allowSleep = true;
 			b2Def.body.userData = this;
 			
 			var b2Width:Number = _animatedSprite.currFrame.width;

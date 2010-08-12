@@ -16,6 +16,7 @@ package com.bored.games.breakout.physics
 	import Box2DAS.Dynamics.Joints.b2JointDef;
 	import com.bored.games.objects.GameElement;
 	import flash.display.Sprite;
+	import flash.events.EventDispatcher;
 	import flash.geom.Rectangle;
 	import flash.utils.getTimer;
 	/**
@@ -29,7 +30,7 @@ package com.bored.games.breakout.physics
 		private static var _doSleep:Boolean = true;
 		
 		private static var _lastUpdate:Number = 0;		
-		private static var _timeStep:Number = 1.0 / 60.0;
+		private static var _timeStep:Number = 1.0 / 40.0;
 		private static var _velIterations:int = 3;// 20;
 		private static var _posIterations:int = 8;// 20;
 		

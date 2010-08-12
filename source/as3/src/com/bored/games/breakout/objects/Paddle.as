@@ -10,6 +10,7 @@ package com.bored.games.breakout.objects
 	import Box2DAS.Dynamics.b2Filter;
 	import Box2DAS.Dynamics.b2Fixture;
 	import Box2DAS.Dynamics.b2FixtureDef;
+	import Box2DAS.Dynamics.Joints.b2LineJoint;
 	import Box2DAS.Dynamics.Joints.b2PrismaticJoint;
 	import Box2DAS.Dynamics.Joints.b2PrismaticJointDef;
 	import com.bored.games.breakout.actions.CatchPaddleAction;
@@ -58,7 +59,7 @@ package com.bored.games.breakout.objects
 		
 		private var _currentEffectAction:String;
 		
-		private var _paddleJoint:b2PrismaticJoint;
+		private var _paddleJoint:b2LineJoint;
 		
 		private var _stickyMode:Boolean;
 			
@@ -242,25 +243,25 @@ package com.bored.games.breakout.objects
 			pos.y -= a_ball.height / PhysicsWorld.PhysScale;
 			a_ball.physicsBody.SetTransform( pos, 0 );
 			
-			b2Def.prismaticJoint.enableLimit = false;
-			b2Def.prismaticJoint.lowerTranslation = -(this.width / 2) / PhysicsWorld.PhysScale;
-			b2Def.prismaticJoint.upperTranslation = (this.width / 2) / PhysicsWorld.PhysScale;
+			b2Def.lineJoint.enableLimit = true;
+			b2Def.lineJoint.lowerTranslation = -(this.width / 2) / PhysicsWorld.PhysScale;
+			b2Def.lineJoint.upperTranslation = (this.width / 2) / PhysicsWorld.PhysScale;
 			
-			b2Def.prismaticJoint.Initialize( 
-				a_ball.physicsBody,
+			b2Def.lineJoint.Initialize( 
 				_paddleBody,
+				a_ball.physicsBody,
 				a_ball.physicsBody.GetWorldCenter(),
 				worldAxis);
 				
-			_paddleJoint = PhysicsWorld.CreateJoint(b2Def.prismaticJoint) as b2PrismaticJoint;
+			_paddleJoint = PhysicsWorld.CreateJoint(b2Def.lineJoint) as b2LineJoint;		
 		}//end catchBall()
 		
 		public function releaseBall():void
 		{
 			if (_paddleJoint)
 			{	
-				var ball:V2 = _paddleJoint.GetBodyA().GetPosition();
-				var paddle:V2 = _paddleJoint.GetBodyB().GetPosition();
+				var ball:V2 = _paddleJoint.GetBodyB().GetPosition();
+				var paddle:V2 = _paddleJoint.GetBodyA().GetPosition();
 				
 				var ballXDiff:Number = ball.x - paddle.x;
 				
@@ -277,7 +278,7 @@ package com.bored.games.breakout.objects
 				if (ballXRatio < -0.95) ballXRatio = -0.95;
 				if (ballXRatio > 0.95) ballXRatio = 0.95;
 				
-				var b:Ball = _paddleJoint.GetBodyA().GetUserData() as Ball;
+				var b:Ball = _paddleJoint.GetBodyB().GetUserData() as Ball;
 				
 				var vel:V2 = new V2();
 				vel.x = ballXRatio * AppSettings.instance.paddleReflectionMultiplier;
@@ -296,6 +297,13 @@ package com.bored.games.breakout.objects
 			super.update(t);
 			
 			_animationController.update(t);
+			
+			/*
+			if ( _paddleJoint )
+			{
+				trace("_paddleJoint.m_impulse: [" + _paddleJoint.m_impulse.x + ", " + _paddleJoint.m_impulse.y + ", " + _paddleJoint.m_impulse.z + "]");
+			}
+			*/
 			
 			var pos:V2 = _paddleBody.GetPosition();
 			

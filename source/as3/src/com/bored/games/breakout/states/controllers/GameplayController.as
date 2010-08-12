@@ -63,9 +63,12 @@ package com.bored.games.breakout.states.controllers
 		
 		public function startGame():void
 		{
-			_updateTimer = new Timer(16);
+			container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
+			/*
+			_updateTimer = new Timer(25);
 			_updateTimer.addEventListener(TimerEvent.TIMER, timerUpdate, false, 0, true);
 			_updateTimer.start();
+			*/
 			
 			AppSettings.instance.currentLevelInd = 0;
 			
@@ -99,9 +102,12 @@ package com.bored.games.breakout.states.controllers
 		
 		private function restart():void
 		{
+			container.removeEventListener(Event.ENTER_FRAME, frameUpdate);
+			/*
 			_updateTimer.stop();
 			_updateTimer.removeEventListener(TimerEvent.TIMER, timerUpdate);
 			_updateTimer = null;
+			*/
 			
 			startGame();
 		}//end restart()
@@ -193,7 +199,7 @@ package com.bored.games.breakout.states.controllers
 			_running = false;
 		}//end gridEmpty()
 				
-		private function timerUpdate(e:Event):void
+		private function frameUpdate(e:Event):void
 		{
 			this.update();
 			
@@ -219,7 +225,7 @@ package com.bored.games.breakout.states.controllers
 					endGame();
 				}
 			}
-		}//end timerUpdate()
+		}//end frameUpdate()
 		
 	}//end GameplayController
 

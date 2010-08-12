@@ -530,8 +530,6 @@ package com.bored.games.breakout.states.views
 		private function renderFrame(e:Event):void
 		{			
 			var go:GridObject;
-			_drawnObjects.clear();
-			
 			_backBuffer.draw(_backgroundMC);
 			
 			var obj:Object;
@@ -540,13 +538,8 @@ package com.bored.games.breakout.states.views
 			while ( iter.hasNext() )
 			{
 				obj = iter.next();
-				if (!_drawnObjects.contains(obj)) 
-				{
-					var bmd:BitmapData = obj.currFrame;
-					_backBuffer.copyPixels( bmd, bmd.rect, new Point(obj.x, obj.y), null, null, true );
-					
-					_drawnObjects.append(obj);
-				}
+				var bmd:BitmapData = obj.currFrame;
+				_backBuffer.copyPixels( bmd, bmd.rect, new Point(obj.x, obj.y), null, null, true );
 			}
 			
 			iter = new SLLIterator(_balls);

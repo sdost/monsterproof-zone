@@ -17,7 +17,7 @@
     <class path="..\..\..\SWFExplorer 0.6\src" />
     <class path="..\..\..\Flint_2_1_4_source" />
     <class path="..\..\..\Away3DLite\src" />
-    <class path="..\..\..\jesses-wck-91287b8" />
+    <class path="..\..\..\wck" />
   </classpaths>
   <!-- Build options -->
   <build>

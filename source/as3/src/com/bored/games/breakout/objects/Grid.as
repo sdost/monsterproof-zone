@@ -1,10 +1,11 @@
 package com.bored.games.breakout.objects 
 {
-	import Box2D.Collision.Shapes.b2PolygonShape;
-	import Box2D.Collision.Shapes.b2Shape;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.b2FixtureDef;
+	import Box2DAS.Collision.Shapes.b2PolygonShape;
+	import Box2DAS.Collision.Shapes.b2Shape;
+	import Box2DAS.Common.b2Def;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.ExplosionManagerAction;
 	import com.bored.games.breakout.actions.NanoManagerAction;
 	import com.bored.games.breakout.actions.SpawnCollectable;
@@ -106,11 +107,10 @@ package com.bored.games.breakout.objects
 		
 		private function initializePhysics():void
 		{
-			var bd:b2BodyDef = new b2BodyDef();
-			bd.type = b2Body.b2_staticBody;
-			bd.userData = this;
+			b2Def.body.type = b2Body.b2_staticBody;
+			b2Def.body.userData = this;
 			
-			_gridBody = PhysicsWorld.CreateBody(bd);
+			_gridBody = PhysicsWorld.CreateBody(b2Def.body);
 		}//end initializePhysics()
 		
 		public function get gridBody():b2Body

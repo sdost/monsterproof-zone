@@ -1,9 +1,9 @@
 package com.bored.games.breakout.actions 
 {
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.b2FixtureDef;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.emitters.UltimatePower;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
@@ -70,7 +70,7 @@ package com.bored.games.breakout.actions
 				var beam:Beam = new Beam(_sprite);
 				var offsetX:Number = (_gameElement as Paddle).physicsBody.GetPosition().x;
 				var offsetY:Number = 0;
-				beam.physicsBody.SetPosition( new b2Vec2( offsetX, offsetY ) );
+				beam.physicsBody.SetTransform( new V2( offsetX, offsetY ), 0 );
 					
 				GameView.Bullets.append(beam);
 				

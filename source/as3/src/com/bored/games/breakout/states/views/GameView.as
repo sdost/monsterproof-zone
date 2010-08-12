@@ -1,25 +1,25 @@
 package com.bored.games.breakout.states.views 
 {
 	import away3dlite.loaders.Collada;
-	import Box2D.Collision.b2AABB;
-	import Box2D.Collision.b2Manifold;
-	import Box2D.Collision.Shapes.b2PolygonShape;
-	import Box2D.Common.Math.b2Transform;
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.b2FilterData;
-	import Box2D.Dynamics.b2Fixture;
-	import Box2D.Dynamics.b2FixtureDef;
-	import Box2D.Dynamics.Contacts.b2Contact;
-	import Box2D.Dynamics.Joints.b2DistanceJoint;
-	import Box2D.Dynamics.Joints.b2DistanceJointDef;
-	import Box2D.Dynamics.Joints.b2LineJoint;
-	import Box2D.Dynamics.Joints.b2LineJointDef;
-	import Box2D.Dynamics.Joints.b2MouseJoint;
-	import Box2D.Dynamics.Joints.b2MouseJointDef;
-	import Box2D.Dynamics.Joints.b2PrismaticJoint;
-	import Box2D.Dynamics.Joints.b2PrismaticJointDef;
+	import Box2DAS.Collision.b2AABB;
+	import Box2DAS.Collision.b2Manifold;
+	import Box2DAS.Collision.Shapes.b2PolygonShape;
+	import Box2DAS.Common.b2Def;
+	import Box2DAS.Common.b2Transform;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.b2Fixture;
+	import Box2DAS.Dynamics.b2FixtureDef;
+	import Box2DAS.Dynamics.Contacts.b2Contact;
+	import Box2DAS.Dynamics.Joints.b2DistanceJoint;
+	import Box2DAS.Dynamics.Joints.b2DistanceJointDef;
+	import Box2DAS.Dynamics.Joints.b2LineJoint;
+	import Box2DAS.Dynamics.Joints.b2LineJointDef;
+	import Box2DAS.Dynamics.Joints.b2MouseJoint;
+	import Box2DAS.Dynamics.Joints.b2MouseJointDef;
+	import Box2DAS.Dynamics.Joints.b2PrismaticJoint;
+	import Box2DAS.Dynamics.Joints.b2PrismaticJointDef;
 	import com.bored.games.breakout.actions.BrickMultiplierManagerAction;
 	import com.bored.games.breakout.actions.DestructoballAction;
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
@@ -155,12 +155,12 @@ package com.bored.games.breakout.states.views
 		public static const sfx_PaddleCatch:String = "paddleCatch";
 		public static const sfx_PaddleExtend:String = "paddleExtend";
 		
-		public static const id_Ball:uint = 0x000001;
-		public static const id_Brick:uint = 0x000010;
-		public static const id_Paddle:uint = 0x000100;
-		public static const id_Bullet:uint = 0x001000;
-		public static const id_Collectable:uint = 0x010000;
-		public static const id_Wall:uint = 0x100000;
+		public static const id_Ball:uint = 0x0002;
+		public static const id_Brick:uint = 0x0004;
+		public static const id_Paddle:uint = 0x0008;
+		public static const id_Bullet:uint = 0x000F;
+		public static const id_Collectable:uint = 0x0020;
+		public static const id_Wall:uint = 0x0040;
 		
 		public static var Contacts:ContactLL;
 		public static var Collectables:SLL;
@@ -298,54 +298,42 @@ package com.bored.games.breakout.states.views
 		{		
 			//trace("GameView::enter()");
 			
+			/*
 			var filter:b2FilterData = new b2FilterData();
 			filter.categoryBits = GameView.id_Wall;
 			filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
+			*/
 			
-			var fixture:b2FixtureDef = new b2FixtureDef();
-			fixture.filter = filter;
+			b2Def.fixture.restitution = 1.0;
+			b2Def.fixture.filter.categoryBits = GameView.id_Wall;
+			b2Def.fixture.filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
+			b2Def.fixture.isSensor = false;
 			
-			var wall:b2PolygonShape = new b2PolygonShape();
-			var wallBd:b2BodyDef = new b2BodyDef();
-			wallBd.type = b2Body.b2_staticBody;
-			_walls = PhysicsWorld.CreateBody(wallBd);
-			
-			wall.SetAsOrientedBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new b2Vec2(-30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
-			fixture.shape = wall;
-			_walls.CreateFixture(fixture);
-			
-			wall.SetAsOrientedBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new b2Vec2(336 / PhysicsWorld.PhysScale, -30 / PhysicsWorld.PhysScale) );
-			fixture.shape = wall;
-			_topWall = _walls.CreateFixture(fixture);
-			
-			wall.SetAsOrientedBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new b2Vec2(704 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
-			fixture.shape = wall;
-			_walls.CreateFixture(fixture);
-			
-			wall.SetAsOrientedBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new b2Vec2(336 / PhysicsWorld.PhysScale, 574 / PhysicsWorld.PhysScale) );
-			fixture.shape = wall;
-			_bottomWall = _walls.CreateFixture(fixture);
+			b2Def.polygon.SetAsBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new V2(-30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
+			b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
+			b2Def.polygon.SetAsBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new V2(336 / PhysicsWorld.PhysScale, -30 / PhysicsWorld.PhysScale) );
+			_topWall = b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
+			b2Def.polygon.SetAsBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new V2(704 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
+			b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
+			b2Def.polygon.SetAsBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new V2(336 / PhysicsWorld.PhysScale, 574 / PhysicsWorld.PhysScale) );
+			_bottomWall = b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
 			
 			_paddle = new Paddle();
-			_paddle.physicsBody.SetPosition( new b2Vec2( 336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale ) );
+			_paddle.physicsBody.SetTransform( new V2( 336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale ), 0 );
 						
-			var md:b2MouseJointDef = new b2MouseJointDef();
-			md.bodyA = PhysicsWorld.GetGroundBody();
-			md.bodyB = _paddle.physicsBody;
-			md.target.Set( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale);
-			md.maxForce = 10000.0 * _paddle.physicsBody.GetMass();
-			md.dampingRatio = 0;
-			md.frequencyHz = 100;
-			_mouseJoint = PhysicsWorld.CreateJoint(md) as b2MouseJoint;
+			b2Def.mouseJoint.Initialize(_paddle.physicsBody, new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ));
+			b2Def.mouseJoint.maxForce = 10000.0 * _paddle.physicsBody.GetMass();
+			b2Def.mouseJoint.dampingRatio = 0;
+			b2Def.mouseJoint.frequencyHz = 1000;
+			_mouseJoint = PhysicsWorld.CreateJoint(b2Def.mouseJoint) as b2MouseJoint;
 			
-			var ljd:b2LineJointDef = new b2LineJointDef();
-			ljd.Initialize( PhysicsWorld.GetGroundBody(), _paddle.physicsBody, _paddle.physicsBody.GetPosition(), new b2Vec2( 1.0, 0.0 ) );
+			b2Def.lineJoint.Initialize( PhysicsWorld.GetGroundBody(), _paddle.physicsBody, _paddle.physicsBody.GetPosition(), new V2( 1.0, 0.0 ) );
 			
-			ljd.lowerTranslation = -(330 - _paddle.width/2) / PhysicsWorld.PhysScale;
-			ljd.upperTranslation = (330 - _paddle.width/2) / PhysicsWorld.PhysScale;
-			ljd.enableLimit = true;
+			b2Def.lineJoint.lowerTranslation = -(330 - _paddle.width/2) / PhysicsWorld.PhysScale;
+			b2Def.lineJoint.upperTranslation = (330 - _paddle.width/2) / PhysicsWorld.PhysScale;
+			b2Def.lineJoint.enableLimit = true;
 			
-			_lineJoint = PhysicsWorld.CreateJoint(ljd) as b2LineJoint;
+			_lineJoint = PhysicsWorld.CreateJoint(b2Def.lineJoint) as b2LineJoint;
 			
 			_brickMultiplierManager.initParams({ "timeout": AppSettings.instance.brickMultiplierTimeout, "maxMultiplier": AppSettings.instance.brickMultiplierMax });
 			_paddleMultiplierManager.initParams({ "maxMultiplier": AppSettings.instance.paddleMultiplierMax });
@@ -421,8 +409,8 @@ package com.bored.games.breakout.states.views
 				if ( className.search("Bonus") >= 0 )
 				{
 					var pb:Collectable = new Bonus();
-					//pb.physicsBody.ApplyImpulse( new b2Vec2( 0, AppSettings.instance.defaultCollectableFallSpeed * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
-					pb.physicsBody.SetPosition( new b2Vec2( (obj.x + obj.width / 2) / PhysicsWorld.PhysScale, (obj.y + obj.height / 2) / PhysicsWorld.PhysScale ) );
+					//pb.physicsBody.ApplyImpulse( new V2( 0, AppSettings.instance.defaultCollectableFallSpeed * pb.physicsBody.GetMass() ), pb.physicsBody.GetWorldCenter() );
+					pb.physicsBody.SetTransform( new V2( (obj.x + obj.width / 2) / PhysicsWorld.PhysScale, (obj.y + obj.height / 2) / PhysicsWorld.PhysScale ), 0 );
 			
 					GameView.Collectables.append(pb);
 					continue;
@@ -511,7 +499,7 @@ package com.bored.games.breakout.states.views
 		{
 			var ball:Ball = new Ball();
 			
-			ball.physicsBody.SetPosition( new b2Vec2( a_x / PhysicsWorld.PhysScale, a_y / PhysicsWorld.PhysScale ) );
+			ball.physicsBody.SetTransform( new V2( a_x / PhysicsWorld.PhysScale, a_y / PhysicsWorld.PhysScale ), 0 );
 			
 			_balls.append(ball);
 			
@@ -587,7 +575,7 @@ package com.bored.games.breakout.states.views
 			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());	
 		}//end render()
 		
-		private function handleBallCollision(a_ball:b2Fixture, a_fixture:b2Fixture, a_point:b2Vec2):void
+		private function handleBallCollision(a_ball:b2Fixture, a_fixture:b2Fixture, a_point:V2):void
 		{
 			var node:SLLNode;
 			
@@ -635,18 +623,15 @@ package com.bored.games.breakout.states.views
 					
 					_brickMultiplierManager.increaseMultiplier();
 					
-					dispatchEvent( new ObjectEvent( "addPoints", { "basePoints": AppSettings.instance.brickPoints, "brickMult": _brickMultiplierManager.multiplier, "paddleMult": _paddleMultiplierManager.multiplier, "x": a_point.x * PhysicsWorld.PhysScale, "y": a_point.y * PhysicsWorld.PhysScale } ) );
+					dispatchEvent( new ObjectEvent( "addPoints", { "basePoints": AppSettings.instance.brickPoints, "brickMult": _brickMultiplierManager.multiplier, "paddleMult": _paddleMultiplierManager.multiplier, "x": a_ball.GetUserData().x, "y": a_ball.GetUserData().y } ) );
 				}
 				else if ( a_fixture.GetUserData() is Portal )
 				{
 					if ( a_fixture.GetUserData().open )
 					{
-						var dx:Number = a_ball.GetAABB().GetCenter().x - a_fixture.GetAABB().GetCenter().x;
-						var dy:Number = a_ball.GetAABB().GetCenter().y - a_fixture.GetAABB().GetCenter().y;
+						var dist:V2 = a_ball.GetDistance(a_fixture);
 						
-						var dist:Number = Math.sqrt(dx * dx + dy * dy);
-						
-						if ( dist > 0.5 ) return;
+						if ( dist.length() > 0.2 ) return;
 						
 						_paused = true;
 						
@@ -657,7 +642,7 @@ package com.bored.games.breakout.states.views
 				{
 					if ( !a_fixture.IsSensor() )
 					{
-						var vel:b2Vec2 = a_ball.GetBody().GetLinearVelocity();
+						var vel:V2 = a_ball.GetBody().GetLinearVelocity();
 						
 						var angle:Number = Math.atan2(vel.x, vel.y);
 					
@@ -849,7 +834,7 @@ package com.bored.games.breakout.states.views
 			
 			if ( Input.mouseDown ) _paddle.releaseBall();
 			
-			_mouseJoint.SetTarget(new b2Vec2(_mouseXWorldPhys, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale));
+			_mouseJoint.SetTarget(new V2(_mouseXWorldPhys, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale));
 			
 			_lineJoint.SetLimits( -(330 - _paddle.width / 2) / PhysicsWorld.PhysScale, (330 - _paddle.width / 2) / PhysicsWorld.PhysScale );
 			
@@ -861,6 +846,8 @@ package com.bored.games.breakout.states.views
 				var c:Object = iter.next();
 				
 				if ( c == null ) continue;
+				
+				Contacts.remove(c);
 				
 				if ( c.fixtureA.GetUserData() is Ball )
 				{
@@ -944,20 +931,22 @@ package com.bored.games.breakout.states.views
 
 }//end package
 
-import Box2D.Collision.b2AABB;
-import Box2D.Collision.b2Bound;
-import Box2D.Collision.b2Manifold;
-import Box2D.Collision.b2WorldManifold;
-import Box2D.Collision.Shapes.b2CircleShape;
-import Box2D.Collision.Shapes.b2PolygonShape;
-import Box2D.Common.Math.b2Transform;
-import Box2D.Common.Math.b2Vec2;
-import Box2D.Dynamics.b2Body;
-import Box2D.Dynamics.b2ContactImpulse;
-import Box2D.Dynamics.b2ContactListener;
-import Box2D.Dynamics.b2Fixture;
-import Box2D.Dynamics.Contacts.b2Contact;
-import Box2D.Dynamics.Joints.b2DistanceJointDef;
+import Box2DAS.Collision.AABB;
+import Box2DAS.Collision.b2AABB;
+import Box2DAS.Collision.b2Manifold;
+import Box2DAS.Collision.b2WorldManifold;
+import Box2DAS.Collision.Shapes.b2CircleShape;
+import Box2DAS.Collision.Shapes.b2PolygonShape;
+import Box2DAS.Common.b2Def;
+import Box2DAS.Common.b2Transform;
+import Box2DAS.Common.V2;
+import Box2DAS.Common.XF;
+import Box2DAS.Dynamics.b2Body;
+import Box2DAS.Dynamics.b2ContactImpulse;
+import Box2DAS.Dynamics.b2ContactListener;
+import Box2DAS.Dynamics.b2Fixture;
+import Box2DAS.Dynamics.Contacts.b2Contact;
+import Box2DAS.Dynamics.Joints.b2DistanceJointDef;
 import com.bored.games.breakout.objects.Ball;
 import com.bored.games.breakout.objects.bricks.Brick;
 import com.bored.games.breakout.objects.bricks.SimpleBrick;
@@ -980,7 +969,7 @@ class GameContactListener extends b2ContactListener
 		var wm:b2WorldManifold = new b2WorldManifold();
 		contact.GetWorldManifold(wm);
 		
-		var point:b2Vec2 = wm.m_points[0];
+		var point:V2 = wm.points[0];
 		
 		if ( contact.IsEnabled() ) 
 		{
@@ -1003,15 +992,19 @@ class GameContactListener extends b2ContactListener
 		if (!(fixtureA.GetUserData() is Paddle && fixtureB.GetUserData() is Ball))
 			return;
 		
-		var paddle:b2Vec2 = contact.GetFixtureA().GetBody().GetPosition();
-		var ball:b2Vec2 = contact.GetFixtureB().GetBody().GetPosition();
+		var paddle:V2 = contact.GetFixtureA().GetBody().GetPosition();
+		var ball:V2 = contact.GetFixtureB().GetBody().GetPosition();
 		
 		var ballXDiff:Number = ball.x - paddle.x;
 		
-		var rect:b2AABB = new b2AABB();
-		contact.GetFixtureA().GetShape().ComputeAABB(rect, new b2Transform());
-		
-		var ballXRatio:Number = ballXDiff / (rect.GetExtents().x * 2);
+		var extent:Number = (fixtureA.GetUserData().width / 2) / PhysicsWorld.PhysScale;
+				
+		/*
+		var rect:AABB = new AABB();
+		_paddleJoint.GetBodyB().GetFixtureList().m_shape.ComputeAABB(rect, new XF());
+		*/
+			
+		var ballXRatio:Number = ballXDiff / (extent * 2);
 		
 		if (ballXRatio < -0.95) ballXRatio = -0.95;
 		if (ballXRatio > 0.95) ballXRatio = 0.95;
@@ -1019,15 +1012,16 @@ class GameContactListener extends b2ContactListener
 		var wm:b2WorldManifold = new b2WorldManifold();
 		contact.GetWorldManifold(wm);
 		
-		var point:b2Vec2 = wm.m_points[0];
+		var point:V2 = wm.points[0];
 		
 		var bodyB:b2Body = contact.GetFixtureB().GetBody();
-		var vB:b2Vec2 = bodyB.GetLinearVelocityFromWorldPoint(point);
+		var vB:V2 = bodyB.GetLinearVelocityFromWorldPoint(point);
 		
-		var newVel:b2Vec2 = vB.Copy();
+		var newVel:V2 = new V2();
+		newVel.copy(vB);
 		newVel.x = ballXRatio * AppSettings.instance.paddleReflectionMultiplier;
 		
-		var solvedYVel:Number = Math.sqrt(Math.abs(vB.LengthSquared() - (newVel.x * newVel.x)));
+		var solvedYVel:Number = Math.sqrt(Math.abs(vB.lengthSquared() - (newVel.x * newVel.x)));
 		
 		newVel.y = -solvedYVel;
 		
@@ -1043,15 +1037,15 @@ class GameContactListener extends b2ContactListener
 		{
 			if ( fixtureB.GetUserData().ballMode == Ball.DESTRUCT_BALL )
 			{
-				contact.SetSensor(true);
+				//contact.SetSensor(true);
 			}
 		}
 		
 		if (!(fixtureA.GetUserData() is Paddle && fixtureB.GetUserData() is Ball))
 			return;
 		
-		var positionPaddle:b2Vec2 = fixtureA.GetBody().GetPosition();
-		var positionBall:b2Vec2 = fixtureB.GetBody().GetPosition();
+		var positionPaddle:V2 = fixtureA.GetBody().GetPosition();
+		var positionBall:V2 = fixtureB.GetBody().GetPosition();
 		
 		var paddle:Paddle = fixtureA.GetUserData() as Paddle;
 		var ball:Ball = fixtureB.GetUserData() as Ball;
@@ -1069,9 +1063,9 @@ class GameContact
 {
 	public var fixtureA:b2Fixture;
 	public var fixtureB:b2Fixture;
-	public var point:b2Vec2;
+	public var point:V2;
 	
-	public function GameContact( a_fixtureA:b2Fixture, a_fixtureB:b2Fixture, a_point:b2Vec2 = null )
+	public function GameContact( a_fixtureA:b2Fixture, a_fixtureB:b2Fixture, a_point:V2 = null )
 	{
 		fixtureA = a_fixtureA;
 		fixtureB = a_fixtureB;

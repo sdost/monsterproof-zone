@@ -1,11 +1,10 @@
 package com.bored.games.breakout.objects.collectables 
 {
-	import Box2D.Collision.Shapes.b2PolygonShape;
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.b2FilterData;
-	import Box2D.Dynamics.b2FixtureDef;
+	import Box2DAS.Collision.Shapes.b2PolygonShape;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.CatchPaddleAction;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.objects.AnimatedSprite;
@@ -35,7 +34,7 @@ package com.bored.games.breakout.objects.collectables
 			var vx:Number = 5 * Math.cos(angle);
 			var vy:Number = 5 * Math.sin(angle);
 			
-			_collectableBody.ApplyImpulse( new b2Vec2( vx, vy ), _collectableBody.GetWorldCenter() );			
+			_collectableBody.ApplyImpulse( new V2( vx, vy ), _collectableBody.GetWorldCenter() );			
 		}//end constructor()
 		
 		override public function get actionName():String 
@@ -47,7 +46,7 @@ package com.bored.games.breakout.objects.collectables
 		{
 			_animatedSprite.update(t);
 			
-			var pos:b2Vec2 = _collectableBody.GetPosition();
+			var pos:V2 = _collectableBody.GetPosition();
 			
 			this.x = pos.x * PhysicsWorld.PhysScale - width / 2;
 			this.y = pos.y * PhysicsWorld.PhysScale - height / 2;

@@ -1,16 +1,17 @@
 package com.bored.games.breakout.objects 
 {
-	import Box2D.Collision.b2AABB;
-	import Box2D.Collision.Shapes.b2PolygonShape;
-	import Box2D.Common.Math.b2Transform;
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.b2FilterData;
-	import Box2D.Dynamics.b2Fixture;
-	import Box2D.Dynamics.b2FixtureDef;
-	import Box2D.Dynamics.Joints.b2PrismaticJoint;
-	import Box2D.Dynamics.Joints.b2PrismaticJointDef;
+	import Box2DAS.Collision.AABB;
+	import Box2DAS.Collision.Shapes.b2PolygonShape;
+	import Box2DAS.Common.b2Def;
+	import Box2DAS.Common.XF;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.b2Filter;
+	import Box2DAS.Dynamics.b2Fixture;
+	import Box2DAS.Dynamics.b2FixtureDef;
+	import Box2DAS.Dynamics.Joints.b2PrismaticJoint;
+	import Box2DAS.Dynamics.Joints.b2PrismaticJointDef;
 	import com.bored.games.breakout.actions.CatchPaddleAction;
 	import com.bored.games.breakout.actions.ExtendPaddleAction;
 	import com.bored.games.breakout.actions.LaserPaddleAction;
@@ -81,29 +82,30 @@ package com.bored.games.breakout.objects
 		
 		private function initializePhysicsBody():void
 		{
-			var bd:b2BodyDef = new b2BodyDef();
-			bd.type = b2Body.b2_dynamicBody;
-			bd.fixedRotation = true;
-			bd.allowSleep = false;
-			bd.userData = this;
+			b2Def.body.type = b2Body.b2_dynamicBody;
+			b2Def.body.fixedRotation = true;
+			b2Def.body.allowSleep = false;
+			b2Def.body.userData = this;
 			
-			var shape:b2PolygonShape = new b2PolygonShape();
-			shape.SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.currFrame.height / 2) / PhysicsWorld.PhysScale );
+			b2Def.polygon.SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.currFrame.height / 2) / PhysicsWorld.PhysScale );
 			
-			var filter:b2FilterData = new b2FilterData();
+			/*
+			var filter:b2Filter = new b2Filter();
 			filter.categoryBits = GameView.id_Paddle;
 			filter.maskBits = GameView.id_Collectable | GameView.id_Ball;
+			*/
 			
-			var fd:b2FixtureDef = new b2FixtureDef();
-			fd.shape = shape;
-			fd.filter = filter;
-			fd.density = 1.0;
-			fd.friction = 0.0;
-			fd.restitution = 1.0;			
-			fd.userData = this;
+			b2Def.fixture.shape = b2Def.polygon;
+			b2Def.fixture.filter.categoryBits = GameView.id_Paddle;
+			b2Def.fixture.filter.maskBits = GameView.id_Collectable | GameView.id_Ball;
+			b2Def.fixture.density = 1.0;
+			b2Def.fixture.friction = 0.0;
+			b2Def.fixture.restitution = 0.0;			
+			b2Def.fixture.userData = this;
+			b2Def.fixture.isSensor = false;
 			
-			_paddleBody = PhysicsWorld.CreateBody(bd);
-			_paddleBody.CreateFixture(fd);
+			_paddleBody = PhysicsWorld.CreateBody(b2Def.body);
+			b2Def.fixture.create(_paddleBody);
 		}//end initializePhysicsBody()
 		
 		private function initializeActions():void
@@ -117,11 +119,7 @@ package com.bored.games.breakout.objects
 		public function updateBody():void
 		{
 			var fixture:b2Fixture = _paddleBody.GetFixtureList();
-			
-			var shape:b2PolygonShape = new b2PolygonShape();
-			shape.SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_normalHeight / 2) / PhysicsWorld.PhysScale );
-			
-			fixture.GetShape().Set(shape);
+			(fixture.m_shape as b2PolygonShape).SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_normalHeight / 2) / PhysicsWorld.PhysScale );
 		}//end updateBody()
 		
 		public function get physicsBody():b2Body
@@ -236,48 +234,52 @@ package com.bored.games.breakout.objects
 		
 		public function catchBall(a_ball:Ball):void
 		{
-			var worldAxis:b2Vec2 = new b2Vec2(1.0, 0.0);
+			var worldAxis:V2 = new V2(1.0, 0.0);
 			
 			a_ball.sleeping = true;
 			
-			var pos:b2Vec2 = _paddleBody.GetWorldCenter();
+			var pos:V2 = _paddleBody.GetWorldCenter();
 			pos.y -= a_ball.height / PhysicsWorld.PhysScale;
-			a_ball.physicsBody.SetPosition( pos );
+			a_ball.physicsBody.SetTransform( pos, 0 );
 			
-			var jointDef:b2PrismaticJointDef = new b2PrismaticJointDef();
-			jointDef.Initialize(
-				a_ball.physicsBody, 
-				_paddleBody, 
+			b2Def.prismaticJoint.enableLimit = false;
+			b2Def.prismaticJoint.lowerTranslation = -(this.width / 2) / PhysicsWorld.PhysScale;
+			b2Def.prismaticJoint.upperTranslation = (this.width / 2) / PhysicsWorld.PhysScale;
+			
+			b2Def.prismaticJoint.Initialize( 
+				a_ball.physicsBody,
+				_paddleBody,
 				a_ball.physicsBody.GetWorldCenter(),
 				worldAxis);
 				
-			jointDef.lowerTranslation = -(this.width / 2) / PhysicsWorld.PhysScale;
-			jointDef.upperTranslation = (this.width / 2) / PhysicsWorld.PhysScale;
-			jointDef.enableLimit = true;
-			
-			_paddleJoint = PhysicsWorld.CreateJoint(jointDef) as b2PrismaticJoint;
+			_paddleJoint = PhysicsWorld.CreateJoint(b2Def.prismaticJoint) as b2PrismaticJoint;
 		}//end catchBall()
 		
 		public function releaseBall():void
 		{
 			if (_paddleJoint)
-			{				
-				var ball:b2Vec2 = _paddleJoint.GetBodyA().GetPosition();
-				var paddle:b2Vec2 = _paddleJoint.GetBodyB().GetPosition();
+			{	
+				var ball:V2 = _paddleJoint.GetBodyA().GetPosition();
+				var paddle:V2 = _paddleJoint.GetBodyB().GetPosition();
 				
 				var ballXDiff:Number = ball.x - paddle.x;
 				
-				var rect:b2AABB = new b2AABB();
-				_paddleJoint.GetBodyA().GetFixtureList().GetShape().ComputeAABB(rect, new b2Transform());
+				var extent:Number = (this.width / 2) / PhysicsWorld.PhysScale;
 				
-				var ballXRatio:Number = ballXDiff / (rect.GetExtents().x * 2);
+				/*
+				var rect:AABB = new AABB();
+				_paddleJoint.GetBodyB().GetFixtureList().m_shape.ComputeAABB(rect, new XF());
+				*/
+			
+				var ballXRatio:Number = ballXDiff / (extent * 2);
 				
+				if (isNaN(ballXRatio)) ballXRatio = 0;
 				if (ballXRatio < -0.95) ballXRatio = -0.95;
 				if (ballXRatio > 0.95) ballXRatio = 0.95;
 				
 				var b:Ball = _paddleJoint.GetBodyA().GetUserData() as Ball;
 				
-				var vel:b2Vec2 = new b2Vec2();
+				var vel:V2 = new V2();
 				vel.x = ballXRatio * AppSettings.instance.paddleReflectionMultiplier;
 				vel.y = -Math.sqrt(Math.abs((b.speed * b.speed) - (vel.x * vel.x)));
 				
@@ -295,7 +297,7 @@ package com.bored.games.breakout.objects
 			
 			_animationController.update(t);
 			
-			var pos:b2Vec2 = _paddleBody.GetPosition();
+			var pos:V2 = _paddleBody.GetPosition();
 			
 			this.x = (pos.x * PhysicsWorld.PhysScale - width / 2);
 			this.y = ((pos.y * PhysicsWorld.PhysScale + _normalHeight / 2) - height);

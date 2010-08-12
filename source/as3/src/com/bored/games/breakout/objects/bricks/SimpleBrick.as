@@ -1,7 +1,7 @@
 package com.bored.games.breakout.objects.bricks 
 {
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
 	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;

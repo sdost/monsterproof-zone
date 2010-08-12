@@ -1,11 +1,13 @@
 package com.bored.games.breakout.objects.collectables 
 {
-	import Box2D.Collision.Shapes.b2PolygonShape;
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.b2FilterData;
-	import Box2D.Dynamics.b2FixtureDef;
+	import Box2DAS.Collision.Shapes.b2PolygonShape;
+	import Box2DAS.Common.b2Def;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.b2Filter;
+	import Box2DAS.Dynamics.b2Fixture;
+	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.animations.AnimatedShot;
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.objects.AnimationSet;
@@ -37,34 +39,35 @@ package com.bored.games.breakout.objects.collectables
 				
 		protected function initializePhysics():void
 		{
-			var bd:b2BodyDef = new b2BodyDef();
-			bd.type = b2Body.b2_dynamicBody;
-			bd.fixedRotation = true;
-			bd.allowSleep = false;
-			bd.userData = this;
-			
-			var shape:b2PolygonShape = new b2PolygonShape();
+			b2Def.body.type = b2Body.b2_dynamicBody;
+			b2Def.body.fixedRotation = true;
+			b2Def.body.allowSleep = false;
+			b2Def.body.userData = this;
 			
 			var b2Width:Number = _animatedSprite.currFrame.width;
 			var b2Height:Number = _animatedSprite.currFrame.height;
 			
-			shape.SetAsBox( (b2Width / PhysicsWorld.PhysScale) / 2,  (b2Height / PhysicsWorld.PhysScale) / 2 );
+			b2Def.polygon.SetAsBox( (b2Width / PhysicsWorld.PhysScale) / 2,  (b2Height / PhysicsWorld.PhysScale) / 2 );
 			
-			var filter:b2FilterData = new b2FilterData();
+			/*
+			var filter:b2Filter = new b2Filter();
 			filter.categoryBits = GameView.id_Collectable;
 			filter.maskBits = GameView.id_Paddle | GameView.id_Wall;
+			*/
 			
-			var fd:b2FixtureDef = new b2FixtureDef();
-			fd.shape = shape;
-			fd.filter = filter;
-			fd.density = 1.0;
-			fd.friction = 0.0;
-			fd.restitution = 1.0;
-			//fd.isSensor = true;
-			fd.userData = this;
+			b2Def.fixture.shape = b2Def.polygon;
+			b2Def.fixture.filter.categoryBits = GameView.id_Collectable;
+			b2Def.fixture.filter.maskBits = GameView.id_Paddle | GameView.id_Wall;
+			b2Def.fixture.density = 1.0;
+			b2Def.fixture.friction = 0.0;
+			b2Def.fixture.restitution = 1.0;
+			b2Def.fixture.isSensor = false;
+			b2Def.fixture.userData = this;
 			
-			_collectableBody = PhysicsWorld.CreateBody(bd);
-			_collectableBody.CreateFixture(fd);
+			_collectableBody = PhysicsWorld.CreateBody(b2Def.body);
+			var fixture:b2Fixture = b2Def.fixture.create(_collectableBody);
+			fixture.m_reportBeginContact = true;
+			fixture.m_reportEndContact = true;
 		}//end initializePhysics()
 		
 		private function cleanupPhysics():void
@@ -103,12 +106,12 @@ package com.bored.games.breakout.objects.collectables
 			
 			_animatedSprite.update(t);
 			
-			var pos:b2Vec2 = _collectableBody.GetPosition();
+			var pos:V2 = _collectableBody.GetPosition();
 			
 			this.x = pos.x * PhysicsWorld.PhysScale - width / 2;
 			this.y = pos.y * PhysicsWorld.PhysScale - height / 2;
 			
-			_collectableBody.ApplyForce(new b2Vec2(0, 10 * _collectableBody.GetMass()), _collectableBody.GetWorldCenter());
+			_collectableBody.ApplyForce(new V2(0, 10 * _collectableBody.GetMass()), _collectableBody.GetWorldCenter());
 		}//end update()
 		
 		public function destroy():void 

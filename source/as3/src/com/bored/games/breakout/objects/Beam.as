@@ -1,13 +1,14 @@
 package com.bored.games.breakout.objects 
 {
-	import Box2D.Collision.Shapes.b2CircleShape;
-	import Box2D.Collision.Shapes.b2PolygonShape;
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.b2FilterData;
-	import Box2D.Dynamics.b2Fixture;
-	import Box2D.Dynamics.b2FixtureDef;
+	import Box2DAS.Collision.Shapes.b2CircleShape;
+	import Box2DAS.Collision.Shapes.b2PolygonShape;
+	import Box2DAS.Common.b2Def;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.b2Filter;
+	import Box2DAS.Dynamics.b2Fixture;
+	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
@@ -44,31 +45,33 @@ package com.bored.games.breakout.objects
 		
 		private function initializePhysicsBody():void
 		{
-			var bd:b2BodyDef = new b2BodyDef();
-			bd.type = b2Body.b2_dynamicBody;
-			bd.fixedRotation = true;
-			bd.bullet = true;
-			bd.allowSleep = false;
-			bd.userData = this;
+			b2Def.body.type = b2Body.b2_dynamicBody;
+			b2Def.body.fixedRotation = true;
+			b2Def.body.bullet = true;
+			b2Def.body.allowSleep = false;
+			b2Def.body.userData = this;
 			
-			var shape:b2PolygonShape = new b2PolygonShape();
-			shape.SetAsOrientedBox( (_animatedSprite.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.height / 2) / PhysicsWorld.PhysScale, new b2Vec2(0, _animatedSprite.height / 2 / PhysicsWorld.PhysScale) );
+			b2Def.polygon.SetAsBox( (_animatedSprite.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.height / 2) / PhysicsWorld.PhysScale );
 			
-			var filter:b2FilterData = new b2FilterData();
+			/*
+			var filter:b2Filter = new b2Filter();
 			filter.categoryBits = GameView.id_Bullet;
 			filter.maskBits = GameView.id_Brick | GameView.id_Wall;
+			*/
 			
-			var fd:b2FixtureDef = new b2FixtureDef();
-			fd.shape = shape;
-			fd.filter = filter;
-			fd.density = 1.0;
-			fd.friction = 0.0;
-			fd.restitution = 1.0;
-			fd.userData = this;
-			fd.isSensor = true;
+			b2Def.fixture.shape = b2Def.polygon;
+			b2Def.fixture.filter.categoryBits = GameView.id_Bullet;
+			b2Def.fixture.filter.maskBits = GameView.id_Brick | GameView.id_Wall;
+			b2Def.fixture.density = 1.0;
+			b2Def.fixture.friction = 0.0;
+			b2Def.fixture.restitution = 1.0;
+			b2Def.fixture.userData = this;
+			b2Def.fixture.isSensor = true;
 			
-			_beamBody = PhysicsWorld.CreateBody(bd);
-			_beamBody.CreateFixture(fd);
+			_beamBody = PhysicsWorld.CreateBody(b2Def.body);
+			var fixture:b2Fixture = b2Def.fixture.create(_beamBody);
+			fixture.m_reportBeginContact = true;
+			fixture.m_reportEndContact = true;
 		}//end initializePhysicsBody()
 		
 		private function cleanupPhysics():void
@@ -103,9 +106,9 @@ package com.bored.games.breakout.objects
 			var fixture:b2Fixture = _beamBody.GetFixtureList();
 			
 			var shape:b2PolygonShape = new b2PolygonShape();
-			shape.SetAsOrientedBox( (_animationController.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animationController.currFrame.height / 2) / PhysicsWorld.PhysScale, new b2Vec2(0, _animationController.currFrame.height / 2 / PhysicsWorld.PhysScale) );
+			shape.SetAsBox( (_animationController.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animationController.currFrame.height / 2) / PhysicsWorld.PhysScale, new V2(0, _animationController.currFrame.height / 2 / PhysicsWorld.PhysScale) );
 			
-			fixture.GetShape().Set(shape);
+			fixture.m_shape = shape;
 		}//end updateBody()
 		
 		override public function update(t:Number = 0):void
@@ -117,7 +120,7 @@ package com.bored.games.breakout.objects
 			if ( _beamBody ) 
 			{
 				updateBody();
-				var pos:b2Vec2 = _beamBody.GetPosition();
+				var pos:V2 = _beamBody.GetPosition();
 			
 				this.x = pos.x * PhysicsWorld.PhysScale - ( width / 2 );
 				this.y = pos.y * PhysicsWorld.PhysScale;

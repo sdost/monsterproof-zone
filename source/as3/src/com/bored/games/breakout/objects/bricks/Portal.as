@@ -1,9 +1,9 @@
 package com.bored.games.breakout.objects.bricks 
 {
-	import Box2D.Collision.Shapes.b2PolygonShape;
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2FilterData;
-	import Box2D.Dynamics.b2FixtureDef;
+	import Box2DAS.Collision.Shapes.b2PolygonShape;
+	import Box2DAS.Common.b2Def;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.objects.AnimationController;
 	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
@@ -56,19 +56,21 @@ package com.bored.games.breakout.objects.bricks
 			var b2X:Number = this.gridX * AppSettings.instance.defaultTileWidth + b2Width / 2;
 			var b2Y:Number = this.gridY * AppSettings.instance.defaultTileHeight + b2Height / 2;			
 			
-			shape.SetAsOrientedBox( (b2Width / PhysicsWorld.PhysScale) / 2,  (b2Height / PhysicsWorld.PhysScale) / 2, new b2Vec2( b2X / PhysicsWorld.PhysScale, b2Y / PhysicsWorld.PhysScale ) );
+			b2Def.polygon.SetAsBox( (b2Width / PhysicsWorld.PhysScale) / 2,  (b2Height / PhysicsWorld.PhysScale) / 2, new V2( b2X / PhysicsWorld.PhysScale, b2Y / PhysicsWorld.PhysScale ) );
 			
+			/*
 			var filter:b2FilterData = new b2FilterData();
 			filter.categoryBits = GameView.id_Brick;
 			filter.maskBits = GameView.id_Ball;
+			*/
 			
-			var fd:b2FixtureDef = new b2FixtureDef();
-			fd.shape = shape;
-			fd.filter = filter;
-			fd.userData = this;
-			fd.isSensor = true;
+			b2Def.fixture.shape = b2Def.polygon;
+			b2Def.fixture.filter.categoryBits = GameView.id_Brick;
+			b2Def.fixture.filter.maskBits = GameView.id_Ball;
+			b2Def.fixture.userData = this;
+			b2Def.fixture.isSensor = true;
 			
-			_brickFixture = _grid.gridBody.CreateFixture(fd);
+			_brickFixture = b2Def.fixture.create(_grid.gridBody);
 		}//end initializePhysics()
 		
 		override public function update(t:Number = 0):void 

@@ -1,6 +1,6 @@
 package com.bored.games.breakout.actions 
 {
-	import Box2D.Common.Math.b2Vec2;
+	import Box2DAS.Common.V2;
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.objects.collectables.BlockBonus;
@@ -80,7 +80,7 @@ package com.bored.games.breakout.actions
 					break;
 			}
 			
-			pb.physicsBody.SetPosition( new b2Vec2( xOffset / PhysicsWorld.PhysScale, yOffset / PhysicsWorld.PhysScale ) );
+			pb.physicsBody.SetTransform( new V2( xOffset / PhysicsWorld.PhysScale, yOffset / PhysicsWorld.PhysScale ), 0 );
 			
 			GameView.Collectables.append(pb);
 			

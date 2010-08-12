@@ -1,9 +1,9 @@
 package com.bored.games.breakout.actions 
 {
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.b2FixtureDef;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.objects.AnimatedSprite;
@@ -75,15 +75,15 @@ package com.bored.games.breakout.actions
 						var bullet:Bullet = new Bullet(_sprite);
 						var offsetX:Number = (_gameElement.x + 4) / PhysicsWorld.PhysScale;
 						var offsetY:Number = _gameElement.y / PhysicsWorld.PhysScale;
-						bullet.physicsBody.SetPosition( new b2Vec2( offsetX, offsetY ) );
-						bullet.physicsBody.ApplyImpulse( new b2Vec2( 0, -30 * bullet.physicsBody.GetMass() ), bullet.physicsBody.GetWorldCenter() );
+						bullet.physicsBody.SetTransform( new V2( offsetX, offsetY ), 0 );
+						bullet.physicsBody.ApplyImpulse( new V2( 0, -30 * bullet.physicsBody.GetMass() ), bullet.physicsBody.GetWorldCenter() );
 						
 						GameView.Bullets.append(bullet);
 						
 						bullet = new Bullet(_sprite);
 						offsetX = (_gameElement.x + _gameElement.width - 6) / PhysicsWorld.PhysScale;
-						bullet.physicsBody.SetPosition( new b2Vec2( offsetX, offsetY ) );
-						bullet.physicsBody.ApplyImpulse( new b2Vec2( 0, -30 * bullet.physicsBody.GetMass() ), bullet.physicsBody.GetWorldCenter() );
+						bullet.physicsBody.SetTransform( new V2( offsetX, offsetY ), 0 );
+						bullet.physicsBody.ApplyImpulse( new V2( 0, -30 * bullet.physicsBody.GetMass() ), bullet.physicsBody.GetWorldCenter() );
 						
 						GameView.Bullets.append(bullet);
 						

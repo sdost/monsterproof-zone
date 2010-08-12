@@ -1,17 +1,19 @@
 package com.bored.games.breakout.physics 
 {
-	import Box2D.Collision.b2AABB;
-	import Box2D.Common.b2Settings;
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2ContactListener;
-	import Box2D.Dynamics.b2DebugDraw;
-	import Box2D.Dynamics.b2World;
-	import Box2D.Dynamics.b2Fixture;
-	import Box2D.Collision.Shapes.b2Shape;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.Joints.b2Joint;
-	import Box2D.Dynamics.Joints.b2JointDef;
+	import Box2DAS.Collision.b2AABB;
+	import Box2DAS.Common.b2Base;
+	import Box2DAS.Common.b2Def;
+	import Box2DAS.Common.b2Settings;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2ContactListener;
+	import Box2DAS.Dynamics.b2DebugDraw;
+	import Box2DAS.Dynamics.b2World;
+	import Box2DAS.Dynamics.b2Fixture;
+	import Box2DAS.Collision.Shapes.b2Shape;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.Joints.b2Joint;
+	import Box2DAS.Dynamics.Joints.b2JointDef;
 	import com.bored.games.objects.GameElement;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
@@ -23,19 +25,24 @@ package com.bored.games.breakout.physics
 	public class PhysicsWorld
 	{
 		private static var _world:b2World;
+		private static var _debugDraw:b2DebugDraw;
 		private static var _doSleep:Boolean = true;
 		
 		private static var _lastUpdate:Number = 0;		
 		private static var _timeStep:Number = 1.0 / 60.0;
-		private static var _velIterations:int = 20;
-		private static var _posIterations:int = 20;
+		private static var _velIterations:int = 3;// 20;
+		private static var _posIterations:int = 8;// 20;
 		
 		private static var _physScale:Number = 30;
 		
 		public static function InitializePhysics():void
 		{
-			_world = new b2World( new b2Vec2(0, 0), _doSleep );
-			_world.SetWarmStarting(true);
+			b2Base.initialize();
+			b2Def.initialize();
+			_world = new b2World( new V2(0, 0), _doSleep );
+			//_world.SetWarmStarting(true);
+			_world.SetAutoClearForces(true);
+			//_world.SetContinuousPhysics(true);
 		}//end InitializePhysics()
 		
 		public static function SetContactListener(a_listener:b2ContactListener):void
@@ -45,13 +52,10 @@ package com.bored.games.breakout.physics
 		
 		public static function SetDebugDraw(a_sprite:Sprite):void
 		{
-			var dbgDraw:b2DebugDraw = new b2DebugDraw();
-			dbgDraw.SetSprite(a_sprite);
-			dbgDraw.SetDrawScale(_physScale);
-			dbgDraw.SetFillAlpha(0.3);
-			dbgDraw.SetLineThickness(1.0);
-			dbgDraw.SetFlags(b2DebugDraw.e_shapeBit | b2DebugDraw.e_jointBit);
-			_world.SetDebugDraw(dbgDraw);
+			_debugDraw = new b2DebugDraw();
+			a_sprite.addChild(_debugDraw);
+			_debugDraw.scale = _physScale;
+			_debugDraw.world = _world;
 		}//end SetDebugDraw()
 		
 		public static function get PhysScale():Number
@@ -61,17 +65,17 @@ package com.bored.games.breakout.physics
 		
 		public static function CreateBody( a_def:b2BodyDef ):b2Body
 		{
-			return _world.CreateBody(a_def);
+			return a_def.create(_world);
 		}//end CreateBody()
 		
 		public static function CreateJoint( a_def:b2JointDef ):b2Joint
 		{
-			return _world.CreateJoint(a_def);
+			return a_def.create(_world);
 		}//end CreateJoint()
 		
 		public static function GetGroundBody():b2Body
 		{
-			return _world.GetGroundBody();
+			return _world.m_groundBody;
 		}//end GetGroundBody()
 		
 		public static function UpdateWorld(t:Number = 0):void
@@ -81,9 +85,9 @@ package com.bored.games.breakout.physics
 				var delta:Number = t - _lastUpdate;
 				_lastUpdate = t;
 				
-				_world.Step(delta / 1000, _velIterations, _posIterations);				
-				_world.ClearForces();
-				//_world.DrawDebugData();
+				_world.Step(_timeStep, _velIterations, _posIterations);				
+				//_world.ClearForces();
+				//_debugDraw.Draw();
 				
 				var time:int = getTimer();
 				var bb:b2Body = _world.GetBodyList();

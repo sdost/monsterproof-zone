@@ -9,15 +9,15 @@
     <movie width="672" />
     <movie height="544" />
     <movie version="10" />
-    <movie background="#000000" />
+    <movie background="#FFFFFF" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\..\Box2DFlashAS3 2.1a\Source" />
     <class path="..\..\..\SWFExplorer 0.6\src" />
     <class path="..\..\..\Flint_2_1_4_source" />
     <class path="..\..\..\Away3DLite\src" />
+    <class path="..\..\..\jesses-wck-91287b8" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -53,6 +53,8 @@
     <element path="libs\MonsterProofEngine.swc" />
     <element path="libs\ds_release.swc" />
     <element path="libs\MonsterProofEngine.swc" />
+    <element path="libs\Box2DAS\Box2D.swc" />
+    <element path="libs\Box2D.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>
@@ -65,6 +67,7 @@
   <!-- Intrinsic Libraries -->
   <intrinsics>
     <element path="Library\AS3\frameworks\Flex3" />
+    <element path="libs\Box2DAS" />
   </intrinsics>
   <!-- Assets to embed into the output SWF -->
   <library>

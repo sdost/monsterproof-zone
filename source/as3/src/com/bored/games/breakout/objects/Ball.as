@@ -1,11 +1,13 @@
 package com.bored.games.breakout.objects 
 {
-	import Box2D.Collision.Shapes.b2CircleShape;
-	import Box2D.Common.Math.b2Vec2;
-	import Box2D.Dynamics.b2Body;
-	import Box2D.Dynamics.b2BodyDef;
-	import Box2D.Dynamics.b2FilterData;
-	import Box2D.Dynamics.b2FixtureDef;
+	import Box2DAS.Collision.Shapes.b2CircleShape;
+	import Box2DAS.Common.b2Def;
+	import Box2DAS.Common.V2;
+	import Box2DAS.Dynamics.b2Body;
+	import Box2DAS.Dynamics.b2BodyDef;
+	import Box2DAS.Dynamics.b2Filter;
+	import Box2DAS.Dynamics.b2Fixture;
+	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.DestructoballAction;
 	import com.bored.games.breakout.actions.InvinciballAction;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
@@ -81,26 +83,33 @@ package com.bored.games.breakout.objects
 		
 		private function initializePhysicsBody():void
 		{
-			var bd:b2BodyDef = new b2BodyDef();
-			bd.type = b2Body.b2_dynamicBody;
-			bd.bullet = true;
-			bd.allowSleep = false;
-			bd.userData = this;
+			b2Def.body.type = b2Body.b2_dynamicBody;
+			b2Def.body.bullet = true;
+			b2Def.body.allowSleep = false;
+			b2Def.body.userData = this;
 
-			var filter:b2FilterData = new b2FilterData();
+			/*
+			var filter:b2Filter = new b2Filter();
 			filter.categoryBits = GameView.id_Ball;
 			filter.maskBits = GameView.id_Brick | GameView.id_Paddle | GameView.id_Wall | GameView.id_Ball | GameView.id_Collectable;
+			*/
 			
-			var fd:b2FixtureDef = new b2FixtureDef();
-			fd.shape = new b2CircleShape( (_animatedSprite.width / 2) / PhysicsWorld.PhysScale );
-			fd.filter = filter;
-			fd.density = 1.0;
-			fd.friction = 0.0;
-			fd.restitution = 1.0;
-			fd.userData = this;
+			b2Def.circle.m_radius = (_animatedSprite.width / 2) / PhysicsWorld.PhysScale;
+			b2Def.fixture.shape = b2Def.circle;
+			b2Def.fixture.filter.categoryBits = GameView.id_Ball;
+			b2Def.fixture.filter.maskBits = GameView.id_Brick | GameView.id_Paddle | GameView.id_Wall | GameView.id_Ball | GameView.id_Collectable;
+			b2Def.fixture.density = 1.0;
+			b2Def.fixture.friction = 0.0;
+			b2Def.fixture.restitution = 1.0;
+			b2Def.fixture.userData = this;
+			b2Def.fixture.isSensor = false;
 			
-			_ballBody = PhysicsWorld.CreateBody(bd);
-			_ballBody.CreateFixture(fd);
+			_ballBody = PhysicsWorld.CreateBody(b2Def.body);
+			var fixture:b2Fixture = b2Def.fixture.create(_ballBody);
+			fixture.m_reportBeginContact = true;
+			fixture.m_reportEndContact = true;
+			fixture.m_reportPreSolve = true;
+			fixture.m_reportPostSolve = true;
 		}//end initializePhysicsBody()
 		
 		private function cleanupPhysics():void
@@ -235,29 +244,30 @@ package com.bored.games.breakout.objects
 			
 			_animatedSprite.update(t);
 						
-			var pos:b2Vec2 = _ballBody.GetPosition();
+			var pos:V2 = _ballBody.GetPosition();
 			
 			this.x = (pos.x * PhysicsWorld.PhysScale - width / 2);
 			this.y = (pos.y * PhysicsWorld.PhysScale - height / 2);
 			
 			if (_sleeping) return;
 			
-			var bodyVelocity:b2Vec2 = _ballBody.GetLinearVelocity();
-			var limitVelocity:b2Vec2 = bodyVelocity.Copy();
-			limitVelocity.Normalize();
-			limitVelocity.Multiply(_speed);
+			var bodyVelocity:V2 = _ballBody.GetLinearVelocity();
+			var limitVelocity:V2 = new V2();
+			limitVelocity.copy(bodyVelocity);
+			limitVelocity.normalize();
+			limitVelocity.multiplyN(_speed);
 			_ballBody.SetLinearVelocity(limitVelocity);
 			
 			bodyVelocity = _ballBody.GetLinearVelocity();
 			
 			if (Math.abs(bodyVelocity.x) <= AppSettings.instance.ballTrajectoryThreshold)
 			{
-				_ballBody.ApplyForce(new b2Vec2(AppSettings.instance.ballTrajectoryAdjustFactor * _ballBody.GetMass(), 0), _ballBody.GetWorldCenter());
+				_ballBody.ApplyForce(new V2(AppSettings.instance.ballTrajectoryAdjustFactor * _ballBody.GetMass(), 0), _ballBody.GetWorldCenter());
 			}
 			
 			if (Math.abs(bodyVelocity.y) <= AppSettings.instance.ballTrajectoryThreshold)
 			{
-				_ballBody.ApplyForce(new b2Vec2(0, AppSettings.instance.ballTrajectoryAdjustFactor * _ballBody.GetMass()), _ballBody.GetWorldCenter());
+				_ballBody.ApplyForce(new V2(0, AppSettings.instance.ballTrajectoryAdjustFactor * _ballBody.GetMass()), _ballBody.GetWorldCenter());
 			}
 		
 		}//end update()

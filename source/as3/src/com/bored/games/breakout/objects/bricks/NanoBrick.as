@@ -1,6 +1,6 @@
 package com.bored.games.breakout.objects.bricks 
 {
-	import Box2D.Dynamics.b2FilterData;
+	import Box2DAS.Dynamics.b2Filter;
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
 	import com.bored.games.breakout.objects.AnimationController;
 	import com.bored.games.breakout.objects.AnimationSet;
@@ -52,23 +52,23 @@ package com.bored.games.breakout.objects.bricks
 		{
 			super.addToGrid(a_grid, a_x, a_y);
 			
-			var filter:b2FilterData;
+			var filter:Object;
 			
 			if (_alive)
 			{
-				filter = new b2FilterData();
+				filter = _brickFixture.GetFilterData();
 				filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
 				filter.categoryBits = GameView.id_Brick;
-				
 				_brickFixture.SetFilterData(filter);
+				_brickFixture.Refilter();
 			}
 			else
 			{
-				filter = new b2FilterData();
+				filter = _brickFixture.GetFilterData();
 				filter.maskBits = 0x000000;
 				filter.categoryBits = GameView.id_Brick;
-				
 				_brickFixture.SetFilterData(filter);
+				_brickFixture.Refilter();
 			}
 			
 			_grid.addNanoBrick(this);
@@ -102,7 +102,7 @@ package com.bored.games.breakout.objects.bricks
 		public function revive():void
 		{
 			_alive = true;
-			var filter:b2FilterData = new b2FilterData()
+			var filter:Object = new Object()
 			filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
 			filter.categoryBits = GameView.id_Brick;
 				
@@ -129,7 +129,7 @@ package com.bored.games.breakout.objects.bricks
 			}
 			
 			_alive = false;
-			var filter:b2FilterData = new b2FilterData()
+			var filter:Object = new Object()
 			filter.maskBits = 0;
 			filter.categoryBits = GameView.id_Brick;
 				

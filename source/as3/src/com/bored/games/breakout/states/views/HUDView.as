@@ -136,9 +136,7 @@ package com.bored.games.breakout.states.views
 			stage.invalidate();
 			
 			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
-			
-			_lastUpdate = getTimer();
-			
+						
 			_renderer = new PixelRenderer(new Rectangle(0, 0, stage.stageWidth, stage.stageHeight));
 			_renderer.addFilter( new BlurFilter( 2, 2, 1 ) );
 			_renderer.addFilter( new ColorMatrixFilter( [ 1, 0, 0, 0, 0,
@@ -146,6 +144,8 @@ package com.bored.games.breakout.states.views
 														  0, 0, 1, 0, 0,
 														  0, 0, 0, 0.95, 0 ] ) );
 			addChild(_renderer);
+			
+			_lastUpdate = getTimer();
 			
 			_paused = false;
 		}//end addedToStageHandler()
@@ -155,7 +155,7 @@ package com.bored.games.breakout.states.views
 			_presentEmitter = new Emitter2D();
 			
 			_presentEmitter.counter = new Blast(5000);
-			
+			_presentEmitter.useInternalTick = false;
 			_presentEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToTransition );
 			_presentEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter );
 			_presentEmitter.addInitializer( new ColorInit( 0xFFFFFF00, 0xFFFFCC66 ) );
@@ -167,6 +167,7 @@ package com.bored.games.breakout.states.views
 			_renderer.addEmitter(_presentEmitter);
 			
 			_transitionEmitter = new Emitter2D();
+			_transitionEmitter.useInternalTick = false;
 			_transitionEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToFade );			
 			_transitionEmitter.addInitializer( new Lifetime( 0.9 ) );
 			
@@ -175,6 +176,7 @@ package com.bored.games.breakout.states.views
 			_renderer.addEmitter(_transitionEmitter);
 			
 			_fadeEmitter = new Emitter2D();
+			_fadeEmitter.useInternalTick = false;
 			_fadeEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, gameStartComplete );			
 			_fadeEmitter.addInitializer( new Lifetime( 1.0, 3.0 ) );
 		
@@ -190,7 +192,7 @@ package com.bored.games.breakout.states.views
 		public function showGameOver():void
 		{
 			_presentEmitter = new Emitter2D();
-			
+			_presentEmitter.useInternalTick = false;
 			_presentEmitter.counter = new Blast(5000);
 			
 			_presentEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToFade );
@@ -204,6 +206,7 @@ package com.bored.games.breakout.states.views
 			_renderer.addEmitter(_presentEmitter);
 			
 			_fadeEmitter = new Emitter2D();
+			_fadeEmitter.useInternalTick = false;
 			_fadeEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, gameOverComplete );	
 			_fadeEmitter.addInitializer( new Lifetime( 1.0, 3.0 ) );
 			
@@ -344,6 +347,9 @@ package com.bored.games.breakout.states.views
 		
 		override public function update():void 
 		{
+			var delta:Number = getTimer() - _lastUpdate;
+			_lastUpdate = getTimer();
+			
 			if (_paused) return;
 			
 			_livesDisp.update();
@@ -368,8 +374,14 @@ package com.bored.games.breakout.states.views
 					_resultsDisp = null;
 				}
 			}
+			
+			var deltaSec:Number = delta / 1000;
+			
+			if ( _presentEmitter ) _presentEmitter.update(deltaSec);
+			if ( _transitionEmitter ) _transitionEmitter.update(deltaSec);
+			if ( _fadeEmitter ) _fadeEmitter.update(deltaSec);
 		
-			if (stage) stage.invalidate();
+			//if (stage) stage.invalidate();
 		}//end update()
 		
 		public function showHUD():void
@@ -382,30 +394,34 @@ package com.bored.games.breakout.states.views
 			_hideHUD = true;
 		}//end hideHUD()
 		
-		public function renderFrame(e:Event):void
-		{			
-			_backBuffer.fillRect(_backBuffer.rect, 0x00000000);
+		public function renderFrame(e:Event = null):void
+		{	
+			_mainBuffer.lock();
+			
+			_mainBuffer.fillRect(_backBuffer.rect, 0x00000000);
 			
 			if ( !_hideHUD ) {
 				_scoreDisp.x = stage.stageWidth - _scoreDisp.width;
 				
-				_livesDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
-				_timeDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
-				_scoreDisp.draw(_backBuffer, 0xFFFFFF, 1.0);
+				_livesDisp.draw(_mainBuffer, 0xFFFFFF, 1.0);
+				_timeDisp.draw(_mainBuffer, 0xFFFFFF, 1.0);
+				_scoreDisp.draw(_mainBuffer, 0xFFFFFF, 1.0);
 				
 				var iter:SLLIterator = new SLLIterator(_popups);
 				while ( iter.hasNext() )
 				{
 					var obj:Object = iter.next();
-					obj.draw(_backBuffer, 0xFFFFFF);
+					obj.draw(_mainBuffer, 0xFFFFFF);
 				}
 			}
 			
 			if ( !_hideResults ) {
-				_resultsDisp.draw(_backBuffer);
+				_resultsDisp.draw(_mainBuffer);
 			}
 						
-			_mainBuffer.copyPixels(_backBuffer, _backBuffer.rect, new Point());
+			_mainBuffer.unlock();
+			
+			//_mainBuffer.copyPixels(_backBuffer, _backBuffer.rect, new Point());
 		}//end draw()
 		
 	}//end HUDView

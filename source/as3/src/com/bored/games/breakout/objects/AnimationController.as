@@ -56,10 +56,7 @@ package com.bored.games.breakout.objects
 		{
 			if (_completed) return;
 			
-			var delta:uint = (getTimer() - _lastUpdate);
-			_lastUpdate = getTimer();
-			
-			_frame += (delta * _frameRate) / 1000;
+			_frame += (t * _frameRate) / 1000;
 			_frameNum = Math.ceil(_frame);
 			
 			if ( _frameNum >= _totalFrames )

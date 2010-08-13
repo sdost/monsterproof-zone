@@ -47,11 +47,8 @@ package com.bored.games.breakout.objects
 		}//end advanceFrame()
 		
 		override public function update(t:Number = 0):void
-		{			
-			var delta:uint = (t - _lastUpdate);
-			_lastUpdate = t;
-			
-			_currFrame += (delta * _frameRate) / 1000;
+		{						
+			_currFrame += (t * _frameRate) / 1000;
 			_currFrameInd = Math.ceil(_currFrame);
 				
 			if ( _currFrameInd >= _totalFrames )

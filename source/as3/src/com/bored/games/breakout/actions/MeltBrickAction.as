@@ -29,8 +29,10 @@ package com.bored.games.breakout.actions
 			_finished = false;
 			
 			var emitter:BrickMelt = new BrickMelt( (_gameElement as Brick) );
+			emitter.useInternalTick = false;
 			emitter.addEventListener( EmitterEvent.EMITTER_EMPTY, finishAction, false, 0, true );
 			GameView.ParticleRenderer.addEmitter(emitter);
+			GameView.Emitters.append(emitter);
 			emitter.start();
 		}//end startAction()
 		
@@ -42,6 +44,7 @@ package com.bored.games.breakout.actions
 			_finished = true;
 			
 			GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
+			GameView.Emitters.remove(Emitter2D(e.currentTarget));
 		}//end finishAction()
 		
 	}//end MeltBrickAction

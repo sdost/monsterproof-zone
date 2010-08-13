@@ -165,6 +165,7 @@ package com.bored.games.breakout.states.views
 		public static var Contacts:ContactLL;
 		public static var Collectables:SLL;
 		public static var Bullets:SLL;
+		public static var Emitters:SLL;
 		
 		public static var ParticleRenderer:Renderer;
 		
@@ -215,7 +216,9 @@ package com.bored.games.breakout.states.views
 		
 		private var _multiplier:GameElement;
 		private var _brickMultiplierManager:BrickMultiplierManagerAction;
-		private var _paddleMultiplierManager:PaddleMultiplierManagerAction;
+		private var _paddleMultiplierManager:PaddleMultiplierManagerAction;		
+		
+		private var _lastUpdate:Number;
 		
 		public function GameView() 
 		{
@@ -228,6 +231,7 @@ package com.bored.games.breakout.states.views
 			Contacts = new ContactLL();
 			Collectables = new SLL();
 			Bullets = new SLL();
+			Emitters = new SLL();
 			
 			_drawnObjects = new SLL();
 			
@@ -486,6 +490,8 @@ package com.bored.games.breakout.states.views
 		{		
 			_paddle.activatePowerup(null);
 			
+			_lastUpdate = getTimer();
+			
 			_paused = false;
 		}//end initializePaddle()
 		
@@ -527,10 +533,12 @@ package com.bored.games.breakout.states.views
 			_backgroundMC = a_mc;
 		}//end setBackground()
 		
-		private function renderFrame(e:Event):void
+		public function renderFrame(e:Event = null):void
 		{			
+			_gameScreen.bitmapData.lock();
+			
 			var go:GridObject;
-			_backBuffer.draw(_backgroundMC);
+			_gameScreen.bitmapData.draw(_backgroundMC);
 			
 			var obj:Object;
 			
@@ -539,33 +547,35 @@ package com.bored.games.breakout.states.views
 			{
 				obj = iter.next();
 				var bmd:BitmapData = obj.currFrame;
-				_backBuffer.copyPixels( bmd, bmd.rect, new Point(obj.x, obj.y), null, null, true );
+				_gameScreen.bitmapData.copyPixels( bmd, bmd.rect, new Point(obj.x, obj.y), null, null, true );
 			}
 			
 			iter = new SLLIterator(_balls);
 			while ( iter.hasNext() )
 			{
 				obj = iter.next();
-				_backBuffer.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
+				_gameScreen.bitmapData.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
 			}
 			
-			_backBuffer.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x, _paddle.y ), null, null, true );
+			_gameScreen.bitmapData.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x, _paddle.y ), null, null, true );
 			
 			iter = new SLLIterator(Collectables);
 			while ( iter.hasNext() )
 			{
 				obj = iter.next();				
-				_backBuffer.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
+				_gameScreen.bitmapData.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
 			}
 			
 			iter = new SLLIterator(Bullets);
 			while ( iter.hasNext() )
 			{
 				obj = iter.next();
-				_backBuffer.copyPixels( obj.currFrame, obj.currFrame.rect, new Point(obj.x, obj.y), null, null, true );
+				_gameScreen.bitmapData.copyPixels( obj.currFrame, obj.currFrame.rect, new Point(obj.x, obj.y), null, null, true );
 			}
+			
+			_gameScreen.bitmapData.unlock();
 					
-			_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());	
+			//_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());	
 		}//end render()
 		
 		private function handleBallCollision(a_ball:b2Fixture, a_fixture:b2Fixture, a_point:V2):void
@@ -643,13 +653,16 @@ package com.bored.games.breakout.states.views
 							new Point( a_point.x * PhysicsWorld.PhysScale, a_point.y * PhysicsWorld.PhysScale ), 
 							angle + Math.PI / 2
 						);
+						emitter.useInternalTick = false;
 						emitter.addEventListener(EmitterEvent.EMITTER_EMPTY, 
 						function(e:EmitterEvent):void {
 							Emitter2D(e.currentTarget).stop();
 							GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
+							GameView.Emitters.remove(Emitter2D(e.currentTarget));
 						},
 						false, 0, true);						
 						GameView.ParticleRenderer.addEmitter(emitter);
+						GameView.Emitters.append(emitter);
 						emitter.start();
 					}
 				}
@@ -688,13 +701,16 @@ package com.bored.games.breakout.states.views
 				Collectables.remove(a_collectable.GetUserData());
 				
 				var emitter:CollectionFizzle = new CollectionFizzle(a_fixture.GetUserData() as Paddle);
+				emitter.useInternalTick = false;
 				emitter.addEventListener(EmitterEvent.EMITTER_EMPTY,
 				function(e:EmitterEvent):void {
 					Emitter2D(e.currentTarget).stop();
 					GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
+					GameView.Emitters.remove(Emitter2D(e.currentTarget));
 				},
 				false, 0, true);						
 				GameView.ParticleRenderer.addEmitter(emitter);
+				GameView.Emitters.append(emitter);
 				emitter.start();				
 				
 				if ( a_collectable.GetUserData().actionName == "multiball" )
@@ -815,11 +831,14 @@ package com.bored.games.breakout.states.views
 		}//end resetGame()
 		
 		override public function update():void
-		{						
-			if ( _paused ) return;
+		{	
+			var delta:Number = getTimer() - _lastUpdate;
+			_lastUpdate = getTimer();
 			
-			_brickMultiplierManager.update(getTimer());
-			_paddleMultiplierManager.update(getTimer());
+			if ( _paused ) return;			
+			
+			_brickMultiplierManager.update(delta);
+			_paddleMultiplierManager.update(delta);
 			
 			if ( _balls.isEmpty() ) ballLost();
 			
@@ -831,7 +850,7 @@ package com.bored.games.breakout.states.views
 			
 			_lineJoint.SetLimits( -(330 - _paddle.width / 2) / PhysicsWorld.PhysScale, (330 - _paddle.width / 2) / PhysicsWorld.PhysScale );
 			
-			PhysicsWorld.UpdateWorld(getTimer());
+			PhysicsWorld.UpdateWorld(delta);
 		
 			var iter:SLLIterator = new SLLIterator(Contacts);
 			while( iter.hasNext() )
@@ -903,12 +922,18 @@ package com.bored.games.breakout.states.views
 				}
 			}
 			
+			iter = new SLLIterator(Emitters);
+			while ( iter.hasNext() )
+			{
+				iter.next().update(delta/1000);
+			}
+			
 			if ( _grid.isEmpty() ) 
 			{
 				dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() }));
 			}
 			
-			if( stage )	stage.invalidate();
+			//if ( stage ) stage.invalidate();
 		}//end update()
 		
 		private function UpdateMouseWorld():void

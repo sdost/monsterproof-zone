@@ -37,7 +37,9 @@ package com.bored.games.breakout.actions
 			_startTime = getTimer();
 			
 			_emitter = new InvinciballTrail(_gameElement as Ball);
+			_emitter.useInternalTick = false;
 			GameView.ParticleRenderer.addEmitter(_emitter);
+			GameView.Emitters.append(_emitter);
 			_emitter.start();
 			
 			this.finished = false;
@@ -66,6 +68,7 @@ package com.bored.games.breakout.actions
 				{
 					_emitter.stop();
 					GameView.ParticleRenderer.removeEmitter(_emitter);
+					GameView.Emitters.remove(_emitter);
 					_emitter = null;
 				}
 				

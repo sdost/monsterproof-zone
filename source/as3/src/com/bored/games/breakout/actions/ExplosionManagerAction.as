@@ -67,10 +67,9 @@ package com.bored.games.breakout.actions
 		
 		override public function update(a_time:Number):void 
 		{
-			_delta += a_time - _lastUpdate;
-			_lastUpdate = a_time;
+			_delta += a_time;
 			
-			if ( _delta < _delay ) return;
+			if ( a_time < _delay ) return;
 			
 			_delta = 0;
 			

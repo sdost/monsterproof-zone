@@ -27,6 +27,14 @@ package com.bored.games.breakout.states.controllers
 	 */
 	public class GameplayController extends StateViewController
 	{
+		private var _period:Number;
+		private var _beforeTime:int = 0;
+		private var _afterTime:int = 0;
+		private var _timeDiff:int = 0;
+		private var _sleepTime:int = 0;
+		private var _overSleepTime:int = 0;
+		private var _excess:int = 0;
+		
 		private var _gameView:StateView;
 		private var _hudView:StateView;
 		private var _input:Input;
@@ -42,7 +50,9 @@ package com.bored.games.breakout.states.controllers
 		private var _callback:Function;
 		
 		public function GameplayController(a_container:MovieClip) 
-		{			
+		{	
+			_period = 1000 / a_container.stage.frameRate;
+			
 			_input = new Input(a_container);
 			
 			_sm = SoundManager.getInstance();
@@ -63,13 +73,12 @@ package com.bored.games.breakout.states.controllers
 		
 		public function startGame():void
 		{
-			container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
-			/*
-			_updateTimer = new Timer(25);
-			_updateTimer.addEventListener(TimerEvent.TIMER, timerUpdate, false, 0, true);
-			_updateTimer.start();
-			*/
+			//container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
 			
+			_updateTimer = new Timer(_period, 1);
+			_updateTimer.addEventListener(TimerEvent.TIMER, frameUpdate, false, 0, true);
+			_updateTimer.start();
+						
 			AppSettings.instance.currentLevelInd = 0;
 			
 			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
@@ -102,12 +111,7 @@ package com.bored.games.breakout.states.controllers
 		
 		private function restart():void
 		{
-			container.removeEventListener(Event.ENTER_FRAME, frameUpdate);
-			/*
-			_updateTimer.stop();
-			_updateTimer.removeEventListener(TimerEvent.TIMER, timerUpdate);
-			_updateTimer = null;
-			*/
+			//container.removeEventListener(Event.ENTER_FRAME, frameUpdate);			
 			
 			startGame();
 		}//end restart()
@@ -201,7 +205,13 @@ package com.bored.games.breakout.states.controllers
 				
 		private function frameUpdate(e:Event):void
 		{
+			_beforeTime = getTimer();
+			_overSleepTime = (_beforeTime - _afterTime) - _sleepTime;
+			
 			this.update();
+			container.stage.invalidate();
+			//(_gameView as GameView).renderFrame();
+			//(_hudView as HUDView).renderFrame()
 			
 			Input.update();
 			
@@ -224,6 +234,23 @@ package com.bored.games.breakout.states.controllers
 				{
 					endGame();
 				}
+			}
+			
+			_afterTime = getTimer();
+			_timeDiff = _afterTime - _beforeTime;
+			_sleepTime = (_period - _timeDiff) - _overSleepTime;        
+			if (_sleepTime <= 0) {
+				_excess -= _sleepTime
+				_sleepTime = 2;
+			}
+			_updateTimer.reset();
+			_updateTimer.delay = _sleepTime;
+			_updateTimer.start();
+			
+			while (_excess > _period)
+			{
+				this.update();
+				_excess -= _period;
 			}
 		}//end frameUpdate()
 		

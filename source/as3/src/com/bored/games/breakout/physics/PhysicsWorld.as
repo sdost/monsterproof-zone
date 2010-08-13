@@ -82,13 +82,8 @@ package com.bored.games.breakout.physics
 		public static function UpdateWorld(t:Number = 0):void
 		{
 			if ( _world )
-			{
-				var delta:Number = t - _lastUpdate;
-				_lastUpdate = t;
-				
+			{				
 				_world.Step(_timeStep, _velIterations, _posIterations);				
-				//_world.ClearForces();
-				//_debugDraw.Draw();
 				
 				var time:int = getTimer();
 				var bb:b2Body = _world.GetBodyList();

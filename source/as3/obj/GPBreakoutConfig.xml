@@ -35,7 +35,7 @@
     <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\src\com\bored\games\breakout\GPBreakout.as</path-element>
   </file-specs>
   <default-background-color>#FFFFFF</default-background-color>
-  <default-frame-rate>40</default-frame-rate>
+  <default-frame-rate>30</default-frame-rate>
   <default-size>
     <width>672</width>
     <height>544</height>

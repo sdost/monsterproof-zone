@@ -69,7 +69,7 @@ package com.bored.games.breakout.actions
 		{
 			_delta += a_time;
 			
-			if ( a_time < _delay ) return;
+			if ( _delta < _delay ) return;
 			
 			_delta = 0;
 			

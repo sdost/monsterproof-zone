@@ -20,6 +20,7 @@ package com.bored.games.breakout.states.controllers
 	import flash.ui.Keyboard;
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
+	import net.hires.debug.Stats;
 	
 	/**
 	 * ...
@@ -49,6 +50,8 @@ package com.bored.games.breakout.states.controllers
 		
 		private var _callback:Function;
 		
+		private var _stats:Stats;
+		
 		public function GameplayController(a_container:MovieClip) 
 		{	
 			_period = 1000 / a_container.stage.frameRate;
@@ -73,6 +76,9 @@ package com.bored.games.breakout.states.controllers
 		
 		public function startGame():void
 		{
+			_stats = new Stats();
+			container.addChild(_stats);
+			
 			//container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
 			
 			_updateTimer = new Timer(_period, 1);
@@ -203,15 +209,15 @@ package com.bored.games.breakout.states.controllers
 			_running = false;
 		}//end gridEmpty()
 				
-		private function frameUpdate(e:Event):void
+		private function frameUpdate(e:TimerEvent):void
 		{
 			_beforeTime = getTimer();
 			_overSleepTime = (_beforeTime - _afterTime) - _sleepTime;
 			
 			this.update();
-			container.stage.invalidate();
-			//(_gameView as GameView).renderFrame();
-			//(_hudView as HUDView).renderFrame()
+			//container.stage.invalidate();
+			(_gameView as GameView).renderFrame();
+			(_hudView as HUDView).renderFrame()
 			
 			Input.update();
 			
@@ -252,6 +258,8 @@ package com.bored.games.breakout.states.controllers
 				this.update();
 				_excess -= _period;
 			}
+			
+			e.updateAfterEvent();
 		}//end frameUpdate()
 		
 	}//end GameplayController

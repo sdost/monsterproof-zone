@@ -284,9 +284,6 @@ package com.bored.games.breakout.states.views
 			sfx.addSound( new SMSound( sfx_BrickExplode, "breakout.assets.sfx.Explode" ) );
 			sfx.addSound( new SMSound( sfx_PaddleCatch, "breakout.assets.sfx.PaddleCatch", true ) );
 			sfx.addSound( new SMSound( sfx_PaddleExtend, "breakout.assets.sfx.PaddleExtend" ) );
-			
-			_stats = new Stats();
-			addChild(_stats);
 		}//end addedToStageHandler()
 		
 		override protected function removedFromStageHandler(e:Event):void
@@ -312,6 +309,7 @@ package com.bored.games.breakout.states.views
 			b2Def.fixture.filter.categoryBits = GameView.id_Wall;
 			b2Def.fixture.filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
 			b2Def.fixture.isSensor = false;
+			b2Def.fixture.userData = null;
 			
 			b2Def.polygon.SetAsBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new V2(-30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
 			b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);

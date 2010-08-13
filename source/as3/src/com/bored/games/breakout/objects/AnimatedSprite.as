@@ -47,8 +47,8 @@ package com.bored.games.breakout.objects
 		}//end advanceFrame()
 		
 		override public function update(t:Number = 0):void
-		{						
-			_currFrame += (t * _frameRate) / 1000;
+		{	
+			_currFrame += (t/frameRate);
 			_currFrameInd = Math.ceil(_currFrame);
 				
 			if ( _currFrameInd >= _totalFrames )

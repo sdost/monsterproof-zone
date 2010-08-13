@@ -56,7 +56,7 @@ package com.bored.games.breakout.objects
 		{
 			if (_completed) return;
 			
-			_frame += (t * _frameRate) / 1000;
+			_frame += (t/_frameRate);
 			_frameNum = Math.ceil(_frame);
 			
 			if ( _frameNum >= _totalFrames )

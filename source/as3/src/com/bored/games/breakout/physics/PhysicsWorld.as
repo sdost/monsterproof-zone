@@ -83,7 +83,7 @@ package com.bored.games.breakout.physics
 		{
 			if ( _world )
 			{				
-				_world.Step(_timeStep, _velIterations, _posIterations);				
+				_world.Step(t/1000, _velIterations, _posIterations);				
 				
 				var time:int = getTimer();
 				var bb:b2Body = _world.GetBodyList();

@@ -10,6 +10,7 @@ package com.bored.games.breakout.objects.collectables
 	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.animations.AnimatedShot;
 	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.bored.games.breakout.objects.AnimationController;
 	import com.bored.games.breakout.objects.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
@@ -25,10 +26,12 @@ package com.bored.games.breakout.objects.collectables
 		protected var _collectableBody:b2Body;
 		
 		protected var _animatedSprite:AnimatedSprite;
+		protected var _animationController:AnimationController;
 		
 		public function Collectable(a_sprite:AnimatedSprite)
 		{
 			_animatedSprite = a_sprite;
+			_animationController = new AnimationController(_animatedSprite, true);
 			
 			initializePhysics();
 		}//end constructor()
@@ -82,17 +85,17 @@ package com.bored.games.breakout.objects.collectables
 		
 		override public function get width():Number 
 		{
-			return _animatedSprite.width;
+			return _animationController.currFrame.width;
 		}//end get width()
 		
 		override public function get height():Number 
 		{
-			return _animatedSprite.height;
+			return _animationController.currFrame.height;
 		}//end get height()
 		
 		public function get currFrame():BitmapData
 		{
-			return _animatedSprite.currFrame;
+			return _animationController.currFrame;
 		}//end get currFrame()
 		
 		public function get actionName():String
@@ -104,7 +107,7 @@ package com.bored.games.breakout.objects.collectables
 		{
 			super.update(t);
 			
-			_animatedSprite.update(t);
+			_animationController.update(t);
 			
 			var pos:V2 = _collectableBody.GetPosition();
 			

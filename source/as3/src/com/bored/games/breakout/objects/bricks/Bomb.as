@@ -24,6 +24,8 @@ package com.bored.games.breakout.objects.bricks
 		public function Bomb(a_width:int, a_height:int, a_set:AnimationSet) 
 		{
 			super(a_width, a_height, a_set);
+			
+			_animController = new AnimationController(_animatedSprite, true);
 		}//end constructor()
 		
 		override protected function initializeActions():void 
@@ -50,12 +52,12 @@ package com.bored.games.breakout.objects.bricks
 		{
 			super.update(t);
 			
-			_animatedSprite.update(t);
+			_animController.update(t);
 		}//end update()
 		
 		override public function get currFrame():BitmapData
 		{
-			return _animatedSprite.currFrame;
+			return _animController.currFrame;
 		}//end currFrame()
 		
 		override public function destroy():void 

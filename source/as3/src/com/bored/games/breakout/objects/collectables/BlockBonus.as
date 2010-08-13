@@ -44,7 +44,7 @@ package com.bored.games.breakout.objects.collectables
 				
 		override public function update(t:Number = 0):void 
 		{
-			_animatedSprite.update(t);
+			_animationController.update(t);
 			
 			var pos:V2 = _collectableBody.GetPosition();
 			

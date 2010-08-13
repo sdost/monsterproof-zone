@@ -31,11 +31,12 @@ package com.bored.games.breakout.emitters
 		{	
 			counter = new Blast(30);
 			
+			//addInitializer( new S
 			addInitializer( new ImageClass( Dot, 2, 0xFFFFFF ) );
 			addInitializer( new ColorInit( 0xffcc33, 0xffffcc ) );
 			addInitializer( new Lifetime( 0.1, 1.1 ) );
 			addInitializer( new Position( new LineZone( new Point(a_paddle.x, a_paddle.y), new Point(a_paddle.x + a_paddle.width, a_paddle.y) ) ) );
-			addInitializer( new Velocity( new DiscSectorZone( new Point(), 50, 1, Math.PI, Math.PI * 2 ) ) );
+			addInitializer( new Velocity( new DiscSectorZone( new Point(), 60, 1, Math.PI, Math.PI * 2 ) ) );
 			
 			addAction( new Age() );
 			addAction( new Fade() );

@@ -79,11 +79,13 @@ package com.bored.games.breakout.states.controllers
 			_stats = new Stats();
 			container.addChild(_stats);
 			
-			//container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
+			container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
 			
+			/*
 			_updateTimer = new Timer(_period, 1);
 			_updateTimer.addEventListener(TimerEvent.TIMER, frameUpdate, false, 0, true);
 			_updateTimer.start();
+			*/
 						
 			AppSettings.instance.currentLevelInd = 0;
 			
@@ -117,7 +119,7 @@ package com.bored.games.breakout.states.controllers
 		
 		private function restart():void
 		{
-			//container.removeEventListener(Event.ENTER_FRAME, frameUpdate);			
+			container.removeEventListener(Event.ENTER_FRAME, frameUpdate);			
 			
 			startGame();
 		}//end restart()
@@ -209,17 +211,12 @@ package com.bored.games.breakout.states.controllers
 			_running = false;
 		}//end gridEmpty()
 				
-		private function frameUpdate(e:TimerEvent):void
+		private function frameUpdate(e:Event):void
 		{
-			_beforeTime = getTimer();
-			_overSleepTime = (_beforeTime - _afterTime) - _sleepTime;
+			Input.update();
 			
 			this.update();
-			//container.stage.invalidate();
-			(_gameView as GameView).renderFrame();
-			(_hudView as HUDView).renderFrame()
-			
-			Input.update();
+			container.stage.invalidate();
 			
 			if (_running)
 			{
@@ -241,25 +238,6 @@ package com.bored.games.breakout.states.controllers
 					endGame();
 				}
 			}
-			
-			_afterTime = getTimer();
-			_timeDiff = _afterTime - _beforeTime;
-			_sleepTime = (_period - _timeDiff) - _overSleepTime;        
-			if (_sleepTime <= 0) {
-				_excess -= _sleepTime
-				_sleepTime = 2;
-			}
-			_updateTimer.reset();
-			_updateTimer.delay = _sleepTime;
-			_updateTimer.start();
-			
-			while (_excess > _period)
-			{
-				this.update();
-				_excess -= _period;
-			}
-			
-			e.updateAfterEvent();
 		}//end frameUpdate()
 		
 	}//end GameplayController

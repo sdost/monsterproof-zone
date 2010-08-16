@@ -51,10 +51,16 @@ package com.bored.games.breakout.emitters
 			var y:Number = (pos.y * PhysicsWorld.PhysScale - a_ball.initialFrame.height / 2);
 						
 			addInitializer( new Lifetime( 2.0 ) );
-			addInitializer( new Position( new DiscZone( new Point(x, y), 200 ) ) );
+			addInitializer( new Position( new DiscZone( new Point(x, y), 150 ) ) );
 			addInitializer( new AlphaInit( 0.5 ) );
 			
-			var particles:Array = Particle2DUtils.createRectangleParticlesFromBitmapData( a_ball.initialFrame, 1, this.particleFactory );
+			var particles:Array = Particle2DUtils.createRectangleParticlesFromBitmapData( a_ball.initialFrame, 2, this.particleFactory );
+			addExistingParticles(particles, true);
+			
+			particles = Particle2DUtils.createRectangleParticlesFromBitmapData( a_ball.initialFrame, 2, this.particleFactory );
+			addExistingParticles(particles, true);
+			
+			particles = Particle2DUtils.createRectangleParticlesFromBitmapData( a_ball.initialFrame, 2, this.particleFactory );
 			addExistingParticles(particles, true);
 			
 			addAction( new Fade(0.5, 1.0) );

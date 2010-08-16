@@ -10,6 +10,7 @@ package com.bored.games.breakout.objects.collectables
 	import com.bored.games.breakout.objects.AnimatedSprite;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
+	import com.sven.utils.AppSettings;
 	import flash.display.BitmapData;
 	import flash.filters.GlowFilter;
 	import flash.geom.ColorTransform;
@@ -30,9 +31,11 @@ package com.bored.games.breakout.objects.collectables
 			super(sprite);
 			
 			var angle:Number = Math.random() * (2 * Math.PI);
+						
+			var speed:Number = Math.random() * (AppSettings.instance.bonusSpeedMax - AppSettings.instance.bonusSpeedMin) + AppSettings.instance.bonusSpeedMin; 
 			
-			var vx:Number = 5 * Math.cos(angle);
-			var vy:Number = 5 * Math.sin(angle);
+			var vx:Number = speed * Math.cos(angle);
+			var vy:Number = speed * Math.sin(angle);
 			
 			_collectableBody.ApplyImpulse( new V2( vx, vy ), _collectableBody.GetWorldCenter() );			
 		}//end constructor()
@@ -50,6 +53,18 @@ package com.bored.games.breakout.objects.collectables
 			
 			this.x = pos.x * PhysicsWorld.PhysScale - width / 2;
 			this.y = pos.y * PhysicsWorld.PhysScale - height / 2;
+			
+			var bodyVelocity:V2 = _collectableBody.GetLinearVelocity();
+			
+			if (Math.abs(bodyVelocity.x) <= AppSettings.instance.ballTrajectoryThreshold)
+			{
+				_collectableBody.ApplyForce(new V2(AppSettings.instance.ballTrajectoryAdjustFactor * _collectableBody.GetMass(), 0), _collectableBody.GetWorldCenter());
+			}
+			
+			if (Math.abs(bodyVelocity.y) <= AppSettings.instance.ballTrajectoryThreshold)
+			{
+				_collectableBody.ApplyForce(new V2(0, AppSettings.instance.ballTrajectoryAdjustFactor * _collectableBody.GetMass()), _collectableBody.GetWorldCenter());
+			}
 		}//end update()
 		
 	}//end BlockBonus

@@ -98,13 +98,14 @@ package com.bored.games.breakout.states.controllers
 		private function levelLoaded(e:Event):void
 		{
 			(_hudView as HUDView).showGameStart();
-			(_gameView as GameView).showPaddle();
 			(_gameView as GameView).resetPaddle();
+			(_gameView as GameView).showPaddle();
 		}//end levelLoaded()
 		
 		private function gameStartComplete(e:Event):void
 		{
 			(_gameView as GameView).newBall();
+			
 			_timeLeft = AppSettings.instance.currentLevel.timeLimit;
 			_lastUpdate = getTimer();
 			
@@ -213,14 +214,14 @@ package com.bored.games.breakout.states.controllers
 		}//end gridEmpty()
 				
 		private function frameUpdate(e:Event):void
-		{
+		{	
 			Input.update();
 			
 			this.update();
 			container.stage.invalidate();
 			
 			if (_running)
-			{
+			{				
 				if ( Input.isKeyDown(Keyboard.F2) )
 				{
 					levelFinished();

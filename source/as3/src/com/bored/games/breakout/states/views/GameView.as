@@ -311,17 +311,23 @@ package com.bored.games.breakout.states.views
 			b2Def.fixture.isSensor = false;
 			b2Def.fixture.userData = null;
 			
-			b2Def.polygon.SetAsBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new V2(-30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
+			var w:int = stage.stageWidth;
+			var h:int = stage.stageHeight;
+			var w2:int = w / 2;
+			var h2:int = h / 2;
+			var i:int = 30;
+			
+			b2Def.polygon.SetAsBox( i / PhysicsWorld.PhysScale, h2 / PhysicsWorld.PhysScale, new V2(-(i / PhysicsWorld.PhysScale), h2 / PhysicsWorld.PhysScale) ); // LEFT
 			b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
-			b2Def.polygon.SetAsBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new V2(336 / PhysicsWorld.PhysScale, -30 / PhysicsWorld.PhysScale) );
+			b2Def.polygon.SetAsBox( w2 / PhysicsWorld.PhysScale, i / PhysicsWorld.PhysScale, new V2(w2 / PhysicsWorld.PhysScale, -(i / PhysicsWorld.PhysScale)) ); // TOP
 			_topWall = b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
-			b2Def.polygon.SetAsBox( 30 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale, new V2(704 / PhysicsWorld.PhysScale, 272 / PhysicsWorld.PhysScale) );
+			b2Def.polygon.SetAsBox( i / PhysicsWorld.PhysScale, h2 / PhysicsWorld.PhysScale, new V2((w+i) / PhysicsWorld.PhysScale, h2 / PhysicsWorld.PhysScale) ); // RIGHT
 			b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
-			b2Def.polygon.SetAsBox( 336 / PhysicsWorld.PhysScale, 30 / PhysicsWorld.PhysScale, new V2(336 / PhysicsWorld.PhysScale, 574 / PhysicsWorld.PhysScale) );
+			b2Def.polygon.SetAsBox( w2 / PhysicsWorld.PhysScale, i / PhysicsWorld.PhysScale, new V2(w2 / PhysicsWorld.PhysScale, (h+i) / PhysicsWorld.PhysScale) ); // BOTTOM
 			_bottomWall = b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
 			
 			_paddle = new Paddle();
-			_paddle.physicsBody.SetTransform( new V2( 336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale ), 0 );
+			_paddle.physicsBody.SetTransform( new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ), 0 );
 			_paddle.visible = false;
 						
 			b2Def.mouseJoint.Initialize(_paddle.physicsBody, new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ));
@@ -332,8 +338,8 @@ package com.bored.games.breakout.states.views
 			
 			b2Def.lineJoint.Initialize( PhysicsWorld.GetGroundBody(), _paddle.physicsBody, _paddle.physicsBody.GetPosition(), new V2( 1.0, 0.0 ) );
 			
-			b2Def.lineJoint.lowerTranslation = -(330 - _paddle.width/2) / PhysicsWorld.PhysScale;
-			b2Def.lineJoint.upperTranslation = (330 - _paddle.width/2) / PhysicsWorld.PhysScale;
+			b2Def.lineJoint.lowerTranslation = -(AppSettings.instance.paddleExtentX - _paddle.width/2) / PhysicsWorld.PhysScale;
+			b2Def.lineJoint.upperTranslation = (AppSettings.instance.paddleExtentX - _paddle.width/2) / PhysicsWorld.PhysScale;
 			b2Def.lineJoint.enableLimit = true;
 			
 			_lineJoint = PhysicsWorld.CreateJoint(b2Def.lineJoint) as b2LineJoint;

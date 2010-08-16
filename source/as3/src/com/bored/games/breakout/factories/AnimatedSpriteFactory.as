@@ -16,6 +16,11 @@ package com.bored.games.breakout.factories
 			
 			var bmd:BitmapData;
 			
+			bmd = new BitmapData(clip.width, clip.height);
+			bmd.fillRect(bmd.rect, 0x00000000);
+			
+			sprite.addFrame(bmd);
+			
 			for ( var i:uint = 1; i <= clip.totalFrames; i++ )
 			{
 				clip.gotoAndStop(i);

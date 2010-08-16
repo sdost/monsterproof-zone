@@ -33,7 +33,7 @@ package com.bored.games.breakout.objects
 			_loop = a_loop;
 			_frameRate = a_frameRate;
 			
-			_frame = _frameNum = 0;
+			_frame = _frameNum = 1;
 			_totalFrames = _anim.totalFrames;
 			_lastUpdate = getTimer();
 			
@@ -45,7 +45,7 @@ package com.bored.games.breakout.objects
 			_anim = a_anim;
 			_loop = a_loop;
 			
-			_frame = _frameNum = 0;
+			_frame = _frameNum = 1;
 			_totalFrames = _anim.totalFrames;
 			_lastUpdate = getTimer();
 			
@@ -63,7 +63,7 @@ package com.bored.games.breakout.objects
 			{
 				if ( _loop )
 				{
-					_frame = _frameNum = 0;
+					_frame = _frameNum = 1;
 					dispatchEvent( new Event(ANIMATION_LOOP) );
 				}
 				else

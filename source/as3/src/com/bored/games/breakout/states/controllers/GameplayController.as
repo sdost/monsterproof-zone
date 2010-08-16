@@ -76,8 +76,8 @@ package com.bored.games.breakout.states.controllers
 		
 		public function startGame():void
 		{
-			_stats = new Stats();
-			container.addChild(_stats);
+			//_stats = new Stats();
+			//container.addChild(_stats);
 			
 			container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
 			
@@ -98,6 +98,7 @@ package com.bored.games.breakout.states.controllers
 		private function levelLoaded(e:Event):void
 		{
 			(_hudView as HUDView).showGameStart();
+			(_gameView as GameView).showPaddle();
 			(_gameView as GameView).resetPaddle();
 		}//end levelLoaded()
 		

@@ -274,7 +274,7 @@ package com.bored.games.breakout.states.views
 			//_gameScreen.alpha = 0.3;
 			addChild( _gameScreen );
 			
-			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), false );
+			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), true );
 			addChild((ParticleRenderer as BitmapRenderer));
 			
 			var sfx:SoundController = SoundManager.getInstance().getSoundControllerByID("sfxController");
@@ -322,6 +322,7 @@ package com.bored.games.breakout.states.views
 			
 			_paddle = new Paddle();
 			_paddle.physicsBody.SetTransform( new V2( 336 / PhysicsWorld.PhysScale, 500 / PhysicsWorld.PhysScale ), 0 );
+			_paddle.visible = false;
 						
 			b2Def.mouseJoint.Initialize(_paddle.physicsBody, new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ));
 			b2Def.mouseJoint.maxForce = 10000.0 * _paddle.physicsBody.GetMass();
@@ -338,7 +339,9 @@ package com.bored.games.breakout.states.views
 			_lineJoint = PhysicsWorld.CreateJoint(b2Def.lineJoint) as b2LineJoint;
 			
 			_brickMultiplierManager.initParams({ "timeout": AppSettings.instance.brickMultiplierTimeout, "maxMultiplier": AppSettings.instance.brickMultiplierMax });
-			_paddleMultiplierManager.initParams({ "maxMultiplier": AppSettings.instance.paddleMultiplierMax });
+			_paddleMultiplierManager.initParams( { "maxMultiplier": AppSettings.instance.paddleMultiplierMax } );
+			
+			PhysicsWorld.UpdateWorld();
 			
 			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
 			
@@ -484,6 +487,12 @@ package com.bored.games.breakout.states.views
 			}
 		}//end parseLevel()
 		
+		public function showPaddle():void
+		{
+			_paddle.visible = true;
+			_paddle.switchAnimation(Paddle.PADDLE_INTRO);
+		}//end showPaddle()
+		
 		public function resetPaddle():void
 		{		
 			_paddle.activatePowerup(null);
@@ -496,7 +505,9 @@ package com.bored.games.breakout.states.views
 		public function newBall():void
 		{			
 			var ball:Ball = addBallAt();	
-			_paddle.catchBall(ball);		
+			_paddle.catchBall(ball);
+			
+			ball.showBall();
 		}//end newBall()
 		
 		private function addBallAt(a_x:Number = 0, a_y:Number = 0):Ball

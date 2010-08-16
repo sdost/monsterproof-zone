@@ -9,6 +9,7 @@ package com.bored.games.breakout.objects
 	import Box2DAS.Dynamics.b2Fixture;
 	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.DestructoballAction;
+	import com.bored.games.breakout.actions.IntroduceBallAction;
 	import com.bored.games.breakout.actions.InvinciballAction;
 	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
 	import com.bored.games.breakout.factories.AnimationSetFactory;
@@ -68,7 +69,6 @@ package com.bored.games.breakout.objects
 			initializeActions();
 			
 			_damagePoints = 1;
-
 		}//end constructor()
 		
 		public function set damagePoints(a_dmg:int):void
@@ -80,6 +80,18 @@ package com.bored.games.breakout.objects
 		{
 			return _damagePoints;
 		}//end get damagePoints()
+		
+		override public function set visible(value:Boolean):void 
+		{
+			super.visible = value;
+			
+			_animatedSprite.visible = value;
+		}//end set visible()
+		
+		public function get initialFrame():BitmapData
+		{
+			return _animatedSprite.getFrame(1);
+		}//end get initialFrame()
 		
 		private function initializePhysicsBody():void
 		{
@@ -142,6 +154,12 @@ package com.bored.games.breakout.objects
 		{
 			return _animatedSprite.height;
 		}//end get height()
+		
+		public function showBall():void
+		{
+			addAction( new IntroduceBallAction(this) );
+			activateAction(IntroduceBallAction.NAME);
+		}//end showBall()
 		
 		public function activatePowerup(str:String):void
 		{

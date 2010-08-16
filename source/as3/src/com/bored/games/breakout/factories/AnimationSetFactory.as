@@ -23,9 +23,7 @@ package com.bored.games.breakout.factories
 			for ( var i:uint = 1; i <= clip.totalFrames; i++ )
 			{
 				clip.gotoAndStop(i);
-				
-				bmd = new BitmapData(clip.width, clip.height);
-				
+								
 				var newFrameLabel:String = clip.currentFrameLabel;
 				
 				if ( newFrameLabel == null ) 
@@ -45,7 +43,14 @@ package com.bored.games.breakout.factories
 					
 					frameLabel = newFrameLabel;
 					sprite = new AnimatedSprite(clip.totalFrames);
+					
+					bmd = new BitmapData(clip.width, clip.height);
+					bmd.fillRect(bmd.rect, 0x00000000);
+			
+					sprite.addFrame(bmd);
 				}
+				
+				bmd = new BitmapData(clip.width, clip.height);
 				
 				bmd.fillRect(bmd.rect, 0x00000000);
 				bmd.draw(clip);

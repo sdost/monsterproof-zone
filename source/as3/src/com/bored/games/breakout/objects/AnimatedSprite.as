@@ -11,6 +11,8 @@ package com.bored.games.breakout.objects
 	 */
 	public class AnimatedSprite extends GameElement
 	{
+		private static var _emptyBMD:BitmapData = new BitmapData(1, 1, true, 0x00000000);
+		
 		private var _refCount:uint = 0;
 		
 		private var _frames_BMD:Vector.<BitmapData>;
@@ -26,9 +28,8 @@ package com.bored.games.breakout.objects
 		{
 			super();
 			
-			_frames_BMD = new Vector.<BitmapData>(a_frames, true);
-			_currFrame = 0;
-			_currFrameInd = 0;
+			_frames_BMD = new Vector.<BitmapData>(a_frames + 1, true);			
+			_currFrame = _currFrameInd = 1;
 			_totalFrames = 0;
 			_frameRate = AppSettings.instance.defaultSpriteFrameRate;
 		}//end constructor()
@@ -39,11 +40,13 @@ package com.bored.games.breakout.objects
 		}//end addFrame()
 		
 		public function getFrame(a_num:int):BitmapData
-		{			
-			if( a_num >= _totalFrames )
+		{		
+			var frame:int = this.visible ? a_num : 0;
+			
+			if( frame >= _totalFrames )
 				return _frames_BMD[_totalFrames - 1];
 			else
-				return _frames_BMD[a_num];
+				return _frames_BMD[frame];
 		}//end advanceFrame()
 		
 		override public function update(t:Number = 0):void
@@ -53,13 +56,16 @@ package com.bored.games.breakout.objects
 				
 			if ( _currFrameInd >= _totalFrames )
 			{
-				_currFrame = _currFrameInd = 0;
+				_currFrame = _currFrameInd = 1;
 			}
 		}//end update()
 		
 		public function get currFrame():BitmapData
 		{
-			return _frames_BMD[_currFrameInd];
+			if( this.visible )
+				return _frames_BMD[_currFrameInd];
+			else
+				return _frames_BMD[0];
 		}//end get currFrame()
 		
 		override public function get width():Number 
@@ -109,7 +115,7 @@ package com.bored.games.breakout.objects
 		
 		override public function reset():void 
 		{
-			_currFrame = _currFrameInd = 0;
+			_currFrame = _currFrameInd = 1;
 		}//end reset()
 		
 		private function destroyBitmapData():void

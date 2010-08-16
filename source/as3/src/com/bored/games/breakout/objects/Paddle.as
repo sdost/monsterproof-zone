@@ -39,6 +39,7 @@ package com.bored.games.breakout.objects
 		public static const PADDLE_EXTEND:String = "Extend";
 		
 		// Paddle Transitions
+		public static const PADDLE_INTRO:String = "Intro";
 		public static const PADDLE_EXTEND_IN:String = "ExtendIn";
 		public static const PADDLE_EXTEND_OUT:String = "ExtendOut";
 		public static const PADDLE_LASER_IN:String = "LaserIn";
@@ -128,6 +129,13 @@ package com.bored.games.breakout.objects
 			return _paddleBody;
 		}//end get physicsBody()
 		
+		override public function set visible(value:Boolean):void 
+		{
+			super.visible = value;
+			
+			_animatedSprite.visible = value;
+		}//end set visible()
+		
 		public function get currFrame():BitmapData
 		{
 			return _animationController.currFrame;
@@ -157,8 +165,13 @@ package com.bored.games.breakout.objects
 		public function switchAnimation(a_str:String):void
 		{
 			_animatedSprite = _animationSet.getAnimation(a_str);
-						
-			if (a_str == PADDLE_EXTEND_IN)
+				
+			if (a_str == PADDLE_INTRO)
+			{
+				_animationController.setAnimation(_animatedSprite, false);
+				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, introComplete, false, 0, true);
+			}
+			else if (a_str == PADDLE_EXTEND_IN)
 			{
 				_animationController.setAnimation(_animatedSprite, false);
 				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, extendInComplete, false, 0, true);
@@ -196,6 +209,12 @@ package com.bored.games.breakout.objects
 			updateBody();
 			
 		}//end switchAnimation()
+		
+		private function introComplete(e:Event):void
+		{
+			_animationController.removeEventListener(AnimationController.ANIMATION_COMPLETE, introComplete);
+			switchAnimation(PADDLE_NORMAL);
+		}//end introComplete()
 		
 		private function extendInComplete(e:Event):void
 		{

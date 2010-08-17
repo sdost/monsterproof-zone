@@ -1,0 +1,35 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/crescent" itemID="4c3f4871-00000129" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="crescent" sourceLastModified="1279223972" lastModified="1279223972">
+  <timeline>
+    <DOMTimeline name="crescent">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <LinearGradient>
+                        <matrix>
+                          <Matrix a="0" b="0.33203125" c="-0.33203125" d="0" tx="51.25" ty="272"/>
+                        </matrix>
+                        <GradientEntry color="#FFFFFF" alpha="0" ratio="0"/>
+                        <GradientEntry color="#FFFFFF" alpha="0.0509803921568627" ratio="0.23921568627451"/>
+                        <GradientEntry color="#FFFFFF" alpha="0.0509803921568627" ratio="0.803921568627451"/>
+                        <GradientEntry color="#FFFFFF" alpha="0" ratio="1"/>
+                      </LinearGradient>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!1 0|700 0!700 0[967 381 1207 914!1207 914[2051 2788 2051 5440!2051 5440[2051 8091 1207 9965!1207 9965[967 10498 699 10880!699 10880|0 10880!0 10880[268 10498 508 9965!508 9965[1352 8091 1352 5440!1352 5440[1352 2788 508 914!508 914[268
+ 381 1 0"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

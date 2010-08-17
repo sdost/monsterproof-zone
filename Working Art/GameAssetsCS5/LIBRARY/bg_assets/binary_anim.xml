@@ -1,0 +1,58 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="bg_assets/binary_anim" itemID="4c228b00-000018fb" sourceFlashFilepath="..\..\..\..\Desktop\background_anim.fla" sourceLibraryItemHRef="binary_anim" sourceLastModified="1277392003" lastModified="1277392003" lastUniqueIdentifier="7">
+  <timeline>
+    <DOMTimeline name="binary_anim" currentFrame="36">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="bg_assets/binary" name="" centerPoint3DX="40" centerPoint3DY="91">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="bg_assets/binary" name="" centerPoint3DX="40" centerPoint3DY="643">
+                  <matrix>
+                    <Matrix ty="552"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 3" color="#FF800A">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="bg_assets/binary" name="" centerPoint3DX="40" centerPoint3DY="-461">
+                  <matrix>
+                    <Matrix ty="-552"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="bg_assets/binary" name="" centerPoint3DX="40" centerPoint3DY="91">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

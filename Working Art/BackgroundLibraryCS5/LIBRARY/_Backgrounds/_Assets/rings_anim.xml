@@ -1,0 +1,148 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/rings_anim" itemID="4c3e2371-0000079a" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="rings_anim" sourceLastModified="1279145820" lastModified="1279145820" lastUniqueIdentifier="1">
+  <timeline>
+    <DOMTimeline name="rings_anim">
+      <layers>
+        <DOMLayer name="Layer 7" color="#4F80FF" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" centerPoint3DX="128" centerPoint3DY="128">
+                  <matrix>
+                    <Matrix a="3" d="3" tx="-256" ty="-256"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" centerPoint3DX="128" centerPoint3DY="128">
+                  <matrix>
+                    <Matrix a="3.49996948242188" d="3.49996948242188" tx="-320" ty="-320"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                  <color>
+                    <Color alphaMultiplier="0"/>
+                  </color>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 6" color="#808080" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" centerPoint3DX="128" centerPoint3DY="128">
+                  <matrix>
+                    <Matrix a="2.49993896484375" d="2.49993896484375" tx="-192" ty="-192"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" centerPoint3DX="128" centerPoint3DY="128">
+                  <matrix>
+                    <Matrix a="3" d="3" tx="-256" ty="-256"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 4" color="#FF4FFF" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" centerPoint3DX="128" centerPoint3DY="128">
+                  <matrix>
+                    <Matrix a="1.99996948242188" d="1.99996948242188" tx="-128" ty="-128"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" centerPoint3DX="128" centerPoint3DY="128">
+                  <matrix>
+                    <Matrix a="2.49993896484375" d="2.49993896484375" tx="-192" ty="-192"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" centerPoint3DX="128" centerPoint3DY="128">
+                  <matrix>
+                    <Matrix a="1.5" d="1.5" tx="-64" ty="-64"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" centerPoint3DX="128" centerPoint3DY="128">
+                  <matrix>
+                    <Matrix a="1.99996948242188" d="1.99996948242188" tx="-128" ty="-128"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" selected="true">
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring" name="" centerPoint3DX="128" centerPoint3DY="128">
+                  <matrix>
+                    <Matrix a="1.5" d="1.5" tx="-64" ty="-64"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="128" y="128"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

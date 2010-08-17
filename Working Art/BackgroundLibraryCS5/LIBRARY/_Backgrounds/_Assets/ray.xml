@@ -1,0 +1,74 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/ray" itemID="4c2285f8-00001778" sourceFlashFilepath="..\..\..\..\071910/breakout_animations03.fla" sourceLibraryItemHRef="ray" sourceLastModified="1277335309" lastModified="1277335309">
+  <timeline>
+    <DOMTimeline name="ray">
+      <layers>
+        <DOMLayer name="Layer 2" color="#9933CC" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal" weight="3">
+                        <fill>
+                          <SolidColor color="#FF0000" alpha="0.101960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!5120 6598|0 0!0 0|9404 4160"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F" locked="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <LinearGradient>
+                        <matrix>
+                          <Matrix a="0.172637939453125" b="0.172637939453125" c="-0.15191650390625" d="0.15191650390625" tx="200" ty="176"/>
+                        </matrix>
+                        <GradientEntry color="#FF66FF" alpha="0" ratio="0"/>
+                        <GradientEntry color="#FF66FF" alpha="0.101960784313725" ratio="1"/>
+                      </LinearGradient>
+                    </FillStyle>
+                    <FillStyle index="2">
+                      <LinearGradient>
+                        <matrix>
+                          <Matrix a="0.172637939453125" b="0.172637939453125" c="-0.15191650390625" d="0.15191650390625" tx="258.8" ty="26.4"/>
+                        </matrix>
+                        <GradientEntry color="#FF66FF" alpha="0" ratio="0"/>
+                        <GradientEntry color="#FF66FF" alpha="0.101960784313725" ratio="1"/>
+                      </LinearGradient>
+                    </FillStyle>
+                    <FillStyle index="3">
+                      <LinearGradient>
+                        <matrix>
+                          <Matrix a="0.172637939453125" b="0.172637939453125" c="-0.15191650390625" d="0.15191650390625" tx="-8" ty="240"/>
+                        </matrix>
+                        <GradientEntry color="#33FFFF" alpha="0" ratio="0"/>
+                        <GradientEntry color="#33FFFF" alpha="0.101960784313725" ratio="1"/>
+                      </LinearGradient>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="2" edges="!8960 3520|0 0!0 0|8960 2560!8960 2560|8960 3520"/>
+                    <Edge fillStyle1="1" edges="!6720 7040|0 0!0 0|8000 5760!8000 5760|6720 7040"/>
+                    <Edge fillStyle1="3" edges="!3520 8320|0 0!0 0|5120 8320!5120 8320|3520 8320"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

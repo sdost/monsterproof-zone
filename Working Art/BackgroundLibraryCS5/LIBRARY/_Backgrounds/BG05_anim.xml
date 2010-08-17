@@ -1,0 +1,135 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/BG05_anim" itemID="4c3f3b1c-000000ef" linkageExportForAS="true" linkageClassName="breakout.assets.bg05" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="BG05_anim" sourceLastModified="1279576018" lastModified="1279640771" lastUniqueIdentifier="11">
+  <timeline>
+    <DOMTimeline name="BG05_anim" currentFrame="119">
+      <layers>
+        <DOMLayer name="Layer 3" color="#FF800A" locked="true" outline="true" useOutlineView="true" layerType="mask">
+          <frames>
+            <DOMFrame index="0" duration="120" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#66FF00"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!13440 10880|0 10880!0 10880|0 0!0 0|13440 0!13440 0|13440 10880"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 5" color="#4FFFFF" parentLayerIndex="0" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ovals" name="" centerPoint3DX="1008" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="672"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ovals" name="" selected="true" centerPoint3DX="336" centerPoint3DY="272">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 7" color="#4F80FF" parentLayerIndex="0" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ovals" name="" centerPoint3DX="336" centerPoint3DY="272">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ovals" name="" selected="true" centerPoint3DX="-336" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="-672"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 4" color="#FF4FFF" parentLayerIndex="0" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescents" name="" centerPoint3DX="336.25" centerPoint3DY="272">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescents" name="" selected="true" centerPoint3DX="1008.2" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix a="0.999923706054688" tx="672"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC" parentLayerIndex="0" locked="true" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescents" name="" centerPoint3DX="-335.8" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix a="0.999923706054688" tx="-672"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescents" name="" selected="true" centerPoint3DX="336.25" centerPoint3DY="272">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="120" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" selected="true" libraryItemName="_Backgrounds/_Bitmaps/bg05.png"/>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

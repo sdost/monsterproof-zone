@@ -1,0 +1,52 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Loading_MC" itemID="4c50a30d-0000018d" linkageExportForAS="true" linkageClassName="breakout.assets.Loading_MC" sourceFlashFilepath="..\..\..\..\Desktop\loading02.fla" sourceLibraryItemHRef="Loading_MC" sourceLastModified="1282068040" lastModified="1282064872" lastUniqueIdentifier="2">
+  <timeline>
+    <DOMTimeline name="Loading_MC">
+      <layers>
+        <DOMLayer name="Layer 2" color="#9933CC">
+          <frames>
+            <DOMFrame index="0" duration="101" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="loading_text" name="" centerPoint3DX="336.65" centerPoint3DY="275.3">
+                  <matrix>
+                    <Matrix tx="336.65" ty="275.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                  <filters>
+                    <GlowFilter blurX="23" blurY="23" color="#00FFFF" quality="3" strength="1.15"/>
+                  </filters>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 3" color="#FF800A">
+          <frames>
+            <DOMFrame index="0" duration="101" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="circle_loader" name="" symbolType="graphic" loop="loop">
+                  <matrix>
+                    <Matrix tx="336" ty="272"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="101" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="loading_bg.png"/>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

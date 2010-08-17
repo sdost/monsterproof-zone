@@ -1,0 +1,33 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="paddle_assets/magnet_node" itemID="4c486b2f-00000115" sourceFlashFilepath="..\..\..\..\Desktop\thewolf\magnet_paddle03.fla" sourceLibraryItemHRef="magnet_node" sourceLastModified="1279818048" lastModified="1279818048">
+  <timeline>
+    <DOMTimeline name="magnet_node">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <RadialGradient>
+                        <matrix>
+                          <Matrix a="0" b="-0.010772705078125" c="0.0030517578125" d="0" tx="-0.7" ty="-1.5"/>
+                        </matrix>
+                        <GradientEntry color="#FFFFFF" ratio="0"/>
+                        <GradientEntry color="#530176" ratio="0.266666666666667"/>
+                        <GradientEntry color="#CC00FF" ratio="1"/>
+                      </RadialGradient>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!-1 -106S2[11 -106 21 -74!21 -74[30 -44 30 0!30 0[30 44 21 77!21 77[11 106 -1 106!-1 106[-13 106 -22 77!-22 77[-31 44 -31 0!-31 0[-31 -44 -22 -74!-22 -74[-13 -106 -1 -106"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

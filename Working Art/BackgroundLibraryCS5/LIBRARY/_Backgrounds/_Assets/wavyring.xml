@@ -1,0 +1,21 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/wavyring" itemID="4c3f830e-00000170" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="wavyring" sourceLastModified="1279560094" lastModified="1279560094" lastUniqueIdentifier="1">
+  <timeline>
+    <DOMTimeline name="wavyring">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/ring_blur" name="" selected="true">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

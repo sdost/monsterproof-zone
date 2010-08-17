@@ -1,0 +1,91 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="CatchPowerup_MC" itemID="4c3b6cdb-000000a8" linkageExportForAS="true" linkageClassName="breakout.assets.CatchPowerup_MC" sourceLibraryItemHRef="ExtendPowerup_MC copy" lastModified="1279045953">
+  <timeline>
+    <DOMTimeline name="CatchPowerup_MC">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF0000"/>
+                    </FillStyle>
+                    <FillStyle index="2">
+                      <SolidColor color="#999999"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle0="2" edges="!172 220S1|172 348!172 348[172 409 216 453!216 453[259 496 320 496!320 496[381 496 425 453!425 453[468 409 468 348!468 348|468 220"/>
+                    <Edge fillStyle0="2" fillStyle1="1" edges="!468 220S3|391 220"/>
+                    <Edge fillStyle1="1" edges="!391 220S2|391 144!391 144|468 144!468 144|468 220!172 220|172 144!172 144|249 144!249 144|249 220"/>
+                    <Edge fillStyle0="2" fillStyle1="1" edges="!249 220S3|172 220"/>
+                    <Edge fillStyle1="2" edges="!249 220S2|249 339!249 339[249 368 270 389!270 389[291 410 320 410!320 410[350 410 370 389!370 389[391 368 391 339!391 339|391 220"/>
+                    <Edge cubics="!314 496(314,496;355,496 390,482 419,453q314 496Q375 496q419 453);"/>
+                    <Edge cubics="!419 453(419,453;448,423 462,389 462,348q419 453Q462 409q462 348);"/>
+                    <Edge cubics="!462 348(;462,348 462,144 462,144q462 348 462 144);"/>
+                    <Edge cubics="!462 144(;462,144 385,144 385,144q462 144 385 144);"/>
+                    <Edge cubics="!243 144(;243,144 166,144 166,144q243 144 166 144);"/>
+                    <Edge cubics="!166 144(;166,144 166,348 166,348q166 144 166 348);"/>
+                    <Edge cubics="!166 348(;166,389 180,423 210,453q166 348Q166 409q210 453);"/>
+                    <Edge cubics="!210 453(;239,482 274,496 314,496q210 453Q253 496q314 496);"/>
+                    <Edge cubics="!314 410(314,410;334,410 351,403 364,389q314 410Q344 410q364 389);"/>
+                    <Edge cubics="!364 389(;378,375 385,359 385,339q364 389Q385 368q385 339);"/>
+                    <Edge cubics="!385 339(385,339;385,339 385,144 385,144q385 339 385 144);"/>
+                    <Edge cubics="!243 144(;243,144 243,339 243,339q243 144 243 339);"/>
+                    <Edge cubics="!243 339(;243,359 250,375 264,389q243 339Q243 368q264 389);"/>
+                    <Edge cubics="!264 389(;278,403 295,410 314,410q264 389Q285 410q314 410);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMRectangleObject objectWidth="28" objectHeight="28" x="112" y="128" selected="true" lockFlag="true" topLeftRadius="3" topRightRadius="3" bottomLeftRadius="3" bottomRightRadius="3">
+                  <matrix>
+                    <Matrix tx="-110" ty="-126"/>
+                  </matrix>
+                  <fill>
+                    <RadialGradient>
+                      <matrix>
+                        <Matrix a="0.02294921875" d="0.02294921875" tx="126" ty="142"/>
+                      </matrix>
+                      <GradientEntry color="#333333" ratio="0"/>
+                      <GradientEntry ratio="1"/>
+                    </RadialGradient>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 3" color="#FF800A" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMRectangleObject objectWidth="32" objectHeight="32" x="112" y="128" selected="true" lockFlag="true" topLeftRadius="4" topRightRadius="4" bottomLeftRadius="4" bottomRightRadius="4">
+                  <matrix>
+                    <Matrix tx="-112" ty="-128"/>
+                  </matrix>
+                  <fill>
+                    <LinearGradient>
+                      <matrix>
+                        <Matrix a="0" b="0.01953125" c="-0.01953125" d="0" tx="128" ty="144"/>
+                      </matrix>
+                      <GradientEntry color="#CC99FF" ratio="0"/>
+                      <GradientEntry color="#6600CC" ratio="1"/>
+                    </LinearGradient>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

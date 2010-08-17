@@ -28,7 +28,7 @@ package com.bored.games.breakout.actions
 		{
 			_finished = false;
 			
-			SoundManager.getInstance().getSoundControllerByID("sfxController").play(GameView.sfx_BrickExplode);
+			//SoundManager.getInstance().getSoundControllerByID("sfxController").play(GameView.sfx_BrickExplode);
 			
 			var emitter:BrickExplosion = new BrickExplosion( (_gameElement as Brick) );
 			emitter.useInternalTick = false;

@@ -34,6 +34,7 @@ package com.bored.games.breakout.objects.collectables
 			b2Def.body.fixedRotation = true;
 			b2Def.body.allowSleep = true;
 			b2Def.body.userData = this;
+			b2Def.body.linearDamping = 10.0;
 			
 			var b2Width:Number = _animatedSprite.currFrame.width;
 			var b2Height:Number = _animatedSprite.currFrame.height;

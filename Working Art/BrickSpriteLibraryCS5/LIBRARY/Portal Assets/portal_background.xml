@@ -1,0 +1,41 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Portal Assets/portal_background" itemID="4c2ce91b-0000035c" sourceFlashFilepath="..\..\..\..\Desktop\portal01.fla" sourceLibraryItemHRef="portal_background" sourceLastModified="1278015275" lastModified="1278015275">
+  <timeline>
+    <DOMTimeline name="portal_background">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <RadialGradient>
+                        <matrix>
+                          <Matrix a="0.0316009521484375" d="0.0316162109375"/>
+                        </matrix>
+                        <GradientEntry ratio="0"/>
+                        <GradientEntry color="#00B1DD" ratio="0.874509803921569"/>
+                        <GradientEntry color="#FFFFFF" alpha="0" ratio="1"/>
+                      </RadialGradient>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!353 -356S2[503 -207 503 0!503 0[503 207 353 354!353 354[207 503 0 503!0 503[-207 503 -356 354!-356 354[-503 207 -503 0!-503 0[-503 -207 -356 -356!-356 -356[-207 -503 0 -503!0 -503[207 -503 353 -356"/>
+                    <Edge cubics="!0 -503(0,-503;138,-503 256,-454 353,-356q0 -503Q207 -503q353 -356)353,-356;"/>
+                    <Edge cubics="!503 0(;503,138 453,256 353,354q503 0Q503 207q353 354);"/>
+                    <Edge cubics="!353 354(353,354;256,453 138,503 0,503q353 354Q207 503q0 503)0,503;"/>
+                    <Edge cubics="!353 -356(;453,-257 503,-138 503,0q353 -356Q503 -207q503 0);"/>
+                    <Edge cubics="!-356 354(;-454,256 -503,138 -503,0q-356 354Q-503 207q-503 0);"/>
+                    <Edge cubics="!-503 0(;-503,-138 -454,-257 -356,-356q-503 0Q-503 -207q-356 -356);"/>
+                    <Edge cubics="!0 503(;-138,503 -257,453 -356,354q0 503Q-207 503q-356 354);"/>
+                    <Edge cubics="!-356 -356(;-257,-454 -138,-503 0,-503q-356 -356Q-207 -503q0 -503);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

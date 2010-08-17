@@ -1,0 +1,121 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="DestructoballPowerup_MC" itemID="4c3ce879-000000c6" linkageExportForAS="true" linkageClassName="breakout.assets.DestructoballPowerup_MC" sourceLibraryItemHRef="DestructballPowerup_MC copy" lastModified="1279060773">
+  <timeline>
+    <DOMTimeline name="DestructoballPowerup_MC">
+      <layers>
+        <DOMLayer name="Layer 2" color="#9933CC">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#69DEEB"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!427 285S2[414 299 396 299!396 299[378 299 364 285!364 285[351 272 351 254!351 254[351 236 364 222!364 222[378 210 396 210!396 210[414 210 427 222!427 222[440 236 440 254!440 254[440 272 427 285!440 390[440 408 427 421!427 421[414 435
+ 396 435!396 435[378 435 364 421!364 421[351 408 351 390!351 390[351 372 364 358!364 358[378 346 396 346!396 346[414 346 427 358!427 358[440 372 440 390!241 210[259 210 271 222!271 222[285 236 285 254!285 254[285 272 271 285!271 285[259
+ 299 241 299!241 299[222 299 209 285!209 285[196 272 196 254!196 254[196 236 209 222!209 222[222 210 241 210!364 320[364 339 350 351!350 351[338 365 319 365!319 365[301 365 287 351!287 351[275 339 275 320!275 320[275 302 287 288!287 288
+[301 276 319 276!319 276[338 276 350 288!350 288[364 302 364 320!271 358[285 372 285 390!285 390[285 408 271 421!271 421[259 435 241 435!241 435[222 435 209 421!209 421[196 408 196 390!196 390[196 372 209 358!209 358[222 346 241 346!241
+ 346[259 346 271 358"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 3" color="#FF800A">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#999999"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!320 475S2[256 475 211 429!211 429[166 384 166 320!166 320[166 256 211 211!211 211[256 166 320 166!320 166[384 166 429 211!429 211[475 256 475 320!475 320[475 384 429 429!429 429[384 475 320 475"/>
+                    <Edge cubics="!210 211(210,211;241,181 277,166 319,166q210 211Q255 166q319 166);"/>
+                    <Edge cubics="!165 320(;165,278 180,242 210,211q165 320Q165 256q210 211);"/>
+                    <Edge cubics="!210 429(;180,399 165,363 165,320q210 429Q165 384q165 320);"/>
+                    <Edge cubics="!319 475(;277,475 241,460 210,429q319 475Q255 475q210 429);"/>
+                    <Edge cubics="!428 429(;398,460 362,475 319,475q428 429Q383 475q319 475);"/>
+                    <Edge cubics="!474 320(474,320;474,363 459,399 428,429q474 320Q474 384q428 429)428,429;"/>
+                    <Edge cubics="!428 211(;459,242 474,278 474,320q428 211Q474 256q474 320);"/>
+                    <Edge cubics="!319 166(319,166;362,166 398,181 428,211q319 166Q383 166q428 211);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 4" color="#FF4FFF">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#69DEEB"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!514 362S2|396 362!396 362|455 466!455 466|378 510!378 510|320 410!320 410|261 509!261 509|184 464!184 464|244 362!244 362|127 362!127 362|127 273!127 273|241 273!241 273|184 176!184 176|261 131!261 131|320 230!320 230|377 130!377 130
+|454 174!454 174|398 273!398 273|514 273!514 273|514 362"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 5" color="#4FFFFF">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMRectangleObject objectWidth="28" objectHeight="28" x="112" y="128" selected="true" lockFlag="true" topLeftRadius="3" topRightRadius="3" bottomLeftRadius="3" bottomRightRadius="3">
+                  <matrix>
+                    <Matrix tx="-110" ty="-126"/>
+                  </matrix>
+                  <fill>
+                    <RadialGradient>
+                      <matrix>
+                        <Matrix a="0.02294921875" d="0.02294921875" tx="126" ty="142"/>
+                      </matrix>
+                      <GradientEntry color="#333333" ratio="0"/>
+                      <GradientEntry ratio="1"/>
+                    </RadialGradient>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 6" color="#808080" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMRectangleObject objectWidth="32" objectHeight="32" x="112" y="128" selected="true" lockFlag="true" topLeftRadius="4" topRightRadius="4" bottomLeftRadius="4" bottomRightRadius="4">
+                  <matrix>
+                    <Matrix tx="-112" ty="-128"/>
+                  </matrix>
+                  <fill>
+                    <LinearGradient>
+                      <matrix>
+                        <Matrix a="0" b="0.01953125" c="-0.01953125" d="0" tx="128" ty="144"/>
+                      </matrix>
+                      <GradientEntry color="#66FFFF" ratio="0"/>
+                      <GradientEntry color="#029CC1" ratio="1"/>
+                    </LinearGradient>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

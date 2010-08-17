@@ -36,18 +36,6 @@ package com.bored.games.breakout.states.views
 		override protected function addedToStageHandler(e:Event):void 
 		{
 			super.addedToStageHandler(e);
-			
-			_textFormat = new TextFormat();
-			_textFormat.color = 0xFFFFFF;
-			_textFormat.size = 30;
-			
-			_textField = new TextField();
-			_textField.setTextFormat(_textFormat);
-			_textField.autoSize = TextFieldAutoSize.CENTER;
-			_textField.x = Math.random() * stage.stageWidth;
-			_textField.y = Math.random() * stage.stageHeight;
-			_textField.text = "0%";
-			this.addChild(_textField);
 		}//end addedToStageHandler()
 		
 		override public function enter():void 
@@ -63,10 +51,8 @@ package com.bored.games.breakout.states.views
 		}//end enter()
 		
 		private function loadingProgress(e:ProgressEvent):void
-		{
-			_textField.text = Math.ceil(e.bytesLoaded / e.bytesTotal * 100) + "%";
-			_textField.setTextFormat(_textFormat);
-			//trace("LoadBackgroundsView::loadingProgress(" + Math.ceil(e.bytesLoaded / e.bytesTotal * 100) + ")");
+		{			
+			dispatchEvent(e);
 		}//end loadingProgress()
 		
 		private function loadingComplete(e:Event):void

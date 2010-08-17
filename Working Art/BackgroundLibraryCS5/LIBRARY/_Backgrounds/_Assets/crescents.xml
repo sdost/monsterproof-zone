@@ -1,0 +1,61 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/crescents" itemID="4c3f5579-0000012e" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="crescents" sourceLastModified="1279223972" lastModified="1279223972" lastUniqueIdentifier="6">
+  <timeline>
+    <DOMTimeline name="crescents">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescent" name="" centerPoint3DX="51.25" centerPoint3DY="272">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescent" name="" centerPoint3DX="165.25" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="114"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescent" name="" centerPoint3DX="279.25" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="228"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescent" name="" centerPoint3DX="393.25" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="342"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescent" name="" centerPoint3DX="507.25" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="456"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/crescent" name="" centerPoint3DX="621.25" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="570"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

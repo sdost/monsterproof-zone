@@ -1,0 +1,36 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="bg_assets/pentagons_anim" itemID="4c237756-00000165" sourceFlashFilepath="..\..\..\..\Desktop\background_anim.fla" sourceLibraryItemHRef="pentagons_anim" sourceLastModified="1277396433" lastModified="1277396433" lastUniqueIdentifier="1">
+  <timeline>
+    <DOMTimeline name="pentagons_anim">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="59" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="bg_assets/pentagons" name="" selected="true" centerPoint3DX="84.6" centerPoint3DY="115.8">
+                  <matrix>
+                    <Matrix tx="52.85" ty="85.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="59" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="bg_assets/pentagons" name="" selected="true" centerPoint3DX="84.6" centerPoint3DY="832.6">
+                  <matrix>
+                    <Matrix tx="52.85" ty="802.4"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

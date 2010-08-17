@@ -1,0 +1,309 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="atom" itemID="4c24df89-00000178" sourceFlashFilepath="..\..\..\..\Desktop\smallbombandnano\bomb_small01.fla" sourceLibraryItemHRef="atom" sourceLastModified="1280959897" lastModified="1280959897" lastUniqueIdentifier="5">
+  <timeline>
+    <DOMTimeline name="atom">
+      <layers>
+        <DOMLayer name="Layer 12" color="#FF4FFF">
+          <frames>
+            <DOMFrame index="0" duration="20" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="Bomb Assets/nucleus" name="">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                  <filters>
+                    <GlowFilter blurX="2" blurY="2" quality="3" strength="2.71"/>
+                  </filters>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Guide: Layer 10" color="#FF800A" autoNamed="false" layerType="guide">
+          <frames>
+            <DOMFrame index="0" duration="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#32F9F9"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!230 -133[210 -168 129 -152!129 -152[47 -137 -48 -82!-48 -82[-143 -27 -197 36!-197 36[-250 98 -230 133!-230 133[-210 168 -130 152!-130 152[-48 137 47 82!47 82[142 27 196 -36!196 -36[250 -98 230 -133"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 10" color="#9933CC" parentLayerIndex="1">
+          <frames>
+            <DOMFrame index="0" duration="9" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" centerPoint3DX="-11.5" centerPoint3DY="6.6">
+                  <matrix>
+                    <Matrix tx="-11.5" ty="6.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="9" duration="5" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" selected="true" centerPoint3DX="11.5" centerPoint3DY="-6.7">
+                  <matrix>
+                    <Matrix tx="11.5" ty="-6.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="14" duration="5" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" selected="true" centerPoint3DX="-1.8" centerPoint3DY="6.2">
+                  <matrix>
+                    <Matrix tx="-1.8" ty="6.2"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" centerPoint3DX="-11.5" centerPoint3DY="6.6">
+                  <matrix>
+                    <Matrix tx="-11.5" ty="6.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Guide: Layer 5" color="#808080" autoNamed="false" layerType="guide">
+          <frames>
+            <DOMFrame index="0" duration="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#32F9F9"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!67 -188[95 -110 95 0!95 0[95 110 67 188!67 188[40 266 0 266!0 266[-40 266 -67 188!-67 188[-95 110 -95 0!-95 0[-95 -110 -67 -188!-67 -188[-40 -266 0 -266!0 -266[40 -266 67 -188"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 5" color="#4FFFFF" parentLayerIndex="3">
+          <frames>
+            <DOMFrame index="0" duration="9" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" centerPoint3DY="-13.65">
+                  <matrix>
+                    <Matrix ty="-13.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="9" duration="10" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" centerPoint3DY="13.3">
+                  <matrix>
+                    <Matrix ty="13.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" centerPoint3DY="-13.65">
+                  <matrix>
+                    <Matrix ty="-13.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Guide: Layer 7" color="#4FFF4F" autoNamed="false" layerType="guide">
+          <frames>
+            <DOMFrame index="0" duration="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#32F9F9"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!-129 -152[-47 -137 48 -82!48 -82[143 -27 197 36!197 36[250 98 230 133!230 133[210 168 130 152!130 152[48 137 -47 82!-47 82[-142 27 -196 -36!-196 -36[-250 -98 -230 -133!-230 -133[-210 -168 -129 -152"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 7" color="#4F80FF" parentLayerIndex="5">
+          <frames>
+            <DOMFrame index="0" duration="9" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" centerPoint3DX="11.5" centerPoint3DY="6.6">
+                  <matrix>
+                    <Matrix tx="11.5" ty="6.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="9" duration="5" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" centerPoint3DX="-11.5" centerPoint3DY="-6.7">
+                  <matrix>
+                    <Matrix tx="-11.5" ty="-6.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="14" duration="5" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" centerPoint3DX="-2.85" centerPoint3DY="3.8">
+                  <matrix>
+                    <Matrix tx="-2.85" ty="3.8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="electron" name="" centerPoint3DX="11.5" centerPoint3DY="6.6">
+                  <matrix>
+                    <Matrix tx="11.5" ty="6.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 4" color="#FF4FFF" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF0000"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle0="1" edges="!-130 -141[-54 -123 40 -69!40 -69[134 -15 188 43!188 43[242 101 225 130!225 130[208 159 131 141!131 141[54 123 -40 69!-40 69[-134 15 -187 -43!-187 -43[-242 -101 -225 -130!-225 -130[-208 -159 -130 -141"/>
+                    <Edge fillStyle1="1" edges="!-135 -160[-50 -145 50 -87!50 -87[150 -29 207 38!207 38[263 104 242 140!242 140[221 176 136 160!136 160[50 145 -50 87!-50 87[-150 29 -206 -38!-206 -38[-263 -104 -242 -140!-242 -140[-221 -176 -135 -160"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 3" color="#FF800A">
+          <frames>
+            <DOMFrame index="0" duration="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF0000"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle0="1" edges="!188 -43[134 15 40 69!40 69[-54 123 -130 141!-130 141[-208 159 -225 130!-225 130[-242 101 -187 43!-187 43[-134 -15 -40 -69!-40 -69[54 -123 131 -141!131 -141[208 -159 225 -130!225 -130[242 -101 188 -43"/>
+                    <Edge fillStyle1="1" edges="!207 -38[150 29 50 87!50 87[-50 145 -135 160!-135 160[-221 176 -242 140!-242 140[-263 104 -206 38!-206 38[-150 -29 -50 -87!-50 -87[50 -145 136 -160!136 -160[221 -176 242 -140!242 -140[263 -104 207 -38"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC">
+          <frames>
+            <DOMFrame index="0" duration="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF0000"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle0="1" edges="!57 -184[80 -108 80 0!80 0[80 108 57 184!57 184[34 260 0 260!0 260[-34 260 -57 184!-57 184[-80 108 -80 0!-80 0[-80 -108 -57 -184!-57 -184[-34 -260 0 -260!0 -260[34 -260 57 -184"/>
+                    <Edge fillStyle1="1" edges="!71 -198[100 -116 100 0!100 0[100 116 71 198!71 198[42 280 0 280!0 280[-42 280 -71 198!-71 198[-100 116 -100 0!-100 0[-100 -116 -71 -198!-71 -198[-42 -280 0 -280!0 -280[42 -280 71 -198"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#66FF00" alpha="0"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!-320 -320|320 -320!320 -320|320 320!320 320|-320 320!-320 320|-320 -320"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

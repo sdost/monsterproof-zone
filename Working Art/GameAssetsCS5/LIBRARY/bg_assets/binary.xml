@@ -1,0 +1,29 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="bg_assets/binary" itemID="4c228af3-000018f9" sourceFlashFilepath="G:\background_anim.fla" sourceLibraryItemHRef="binary" sourceLastModified="1277391975" lastModified="1277391975">
+  <timeline>
+    <DOMTimeline name="binary">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMStaticText fontRenderingMode="standard" width="96" height="533.7" isSelectable="false">
+                  <matrix>
+                    <Matrix tx="2" ty="2"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>01010101010101011010010110100101011010010100010101101000111100101001001001010010110101010110101010101010101101001011010010101101001010001010110100011110010100100100101001000110</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" alpha="0.101960784313725" size="20" face="Arial-BoldMT" fillColor="#EE11D9"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMStaticText>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

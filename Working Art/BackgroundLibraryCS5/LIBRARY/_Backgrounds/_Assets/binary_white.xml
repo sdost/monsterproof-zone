@@ -1,0 +1,60 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/binary_white" itemID="4c3b354f-0000007c" sourceFlashFilepath="..\..\..\..\071910/breakout_animations03.fla" sourceLibraryItemHRef="binary_white" sourceLastModified="1279040622" lastModified="1279040622">
+  <timeline>
+    <DOMTimeline name="binary_white">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" locked="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMStaticText fontRenderingMode="standard" width="113" height="554.6" isSelectable="false">
+                  <matrix>
+                    <Matrix tx="2" ty="2"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>utjgydycikwkvhcnbwnymoezdrgjayxdpkseivxkjmszhtowjrtaetnidialzcaidmhrurukwtxwnqbwbjnlvcjjmowavhvfckvusbutdbazckxq</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" alpha="0.101960784313725" size="20" face="Atomic" fillColor="#FFFFFF"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMStaticText>
+                <DOMStaticText fontRenderingMode="standard" width="113" height="554.6" isSelectable="false">
+                  <matrix>
+                    <Matrix tx="2" ty="554"/>
+                  </matrix>
+                  <textRuns>
+                    <DOMTextRun>
+                      <characters>utjgydycikwkvhcnbwnymoezdrgjayxdpkseivxkjmszhtowjrtaetnidialzcaidmhrurukwtxwnqbwbjnlvcjjmowavhvfckvusbutdbazckxq</characters>
+                      <textAttrs>
+                        <DOMTextAttrs aliasText="false" alpha="0.101960784313725" size="20" face="Atomic" fillColor="#FFFFFF"/>
+                      </textAttrs>
+                    </DOMTextRun>
+                  </textRuns>
+                </DOMStaticText>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC" locked="true" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#66FF00" alpha="0"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!2340 0|2340 10880!2340 10880|0 10880!0 10880|0 0!0 0|2340 0"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

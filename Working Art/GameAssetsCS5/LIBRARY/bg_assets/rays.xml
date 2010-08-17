@@ -1,0 +1,45 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="bg_assets/rays" itemID="4c2284de-0000167e" sourceFlashFilepath="G:\background_anim.fla" sourceLibraryItemHRef="rays" sourceLastModified="1277490387" lastModified="1277490387" lastUniqueIdentifier="4">
+  <timeline>
+    <DOMTimeline name="rays">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="bg_assets/ray" name="" centerPoint3DX="-200" centerPoint3DY="-176">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="bg_assets/ray" name="" centerPoint3DX="200" centerPoint3DY="-176">
+                  <matrix>
+                    <Matrix a="-1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="bg_assets/ray" name="" centerPoint3DX="-200" centerPoint3DY="176">
+                  <matrix>
+                    <Matrix d="-1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="bg_assets/ray" name="" selected="true" centerPoint3DX="200" centerPoint3DY="176">
+                  <matrix>
+                    <Matrix a="-1" d="-1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

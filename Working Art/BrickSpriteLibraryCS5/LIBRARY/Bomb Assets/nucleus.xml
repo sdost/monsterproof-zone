@@ -1,0 +1,26 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Bomb Assets/nucleus" itemID="4c225c9c-00000262" sourceFlashFilepath="..\TestLevel.fla" sourceLibraryItemHRef="Bomb Assets/nucleus" sourceLastModified="1277323952" lastModified="1277323952">
+  <timeline>
+    <DOMTimeline name="nucleus">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FFFFFF"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!40 -41S2[57 -24 57 0!57 0[57 24 40 40!40 40[24 57 0 57!0 57[-24 57 -41 40!-41 40[-57 24 -57 0!-57 0[-57 -24 -41 -41!-41 -41[-24 -57 0 -57!0 -57[24 -57 40 -41"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

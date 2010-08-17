@@ -1,0 +1,22 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="SmTwoHit" itemID="4c2a7731-0000009d" linkageExportForAS="true" linkageClassName="SmTwoHit" sourceLibraryItemHRef="MedTwoHit copy" lastModified="1278001380">
+  <timeline>
+    <DOMTimeline name="SmTwoHit" currentFrame="1">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" name="Damage0" labelType="name" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="BMPs/brick_small_twohit_1_BMP"/>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="1" name="Damage1" labelType="name" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" selected="true" libraryItemName="BMPs/brick_small_twohit_2_BMP"/>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

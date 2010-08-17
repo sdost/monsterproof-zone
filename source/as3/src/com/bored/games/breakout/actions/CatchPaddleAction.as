@@ -35,7 +35,7 @@ package com.bored.games.breakout.actions
 		{	
 			_startTime = getTimer();
 			
-			_sndFX = SoundManager.getInstance().getSoundControllerByID("sfxController").play(GameView.sfx_PaddleCatch);
+			//_sndFX = SoundManager.getInstance().getSoundControllerByID("sfxController").play(GameView.sfx_PaddleCatch);
 			
 			this.finished = false;
 		}//end startAction()
@@ -44,7 +44,7 @@ package com.bored.games.breakout.actions
 		{
 			if ( (getTimer() - _startTime) > _effectTime )
 			{	
-				_sndFX.stopSound();
+				//_sndFX.stopSound();
 				
 				this.finished = true;
 			}

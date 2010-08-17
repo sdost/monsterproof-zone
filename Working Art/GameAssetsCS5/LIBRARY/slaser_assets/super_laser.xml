@@ -1,0 +1,87 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="slaser_assets/super_laser" itemID="4c48a34a-000005a3" sourceFlashFilepath="..\..\..\..\Downloads\super_laser01.fla" sourceLibraryItemHRef="super_laser" sourceLastModified="1280240203" lastModified="1280240203" lastUniqueIdentifier="3">
+  <timeline>
+    <DOMTimeline name="super_laser">
+      <layers>
+        <DOMLayer name="Layer 9" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <RadialGradient>
+                        <matrix>
+                          <Matrix a="0.017730712890625" d="0.017730712890625" tx="32" ty="544.5"/>
+                        </matrix>
+                        <GradientEntry color="#FFFFFF" ratio="0.850980392156863"/>
+                        <GradientEntry color="#FFFFFF" alpha="0" ratio="1"/>
+                      </RadialGradient>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!640 10604[759 10604 843 10688!843 10688[926 10771 926 10890!926 10890[926 11009 843 11092!843 11092[759 11176 640 11176!640 11176[522 11176 438 11092!438 11092[354 11009 354 10890!354 10890[354 10771 438 10688!438 10688[522 10604 640
+ 10604"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC">
+          <frames>
+            <DOMFrame index="0" keyMode="15872">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <LinearGradient>
+                        <matrix>
+                          <Matrix a="0.01953125" d="0.33203125" tx="32" ty="272"/>
+                        </matrix>
+                        <GradientEntry color="#FFFFFF" alpha="0" ratio="0"/>
+                        <GradientEntry color="#FFFFFF" ratio="0.0941176470588235"/>
+                        <GradientEntry color="#FFFFFF" ratio="0.905882352941176"/>
+                        <GradientEntry color="#FFFFFF" alpha="0" ratio="1"/>
+                      </LinearGradient>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!960 0|960 10880!960 10880|320 10880!320 10880|320 0!320 0|960 0"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <LinearGradient>
+                        <matrix>
+                          <Matrix a="0.0390625" d="0.33203125" tx="32" ty="272"/>
+                        </matrix>
+                        <GradientEntry color="#66FFFF" alpha="0" ratio="0"/>
+                        <GradientEntry color="#66FFFF" ratio="0.254901960784314"/>
+                        <GradientEntry color="#66FFFF" ratio="0.717647058823529"/>
+                        <GradientEntry color="#66FFFF" alpha="0" ratio="1"/>
+                      </LinearGradient>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1280 0|1280 10880!1280 10880|0 10880!0 10880|0 0!0 0|1280 0"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

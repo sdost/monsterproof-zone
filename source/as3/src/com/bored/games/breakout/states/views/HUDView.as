@@ -73,7 +73,9 @@ package com.bored.games.breakout.states.views
 		private var _lastUpdate:Number;
 		
 		private var _presentEmitter:Emitter2D;
+		private var _holdEmitter:Emitter2D;
 		private var _transitionEmitter:Emitter2D;
+		private var _holdEmitter2:Emitter2D;
 		private var _fadeEmitter:Emitter2D;
 		
 		private var _livesDisp:LivesDisplay;
@@ -143,8 +145,7 @@ package com.bored.games.breakout.states.views
 														  0, 1, 0, 0, 0,
 														  0, 0, 1, 0, 0,
 														  0, 0, 0, 0.95, 0 ] ) );
-			addChild(_renderer);
-			
+														  
 			_lastUpdate = getTimer();
 			
 			_paused = false;
@@ -152,37 +153,56 @@ package com.bored.games.breakout.states.views
 		
 		public function showGameStart():void
 		{
+			addChild(_renderer);
+			
 			_presentEmitter = new Emitter2D();
 			
 			_presentEmitter.counter = new Blast(5000);
 			_presentEmitter.useInternalTick = false;
-			_presentEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToTransition );
+			_presentEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToHold );
 			_presentEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter );
-			_presentEmitter.addInitializer( new ColorInit( 0xFFFFFF00, 0xFFFFCC66 ) );
-			_presentEmitter.addInitializer( new Lifetime( 3.0 ) );
+			_presentEmitter.addInitializer( new ColorInit( 0xFFFFFF00, 0xFFFFFFFF ) );
+			_presentEmitter.addInitializer( new Lifetime( 1.0 ) );
 			_presentEmitter.addInitializer( new Position( new RectangleZone( 0, 0, stage.stageWidth, stage.stageHeight ) ) );
 			
-			_presentEmitter.addAction( new Age( Quadratic.easeInOut ) );
+			_presentEmitter.addAction( new Age( Quadratic.easeOut ) );
 			_presentEmitter.addAction( new TweenToZone( new BitmapDataZone(readyBMP, stage.stageWidth / 2 - readyBMP.width / 2, stage.stageHeight / 2 - readyBMP.height / 2) ) );
 			_renderer.addEmitter(_presentEmitter);
 			
+			_holdEmitter = new Emitter2D();
+			
+			_holdEmitter.useInternalTick = false;
+			_holdEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToTransition );	
+			_holdEmitter.addInitializer( new Lifetime( 1.0 ) );
+			
+			_holdEmitter.addAction( new Age() );
+			_renderer.addEmitter(_holdEmitter);
+			
 			_transitionEmitter = new Emitter2D();
 			_transitionEmitter.useInternalTick = false;
-			_transitionEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToFade );			
+			_transitionEmitter.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToHold2 );			
 			_transitionEmitter.addInitializer( new Lifetime( 0.9 ) );
 			
 			_transitionEmitter.addAction( new Age( Quadratic.easeOut ) );
 			_transitionEmitter.addAction( new TweenToZone( new BitmapDataZone(gameStartBMP, stage.stageWidth / 2 - gameStartBMP.width / 2, stage.stageHeight / 2 - gameStartBMP.height / 2) ) );
 			_renderer.addEmitter(_transitionEmitter);
 			
+			_holdEmitter2 = new Emitter2D();
+			
+			_holdEmitter2.useInternalTick = false;
+			_holdEmitter2.addEventListener( ParticleEvent.PARTICLE_DEAD, moveToFade );	
+			_holdEmitter2.addInitializer( new Lifetime( 1.0 ) );
+			
+			_holdEmitter2.addAction( new Age() );
+			_renderer.addEmitter(_holdEmitter2);
+			
 			_fadeEmitter = new Emitter2D();
 			_fadeEmitter.useInternalTick = false;
 			_fadeEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, gameStartComplete );			
-			_fadeEmitter.addInitializer( new Lifetime( 1.0, 3.0 ) );
+			_fadeEmitter.addInitializer( new Lifetime( 0.5 ) );
 		
-			_fadeEmitter.addAction( new Age( Quadratic.easeIn ) );
+			_fadeEmitter.addAction( new Age() );
 			_fadeEmitter.addAction( new Fade() );
-			_fadeEmitter.addAction( new Move() );
 			//_fadeEmitter.addAction( new Accelerate( 0, 100 ) );
 			_renderer.addEmitter(_fadeEmitter);
 				
@@ -191,6 +211,7 @@ package com.bored.games.breakout.states.views
 		
 		public function showGameOver():void
 		{
+			/*
 			_presentEmitter = new Emitter2D();
 			_presentEmitter.useInternalTick = false;
 			_presentEmitter.counter = new Blast(5000);
@@ -217,7 +238,24 @@ package com.bored.games.breakout.states.views
 			_renderer.addEmitter(_fadeEmitter);
 				
 			_presentEmitter.start();
+			*/
 		}//end showGameStart()
+		
+		private function moveToHold(e:ParticleEvent):void
+		{
+			e.particle.revive();
+			_holdEmitter.addExistingParticles( [ e.particle ], true );
+			_holdEmitter.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter );
+			if( !_holdEmitter.running ) _holdEmitter.start();
+		}//end moveToTransition()
+		
+		private function moveToHold2(e:ParticleEvent):void
+		{
+			e.particle.revive();
+			_holdEmitter2.addExistingParticles( [ e.particle ], true );
+			_holdEmitter2.addEventListener( EmitterEvent.EMITTER_EMPTY, removeEmitter );
+			if( !_holdEmitter2.running ) _holdEmitter2.start();
+		}//end moveToTransition()
 		
 		private function moveToTransition(e:ParticleEvent):void
 		{
@@ -249,13 +287,21 @@ package com.bored.games.breakout.states.views
 			_presentEmitter.killAllParticles();
 			_presentEmitter = null;
 			
+			_holdEmitter.killAllParticles();
+			_holdEmitter = null;
+			
 			_transitionEmitter.killAllParticles();
 			_transitionEmitter = null;
+			
+			_holdEmitter2.killAllParticles();
+			_holdEmitter2 = null;
 			
 			_fadeEmitter.killAllParticles();
 			_fadeEmitter = null;
 			
 			Emitter2D.defaultParticleFactory.clearAllParticles();
+			
+			removeChild(_renderer);
 			
 			dispatchEvent(new Event("gameStartComplete"));
 		}//end gameStartComplete()
@@ -316,7 +362,7 @@ package com.bored.games.breakout.states.views
 		
 		public function addPopupText(a_base:int, a_brickMult:int, a_paddleMult:int, a_x:Number, a_y:Number):void
 		{
-			var popup:PopupText = new PopupText( new String(a_base * a_brickMult * a_paddleMult), bitmapFont, a_brickMult / 10);
+			var popup:PopupText = new PopupText( new String(a_base * a_brickMult + (5 * a_paddleMult)), bitmapFont, a_brickMult / 10);
 			popup.x = a_x;
 			popup.y = a_y;
 			popup.centered = true;
@@ -378,7 +424,9 @@ package com.bored.games.breakout.states.views
 			var deltaSec:Number = delta / 1000;
 			
 			if ( _presentEmitter ) _presentEmitter.update(deltaSec);
+			if ( _holdEmitter ) _holdEmitter.update(deltaSec);
 			if ( _transitionEmitter ) _transitionEmitter.update(deltaSec);
+			if ( _holdEmitter2 ) _holdEmitter2.update(deltaSec);
 			if ( _fadeEmitter ) _fadeEmitter.update(deltaSec);
 		
 			//if (stage) stage.invalidate();

@@ -1,0 +1,111 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="ExtraLifePowerup_MC" itemID="4c4ef2e0-00000094" linkageExportForAS="true" linkageClassName="breakout.assets.ExtraLifePowerup_MC" sourceFlashFilepath="..\..\..\..\Desktop\powerups03.fla" sourceLibraryItemHRef="powerup_extralife" sourceLastModified="1280185047" lastModified="1280243653">
+  <timeline>
+    <DOMTimeline name="ExtraLifePowerup_MC">
+      <layers>
+        <DOMLayer name="Layer 6" color="#808080">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FFFFFF"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!513 178S2|513 429!513 429|426 429!426 429|426 255!426 255|394 255!394 255|394 210!394 210|492 178!492 178|513 178!241 244|241 318!241 318|315 318!315 318|315 355!315 355|241 355!241 355|241 429!241 429|204 429!204 429|204 355!204 355
+|129 355!129 355|129 318!129 318|204 318!204 318|204 244!204 244|241 244"/>
+                    <Edge cubics="!377 381(;377,381 362,475 362,475q377 381 362 475);"/>
+                    <Edge cubics="!335 467(335,467;335,467 377,381 377,381q335 467 377 381);"/>
+                    <Edge cubics="!321 372(;321,372 335,467 335,467q321 372 335 467);"/>
+                    <Edge cubics="!306 467(;306,467 321,372 321,372q306 467 321 372);"/>
+                    <Edge cubics="!264 381(;264,381 306,467 306,467q264 381 306 467);"/>
+                    <Edge cubics="!279 475(;279,475 264,381 264,381q279 475 264 381);"/>
+                    <Edge cubics="!377 732(;377,732 335,646 335,646q377 732 335 646);"/>
+                    <Edge cubics="!362 638(;362,638 377,732 377,732q362 638 377 732);"/>
+                    <Edge cubics="!264 732(;264,732 279,638 279,638q264 732 279 638);"/>
+                    <Edge cubics="!306 646(;306,646 264,732 264,732q306 646 264 732);"/>
+                    <Edge cubics="!212 408(;212,408 279,475 279,475q212 408 279 475);"/>
+                    <Edge cubics="!256 492(;256,492 212,408 212,408q256 492 212 408)212,408;"/>
+                    <Edge cubics="!172 448(;172,448 256,492 256,492q172 448 256 492);"/>
+                    <Edge cubics="!239 515(;239,515 172,448 172,448q239 515 172 448);"/>
+                    <Edge cubics="!145 500(;145,500 239,515 239,515q145 500 239 515);"/>
+                    <Edge cubics="!231 542(;231,542 145,500 145,500q231 542 145 500);"/>
+                    <Edge cubics="!136 557(;136,557 231,542 231,542q136 557 231 542);"/>
+                    <Edge cubics="!231 571(231,571;231,571 136,557 136,557q231 571 136 557);"/>
+                    <Edge cubics="!145 613(;145,613 231,571 231,571q145 613 231 571)231,571;"/>
+                    <Edge cubics="!239 598(239,598;239,598 145,613 145,613q239 598 145 613);"/>
+                    <Edge cubics="!172 665(172,665;172,665 239,598 239,598q172 665 239 598);"/>
+                    <Edge cubics="!256 621(;256,621 172,665 172,665q256 621 172 665);"/>
+                    <Edge cubics="!212 705(;212,705 256,621 256,621q212 705 256 621);"/>
+                    <Edge cubics="!279 638(;279,638 212,705 212,705q279 638 212 705)212,705;"/>
+                    <Edge cubics="!335 646(;335,646 321,741 321,741q335 646 321 741);"/>
+                    <Edge cubics="!321 741(321,741;321,741 306,646 306,646q321 741 306 646);"/>
+                    <Edge cubics="!429 705(429,705;429,705 362,638 362,638q429 705 362 638);"/>
+                    <Edge cubics="!385 621(385,621;385,621 429,705 429,705q385 621 429 705)429,705;"/>
+                    <Edge cubics="!469 665(469,665;469,665 385,621 385,621q469 665 385 621);"/>
+                    <Edge cubics="!402 598(402,598;402,598 469,665 469,665q402 598 469 665)469,665;"/>
+                    <Edge cubics="!496 613(;496,613 402,598 402,598q496 613 402 598);"/>
+                    <Edge cubics="!410 571(410,571;410,571 496,613 496,613q410 571 496 613);"/>
+                    <Edge cubics="!505 557(;505,557 410,571 410,571q505 557 410 571);"/>
+                    <Edge cubics="!410 542(410,542;410,542 505,557 505,557q410 542 505 557);"/>
+                    <Edge cubics="!496 500(496,500;496,500 410,542 410,542q496 500 410 542);"/>
+                    <Edge cubics="!402 515(402,515;402,515 496,500 496,500q402 515 496 500);"/>
+                    <Edge cubics="!469 448(;469,448 402,515 402,515q469 448 402 515);"/>
+                    <Edge cubics="!385 492(385,492;385,492 469,448 469,448q385 492 469 448);"/>
+                    <Edge cubics="!429 408(;429,408 385,492 385,492q429 408 385 492);"/>
+                    <Edge cubics="!362 475(362,475;362,475 429,408 429,408q362 475 429 408);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMRectangleObject objectWidth="28" objectHeight="28" x="112" y="128" selected="true" lockFlag="true" topLeftRadius="3" topRightRadius="3" bottomLeftRadius="3" bottomRightRadius="3">
+                  <matrix>
+                    <Matrix tx="-110" ty="-126"/>
+                  </matrix>
+                  <fill>
+                    <RadialGradient>
+                      <matrix>
+                        <Matrix a="0.02294921875" d="0.02294921875" tx="126" ty="142"/>
+                      </matrix>
+                      <GradientEntry color="#333333" ratio="0"/>
+                      <GradientEntry ratio="1"/>
+                    </RadialGradient>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 5" color="#4FFFFF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMRectangleObject objectWidth="32" objectHeight="32" x="112" y="128" selected="true" lockFlag="true" topLeftRadius="4" topRightRadius="4" bottomLeftRadius="4" bottomRightRadius="4">
+                  <matrix>
+                    <Matrix tx="-112" ty="-128"/>
+                  </matrix>
+                  <fill>
+                    <LinearGradient>
+                      <matrix>
+                        <Matrix a="0" b="0.01953125" c="-0.01953125" d="0" tx="128" ty="144"/>
+                      </matrix>
+                      <GradientEntry color="#FFFFFF" ratio="0"/>
+                      <GradientEntry color="#CCCCCC" ratio="1"/>
+                    </LinearGradient>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

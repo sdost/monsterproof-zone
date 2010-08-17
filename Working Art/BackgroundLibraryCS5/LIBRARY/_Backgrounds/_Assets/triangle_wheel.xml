@@ -1,0 +1,80 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/triangle_wheel" itemID="4c448882-0000028e" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="triangle_wheel" sourceLastModified="1279569915" lastModified="1279569915" lastUniqueIdentifier="17">
+  <timeline>
+    <DOMTimeline name="triangle_wheel">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/triangle_line" name="" selected="true" centerPoint3DX="331.3" centerPoint3DY="35.05">
+                  <matrix>
+                    <Matrix a="0.86602783203125" b="0.5" c="-0.5" d="0.86602783203125" ty="0.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/triangle_line" name="" selected="true" centerPoint3DX="33.9" centerPoint3DY="-328.8">
+                  <matrix>
+                    <Matrix a="0.494155883789063" b="-0.860977172851563" c="0.860977172851563" d="0.494155883789063" ty="0.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/triangle_line" name="" selected="true" centerPoint3DX="193.85" centerPoint3DY="-267.2">
+                  <matrix>
+                    <Matrix a="0.857742309570313" b="-0.496902465820313" c="0.496902465820313" d="0.857742309570313" ty="0.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/triangle_line" name="" selected="true" centerPoint3DX="301.65" centerPoint3DY="-134.15">
+                  <matrix>
+                    <Matrix a="0.991241455078125" b="-0.0003662109375" c="0.0003662109375" d="0.991241455078125" ty="0.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/triangle_line" name="" selected="true" centerPoint3DX="118.8" centerPoint3DY="-305.15">
+                  <matrix>
+                    <Matrix a="0.949081420898438" b="-0.254318237304688" c="0.254318237304688" d="0.949081420898438" tx="1" ty="0.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/triangle_line" name="" selected="true" centerPoint3DX="-316.5" centerPoint3DY="-79.45">
+                  <matrix>
+                    <Matrix a="0.69384765625" b="-0.69384765625" c="0.69384765625" d="0.69384765625" ty="0.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/triangle_line" name="" selected="true" centerPoint3DX="-50.6" centerPoint3DY="323.5">
+                  <matrix>
+                    <Matrix a="0.254684448242188" b="-0.950546264648438" c="0.950546264648438" d="0.254684448242188" ty="0.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/triangle_line" name="" selected="true" centerPoint3DX="-265.85" centerPoint3DY="199">
+                  <matrix>
+                    <Matrix a="0.96453857421875" b="0.258438110351563" c="-0.258438110351563" d="0.964523315429688" ty="0.1"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

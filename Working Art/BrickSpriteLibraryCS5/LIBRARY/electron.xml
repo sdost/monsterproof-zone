@@ -1,0 +1,24 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="electron" itemID="4c225963-0000021b" sourceFlashFilepath="..\TestLevel.fla" sourceLibraryItemHRef="Bomb Assets/electron" sourceLastModified="1277323894" lastModified="1277323894" lastUniqueIdentifier="1">
+  <timeline>
+    <DOMTimeline name="electron">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="Bomb Assets/electron_glow" name="">
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                  <filters>
+                    <GlowFilter blurX="2" blurY="2" color="#33CCFF" quality="3" strength="2.71"/>
+                  </filters>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

@@ -1,0 +1,27 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="MedThreeHit" itemID="4c2a76b5-00000085" linkageExportForAS="true" linkageClassName="MedThreeHit" sourceLibraryItemHRef="Symbol 1" lastModified="1278001358">
+  <timeline>
+    <DOMTimeline name="MedThreeHit">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" name="Damage0" labelType="name" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" selected="true" libraryItemName="BMPs/brick_med_threehit_1_BMP"/>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="1" name="Damage1" labelType="name" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="BMPs/brick_med_threehit_2_BMP"/>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="2" name="Damage2" labelType="name" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="BMPs/brick_med_threehit_3_BMP"/>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

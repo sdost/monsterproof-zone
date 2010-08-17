@@ -5,6 +5,8 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
+	import com.jac.soundManager.SMSound;
+	import com.jac.soundManager.SoundController;
 	import com.jac.soundManager.SoundManager;
 	import flash.events.Event;
 	import org.flintparticles.common.events.EmitterEvent;
@@ -18,17 +20,26 @@ package com.bored.games.breakout.actions
 	public class DisintegrateBrickAction extends Action
 	{
 		public static const NAME:String = "com.bored.games.breakout.actions.DisintegrateBrickAction";
+		
+		public static const sfx_DisintegrateLg:String = "disintegrate_lg";
 	
 		public function DisintegrateBrickAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
 			super(NAME, a_gameElement, a_params);
+			
+			SoundManager.getInstance().getSoundControllerByID("sfxController").addSound( new SMSound("disintegrate_lg_1", "breakout.assets.sfx.BrickDestroyLg_1", false) );
+			SoundManager.getInstance().getSoundControllerByID("sfxController").addSound( new SMSound("disintegrate_lg_2", "breakout.assets.sfx.BrickDestroyLg_2", false) );
+			SoundManager.getInstance().getSoundControllerByID("sfxController").addSound( new SMSound("disintegrate_lg_3", "breakout.assets.sfx.BrickDestroyLg_3", false) );
+			SoundManager.getInstance().getSoundControllerByID("sfxController").addSound( new SMSound("disintegrate_lg_4", "breakout.assets.sfx.BrickDestroyLg_4", false) );
 		}//end constructor()
 		
 		override public function startAction():void 
 		{
 			_finished = false;
 			
-			SoundManager.getInstance().getSoundControllerByID("sfxController").play(GameView.sfx_BrickDisintegrate);
+			var v:uint = uint(Math.random() * 3 + 1);
+			
+			SoundManager.getInstance().getSoundControllerByID("sfxController").play(sfx_DisintegrateLg + "_" + v);
 			
 			var emitter:BrickCrumbs = new BrickCrumbs( (_gameElement as Brick) );
 			emitter.useInternalTick = false;

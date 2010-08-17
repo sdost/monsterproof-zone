@@ -88,6 +88,7 @@ package com.bored.games.breakout.objects
 			b2Def.body.fixedRotation = true;
 			b2Def.body.allowSleep = false;
 			b2Def.body.userData = this;
+			b2Def.body.linearDamping = 0.0;
 			
 			b2Def.polygon.SetAsBox( (_animatedSprite.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animatedSprite.currFrame.height / 2) / PhysicsWorld.PhysScale );
 			

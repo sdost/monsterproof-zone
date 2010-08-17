@@ -1,5 +1,6 @@
 package com.bored.games.breakout.states.views 
 {
+	import flash.utils.getDefinitionByName;
 	import away3dlite.loaders.Collada;
 	import Box2DAS.Collision.b2AABB;
 	import Box2DAS.Collision.b2Manifold;
@@ -95,6 +96,7 @@ package com.bored.games.breakout.states.views
 	import flash.geom.Rectangle;
 	import flash.net.URLLoader;
 	import flash.net.URLRequest;
+	import flash.text.engine.BreakOpportunity;
 	import flash.ui.Keyboard;
 	import flash.utils.ByteArray;
 	import flash.utils.Dictionary;
@@ -151,6 +153,9 @@ package com.bored.games.breakout.states.views
 		public static const sfx_BallWallBounce:String = "ballWallBounce";
 		public static const sfx_BallPaddleBounce:String = "ballPaddleBounce";
 		public static const sfx_BrickDisintegrate:String = "brickDisintegrate";
+		
+		public static const sfx_BrickDestroyLg:String = "brickDisintegrate";
+		
 		public static const sfx_BrickExplode:String = "brickExplode";
 		public static const sfx_PaddleCatch:String = "paddleCatch";
 		public static const sfx_PaddleExtend:String = "paddleExtend";
@@ -216,7 +221,7 @@ package com.bored.games.breakout.states.views
 		
 		private var _multiplier:GameElement;
 		private var _brickMultiplierManager:BrickMultiplierManagerAction;
-		private var _paddleMultiplierManager:PaddleMultiplierManagerAction;		
+		private var _paddleMultiplierManager:PaddleMultiplierManagerAction;
 		
 		private var _lastUpdate:Number;
 		
@@ -278,12 +283,11 @@ package com.bored.games.breakout.states.views
 			addChild((ParticleRenderer as BitmapRenderer));
 			
 			var sfx:SoundController = SoundManager.getInstance().getSoundControllerByID("sfxController");
-			sfx.addSound( new SMSound( sfx_BallWallBounce, "breakout.assets.sfx.Bounce1" ) );
-			sfx.addSound( new SMSound( sfx_BallPaddleBounce, "breakout.assets.sfx.Bounce2" ) );
-			sfx.addSound( new SMSound( sfx_BrickDisintegrate, "breakout.assets.sfx.Disintegrate" ) );
-			sfx.addSound( new SMSound( sfx_BrickExplode, "breakout.assets.sfx.Explode" ) );
-			sfx.addSound( new SMSound( sfx_PaddleCatch, "breakout.assets.sfx.PaddleCatch", true ) );
-			sfx.addSound( new SMSound( sfx_PaddleExtend, "breakout.assets.sfx.PaddleExtend" ) );
+			//sfx.addSound( new SMSound( sfx_BallWallBounce, "breakout.assets.sfx.Bounce1" ) );
+			//sfx.addSound( new SMSound( sfx_BallPaddleBounce, "breakout.assets.sfx.Bounce2" ) );
+			//sfx.addSound( new SMSound( sfx_BrickExplode, "breakout.assets.sfx.Explode" ) );
+			//sfx.addSound( new SMSound( sfx_PaddleCatch, "breakout.assets.sfx.PaddleCatch", true ) );
+			//sfx.addSound( new SMSound( sfx_PaddleExtend, "breakout.assets.sfx.PaddleExtend" ) );
 		}//end addedToStageHandler()
 		
 		override protected function removedFromStageHandler(e:Event):void
@@ -604,7 +608,7 @@ package com.bored.games.breakout.states.views
 			}
 			else if ( a_fixture.GetFilterData().categoryBits == id_Wall )
 			{
-				SoundManager.getInstance().getSoundControllerByID("sfxController").play(sfx_BallWallBounce);
+				//SoundManager.getInstance().getSoundControllerByID("sfxController").play(sfx_BallWallBounce);
 			}
 			else if ( a_fixture.GetUserData() is Paddle )
 			{
@@ -614,7 +618,7 @@ package com.bored.games.breakout.states.views
 				}
 				else
 				{
-					SoundManager.getInstance().getSoundControllerByID("sfxController").play(sfx_BallPaddleBounce);
+					//SoundManager.getInstance().getSoundControllerByID("sfxController").play(sfx_BallPaddleBounce);
 				}
 				
 				if ( _paddleMultiplierManager.finished )

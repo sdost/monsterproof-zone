@@ -1,0 +1,27 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/ring" itemID="4c3e2375-0000079b" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="ring" sourceLastModified="1279145820" lastModified="1279145820">
+  <timeline>
+    <DOMTimeline name="ring">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FFFFFF" alpha="0.0823529411764706"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle0="1" edges="!1687 -1687S1[2386 -988 2386 0!2386 0[2386 988 1687 1687!1687 1687[988 2386 0 2386!0 2386[-988 2386 -1687 1687!-1687 1687[-2386 988 -2386 0!-2386 0[-2386 -988 -1687 -1687!-1687 -1687[-988 -2386 0 -2386!0 -2386[988 -2386 1687 -1687"/>
+                    <Edge fillStyle1="1" edges="!1810 -1810S2[2560 -1060 2560 0!2560 0[2560 1060 1810 1810!1810 1810[1060 2560 0 2560!0 2560[-1060 2560 -1810 1810!-1810 1810[-2560 1060 -2560 0!-2560 0[-2560 -1060 -1810 -1810!-1810 -1810[-1060 -2560 0 -2560!0 -2560[1060 -2560 1810 -1810"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

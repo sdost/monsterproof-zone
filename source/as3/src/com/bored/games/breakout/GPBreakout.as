@@ -2,6 +2,8 @@
 {
 	import com.bored.games.breakout.states.controllers.GameplayController;
 	import com.bored.games.breakout.states.controllers.LoadingController;
+	import com.bored.games.breakout.states.controllers.TitleController;
+	import com.bored.games.breakout.states.views.TitleView;
 	import com.bored.games.input.Input;
 	import com.bored.services.BoredServices;
 	import com.jac.fsm.StateController;
@@ -28,6 +30,7 @@
 		private var _sm:StateMachine;
 		
 		private var _loader:StateController;
+		private var _title:StateController;
 		private var _gameplay:StateController;
 		
 		public function GPBreakout() 
@@ -80,9 +83,18 @@
 			
 			_loader = null;
 			
+			_title.addEventListener('startGame', titleComplete, false, 0, true);
+			_sm.changeState(_title);
+		}//end loadingComplete()
+		
+		private function titleComplete(e:Event):void
+		{
+			_title.removeEventListener('startGame', titleComplete);
+			_title = null;
+			
 			_gameplay.addEventListener(StateEvent.ENTER_COMPLETE, enterComplete, false, 0, true);
 			_sm.changeState(_gameplay);
-		}//end loadingComplete()
+		}//end titleComplete()
 		
 		private function enterComplete(e:StateEvent):void
 		{
@@ -95,6 +107,7 @@
 		protected function addStates():void
 		{
 			_loader = new LoadingController(this);
+			_title = new TitleController(this);
 			_gameplay = new GameplayController(this);
 		}//end addStates()
 		

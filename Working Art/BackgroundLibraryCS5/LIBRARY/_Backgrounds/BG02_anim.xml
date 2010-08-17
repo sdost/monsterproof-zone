@@ -1,0 +1,147 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/BG02_anim" itemID="4c3b33d3-00000079" linkageExportForAS="true" linkageClassName="breakout.assets.bg02" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="BG02_anim" sourceLastModified="1279639790" lastModified="1279640749" lastUniqueIdentifier="3">
+  <timeline>
+    <DOMTimeline name="BG02_anim" currentFrame="119">
+      <layers>
+        <DOMLayer name="Layer 6" color="#808080" locked="true" outline="true" useOutlineView="true" layerType="mask">
+          <frames>
+            <DOMFrame index="0" duration="120" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#66FF00"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!13441 10880|0 10880!0 10880|0 0!0 0|13441 0!13441 0|13441 10880"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 8" color="#FF4F4F" parentLayerIndex="0" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/vertical_rays" name="" centerPoint3DX="344" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="48"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="296" y="272"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/vertical_rays" name="" centerPoint3DX="344" centerPoint3DY="-272">
+                  <matrix>
+                    <Matrix tx="48" ty="-544"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="296" y="272"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 7" color="#4F80FF" parentLayerIndex="0" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/vertical_rays" name="" centerPoint3DX="344" centerPoint3DY="816">
+                  <matrix>
+                    <Matrix tx="48" ty="544"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="296" y="272"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/vertical_rays" name="" centerPoint3DX="344" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="48"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="296" y="272"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 5" color="#4FFFFF" parentLayerIndex="0" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/binary_white" name="" selected="true" centerPoint3DX="67.2" centerPoint3DY="-453">
+                  <matrix>
+                    <Matrix tx="27.2" ty="-544"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/binary_white" name="" centerPoint3DX="67.2" centerPoint3DY="91">
+                  <matrix>
+                    <Matrix tx="27.2"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC" parentLayerIndex="0" locked="true" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="119" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/binary_white" name="" centerPoint3DX="427.2" centerPoint3DY="-453">
+                  <matrix>
+                    <Matrix tx="387.2" ty="-544"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="_Backgrounds/_Assets/binary_white" name="" selected="true" centerPoint3DX="427.2" centerPoint3DY="91">
+                  <matrix>
+                    <Matrix tx="387.2"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="120" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="_Backgrounds/_Bitmaps/bg02.png"/>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

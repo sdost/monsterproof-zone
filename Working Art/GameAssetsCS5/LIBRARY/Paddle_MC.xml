@@ -1,0 +1,2632 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Paddle_MC" itemID="4c339dc2-00000144" linkageExportForAS="true" linkageClassName="breakout.assets.Paddle_MC" sourceLibraryItemHRef="Symbol 1" lastModified="1281989739">
+  <timeline>
+    <DOMTimeline name="Paddle_MC" currentFrame="100">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F">
+          <frames>
+            <DOMFrame index="0" name="Normal" labelType="name" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="paddle_assets/Paddle_BMP"/>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="1" name="Laser" labelType="name" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="paddle_assets/paddle_blaster.png"/>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="2" name="Extend" labelType="name" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="paddle_assets/paddle_widest.png"/>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="3" duration="20" name="Catch" labelType="name" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="paddle_assets/magnet.png"/>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="23" duration="8" name="ExtendIn" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="31" duration="8" name="ExtendOut" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="39" duration="5" name="LaserIn" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="44" duration="5" name="LaserOut" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="49" duration="6" name="CatchIn" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="55" duration="6" name="CatchOut" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="61" duration="40" name="Intro" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 16" color="#FF4F4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="39" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="39" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" selected="true" symbolType="graphic" firstFrame="1" loop="single frame">
+                  <matrix>
+                    <Matrix d="0.997207641601563" tx="42" ty="2.45"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-2.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="40" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" symbolType="graphic" firstFrame="2" loop="single frame">
+                  <matrix>
+                    <Matrix d="0.997573852539063" tx="42" ty="5.05"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-5.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="41" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" symbolType="graphic" firstFrame="3" loop="single frame">
+                  <matrix>
+                    <Matrix d="0.997833251953125" tx="42" ty="7.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.6"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="42" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" symbolType="graphic" firstFrame="4" loop="single frame">
+                  <matrix>
+                    <Matrix d="1.00193786621094" tx="42" ty="10.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-10.3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="43" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" selected="true" symbolType="graphic" firstFrame="5" loop="single frame">
+                  <matrix>
+                    <Matrix d="1.00177001953125" tx="42" ty="12.95"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-12.9"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="44" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" symbolType="graphic" firstFrame="5" loop="single frame">
+                  <matrix>
+                    <Matrix d="1.00177001953125" tx="42" ty="12.95"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-12.9"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="45" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" symbolType="graphic" firstFrame="4" loop="single frame">
+                  <matrix>
+                    <Matrix d="1.00193786621094" tx="42" ty="10.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-10.3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="46" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" symbolType="graphic" firstFrame="3" loop="single frame">
+                  <matrix>
+                    <Matrix d="0.997833251953125" tx="42" ty="7.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.6"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="47" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" symbolType="graphic" firstFrame="2" loop="single frame">
+                  <matrix>
+                    <Matrix d="0.997573852539063" tx="42" ty="5.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-5.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="48" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/blaster_out" name="" selected="true" symbolType="graphic" firstFrame="1" loop="single frame">
+                  <matrix>
+                    <Matrix d="0.997207641601563" tx="42" ty="2.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-2.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="49" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" selected="true" symbolType="graphic" firstFrame="1" loop="single frame">
+                  <matrix>
+                    <Matrix tx="44.2" ty="10.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-44.1" y="-2.25"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="50" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="2" loop="single frame">
+                  <matrix>
+                    <Matrix tx="44.05" ty="13.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.95" y="-5.55"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="51" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="3" loop="single frame">
+                  <matrix>
+                    <Matrix tx="43.85" ty="16.9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.9" y="-8.9"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="52" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="4" loop="single frame">
+                  <matrix>
+                    <Matrix tx="43.7" ty="20.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.9" y="-12.25"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="53" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" selected="true" symbolType="graphic" firstFrame="5" loop="loop">
+                  <matrix>
+                    <Matrix tx="43.7" ty="20.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.8" y="-12"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="54" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" selected="true" symbolType="graphic" firstFrame="6" loop="single frame">
+                  <matrix>
+                    <Matrix tx="43.7" ty="20.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.9" y="-12.3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="55" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" selected="true" symbolType="graphic" firstFrame="6" loop="single frame">
+                  <matrix>
+                    <Matrix tx="43.7" ty="20.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.9" y="-12.3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="56" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" selected="true" symbolType="graphic" firstFrame="5" loop="loop">
+                  <matrix>
+                    <Matrix tx="43.7" ty="20.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.9" y="-12.25"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="57" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="4" loop="single frame">
+                  <matrix>
+                    <Matrix tx="43.7" ty="20.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.9" y="-12.25"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="58" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="3" loop="single frame">
+                  <matrix>
+                    <Matrix tx="43.85" ty="16.9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.9" y="-8.9"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="59" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="2" loop="single frame">
+                  <matrix>
+                    <Matrix tx="44.05" ty="13.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.95" y="-5.55"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="60" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="1" loop="single frame">
+                  <matrix>
+                    <Matrix tx="44.2" ty="10.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-44.1" y="-2.25"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="61" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="0.45" ty="0.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="62" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="1" loop="play once">
+                  <matrix>
+                    <Matrix a="0.998260498046875" d="0.9974365234375" tx="15.65" ty="0.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-15.1" y="-0.3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="63" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="2" loop="play once">
+                  <matrix>
+                    <Matrix a="0.9976806640625" d="0.9974365234375" tx="29.95" ty="0.8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-29.5" y="-0.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="64" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="3" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="0.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-0.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="65" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="4" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.7" ty="3.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.15" y="-3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="66" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="5" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.65" ty="5.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.1" y="-5.4"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="67" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="6" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.7" ty="7.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.15" y="-7.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="68" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="7" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.4" ty="10.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-41.85" y="-10.3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="69" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="8" loop="play once">
+                  <matrix>
+                    <Matrix a="0.9976806640625" d="0.9974365234375" tx="42.6" ty="9.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.1" y="-9.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="70" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="9" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="10.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-10.1"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="71" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="10" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="72" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="11" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="9.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-9"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="73" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="12" loop="play once">
+                  <matrix>
+                    <Matrix a="0.9976806640625" d="0.9974365234375" tx="42.5" ty="8.8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="74" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="13" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="9.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-8.85"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="75" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="14" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8.6"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="76" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="15" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="9.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-9.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="77" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="16" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="78" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="17" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.5" ty="9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-41.95" y="-8.7"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="79" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="18" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="8.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-8.25"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="80" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="19" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="8.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-8.35"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="81" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="20" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8.55"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="82" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="21" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="9.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-9.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="83" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="22" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="9.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-9"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="84" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="23" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="8.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-8.35"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="85" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="24" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="9.45"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-9.15"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="86" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="25" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="9.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-9.2"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="87" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="26" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="88" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="27" loop="play once">
+                  <matrix>
+                    <Matrix a="0.999420166015625" d="0.9974365234375" tx="43.8" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.25" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="89" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="28" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="90" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="29" loop="play once">
+                  <matrix>
+                    <Matrix a="0.998260498046875" d="0.9974365234375" tx="42.55" ty="8.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="91" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="30" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="92" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="31" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="93" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="32" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="94" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="33" loop="play once">
+                  <matrix>
+                    <Matrix a="0.999420166015625" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-41.95" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="95" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="34" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="96" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="35" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="97" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="36" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="98" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="37" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="99" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="38" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="100" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="39" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="2" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="3" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!216 141|420 120!420 120|647 120!647 120|718 167!718 167|906 167!906 167|1084 55!1084 55|1135 55!1135 55|1202 176!1202 176|1382 176!1382 176|1382 120!1382 120|1556 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="4" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!215 120|387 120!387 120|446 72!446 72|498 72!498 72|498 120!498 120|586 172!586 172|795 172!795 172|834 120!834 120|924 120!924 120[1006 40 1107 120!1107 120|1073 185!1073 185|1278 185!1278 185|1278 120!1278 120|1556 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="5" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!211 120S4|309 120!309 120|334 77!334 77|334 120!334 120|403 163!403 163|419 163!419 163|419 202!419 202[430 209 446 206!446 206|525 172!525 172|474 120!474 120|524 64!524 64|635 64!635 64|763 120!763 120[767 148 767 120!767 120[769 155
+ 769 120!769 120|840 167!840 167|840 198!840 198|917 198!917 198|967 120!967 120|1064 120!1064 120|1064 180!1064 180|1201 211!1201 211|1238 211!1238 211|1238 120!1238 120|1400 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="6" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!1400 120S4|1221 60!1221 60|1165 60!1165 60|1041 120!1041 120|1117 202!1117 202|847 249!847 249|847 215!847 215|775 120!775 120|654 120!654 120[634 70 612 63!612 63[592 57 563 60!563 60|451 120!451 120|451 185!451 185|341 185!341 185
+|301 120!301 120|262 120!262 120[245 123 228 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="7" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!211 120S4|359 120!359 120|359 64!359 64|442 64!442 64|634 120!634 120|634 172!634 172|784 202!784 202|922 202!922 202|922 120!922 120|1106 68!1106 68|1106 120!1106 120|1357 120!1357 120[1385 131 1400 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="8" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!211 120S4|334 120!334 120|524 42!524 42|562 42!562 42|562 120!562 120[584 127 584 120!584 120|889 202!889 202|889 120!889 120|944 120!944 120|986 68!986 68|1058 120!1058 120[1132 32 1232 51!1232 51|1232 120!1232 120[1242 166 1270 166
+!1270 166|1270 120!1270 120|1400 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="9" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!216 120S4[311 145 361 77!361 77|548 77!548 77|548 120!548 120[554 140 564 120!564 120|633 172!633 172|709 172!709 172|737 120!737 120|957 72!957 72|1029 120!1029 120|1076 193!1076 193|1168 193!1168 193|1210 120!1210 120|1400 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="10" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!211 120S4|394 120!394 120|472 72!472 72|517 58!517 58[651 44 774 54!774 54[796 56 825 66!825 66[838 83 867 120!867 120|1002 120!1002 120|1132 83!1132 83|1132 120!1132 120|1293 120!1293 120[1356 108 1397 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="11" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!211 138S4|527 138!527 138|616 83!616 83|616 60!616 60|846 60!846 60|912 138!912 138|1006 171!1006 171|1017 171!1017 171[1030 179 1043 182!1043 182|1113 182!1113 182[1155 170 1164 138!1164 138|1400 138"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="12" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!1516 120[1521 149 1533 120!1533 120[1534 146 1539 120!1539 120|1352 72!1352 72[1347 52 1331 39!1331 39|1253 39!1253 39|1074 77!1074 77[1053 176 907 174!907 174[895 173 907 185!907 185|833 120!833 120|781 120!781 120[771 85 763 120!763
+ 120[761 88 758 120!758 120|560 120!560 120|515 77!515 77|481 120!481 120|458 120!458 120[426 81 383 77!383 77|309 120!309 120|215 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="13" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!215 130|404 130!404 130|500 48!500 48|607 48!607 48|607 75!607 75|659 130!659 130|756 130!756 130|834 167!834 167[966 175 1026 130!1026 130|1396 130!1396 130[1423 134 1426 130!1426 130|1556 130"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="14" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!215 120|350 120!350 120|350 68!350 68|468 68!468 68[516 44 560 78!560 78|560 120!560 120|763 172!763 172|781 77!781 77|907 42!907 42|1035 120!1035 120|1160 120!1160 120|1253 193!1253 193|1310 193!1310 193[1326 174 1327 173!1327 173[1349
+ 161 1352 120!1352 120[1381 122 1384 120!1384 120|1539 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="15" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!189 133|328 133!328 133[338 119 338 133!338 133|431 69!431 69|448 69!448 69|560 50!560 50|560 81!560 81|598 81!598 81[685 30 785 56!785 56|785 102!785 102[886 102 928 163!928 163|1381 133!1381 133[1456 167 1545 133"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="16" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!234 120|412 120!412 120|459 61!459 61|586 42!586 42|586 120!586 120[601 101 613 120!613 120[619 98 622 120!622 120[649 116 651 120!651 120|766 172!766 172[887 106 907 47!907 47[988 33 1025 60!1025 60|1025 120!1025 120|1151 189!1151 189
+|1253 189!1253 189|1253 120!1253 120|1601 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="17" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!215 120S4|299 120!299 120|341 64!341 64|560 25!560 25|560 47!560 47|622 47!622 47|656 120!656 120|837 120!837 120[843 90 851 120!851 120|1004 120!1004 120|1107 34!1107 34|1253 34!1253 34|1310 185!1310 185|1468 182!1468 182[1491 131 1552
+ 120!1552 120|1516 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="18" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!215 120|426 120!426 120[431 163 440 163!440 163|515 120!515 120|560 120!560 120[700 6 907 38!907 38[955 124 1057 77!1057 77|1127 120!1127 120[1217 201 1253 120!1253 120|1337 120!1337 120[1348 96 1354 120!1354 120[1356 92 1356 120!1356
+ 120|1549 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!215 120|435 120!435 120|473 77!473 77[493 66 495 64!495 64|598 64!598 64|598 120!598 120|837 120!837 120|907 189!907 189[1021 189 1249 72!1249 72|1552 120!1552 120[1579 132 1601 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!1529 120|1552 120!1552 120[1550 132 1529 120!197 182[204 159 215 120!215 120|332 120!332 120|332 68!332 68|560 68!560 68|560 176!560 176|673 176!673 176[696 193 705 191!705 191[731 84 833 120!833 120|901 43!901 43|1032 41!1032 41|1090
+ 77!1090 77|1200 113!1200 113|1529 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="21" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!230 120|354 120!354 120|418 167!418 167|502 215!502 215|569 215!569 215|600 132!600 132|761 79!761 79|926 120!926 120|926 172!926 172[970 179 975 185!975 185|1283 185!1283 185|1283 120!1283 120[1301 71 1339 120!1339 120[1340 92 1340
+ 120!1340 120|1455 167!1455 167|1455 120!1455 120|1556 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="22" keyMode="9728">
+              <elements>
+                <DOMShape selected="true">
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!215 120[217 128 239 120!239 120|316 120!316 120|421 55!421 55[478 87 487 120!487 120|487 167!487 167|652 200!652 200|766 68!766 68|870 90!870 90[908 85 963 166!963 166|1093 120!1093 120|1132 172!1132 172|1182 120!1182 120[1418 26 1533
+ 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="23" duration="7" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l3" name="" centerPoint3DX="10" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="10" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="30" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l3" name="" centerPoint3DX="10" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="10" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="31" duration="7" tweenType="motion" keyMode="17921">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l3" name="" centerPoint3DX="10" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="10" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="38" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l3" name="" centerPoint3DX="10" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="10" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 3" color="#FF800A">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="2" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="3" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!239 120|359 79!359 79|463 79!463 79|629 61!629 61|668 120!668 120|859 120!859 120|915 176!915 176|999 176!999 176|1191 120!1191 120|1557 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="4" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!251 120|392 157!392 157|539 120!539 120|595 120!595 120|595 89!595 89|622 120!622 120|1327 235!1327 235|1327 207!1327 207|1385 154!1385 154|1524 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="5" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!235 120S4|331 77!331 77|356 120!356 120|468 120!468 120|493 146!493 146|558 146!558 146|600 120!600 120|768 79!768 79|793 61!793 61|832 61!832 61[854 153 949 120!949 120[975 143 1000 160!1000 160|1012 160!1012 160|1082 187!1082 187|1116
+ 154!1116 154|1401 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="6" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!213 186S4[218 168 219 166!219 166|459 110!459 110[535 192 639 173!639 173[702 162 765 170!765 170[827 73 928 86!928 86|964 86!964 86|1036 107!1036 107|1194 107!1194 107|1279 120!1279 120|1339 163"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="7" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!264 120S4|411 120!411 120|411 151!411 151|519 151!519 151|621 135!621 135[652 97 710 120!710 120|710 151!710 151|832 151!832 151|832 170!832 170|900 161!900 161|1008 120!1008 120|1052 157!1052 157|1052 176!1052 176|1067 176!1067 176
+|1116 204!1116 204[1138 203 1116 198!1116 198[1177 202 1208 184!1208 184|1429 120!1429 120|1401 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="8" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!202 151S4|451 151!451 151|603 89!603 89[616 93 619 120!619 120[681 118 741 120!741 120[750 131 760 120!760 120[852 111 940 79!940 79|961 79!961 79[956 141 987 170!987 170|1080 120!1080 120|1149 160!1149 160|1169 120!1169 120|1401 120
+!1401 120|1373 151"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="9" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!194 120S4[259 96 326 120!326 120[328 137 329 120!329 120|551 120!551 120|625 154!625 154|674 120!674 120|798 58!798 58[867 152 965 96!965 96[985 74 999 81!999 81[1035 98 1072 120!1072 120|1116 154!1116 154|1155 154!1155 154|1221 191
+!1221 191[1297 94 1401 120!1401 120|1401 157"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="10" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!326 151S4|326 120!326 120|211 120!211 120|326 151!326 151|548 120!548 120|548 79!548 79|572 79!572 79|616 51!616 51|726 51!726 51|832 120!832 120|970 166!970 166|1050 166!1050 166|1149 120!1149 120|1282 120!1282 120[1320 97 1367 109
+!1367 109[1382 113 1397 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="11" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!211 120S4|436 182!436 182|494 120!494 120|771 36!771 36|970 76!970 76|992 120!992 120|1240 198!1240 198|1307 120!1307 120|1373 120!263 120[243 116 241 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="12" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!189 120|539 182!539 182|640 120!640 120|703 120!703 120|866 73!866 73|915 120!915 120|1163 58!1163 58|1163 120!1163 120|1533 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="13" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!215 120|420 120!420 120|504 160!504 160|553 120!553 120|595 120!595 120[634 29 737 62!737 62[762 70 790 68!790 68[843 65 915 76!915 76|915 120!915 120[1009 123 1080 165!1080 165[1089 170 1100 167!1100 167[1216 140 1332 173!1332 173|1516
+ 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="14" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!215 120|447 120!447 120|663 79!663 79|709 120!709 120|1154 120!1154 120[1231 161 1338 165!1338 165[1363 159 1394 157!1394 157|1419 157!1419 157[1453 111 1487 120!1487 120[1521 127 1539 120!1539 120|1539 151"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="15" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!224 120|431 120!431 120|431 79!431 79|469 79!469 79|587 47!587 47|654 120!654 120[661 112 666 120!666 120|758 79!758 79|915 79!915 79|915 120!915 120|1301 132!1301 132|1357 173!1357 173|1389 173!1389 173|1517 132!1517 132[1513 117 1487
+ 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="16" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!234 120|435 160!435 160|500 120!500 120|559 120!559 120|586 81!586 81|586 58!586 58|685 58!685 58|756 120!756 120|775 120!775 120|814 144!814 144|1154 120!1154 120|1191 120!1191 120|1394 166!1394 166|1557 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="17" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!224 120S4|348 120!348 120[439 57 572 47!572 47[620 63 640 84!640 84|758 84!758 84|758 120!758 120|781 120!781 120|1092 154!1092 154|1133 120!1133 120|1319 120!1319 120|1347 184!1347 184|1363 184!1363 184|1552 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="18" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!274 120[357 127 473 164!473 164[500 173 526 187!526 187[540 194 553 201!553 201|716 86!716 86|930 70!930 70|1105 185!1105 185|1235 185!1235 185|1235 229!1235 229|1338 229!1338 229[1385 158 1487 142!1487 142[1509 136 1549 120!1549 120
+|1525 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!201 120|341 157!341 157[395 113 458 120!458 120[523 144 595 162!595 162|666 162!666 162|719 213!719 213|834 166!834 166|837 120!837 120|1037 99!1037 99|1037 120!1037 120|1076 120!1076 120|1133 166!1133 166|1295 166!1295 166[1279 153
+ 1301 120!1301 120[1303 140 1304 120!1304 120|1462 120!1462 120|1487 148!1487 148|1552 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!233 157|519 157!519 157|595 210!595 210|677 210!677 210[685 200 705 191!705 191|800 163!800 163|800 120!800 120|915 76!915 76[933 72 915 70!915 70|1014 51!1014 51[1093 160 1235 161!1235 161[1278 162 1329 182!1329 182|1509 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="21" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!207 120|373 83!373 83|595 200!595 200|725 200!725 200[802 124 894 120!894 120[908 100 915 120!915 120[974 101 1022 74!1022 74|1092 120!1092 120|1200 120!1200 120|1295 166!1295 166[1363 82 1487 99"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="22" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!215 120[210 145 224 120!224 120|376 154!376 154|376 120!376 120|884 120!884 120|970 55!970 55[1006 50 1037 67!1037 67[1049 74 1062 83!1062 83|1085 83!1085 83|1235 64!1235 64[1244 109 1294 120!1294 120[1323 128 1347 120!1347 120|1435
+ 120!1435 120[1473 87 1509 103!1509 103[1535 101 1533 120"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="23" duration="7" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l2" name="" centerPoint3DX="13" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="13" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="30" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l2" name="" centerPoint3DX="27" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="27" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="31" duration="7" tweenType="motion" keyMode="17921">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l2" name="" centerPoint3DX="27" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="27" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="38" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l2" name="" centerPoint3DX="13" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="13" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 4" color="#FF4FFF">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="2" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="3" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1541 138[1476 151 1401 169!1401 169[1370 176 1341 196!1341 196[1323 207 1262 207!1262 207[1193 207 1170 185!1170 185[1150 162 1142 162!1142 162[1122 162 1005 188!1005 188[925 207 915 207!915 207[899 207 788 165!788 165[677 122 666 122
+!666 122[620 122 573 140!573 140[551 149 531 158!531 158[399 166 305 175!305 175[239 175 222 152!222 152[212 141 217 127!217 127[217 91 294 79!294 79[474 51 552 31!552 31[647 6 765 46!765 46[905 93 941 93!941 93[950 88 967 83!967 83[1002
+ 73 1061 71!1061 71[1065 66 1078 48!1078 48[1096 33 1126 33!1126 33[1175 33 1202 65!1202 65[1228 97 1259 97!1259 97[1283 97 1327 78!1327 78[1371 59 1447 59!1447 59[1538 59 1561 84!1561 84[1570 91 1570 113!1570 113[1570 131 1541 138"/>
+                    <Edge cubics="!941 93(;948,93 965,74 1061,71q941 93Q950 88q967 83Q1002 73q1061 71)1061,71;"/>
+                    <Edge cubics="!1061 71(;1069,61 1078,33 1126,33q1061 71Q1065 66q1078 48Q1096 33q1126 33);"/>
+                    <Edge cubics="!1126 33(;1218,33 1189,97 1259,97q1126 33Q1175 33q1202 65Q1228 97q1259 97);"/>
+                    <Edge cubics="!1259 97(;1323,97 1314,59 1447,59q1259 97Q1283 97q1327 78Q1371 59q1447 59);"/>
+                    <Edge cubics="!1447 59(;1591,59 1570,107 1570,113q1447 59Q1538 59q1561 84Q1570 91q1570 113);"/>
+                    <Edge cubics="!1570 113(1570,113;1570,142 1549,133 1401,169q1570 113Q1570 131q1541 138Q1476 151q1401 169)1401,169;"/>
+                    <Edge cubics="!1401 169(;1318,189 1370,207 1262,207q1401 169Q1370 176q1341 196Q1323 207q1262 207);"/>
+                    <Edge cubics="!1262 207(;1142,207 1178,162 1142,162q1262 207Q1193 207q1170 185Q1150 162q1142 162);"/>
+                    <Edge cubics="!1142 162(;1140,162 1072,173 1005,188q1142 162Q1122 162q1005 188);"/>
+                    <Edge cubics="!1005 188(;979,194 935,207 915,207q1005 188Q925 207q915 207);"/>
+                    <Edge cubics="!915 207(;884,207 690,122 666,122q915 207Q899 207q788 165Q677 122q666 122);"/>
+                    <Edge cubics="!666 122(;589,122 541,158 531,158q666 122Q620 122q573 140Q551 149q531 158);"/>
+                    <Edge cubics="!531 158(;399,166 327,175 305,175q531 158Q399 166q305 175);"/>
+                    <Edge cubics="!305 175(;198,175 217,130 217,127q305 175Q239 175q222 152Q212 141q217 127);"/>
+                    <Edge cubics="!217 127(;217,65 312,94 552,31q217 127Q217 91q294 79Q474 51q552 31);"/>
+                    <Edge cubics="!552 31(552,31;719,-13 824,93 941,93q552 31Q647 6q765 46Q905 93q941 93);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="4" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1474 192[1453 207 1421 207!1421 207[1401 207 1375 191!1375 191[1350 174 1340 174!1340 174[1311 174 1266 201!1266 201[1221 228 1164 228!1164 228[1103 228 1072 198!1072 198[1052 168 1048 168!1048 168[992 168 836 186!836 186[678 204 676
+ 204!676 204[628 204 515 173!515 173[404 141 392 141!392 141[352 141 337 158!337 158[320 174 304 174!304 174[260 174 251 148!251 148[244 135 248 119!248 119[248 87 296 53!296 53[349 16 425 5!425 5[466 -1 563 40!563 40[654 81 656 81!656
+ 81[721 81 849 58!849 58[977 35 1073 35!1073 35[1147 35 1163 64!1163 64[1172 79 1171 102!1171 102|1171 105!1171 105[1195 101 1249 73!1249 73[1297 47 1336 47!1336 47[1426 47 1471 93!1471 93[1502 122 1502 142!1502 142[1502 174 1474 192"/>
+                    <Edge cubics="!656 81(;797,81 891,35 1073,35q656 81Q721 81q849 58Q977 35q1073 35)1073,35;"/>
+                    <Edge cubics="!1073 35(1073,35;1193,35 1162,90 1171,102q1073 35Q1147 35q1163 64Q1172 79q1171 102)1171,102;"/>
+                    <Edge cubics="!1171 102(1171,102;1171,102 1171,105 1171,105q1171 102 1171 105)1171,105;"/>
+                    <Edge cubics="!1171 105(1171,105;1229,96 1265,47 1336,47q1171 105Q1195 101q1249 73Q1297 47q1336 47)1336,47;"/>
+                    <Edge cubics="!1336 47(1336,47;1478,47 1502,138 1502,142q1336 47Q1426 47q1471 93Q1502 122q1502 142)1502,142;"/>
+                    <Edge cubics="!1502 142(1502,142;1502,189 1456,207 1421,207q1502 142Q1502 174q1474 192Q1453 207q1421 207)1421,207;"/>
+                    <Edge cubics="!1421 207(1421,207;1384,207 1363,174 1340,174q1421 207Q1401 207q1375 191Q1350 174q1340 174)1340,174;"/>
+                    <Edge cubics="!1340 174(1340,174;1273,174 1268,228 1164,228q1340 174Q1311 174q1266 201Q1221 228q1164 228)1164,228;"/>
+                    <Edge cubics="!1164 228(1164,228;1065,228 1054,168 1048,168q1164 228Q1103 228q1072 198Q1052 168q1048 168);"/>
+                    <Edge cubics="!1048 168(1048,168;955,168 699,204 676,204q1048 168Q992 168q836 186Q678 204q676 204);"/>
+                    <Edge cubics="!676 204(;590,204 428,141 392,141q676 204Q628 204q515 173Q404 141q392 141);"/>
+                    <Edge cubics="!392 141(392,141;322,141 343,174 304,174q392 141Q352 141q337 158Q320 174q304 174)304,174;"/>
+                    <Edge cubics="!304 174(;235,174 248,123 248,119q304 174Q260 174q251 148Q244 135q248 119);"/>
+                    <Edge cubics="!248 119(;248,80 316,21 425,5q248 119Q248 87q296 53Q349 16q425 5);"/>
+                    <Edge cubics="!425 5(;491,-4 650,81 656,81q425 5Q466 -1q563 40Q654 81q656 81);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="5" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1323 192S2[1273 222 1184 222!1184 222[1140 222 1020 218!1020 218[899 213 869 213!869 213[800 213 755 185!755 185[732 170 712 156!712 156[586 156 538 200!538 200[526 211 508 230!508 230[491 244 463 244!463 244[195 133 195 129!195 129
+[195 97 229 87!229 87[270 75 403 75!403 75[416 75 432 87!432 87[447 99 460 99!460 99[484 84 525 66!525 66[606 31 691 17!691 17[726 12 785 41!785 41[846 72 851 72!851 72[864 72 932 61!932 61[1001 50 1014 50!1014 50[1028 50 1097 64!1097
+ 64[1166 78 1180 78!1180 78[1193 78 1241 66!1241 66[1289 53 1302 53!1302 53[1344 53 1360 84!1360 84[1368 100 1368 119!1368 119[1368 164 1323 192"/>
+                    <Edge cubics="!851 72(;877,72 988,50 1014,50q851 72Q864 72q932 61Q1001 50q1014 50)1014,50;"/>
+                    <Edge cubics="!1014 50(;1041,50 1153,78 1180,78q1014 50Q1028 50q1097 64Q1166 78q1180 78)1180,78;"/>
+                    <Edge cubics="!1180 78(;1206,78 1276,53 1302,53q1180 78Q1193 78q1241 66Q1289 53q1302 53);"/>
+                    <Edge cubics="!1302 53(;1369,53 1368,114 1368,119q1302 53Q1344 53q1360 84Q1368 100q1368 119);"/>
+                    <Edge cubics="!1368 119(;1368,175 1308,222 1184,222q1368 119Q1368 164q1323 192Q1273 222q1184 222);"/>
+                    <Edge cubics="!1184 222(;1101,222 933,213 869,213q1184 222Q1140 222q1020 218Q899 213q869 213);"/>
+                    <Edge cubics="!869 213(;755,213 730,156 712,156q869 213Q800 213q755 185Q732 170q712 156);"/>
+                    <Edge cubics="!712 156(;493,156 549,244 463,244q712 156Q586 156q538 200Q526 211q508 230Q491 244q463 244);"/>
+                    <Edge cubics="!463 244(;459,244 195,133 195,129q463 244Q195 133q195 129);"/>
+                    <Edge cubics="!195 129(;195,89 218,75 403,75q195 129Q195 97q229 87Q270 75q403 75);"/>
+                    <Edge cubics="!403 75(;429,75 434,99 460,99q403 75Q416 75q432 87Q447 99q460 99);"/>
+                    <Edge cubics="!460 99(;461,99 555,39 691,17q460 99Q484 84q525 66Q606 31q691 17);"/>
+                    <Edge cubics="!691 17(691,17;751,8 828,72 851,72q691 17Q726 12q785 41Q846 72q851 72)851,72;"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="6" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1270 174S2[1223 174 1168 156!1168 156[1114 139 1100 139!1100 139[1059 154 1007 170!1007 170[903 200 751 200!751 200[631 200 630 178!630 178[634 165 633 158!633 158[631 147 607 139!607 139|536 139!536 139[522 152 504 170!504 170[484 181
+ 426 181!426 181[340 181 283 172!283 172[222 163 205 148!205 148[222 129 300 136!300 136[387 143 439 115!439 115[459 92 472 82!472 82[496 64 588 64!588 64[735 64 765 90!765 90[781 103 770 123!770 123|819 123!819 123[893 117 932 97!932
+ 97[948 90 978 64!978 64[997 47 1025 46!1025 46[1063 45 1147 66!1147 66[1225 87 1330 94!1330 94[1357 96 1365 101!1365 101[1376 108 1376 130!1376 130[1376 174 1270 174"/>
+                    <Edge cubics="!1376 130(1376,130;1376,160 1341,174 1270,174q1376 130Q1376 174q1270 174)1270,174;"/>
+                    <Edge cubics="!1270 174(;1187,174 1139,139 1100,139q1270 174Q1223 174q1168 156Q1114 139q1100 139)1100,139;"/>
+                    <Edge cubics="!1100 139(;1068,139 1000,200 751,200q1100 139Q1059 154q1007 170Q903 200q751 200)751,200;"/>
+                    <Edge cubics="!751 200(751,200;544,200 684,162 607,139q751 200Q631 200q630 178Q634 165q633 158Q631 147q607 139)607,139;"/>
+                    <Edge cubics="!607 139(;607,139 536,139 536,139q607 139 536 139);"/>
+                    <Edge cubics="!536 139(;507,165 516,181 426,181q536 139Q522 152q504 170Q484 181q426 181);"/>
+                    <Edge cubics="!426 181(;314,181 228,169 205,148q426 181Q340 181q283 172Q222 163q205 148);"/>
+                    <Edge cubics="!205 148(;243,107 343,167 439,115q205 148Q222 129q300 136Q387 143q439 115);"/>
+                    <Edge cubics="!439 115(;477,94 439,64 588,64q439 115Q459 92q472 82Q496 64q588 64);"/>
+                    <Edge cubics="!588 64(;820,64 768,112 770,123q588 64Q735 64q765 90Q781 103q770 123);"/>
+                    <Edge cubics="!770 123(770,123;770,123 819,123 819,123q770 123 819 123)819,123;"/>
+                    <Edge cubics="!819 123(;1048,104 904,5 1147,66q819 123Q893 117q932 97Q948 90q978 64Q997 47q1025 46Q1063 45q1147 66);"/>
+                    <Edge cubics="!1147 66(1147,66;1328,116 1376,69 1376,130q1147 66Q1225 87q1330 94Q1357 96q1365 101Q1376 108q1376 130);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="7" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1320 167S2[1258 195 1140 195!1140 195[1126 195 1073 182!1073 182[1019 168 1005 168!1005 168[992 168 962 182!962 182[931 195 917 195!917 195[224 119 224 111!224 111[224 87 286 66!286 66[371 38 533 38!533 38[628 38 642 49!642 49[642 63
+ 653 69!653 69|896 69!896 69[916 62 1050 53!1050 53[1181 44 1248 44!1248 44[1336 44 1363 72!1363 72[1373 84 1373 108!1373 108[1373 144 1320 167"/>
+                    <Edge cubics="!1248 44(1248,44;1387,44 1373,98 1373,108q1248 44Q1336 44q1363 72Q1373 84q1373 108)1373,108;"/>
+                    <Edge cubics="!1373 108(;1373,150 1309,195 1140,195q1373 108Q1373 144q1320 167Q1258 195q1140 195)1140,195;"/>
+                    <Edge cubics="!1140 195(;1113,195 1032,168 1005,168q1140 195Q1126 195q1073 182Q1019 168q1005 168);"/>
+                    <Edge cubics="!1005 168(;979,168 944,195 917,195q1005 168Q992 168q962 182Q931 195q917 195);"/>
+                    <Edge cubics="!917 195(;889,195 224,119 224,111q917 195Q224 119q224 111);"/>
+                    <Edge cubics="!224 111(;224,89 287,38 533,38q224 111Q224 87q286 66Q371 38q533 38);"/>
+                    <Edge cubics="!533 38(;685,38 629,57 653,69q533 38Q628 38q642 49Q642 63q653 69);"/>
+                    <Edge cubics="!653 69(;653,69 896,69 896,69q653 69 896 69);"/>
+                    <Edge cubics="!896 69(;923,60 1161,44 1248,44q896 69Q916 62q1050 53Q1181 44q1248 44);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="8" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1355 153S2[1331 180 1286 180!1286 180[1277 180 1235 173!1235 173[1183 164 1124 159!1124 159[1112 158 1099 148!1099 148[1086 138 1072 138!1072 138[1031 138 1002 161!1002 161[972 183 891 183!891 183[784 183 712 156!712 156[641 129 624
+ 129!624 129[598 129 570 155!570 155[541 180 479 180!479 180[315 180 268 156!268 156[245 144 245 111!245 111[245 94 312 66!312 66[383 36 474 18!474 18[719 -33 843 50!843 50|937 50!937 50[971 27 975 25!975 25[1011 8 1064 8!1064 8[1224
+ 8 1309 46!1309 46[1373 75 1373 108!1373 108[1373 132 1355 153"/>
+                    <Edge cubics="!843 50(843,50;843,50 937,50 937,50q843 50 937 50);"/>
+                    <Edge cubics="!937 50(937,50;953,39 980,8 1064,8q937 50Q971 27q975 25Q1011 8q1064 8)1064,8;"/>
+                    <Edge cubics="!1064 8(;1307,8 1373,77 1373,108q1064 8Q1224 8q1309 46Q1373 75q1373 108)1373,108;"/>
+                    <Edge cubics="!1373 108(1373,108;1373,132 1353,180 1286,180q1373 108Q1373 132q1355 153Q1331 180q1286 180);"/>
+                    <Edge cubics="!1286 180(1286,180;1260,180 1229,168 1124,159q1286 180Q1277 180q1235 173Q1183 164q1124 159);"/>
+                    <Edge cubics="!1124 159(1124,159;1100,157 1099,138 1072,138q1124 159Q1112 158q1099 148Q1086 138q1072 138);"/>
+                    <Edge cubics="!1072 138(1072,138;977,138 1040,183 891,183q1072 138Q1031 138q1002 161Q972 183q891 183);"/>
+                    <Edge cubics="!891 183(;707,183 687,129 624,129q891 183Q784 183q712 156Q641 129q624 129)624,129;"/>
+                    <Edge cubics="!624 129(;560,129 591,180 479,180q624 129Q598 129q570 155Q541 180q479 180);"/>
+                    <Edge cubics="!479 180(;228,180 245,139 245,111q479 180Q315 180q268 156Q245 144q245 111);"/>
+                    <Edge cubics="!245 111(;245,69 655,-76 843,50q245 111Q245 94q312 66Q383 36q474 18Q719 -33q843 50);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="9" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1301 168S2[1213 195 1069 195!1069 195[1056 195 974 180!974 180[892 165 878 165!878 165[840 165 821 186!821 186[802 207 772 207!772 207[681 198 592 189!592 189[415 171 381 174!381 174[291 182 260 160!260 160[243 148 243 120!243 120[243
+ 46 371 50!371 50[580 69 746 69!746 69[755 69 792 51!792 51[829 32 885 32!885 32[911 32 1015 53!1015 53[1116 73 1200 72!1200 72[1225 72 1258 63!1258 63[1292 53 1302 53!1302 53[1357 53 1373 80!1373 80[1379 88 1379 110!1379 110[1379 143
+ 1301 168"/>
+                    <Edge cubics="!746 69(;779,69 788,32 885,32q746 69Q755 69q792 51Q829 32q885 32)885,32;"/>
+                    <Edge cubics="!885 32(885,32;957,32 1053,74 1200,72q885 32Q911 32q1015 53Q1116 73q1200 72)1200,72;"/>
+                    <Edge cubics="!1200 72(1200,72;1245,72 1276,53 1302,53q1200 72Q1225 72q1258 63Q1292 53q1302 53)1302,53;"/>
+                    <Edge cubics="!1302 53(;1390,53 1379,105 1379,110q1302 53Q1357 53q1373 80Q1379 88q1379 110);"/>
+                    <Edge cubics="!1379 110(;1379,150 1272,195 1069,195q1379 110Q1379 143q1301 168Q1213 195q1069 195);"/>
+                    <Edge cubics="!1069 195(;1043,195 905,165 878,165q1069 195Q1056 195q974 180Q892 165q878 165);"/>
+                    <Edge cubics="!878 165(;804,165 835,207 772,207q878 165Q840 165q821 186Q802 207q772 207);"/>
+                    <Edge cubics="!772 207(772,207;756,207 437,169 381,174q772 207Q681 198q592 189Q415 171q381 174)381,174;"/>
+                    <Edge cubics="!381 174(;243,187 243,142 243,120q381 174Q291 182q260 160Q243 148q243 120);"/>
+                    <Edge cubics="!243 120(;243,0 415,69 746,69q243 120Q243 46q371 50Q580 69q746 69);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="10" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1013 63S2[1173 56 1331 41!1331 41[1372 41 1384 68!1384 68[1389 78 1389 98!1389 98[1389 137 1277 165!1277 165[1156 195 972 195!972 195[892 195 790 152!790 152[688 108 675 108!675 108[624 121 569 134!569 134[459 159 431 159!431 159[369
+ 159 316 142!316 142[276 129 260 114!260 114[275 90 366 59!366 59[459 27 569 10!569 10[858 -35 928 63!928 63|1013 63"/>
+                    <Edge cubics="!928 63(928,63;928,63 1013,63 1013,63q928 63 1013 63)1013,63;"/>
+                    <Edge cubics="!1013 63(;1173,56 1304,41 1331,41q1013 63Q1173 56q1331 41)1331,41;"/>
+                    <Edge cubics="!1331 41(;1396,41 1389,93 1389,98q1331 41Q1372 41q1384 68Q1389 78q1389 98)1389,98;"/>
+                    <Edge cubics="!1389 98(1389,98;1389,147 1227,195 972,195q1389 98Q1389 137q1277 165Q1156 195q972 195);"/>
+                    <Edge cubics="!972 195(;836,195 723,108 675,108q972 195Q892 195q790 152Q688 108q675 108)675,108;"/>
+                    <Edge cubics="!675 108(675,108;671,108 477,159 431,159q675 108Q624 121q569 134Q459 159q431 159);"/>
+                    <Edge cubics="!431 159(;338,159 276,129 260,114q431 159Q369 159q316 142Q276 129q260 114);"/>
+                    <Edge cubics="!260 114(;299,51 823,-84 928,63q260 114Q275 90q366 59Q459 27q569 10Q858 -35q928 63)928,63;"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="11" keyMode="9728">
+              <elements>
+                <DOMShape selected="true" isFloating="true">
+                  <matrix>
+                    <Matrix a="1.12759399414063" tx="-1.15"/>
+                  </matrix>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1309 175S2[1241 195 1085 195!1085 195[912 195 898 184!898 184[893 180 899 169!899 169[906 157 901 148!901 148[602 152 580 173!580 173[574 178 571 187!571 187[558 193 490 193!490 193[308 193 257 170!257 170[240 162 240 143!240 143[240
+ 111 273 109!273 109[352 111 442 111!442 111[508 111 572 90!572 90[643 66 724 62!724 62[746 64 793 58!793 58[852 50 873 49!873 49[972 44 1013 107!1013 107[1360 69 1360 135!1360 135[1360 160 1309 175"/>
+                    <Edge cubics="!1013 107(;1371,67 1360,123 1360,135q1013 107Q1360 69q1360 135);"/>
+                    <Edge cubics="!1360 135(;1360,160 1317,195 1085,195q1360 135Q1360 160q1309 175Q1241 195q1085 195);"/>
+                    <Edge cubics="!1085 195(1085,195;813,195 918,181 901,148q1085 195Q912 195q898 184Q893 180q899 169Q906 157q901 148)901,148;"/>
+                    <Edge cubics="!901 148(;379,155 703,193 490,193q901 148Q602 152q580 173Q574 178q571 187Q558 193q490 193);"/>
+                    <Edge cubics="!490 193(;203,193 240,149 240,143q490 193Q308 193q257 170Q240 162q240 143);"/>
+                    <Edge cubics="!240 143(;240,95 261,111 442,111q240 143Q240 111q273 109Q352 111q442 111);"/>
+                    <Edge cubics="!442 111(;575,111 563,70 724,62q442 111Q508 111q572 90Q643 66q724 62);"/>
+                    <Edge cubics="!724 62(;802,70 947,5 1013,107q724 62Q746 64q793 58Q852 50q873 49Q972 44q1013 107);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="12" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1529 108[1529 121 1516 135!1516 135[1500 151 1478 159!1478 159|1343 159!1343 159[1280 135 1250 135!1250 135[1235 135 1171 150!1171 150[1106 165 1091 165!1091 165[1075 165 958 150!958 150[840 135 825 135!825 135[742 135 717 161!717 161
+[692 186 530 186!530 186[316 186 268 165!268 165[251 157 251 146!251 146[253 134 253 129!253 129[253 115 265 104!265 104[283 82 329 81!329 81[637 73 672 67!672 67[685 64 689 57!689 57[693 48 711 41!711 41[769 19 859 28!859 28[1018 44
+ 1088 44!1088 44[1102 44 1172 29!1172 29[1241 14 1256 14!1256 14[1327 14 1347 26!1347 26[1361 33 1375 53!1375 53|1478 56!1478 56[1529 79 1529 108"/>
+                    <Edge cubics="!1088 44(;1118,44 1226,14 1256,14q1088 44Q1102 44q1172 29Q1241 14q1256 14);"/>
+                    <Edge cubics="!1256 14(;1366,14 1349,33 1375,53q1256 14Q1327 14q1347 26Q1361 33q1375 53);"/>
+                    <Edge cubics="!1375 53(;1375,53 1478,56 1478,56q1375 53 1478 56)1478,56;"/>
+                    <Edge cubics="!1478 56(1478,56;1511,71 1529,90 1529,108q1478 56Q1529 79q1529 108)1529,108;"/>
+                    <Edge cubics="!1529 108(;1529,124 1511,147 1478,159q1529 108Q1529 121q1516 135Q1500 151q1478 159);"/>
+                    <Edge cubics="!1478 159(;1478,159 1343,159 1343,159q1478 159 1343 159)1343,159;"/>
+                    <Edge cubics="!1343 159(;1318,153 1280,135 1250,135q1343 159Q1280 135q1250 135);"/>
+                    <Edge cubics="!1250 135(1250,135;1220,135 1120,165 1091,165q1250 135Q1235 135q1171 150Q1106 165q1091 165)1091,165;"/>
+                    <Edge cubics="!1091 165(;1061,165 855,135 825,135q1091 165Q1075 165q958 150Q840 135q825 135)825,135;"/>
+                    <Edge cubics="!825 135(;631,135 828,186 530,186q825 135Q742 135q717 161Q692 186q530 186)530,186;"/>
+                    <Edge cubics="!530 186(;198,186 253,148 253,129q530 186Q316 186q268 165Q251 157q251 146Q253 134q253 129);"/>
+                    <Edge cubics="!253 129(;253,123 257,83 329,81q253 129Q253 115q265 104Q283 82q329 81);"/>
+                    <Edge cubics="!329 81(;804,69 640,68 711,41q329 81Q637 73q672 67Q685 64q689 57Q693 48q711 41)711,41;"/>
+                    <Edge cubics="!711 41(;811,3 879,44 1088,44q711 41Q769 19q859 28Q1018 44q1088 44);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="13" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1489 165[1397 169 1215 175!1215 175[1123 178 1073 179!1073 179[1070 162 960 165!960 165[842 167 838 165!838 165[827 153 809 147!809 147[788 139 721 129!721 129[658 120 634 120!634 120[587 120 562 147!562 147[539 174 487 174!487 174[305
+ 174 257 156!257 156[235 148 235 120!235 120[235 105 311 77!311 77[391 47 492 27!492 27[770 -26 912 56!912 56[1003 51 1116 44!1116 44[1199 38 1213 38!1213 38[1268 38 1397 59!1397 59[1487 59 1511 69!1511 69[1534 79 1534 114!1534 114[1534
+ 131 1527 141!1527 141[1516 156 1489 165"/>
+                    <Edge cubics="!912 56(;1084,47 1182,38 1213,38q912 56Q1003 51q1116 44Q1199 38q1213 38);"/>
+                    <Edge cubics="!1213 38(;1268,38 1381,59 1397,59q1213 38Q1268 38q1397 59);"/>
+                    <Edge cubics="!1397 59(;1517,59 1534,68 1534,114q1397 59Q1487 59q1511 69Q1534 79q1534 114);"/>
+                    <Edge cubics="!1534 114(;1534,132 1530,151 1489,165q1534 114Q1534 131q1527 141Q1516 156q1489 165)1489,165;"/>
+                    <Edge cubics="!838 165(;838,165 827,153 809,147q838 165Q827 153q809 147);"/>
+                    <Edge cubics="!809 147(;780,136 665,120 634,120q809 147Q788 139q721 129Q658 120q634 120);"/>
+                    <Edge cubics="!634 120(;539,120 587,174 487,174q634 120Q587 120q562 147Q539 174q487 174);"/>
+                    <Edge cubics="!487 174(487,174;208,174 235,144 235,120q487 174Q305 174q257 156Q235 148q235 120)235,120;"/>
+                    <Edge cubics="!235 120(235,120;235,83 694,-69 912,56q235 120Q235 105q311 77Q391 47q492 27Q770 -26q912 56);"/>
+                    <Edge cubics="!1489 165(;1427,168 1336,171 1215,175q1489 165Q1397 169q1215 175);"/>
+                    <Edge cubics="!1215 175(;1154,177 1106,178 1073,179q1215 175Q1123 178q1073 179);"/>
+                    <Edge cubics="!1073 179(;1071,168 1034,163 960,165q1073 179Q1070 162q960 165);"/>
+                    <Edge cubics="!960 165(;881,166 841,166 838,165q960 165Q842 167q838 165);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="14" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1358 67[1456 53 1471 53!1471 53[1523 53 1538 80!1538 80[1543 89 1543 110!1543 110[1543 144 1472 171!1472 171[1392 201 1268 201!1268 201[1187 201 1073 183!1073 183[959 165 822 165!822 165[594 165 328 159!328 159[278 159 261 141!261 141
+[252 132 253 123!253 123[253 75 407 51!407 51[558 26 840 26!840 26[960 26 1084 54!1084 54[1209 81 1244 81!1244 81[1259 81 1358 67"/>
+                    <Edge cubics="!840 26(;1052,26 1146,81 1244,81q840 26Q960 26q1084 54Q1209 81q1244 81)1244,81;"/>
+                    <Edge cubics="!1244 81(;1274,81 1442,53 1471,53q1244 81Q1259 81q1358 67Q1456 53q1471 53);"/>
+                    <Edge cubics="!1471 53(;1552,53 1543,105 1543,110q1471 53Q1523 53q1538 80Q1543 89q1543 110);"/>
+                    <Edge cubics="!1543 110(;1543,151 1444,201 1268,201q1543 110Q1543 144q1472 171Q1392 201q1268 201);"/>
+                    <Edge cubics="!1268 201(;1087,201 1078,165 822,165q1268 201Q1187 201q1073 183Q959 165q822 165);"/>
+                    <Edge cubics="!822 165(;594,165 332,159 328,159q822 165Q594 165q328 159);"/>
+                    <Edge cubics="!328 159(;250,159 253,123 253,123q328 159Q278 159q261 141Q252 132q253 123);"/>
+                    <Edge cubics="!253 123(;253,59 468,26 840,26q253 123Q253 75q407 51Q558 26q840 26)840,26;"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="15" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1478 183[1347 171 1200 171!1200 171[1186 171 1112 186!1112 186[1038 201 1023 201!1023 201[969 201 948 189!948 189[944 186 930 168!930 168[783 183 735 147!735 147[721 138 705 121!705 121[690 108 665 108!665 108[588 108 455 147!455 147
+[321 186 304 186!304 186[251 186 239 167!239 167[235 162 235 144!235 144[235 127 386 71!386 71[545 15 560 8!560 8[651 -31 753 18!753 18[890 84 1020 84!1020 84[1055 84 1103 67!1103 67[1152 50 1200 50!1200 50[1441 50 1502 69!1502 69[1534
+ 79 1534 119!1534 119[1534 157 1524 170!1524 170[1513 183 1478 183"/>
+                    <Edge cubics="!1020 84(;1093,84 1108,50 1200,50q1020 84Q1055 84q1103 67Q1152 50q1200 50);"/>
+                    <Edge cubics="!1200 50(;1559,50 1534,78 1534,119q1200 50Q1441 50q1502 69Q1534 79q1534 119);"/>
+                    <Edge cubics="!1534 119(;1534,220 1494,171 1200,171q1534 119Q1534 157q1524 170Q1513 183q1478 183Q1347 171q1200 171);"/>
+                    <Edge cubics="!1200 171(1200,171;1171,171 1054,201 1023,201q1200 171Q1186 171q1112 186Q1038 201q1023 201)1023,201;"/>
+                    <Edge cubics="!1023 201(1023,201;939,201 939,180 930,168q1023 201Q969 201q948 189Q944 186q930 168)930,168;"/>
+                    <Edge cubics="!930 168(;679,193 747,108 665,108q930 168Q783 183q735 147Q721 138q705 121Q690 108q665 108);"/>
+                    <Edge cubics="!665 108(;532,108 358,186 304,186q665 108Q588 108q455 147Q321 186q304 186);"/>
+                    <Edge cubics="!304 186(;221,186 235,148 235,144q304 186Q251 186q239 167Q235 162q235 144);"/>
+                    <Edge cubics="!235 144(;235,117 530,21 560,8q235 144Q235 127q386 71Q545 15q560 8);"/>
+                    <Edge cubics="!560 8(;735,-66 747,84 1020,84q560 8Q651 -31q753 18Q890 84q1020 84);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="16" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1460 162[1390 192 1268 192!1268 192[1186 192 1138 176!1138 176[1107 159 1101 159!1101 159[1000 159 957 182!957 182[915 204 897 204!897 204[852 204 808 182!808 182[785 170 771 159!771 159[685 159 619 176!619 176[586 184 567 192!567 192
+[364 192 304 177!304 177[251 163 251 119!251 119[251 85 329 75!329 75[376 69 532 69!532 69[570 69 592 57!592 57[616 43 670 38!670 38[791 26 836 47!836 47[887 72 900 72!900 72[908 72 946 54!946 54[983 35 1061 35!1061 35[1159 35 1173 45
+!1173 45[1205 65 1208 66!1208 66|1312 66!1312 66[1328 55 1380 46!1380 46[1425 38 1452 38!1452 38[1500 38 1516 65!1516 65[1523 75 1523 95!1523 95[1523 135 1460 162"/>
+                    <Edge cubics="!900 72(900,72;940,72 928,35 1061,35q900 72Q908 72q946 54Q983 35q1061 35);"/>
+                    <Edge cubics="!1061 35(;1225,35 1147,50 1208,66q1061 35Q1159 35q1173 45Q1205 65q1208 66)1208,66;"/>
+                    <Edge cubics="!1208 66(;1208,66 1312,66 1312,66q1208 66 1312 66);"/>
+                    <Edge cubics="!1312 66(;1336,50 1421,38 1452,38q1312 66Q1328 55q1380 46Q1425 38q1452 38);"/>
+                    <Edge cubics="!1452 38(1452,38;1530,38 1523,90 1523,95q1452 38Q1500 38q1516 65Q1523 75q1523 95);"/>
+                    <Edge cubics="!1523 95(;1523,144 1438,192 1268,192q1523 95Q1523 135q1460 162Q1390 192q1268 192)1268,192;"/>
+                    <Edge cubics="!1268 192(;1135,192 1111,159 1101,159q1268 192Q1186 192q1138 176Q1107 159q1101 159);"/>
+                    <Edge cubics="!1101 159(;925,159 961,204 897,204q1101 159Q1000 159q957 182Q915 204q897 204)897,204;"/>
+                    <Edge cubics="!897 204(;824,204 774,159 771,159q897 204Q852 204q808 182Q785 170q771 159)771,159;"/>
+                    <Edge cubics="!771 159(;634,159 569,192 567,192q771 159Q685 159q619 176Q586 184q567 192);"/>
+                    <Edge cubics="!567 192(;286,192 251,175 251,119q567 192Q364 192q304 177Q251 163q251 119);"/>
+                    <Edge cubics="!251 119(;251,68 365,69 532,69q251 119Q251 85q329 75Q376 69q532 69);"/>
+                    <Edge cubics="!532 69(;612,69 566,48 670,38q532 69Q570 69q592 57Q616 43q670 38);"/>
+                    <Edge cubics="!670 38(;875,17 829,72 900,72q670 38Q791 26q836 47Q887 72q900 72);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="17" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1489 174S2[1453 192 1372 192!1372 192[1300 184 1171 180!1171 180[1154 180 1133 164!1133 164[1115 147 1114 147!1114 147[1061 147 1029 164!1029 164[999 180 860 180!860 180[717 180 649 161!649 161[615 151 585 141!585 141[569 141 463 155
+!463 155[356 168 341 168!341 168[296 168 279 140!279 140[270 126 270 108!270 108[270 84 347 59!347 59[445 26 603 26!603 26[631 26 686 35!686 35[751 46 765 56!765 56[1168 43 1288 45!1288 45[1356 46 1465 50!1465 50[1502 50 1516 85!1516
+ 85[1525 102 1525 120!1525 120[1525 157 1489 174"/>
+                    <Edge cubics="!1465 50(;1523,50 1525,119 1525,120q1465 50Q1502 50q1516 85Q1525 102q1525 120)1525,120;"/>
+                    <Edge cubics="!1525 120(;1525,168 1481,192 1372,192q1525 120Q1525 157q1489 174Q1453 192q1372 192)1372,192;"/>
+                    <Edge cubics="!1372 192(;1343,192 1300,184 1171,180q1372 192Q1300 184q1171 180)1171,180;"/>
+                    <Edge cubics="!1171 180(;1144,180 1115,147 1114,147q1171 180Q1154 180q1133 164Q1115 147q1114 147)1114,147;"/>
+                    <Edge cubics="!1114 147(1114,147;978,147 1108,180 860,180q1114 147Q1061 147q1029 164Q999 180q860 180);"/>
+                    <Edge cubics="!860 180(860,180;622,180 626,141 585,141q860 180Q717 180q649 161Q615 151q585 141);"/>
+                    <Edge cubics="!585 141(;554,141 371,168 341,168q585 141Q569 141q463 155Q356 168q341 168);"/>
+                    <Edge cubics="!341 168(;270,168 270,113 270,108q341 168Q296 168q279 140Q270 126q270 108);"/>
+                    <Edge cubics="!270 108(;270,86 364,26 603,26q270 108Q270 84q347 59Q445 26q603 26);"/>
+                    <Edge cubics="!603 26(;632,26 744,41 765,56q603 26Q631 26q686 35Q751 46q765 56)765,56;"/>
+                    <Edge cubics="!765 56(765,56;1424,35 1267,50 1465,50q765 56Q1168 43q1288 45Q1356 46q1465 50);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="18" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1525 107[1525 114 1502 120!1502 120[1458 132 1400 162!1400 162[1372 180 1359 186!1359 186[1341 195 1324 195!1324 195[1277 203 1224 199!1224 199[1118 191 1073 129!1073 129[987 129 964 123!964 123|731 123!731 123[698 149 676 175!676 175
+[658 189 572 189!572 189[350 189 283 159!283 159[244 142 244 96!244 96[244 79 245 78!245 78[249 75 251 69!251 69[268 66 285 68!285 68[310 72 320 72!320 72[460 72 553 59!553 59[621 50 631 41!631 41[637 37 660 25!660 25[684 13 695 8!695
+ 8[774 15 849 19!849 19[1000 26 1000 8!1000 8[1000 5 999 3!999 3[1154 13 1168 61!1168 61[1173 84 1199 86!1199 86[1239 88 1379 59!1379 59|1478 59!1478 59[1525 74 1525 107"/>
+                    <Edge cubics="!1379 59(;1379,59 1478,59 1478,59q1379 59 1478 59)1478,59;"/>
+                    <Edge cubics="!1478 59(;1521,72 1525,96 1525,107q1478 59Q1525 74q1525 107)1525,107;"/>
+                    <Edge cubics="!1525 107(;1525,123 1503,107 1400,162q1525 107Q1525 114q1502 120Q1458 132q1400 162)1400,162;"/>
+                    <Edge cubics="!1400 162(1400,162;1366,181 1352,195 1324,195q1400 162Q1372 180q1359 186Q1341 195q1324 195);"/>
+                    <Edge cubics="!1324 195(;1319,195 1146,228 1073,129q1324 195Q1277 203q1224 199Q1118 191q1073 129)1073,129;"/>
+                    <Edge cubics="!1073 129(;1073,129 987,129 964,123q1073 129Q987 129q964 123);"/>
+                    <Edge cubics="!964 123(;964,123 731,123 731,123q964 123 731 123);"/>
+                    <Edge cubics="!731 123(731,123;663,174 708,189 572,189q731 123Q698 149q676 175Q658 189q572 189)572,189;"/>
+                    <Edge cubics="!572 189(;235,189 244,139 244,96q572 189Q350 189q283 159Q244 142q244 96);"/>
+                    <Edge cubics="!244 96(;244,66 244,87 251,69q244 96Q244 79q245 78Q249 75q251 69);"/>
+                    <Edge cubics="!251 69(;279,63 289,72 320,72q251 69Q268 66q285 68Q310 72q320 72);"/>
+                    <Edge cubics="!320 72(;536,72 622,48 631,41q320 72Q460 72q553 59Q621 50q631 41)631,41;"/>
+                    <Edge cubics="!631 41(;639,35 681,14 695,8q631 41Q637 37q660 25Q684 13q695 8)695,8;"/>
+                    <Edge cubics="!695 8(;701,6 1000,38 1000,8q695 8Q774 15q849 19Q1000 26q1000 8);"/>
+                    <Edge cubics="!999 3(;1101,10 1159,29 1168,61q999 3Q1154 13q1168 61);"/>
+                    <Edge cubics="!1168 61(;1172,76 1181,85 1199,86q1168 61Q1173 84q1199 86)1199,86;"/>
+                    <Edge cubics="!1199 86(;1226,87 1285,78 1379,59q1199 86Q1239 88q1379 59);"/>
+                    <Edge cubics="!1000 8(;1000,6 1000,4 999,3q1000 8Q1000 5q999 3);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="19" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1520 107[1520 148 1453 162!1453 162[1400 174 1268 174!1268 174[1126 174 1100 149!1100 149[1099 147 1090 131!1090 131[1085 123 1070 123!1070 123[1050 123 1041 133!1041 133[1022 153 1020 155!1020 155[975 186 810 186!810 186[780 186 304
+ 165!304 165[271 165 260 146!260 146[257 137 257 123!257 123[257 79 267 68!267 68[278 55 329 56!329 56[537 72 809 72!809 72[910 72 1054 8!1054 8[1094 -10 1119 -3!1119 -3[1151 7 1189 63!1189 63[1293 61 1359 51!1359 51|1421 41!1421 41[1483
+ 41 1507 72!1507 72[1520 88 1520 107"/>
+                    <Edge cubics="!1189 63(1189,63;1363,59 1391,41 1421,41q1189 63Q1293 61q1359 51Q1421 41q1421 41);"/>
+                    <Edge cubics="!1421 41(;1521,41 1520,102 1520,107q1421 41Q1483 41q1507 72Q1520 88q1520 107);"/>
+                    <Edge cubics="!1520 107(1520,107;1520,165 1427,174 1268,174q1520 107Q1520 148q1453 162Q1400 174q1268 174);"/>
+                    <Edge cubics="!1268 174(;1029,174 1124,123 1070,123q1268 174Q1126 174q1100 149Q1099 147q1090 131Q1085 123q1070 123)1070,123;"/>
+                    <Edge cubics="!1070 123(;1006,123 1088,186 810,186q1070 123Q1050 123q1041 133Q1022 153q1020 155Q975 186q810 186)810,186;"/>
+                    <Edge cubics="!810 186(;780,186 333,165 304,165q810 186Q780 186q304 165)304,165;"/>
+                    <Edge cubics="!304 165(;252,165 257,127 257,123q304 165Q271 165q260 146Q257 137q257 123);"/>
+                    <Edge cubics="!257 123(;257,12 265,72 809,72q257 123Q257 79q267 68Q278 55q329 56Q537 72q809 72)809,72;"/>
+                    <Edge cubics="!809 72(;1063,72 1081,-96 1189,63q809 72Q910 72q1054 8Q1094 -10q1119 -3Q1151 7q1189 63);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="20" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1496 149[1434 177 1262 177!1262 177[1098 177 1096 167!1096 167[1099 160 1094 154!1094 154[1088 144 1048 135!1048 135|919 135!919 135[893 193 887 198!887 198[846 234 720 234!720 234[610 234 559 197!559 197[509 159 389 159!389 159[289
+ 159 263 134!263 134[257 127 257 105!257 105[257 41 536 41!536 41[623 41 629 67!629 67[637 106 670 120!670 120|767 120!767 120[805 91 811 79!811 79[815 67 818 56!818 56[845 23 855 20!855 20[858 19 983 28!983 28[1092 35 1092 17!1092 17
+[1092 16 1092 15!1092 15[1143 17 1154 21!1154 21[1160 22 1189 56!1189 56[1414 22 1492 47!1492 47[1534 60 1534 95!1534 95[1534 131 1496 149"/>
+                    <Edge cubics="!1189 56(1189,56;1539,3 1534,72 1534,95q1189 56Q1414 22q1492 47Q1534 60q1534 95);"/>
+                    <Edge cubics="!1534 95(;1534,130 1521,177 1262,177q1534 95Q1534 131q1496 149Q1434 177q1262 177);"/>
+                    <Edge cubics="!1262 177(;976,177 1173,165 1048,135q1262 177Q1098 177q1096 167Q1099 160q1094 154Q1088 144q1048 135);"/>
+                    <Edge cubics="!1048 135(;1048,135 919,135 919,135q1048 135 919 135);"/>
+                    <Edge cubics="!919 135(;902,171 916,234 720,234q919 135Q893 193q887 198Q846 234q720 234);"/>
+                    <Edge cubics="!720 234(;496,234 625,159 389,159q720 234Q610 234q559 197Q509 159q389 159);"/>
+                    <Edge cubics="!389 159(389,159;232,159 257,110 257,105q389 159Q289 159q263 134Q257 127q257 105);"/>
+                    <Edge cubics="!257 105(;257,68 320,41 536,41q257 105Q257 41q536 41)536,41;"/>
+                    <Edge cubics="!536 41(;693,41 581,83 670,120q536 41Q623 41q629 67Q637 106q670 120);"/>
+                    <Edge cubics="!670 120(670,120;670,120 767,120 767,120q670 120 767 120);"/>
+                    <Edge cubics="!767 120(767,120;825,75 811,78 818,56q767 120Q805 91q811 79Q815 67q818 56);"/>
+                    <Edge cubics="!818 56(;818,56 845,23 855,20q818 56Q845 23q855 20);"/>
+                    <Edge cubics="!855 20(;878,14 1092,47 1092,17q855 20Q858 19q983 28Q1092 35q1092 17);"/>
+                    <Edge cubics="!1092 17(;1092,16 1092,16 1092,15q1092 17Q1092 16q1092 15);"/>
+                    <Edge cubics="!1092 15(1092,15;1126,16 1146,18 1154,21q1092 15Q1143 17q1154 21)1154,21;"/>
+                    <Edge cubics="!1154 21(;1158,22 1170,33 1189,56q1154 21Q1160 22q1189 56);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="21" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1478 162[1419 192 1268 192!1268 192[1198 192 1176 176!1176 176[1154 159 1153 159!1153 159[1082 159 1048 176!1048 176[1016 192 957 192!957 192[897 192 848 176!848 176[824 167 800 159!800 159[683 163 616 195!616 195[610 198 580 214!580
+ 214[546 228 499 228!499 228[416 228 338 174!338 174[274 129 274 110!274 110[274 93 281 78!281 78[296 53 329 53!329 53[355 53 424 78!424 78[492 102 504 102!504 102[548 102 569 96!569 96[646 73 762 38!762 38[807 24 872 43!872 43[906 53
+ 949 66!949 66[1000 66 1037 51!1037 51[1075 35 1133 35!1133 35[1197 35 1229 52!1229 52[1244 61 1253 69!1253 69[1268 69 1349 58!1349 58[1430 47 1445 47!1445 47[1488 47 1505 76!1505 76[1514 92 1514 108!1514 108[1514 143 1478 162"/>
+                    <Edge cubics="!949 66(;1052,66 1020,35 1133,35q949 66Q1000 66q1037 51Q1075 35q1133 35)1133,35;"/>
+                    <Edge cubics="!1133 35(;1237,35 1244,69 1253,69q1133 35Q1197 35q1229 52Q1244 61q1253 69);"/>
+                    <Edge cubics="!1253 69(;1283,69 1416,47 1445,47q1253 69Q1268 69q1349 58Q1430 47q1445 47)1445,47;"/>
+                    <Edge cubics="!1445 47(;1512,47 1514,104 1514,108q1445 47Q1488 47q1505 76Q1514 92q1514 108)1514,108;"/>
+                    <Edge cubics="!1514 108(1514,108;1514,139 1498,192 1268,192q1514 108Q1514 143q1478 162Q1419 192q1268 192)1268,192;"/>
+                    <Edge cubics="!1268 192(;1151,192 1178,159 1153,159q1268 192Q1198 192q1176 176Q1154 159q1153 159);"/>
+                    <Edge cubics="!1153 159(1153,159;1014,159 1078,192 957,192q1153 159Q1082 159q1048 176Q1016 192q957 192)957,192;"/>
+                    <Edge cubics="!957 192(;857,192 819,159 800,159q957 192Q897 192q848 176Q824 167q800 159);"/>
+                    <Edge cubics="!800 159(;795,159 683,163 616,195q800 159Q683 163q616 195);"/>
+                    <Edge cubics="!616 195(;602,201 576,228 499,228q616 195Q610 198q580 214Q546 228q499 228);"/>
+                    <Edge cubics="!499 228(;369,228 274,123 274,110q499 228Q416 228q338 174Q274 129q274 110);"/>
+                    <Edge cubics="!274 110(274,110;274,101 278,53 329,53q274 110Q274 93q281 78Q296 53q329 53);"/>
+                    <Edge cubics="!329 53(;376,53 477,102 504,102q329 53Q355 53q424 78Q492 102q504 102)504,102;"/>
+                    <Edge cubics="!504 102(504,102;567,102 530,108 762,38q504 102Q548 102q569 96Q646 73q762 38);"/>
+                    <Edge cubics="!762 38(;837,15 920,66 949,66q762 38Q807 24q872 43Q906 53q949 66);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="22" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="
+!1508 165[1489 178 1460 178!1460 178[1444 178 1370 167!1370 167[1294 157 1279 157!1279 157[1264 157 1225 167!1225 167[1186 178 1171 178!1171 178[1109 178 1074 167!1074 167[1052 155 1043 155!1043 155|928 157!928 157[887 175 855 193!855
+ 193[829 204 744 204!744 204[672 204 484 183!484 183[274 157 274 139!274 139[274 116 352 100!352 100[425 85 506 85!506 85[522 85 586 100!586 100[649 114 737 114!737 114[805 114 841 96!841 96[896 68 897 68!897 68[1055 28 1098 52!1098 52
+[1109 59 1124 74!1124 74[1140 87 1168 87!1168 87[1182 87 1224 77!1224 77[1265 66 1280 66!1280 66[1445 66 1502 100!1502 100[1531 117 1525 137!1525 137[1525 153 1508 165"/>
+                    <Edge cubics="!1168 87(;1198,87 1250,66 1280,66q1168 87Q1182 87q1224 77Q1265 66q1280 66)1280,66;"/>
+                    <Edge cubics="!1280 66(;1543,66 1525,133 1525,137q1280 66Q1445 66q1502 100Q1531 117q1525 137)1525,137;"/>
+                    <Edge cubics="!1525 137(;1525,157 1502,178 1460,178q1525 137Q1525 153q1508 165Q1489 178q1460 178);"/>
+                    <Edge cubics="!1460 178(1460,178;1429,178 1309,157 1279,157q1460 178Q1444 178q1370 167Q1294 157q1279 157);"/>
+                    <Edge cubics="!1279 157(;1249,157 1200,178 1171,178q1279 157Q1264 157q1225 167Q1186 178q1171 178)1171,178;"/>
+                    <Edge cubics="!1171 178(;1069,178 1059,155 1043,155q1171 178Q1109 178q1074 167Q1052 155q1043 155)1043,155;"/>
+                    <Edge cubics="!1043 155(;1012,155 928,157 928,157q1043 155 928 157)928,157;"/>
+                    <Edge cubics="!928 157(;846,192 878,204 744,204q928 157Q887 175q855 193Q829 204q744 204)744,204;"/>
+                    <Edge cubics="!744 204(;677,204 274,167 274,139q744 204Q672 204q484 183Q274 157q274 139)274,139;"/>
+                    <Edge cubics="!274 139(;274,107 407,85 506,85q274 139Q274 116q352 100Q425 85q506 85)506,85;"/>
+                    <Edge cubics="!506 85(;560,85 586,114 737,114q506 85Q522 85q586 100Q649 114q737 114)737,114;"/>
+                    <Edge cubics="!737 114(737,114;851,114 848,81 897,68q737 114Q805 114q841 96Q896 68q897 68)897,68;"/>
+                    <Edge cubics="!897 68(897,68;1162,0 1075,87 1168,87q897 68Q1055 28q1098 52Q1109 59q1124 74Q1140 87q1168 87);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="23" duration="7" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l1" name="" centerPoint3DX="13" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="13" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="30" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l1" name="" centerPoint3DX="41" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="41" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="31" duration="7" tweenType="motion" keyMode="17921">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l1" name="" centerPoint3DX="41" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="41" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="38" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/l1" name="" centerPoint3DX="13" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="13" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="r3.png" color="#FF800A" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="23" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="23" duration="7" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r3" name="" centerPoint3DX="75" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="75" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="30" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r3" name="" centerPoint3DX="125" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="125" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="31" duration="7" tweenType="motion" keyMode="17921">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r3" name="" centerPoint3DX="125" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="125" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="38" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r3" name="" centerPoint3DX="75" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="75" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="r2.png" color="#FF4FFF" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="23" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="23" duration="7" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r2" name="" centerPoint3DX="73" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="73" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="30" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r2" name="" centerPoint3DX="109" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="109" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="31" duration="7" tweenType="motion" keyMode="17921">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r2" name="" centerPoint3DX="109" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="109" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="38" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r2" name="" centerPoint3DX="73" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="73" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="r1.png" color="#4FFFFF" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="23" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="23" duration="7" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r1" name="" centerPoint3DX="73" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="73" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="30" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r1" name="" centerPoint3DX="95" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="95" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="31" duration="7" tweenType="motion" keyMode="17921">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r1" name="" centerPoint3DX="95" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="95" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="38" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/r1" name="" centerPoint3DX="73" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="73" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="center.png" color="#808080" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="23" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="23" duration="7" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/center" name="" centerPoint3DX="38" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="38" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="30" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/center" name="" centerPoint3DX="63" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="63" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="31" duration="7" tweenType="motion" keyMode="17921">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/center" name="" centerPoint3DX="63" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="63" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="38" keyMode="15872">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_assets/center" name="" centerPoint3DX="38" centerPoint3DY="8">
+                  <matrix>
+                    <Matrix tx="38" ty="8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="paddle.png" color="#4F80FF" autoNamed="false">
+          <frames>
+            <DOMFrame index="0" duration="23" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="23" duration="8" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="31" duration="8" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

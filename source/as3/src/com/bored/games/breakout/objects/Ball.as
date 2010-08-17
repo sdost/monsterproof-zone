@@ -99,6 +99,7 @@ package com.bored.games.breakout.objects
 			b2Def.body.bullet = true;
 			b2Def.body.allowSleep = false;
 			b2Def.body.userData = this;
+			b2Def.body.linearDamping = 0.0;
 
 			/*
 			var filter:b2Filter = new b2Filter();
@@ -109,7 +110,7 @@ package com.bored.games.breakout.objects
 			b2Def.circle.m_radius = (_animatedSprite.width / 2) / PhysicsWorld.PhysScale;
 			b2Def.fixture.shape = b2Def.circle;
 			b2Def.fixture.filter.categoryBits = GameView.id_Ball;
-			b2Def.fixture.filter.maskBits = GameView.id_Brick | GameView.id_Paddle | GameView.id_Wall | GameView.id_Ball | GameView.id_Collectable;
+			b2Def.fixture.filter.maskBits = GameView.id_Brick | GameView.id_Paddle | GameView.id_Wall | GameView.id_Collectable;
 			b2Def.fixture.density = 1.0;
 			b2Def.fixture.friction = 0.0;
 			b2Def.fixture.restitution = 1.0;

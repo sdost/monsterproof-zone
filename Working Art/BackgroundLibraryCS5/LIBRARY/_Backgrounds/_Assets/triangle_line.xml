@@ -1,0 +1,38 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/triangle_line" itemID="4c448776-0000023f" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="triangle_line" sourceLastModified="1279569224" lastModified="1279569224">
+  <timeline>
+    <DOMTimeline name="triangle_line">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FFFFFF" alpha="0.101960784313725"/>
+                    </FillStyle>
+                    <FillStyle index="2">
+                      <SolidColor color="#FFFFFF" alpha="0.0509803921568627"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!537 -16362|-536 -16362!-536 -16362|1 -17292!1 -17292|537 -16362!537 -14884|-536 -14884!-536 -14884|1 -15814!1 -15814|537 -14884!537 -11928|-536 -11928!-536 -11928|1 -12858!1 -12858|537 -11928!537 -13406|-536 -13406!-536 -13406|1 -14336
+!1 -14336|537 -13406!537 -10450|-536 -10450!-536 -10450|1 -11380!1 -11380|537 -10450"/>
+                    <Edge fillStyle1="2" edges="
+!537 -8972|-536 -8972!-536 -8972|1 -9902!1 -9902|537 -8972"/>
+                    <Edge fillStyle1="1" edges="
+!537 -6016|-536 -6016!-536 -6016|1 -6946!1 -6946|537 -6016"/>
+                    <Edge fillStyle1="2" edges="
+!537 -4538|-536 -4538!-536 -4538|1 -5468!1 -5468|537 -4538!537 -3060|-536 -3060!-536 -3060|1 -3990!1 -3990|537 -3060"/>
+                    <Edge fillStyle1="1" edges="
+!537 -7494|-536 -7494!-536 -7494|1 -8424!1 -8424|537 -7494"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

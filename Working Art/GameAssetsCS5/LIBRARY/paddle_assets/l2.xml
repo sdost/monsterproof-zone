@@ -1,0 +1,21 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="paddle_assets/l2" itemID="4c45f040-0000018c" sourceFlashFilepath="..\..\..\..\Desktop\paddle_grow.fla" sourceLibraryItemHRef="l2" sourceLastModified="1279655504" lastModified="1279655504">
+  <timeline>
+    <DOMTimeline name="l2">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" selected="true" libraryItemName="paddle_assets/l2.png">
+                  <matrix>
+                    <Matrix tx="-7" ty="-8"/>
+                  </matrix>
+                </DOMBitmapInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

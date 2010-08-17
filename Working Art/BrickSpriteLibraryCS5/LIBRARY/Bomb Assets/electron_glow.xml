@@ -1,0 +1,26 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Bomb Assets/electron_glow" itemID="4c225c44-0000025a" sourceFlashFilepath="..\TestLevel.fla" sourceLibraryItemHRef="Bomb Assets/electron_glow" sourceLastModified="1277323866" lastModified="1277323866">
+  <timeline>
+    <DOMTimeline name="electron_glow">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#FFFFFF"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!22 -22[31 -13 31 0!31 0[31 13 22 22!22 22[13 31 0 31!0 31[-13 31 -22 22!-22 22[-31 13 -31 0!-31 0[-31 -13 -22 -22!-22 -22[-13 -31 0 -31!0 -31[13 -31 22 -22"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

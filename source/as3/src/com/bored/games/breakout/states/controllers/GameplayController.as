@@ -60,7 +60,7 @@ package com.bored.games.breakout.states.controllers
 			
 			_sm = SoundManager.getInstance();
 			_sm.addSoundController( new SoundController("sfxController") );
-			_sm.setVolume(0.1);
+			//_sm.setVolume(0.1);
 			
 			_running = false;
 			
@@ -155,7 +155,7 @@ package com.bored.games.breakout.states.controllers
 		
 		private function addUserPoints(e:ObjectEvent):void
 		{
-			AppSettings.instance.userProfile.addPoints( e.obj.basePoints * e.obj.brickMult * e.obj.paddleMult );
+			AppSettings.instance.userProfile.addPoints( e.obj.basePoints * e.obj.brickMult + (5 * e.obj.paddleMult) );
 			
 			(_hudView as HUDView).addPopupText( e.obj.basePoints, e.obj.brickMult, e.obj.paddleMult, e.obj.x, e.obj.y );
 		}//end ballGained()

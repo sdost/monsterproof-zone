@@ -1,0 +1,121 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="MultiballPowerup_MC" itemID="4c379904-0000007f" linkageExportForAS="true" linkageClassName="breakout.assets.MultiballPowerup_MC" sourceLibraryItemHRef="ExtendPowerup_MC copy" lastModified="1279045929">
+  <timeline>
+    <DOMTimeline name="MultiballPowerup_MC" currentFrame="1">
+      <layers>
+        <DOMLayer name="Layer 2" color="#9933CC">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#9C85AD"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle1="1" edges="!460 252S2[488 252 508 272!508 272[528 292 528 320!528 320[528 348 508 368!508 368[488 388 460 388!460 388[432 388 412 368!412 368[392 348 392 320!392 320[392 292 412 272!412 272[432 252 460 252!233 238[205 238 185 218!185 218[165 198
+ 165 170!165 170[165 142 185 122!185 122[205 102 233 102!233 102[261 102 281 122!281 122[301 142 301 170!301 170[301 198 281 218!281 218[261 238 233 238"/>
+                    <Edge cubics="!508 272(;521,285 528,301 528,320q508 272Q528 292q528 320);"/>
+                    <Edge cubics="!460 252(;479,252 495,259 508,272q460 252Q488 252q508 272);"/>
+                    <Edge cubics="!412 272(412,272;425,259 441,252 460,252q412 272Q432 252q460 252);"/>
+                    <Edge cubics="!392 320(;392,301 399,285 412,272q392 320Q392 292q412 272);"/>
+                    <Edge cubics="!412 368(;399,355 392,339 392,320q412 368Q392 348q392 320);"/>
+                    <Edge cubics="!460 388(;441,388 425,381 412,368q460 388Q432 388q412 368);"/>
+                    <Edge cubics="!508 368(;495,381 479,388 460,388q508 368Q488 388q460 388);"/>
+                    <Edge cubics="!528 320(;528,339 521,355 508,368q528 320Q528 348q508 368);"/>
+                    <Edge cubics="!281 122(;294,135 301,151 301,170q281 122Q301 142q301 170);"/>
+                    <Edge cubics="!233 102(;252,102 268,109 281,122q233 102Q261 102q281 122);"/>
+                    <Edge cubics="!185 122(185,122;198,109 214,102 233,102q185 122Q205 102q233 102);"/>
+                    <Edge cubics="!165 170(;165,151 172,135 185,122q165 170Q165 142q185 122);"/>
+                    <Edge cubics="!185 218(;172,205 165,189 165,170q185 218Q165 198q165 170);"/>
+                    <Edge cubics="!233 238(;214,238 198,231 185,218q233 238Q205 238q185 218);"/>
+                    <Edge cubics="!281 218(;268,231 252,238 233,238q281 218Q261 238q233 238);"/>
+                    <Edge cubics="!301 170(;301,189 294,205 281,218q301 170Q301 198q281 218);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 3" color="#FF800A">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <DashedStroke dash1="2" dash2="2" scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#66FF66"/>
+                        </fill>
+                      </DashedStroke>
+                    </StrokeStyle>
+                    <StrokeStyle index="2">
+                      <DashedStroke dash1="2" dash2="2" scaleMode="normal">
+                        <fill>
+                          <SolidColor color="#66FF66"/>
+                        </fill>
+                      </DashedStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="
+!153 487S4|410 366"/>
+                    <Edge strokeStyle="2" edges="
+!212 235S4|153 487"/>
+                    <Edge cubics="!153 487(;153,487 410,366 410,366q153 487 410 366);"/>
+                    <Edge cubics="!212 235(;212,235 153,487 153,487q212 235 153 487);"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 4" color="#FF4FFF">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMRectangleObject objectWidth="28" objectHeight="28" x="112" y="128" selected="true" lockFlag="true" topLeftRadius="3" topRightRadius="3" bottomLeftRadius="3" bottomRightRadius="3">
+                  <matrix>
+                    <Matrix tx="-110" ty="-126"/>
+                  </matrix>
+                  <fill>
+                    <RadialGradient>
+                      <matrix>
+                        <Matrix a="0.02294921875" d="0.02294921875" tx="126" ty="142"/>
+                      </matrix>
+                      <GradientEntry color="#333333" ratio="0"/>
+                      <GradientEntry ratio="1"/>
+                    </RadialGradient>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 5" color="#4FFFFF" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" duration="2" keyMode="9728">
+              <elements>
+                <DOMRectangleObject objectWidth="32" objectHeight="32" x="112" y="128" selected="true" lockFlag="true" topLeftRadius="4" topRightRadius="4" bottomLeftRadius="4" bottomRightRadius="4">
+                  <matrix>
+                    <Matrix tx="-112" ty="-128"/>
+                  </matrix>
+                  <fill>
+                    <LinearGradient>
+                      <matrix>
+                        <Matrix a="0" b="0.01953125" c="-0.01953125" d="0" tx="128" ty="144"/>
+                      </matrix>
+                      <GradientEntry color="#66FF66" ratio="0"/>
+                      <GradientEntry color="#336600" ratio="1"/>
+                    </LinearGradient>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

@@ -1,0 +1,52 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Portal Assets/zoom_ring" itemID="4c291b97-000004a2" sourceFlashFilepath="..\..\..\..\Desktop\portal01.fla" sourceLibraryItemHRef="zoom_ring" sourceLastModified="1278007584" lastModified="1278007584">
+  <timeline>
+    <DOMTimeline name="zoom_ring">
+      <layers>
+        <DOMLayer name="Layer 2" color="#9933CC" locked="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <StippleStroke scaleMode="normal" dotSize="tiny" variation="random sizes" density="very sparse">
+                        <fill>
+                          <SolidColor color="#FFFFFF"/>
+                        </fill>
+                      </StippleStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!277 -160S4[343 -46 308 83!308 83[274 211 160 277!160 277[46 343 -84 309!-84 309[-211 274 -277 160!-277 160[-343 46 -310 -83!-310 -83[-274 -211 -160 -277!-160 -277[-46 -343 82 -309!82 -309[211 -274 277 -160"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <StippleStroke scaleMode="normal" variation="random sizes" density="very sparse">
+                        <fill>
+                          <SolidColor color="#FFFFFF"/>
+                        </fill>
+                      </StippleStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!265 -267S4[377 -155 377 0!377 0[377 155 265 265!265 265[155 377 0 377!0 377[-155 377 -267 265!-267 265[-377 155 -377 0!-377 0[-377 -155 -267 -267!-267 -267[-155 -377 0 -377!0 -377[155 -377 265 -267"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

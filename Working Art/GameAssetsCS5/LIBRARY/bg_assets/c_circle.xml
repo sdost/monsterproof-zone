@@ -1,0 +1,28 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="bg_assets/c_circle" itemID="4c2282f4-0000162f" sourceFlashFilepath="G:\background_anim.fla" sourceLibraryItemHRef="c_circle" sourceLastModified="1277336516" lastModified="1277336516">
+  <timeline>
+    <DOMTimeline name="c_circle">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <fills>
+                    <FillStyle index="1">
+                      <SolidColor color="#CC33CC" alpha="0.0823529411764706"/>
+                    </FillStyle>
+                  </fills>
+                  <edges>
+                    <Edge fillStyle0="1" edges="!919 -4623[#8EE.44 #FFEEEF.44 3327 -3328!3327 -3328[4706 -1950 4706 0!4706 0[4706 1951 3327 3328!3327 3328[1950 4707 0 4707!0 4707[-1950 4707 -3329 3328!-3329 3328[-4707 1951 -4707 0!-4707 0[-4707 -1950 -3329 -3328!-3329 -3328[#FFF711.65
+ #FFEEEE.94 -918 -4623!-918 -4623|-918 -4930!-918 -4930[#FFF696.81 #FFEDC0.79 -3541 -3541!-3541 -3541[-5007 -2075 -5007 0!-5007 0[-5007 2075 -3541 3540!-3541 3540[-2074 5007 0 5007!0 5007[2075 5007 3540 3540!3540 3540[5007 2075 5007 0
+!5007 0[5007 -2075 3540 -3541!3540 -3541[#96B.34 #FFEDC1.36 919 -4929.5!919 -4929.5|919 -4623"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

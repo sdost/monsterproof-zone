@@ -1,0 +1,31 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="_Backgrounds/_Assets/vertical_rays" itemID="4c3b4014-00000302" sourceFlashFilepath="/Users/tomodonnell/Documents/Breakout/Comps/071910/breakout_animations03.fla" sourceLibraryItemHRef="vertical_rays" sourceLastModified="1278955044" lastModified="1278955044">
+  <timeline>
+    <DOMTimeline name="vertical_rays">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMShape>
+                  <strokes>
+                    <StrokeStyle index="1">
+                      <SolidStroke scaleMode="normal" weight="2">
+                        <fill>
+                          <SolidColor color="#FFFFFF" alpha="0.101960784313725"/>
+                        </fill>
+                      </SolidStroke>
+                    </StrokeStyle>
+                  </strokes>
+                  <edges>
+                    <Edge strokeStyle="1" edges="!11840 4000S4|11840 6240!8000 1280|8000 7360!10880 0|10880 5760!320 320|320 2560!3200 3360|3200 5600!0 640|0 5520!3520 960|3520 8000!4800 4160|4800 10240!4480 3200|4480 8320!10240 1920|10240 9920!1600 1600|1600 9920!6400 1600|6400 8640
+!11520 6400|11520 10560!320 7360|320 10880"/>
+                  </edges>
+                </DOMShape>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

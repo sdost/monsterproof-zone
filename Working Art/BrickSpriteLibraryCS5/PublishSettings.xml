@@ -21,22 +21,22 @@
     <qtDefaultName>1</qtDefaultName>
     <rnwkDefaultName>1</rnwkDefaultName>
     <flashFileName>SWFs\BrickSpriteLibrary.swf</flashFileName>
-    <projectorWinFileName>BrickSpriteLibrary.exe</projectorWinFileName>
-    <projectorMacFileName>BrickSpriteLibrary.app</projectorMacFileName>
-    <htmlFileName>BrickSpriteLibrary.html</htmlFileName>
-    <gifFileName>BrickSpriteLibrary.gif</gifFileName>
-    <jpegFileName>BrickSpriteLibrary.jpg</jpegFileName>
-    <pngFileName>BrickSpriteLibrary.png</pngFileName>
-    <qtFileName>BrickSpriteLibrary.mov</qtFileName>
-    <rnwkFileName>BrickSpriteLibrary.smil</rnwkFileName>
+    <projectorWinFileName>BrickSpriteLibraryCS5.exe</projectorWinFileName>
+    <projectorMacFileName>BrickSpriteLibraryCS5.app</projectorMacFileName>
+    <htmlFileName>BrickSpriteLibraryCS5.html</htmlFileName>
+    <gifFileName>BrickSpriteLibraryCS5.gif</gifFileName>
+    <jpegFileName>BrickSpriteLibraryCS5.jpg</jpegFileName>
+    <pngFileName>BrickSpriteLibraryCS5.png</pngFileName>
+    <qtFileName>BrickSpriteLibraryCS5.mov</qtFileName>
+    <rnwkFileName>BrickSpriteLibraryCS5.smil</rnwkFileName>
   </PublishFormatProperties>
   <PublishHtmlProperties enabled="true">
     <VersionDetectionIfAvailable>0</VersionDetectionIfAvailable>
     <VersionInfo>10,1,52,0;9,0,124,0;8,0,24,0;7,0,14,0;6,0,79,0;5,0,58,0;4,0,32,0;3,0,8,0;2,0,1,12;1,0,0,1;</VersionInfo>
     <UsingDefaultContentFilename>1</UsingDefaultContentFilename>
     <UsingDefaultAlternateFilename>1</UsingDefaultAlternateFilename>
-    <ContentFilename>BrickSpriteLibrary_content.html</ContentFilename>
-    <AlternateFilename>BrickSpriteLibrary_alternate.html</AlternateFilename>
+    <ContentFilename>BrickSpriteLibraryCS5_content.html</ContentFilename>
+    <AlternateFilename>BrickSpriteLibraryCS5_alternate.html</AlternateFilename>
     <UsingOwnAlternateFile>0</UsingOwnAlternateFile>
     <OwnAlternateFilename></OwnAlternateFilename>
     <Width>550</Width>
@@ -53,7 +53,7 @@
     <WindowMode>0</WindowMode>
     <DisplayMenu>1</DisplayMenu>
     <DeviceFont>0</DeviceFont>
-    <TemplateFileName>C:\Users\Magdalena\AppData\Local\Adobe\Flash CS4\en\Configuration\HTML\Default.html</TemplateFileName>
+    <TemplateFileName>C:\Users\Magdalena\AppData\Local\Adobe\Flash CS5\en_US\Configuration\HTML\Default.html</TemplateFileName>
     <showTagWarnMsg>1</showTagWarnMsg>
   </PublishHtmlProperties>
   <PublishFlashProperties enabled="true">

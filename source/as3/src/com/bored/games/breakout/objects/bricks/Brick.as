@@ -103,6 +103,8 @@ package com.bored.games.breakout.objects.bricks
 			b2Def.fixture.filter.categoryBits = GameView.id_Brick;
 			b2Def.fixture.filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
 			b2Def.fixture.density = 0.0;
+			b2Def.fixture.friction = 0.0;
+			b2Def.fixture.restitution = 0.0;
 			b2Def.fixture.userData = this;
 			b2Def.fixture.isSensor = false;
 			

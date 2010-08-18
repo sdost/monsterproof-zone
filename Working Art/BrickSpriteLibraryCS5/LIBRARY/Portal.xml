@@ -1,6 +1,6 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Portal" itemID="4c2ce9f6-00000055" linkageExportForAS="true" linkageClassName="Portal" sourceFlashFilepath="..\..\..\..\Desktop\portal01.fla" sourceLibraryItemHRef="portal" sourceLastModified="1278015281" lastModified="1280261852" lastUniqueIdentifier="4">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Portal" itemID="4c2ce9f6-00000055" linkageExportForAS="true" linkageClassName="Portal" sourceFlashFilepath="..\..\..\..\Desktop\portal01.fla" sourceLibraryItemHRef="portal" sourceLastModified="1278015281" lastModified="1282147725" lastUniqueIdentifier="4">
   <timeline>
-    <DOMTimeline name="Portal" currentFrame="8">
+    <DOMTimeline name="Portal">
       <layers>
         <DOMLayer name="Layer 19" color="#FF800A">
           <frames>
@@ -42,7 +42,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -56,15 +56,16 @@
                     <Edge strokeStyle="1" edges="!672 1140[651 1157 632 1177!632 1177|488 1121!488 1121|469 1121!469 1121|427 1098!427 1098[397 1085 371 1068!371 1068|365 1065!365 1065|296 1065!296 1065|279 994"/>
                     <Edge fillStyle0="1" strokeStyle="1" edges="!279 994|272 966!272 966[265 961 248 956!248 956[245 813 141 749"/>
                     <Edge fillStyle0="1" edges="!141 749[143 755 144 763"/>
-                    <Edge strokeStyle="1" edges="!144 763[136 758 125 758!809 166[844 152 875 120!875 120|915 168!915 168|1059 312!1059 312|1059 373"/>
-                    <Edge fillStyle1="1" edges="!1059 373[1087 415 1105 463!1127 733[1109 825 1059 902"/>
+                    <Edge fillStyle0="1" fillStyle1="1" strokeStyle="1" edges="!144 763|145 763!145 763[155 769 155 777"/>
+                    <Edge fillStyle1="1" edges="!1059 373[1087 415 1105 463"/>
+                    <Edge strokeStyle="1" edges="!809 166[844 152 875 120!875 120|915 168!915 168|1059 312!1059 312|1059 373"/>
+                    <Edge fillStyle1="1" edges="!1127 733[1109 825 1059 902"/>
                     <Edge fillStyle1="1" strokeStyle="1" edges="!809 166[760 186 701 168!701 168|680 139!680 139|671 136"/>
                     <Edge fillStyle1="1" edges="!671 136[744 142 809 166"/>
-                    <Edge strokeStyle="1" edges="!271 288|261 248!261 248|432 142!432 142|476 142!476 142|536 144!671 136|552 104!552 104|512 104!512 104[491 139 476 142"/>
-                    <Edge fillStyle0="1" strokeStyle="1" edges="!157 467|173 467!173 467|296 411!296 411|271 288"/>
-                    <Edge fillStyle0="1" edges="!271 288[197 365 161 457!161 457[159 462 157 467"/>
-                    <Edge strokeStyle="1" edges="!157 467|149 467!149 467|125 595!125 595[121 603 112 603!112 603|80 721!80 721[113 733 141 749"/>
-                    <Edge fillStyle0="1" fillStyle1="1" strokeStyle="1" edges="!144 763|145 763!145 763[155 769 155 777"/>
+                    <Edge strokeStyle="1" edges="!671 136|552 104!552 104|512 104!512 104[491 139 476 142!476 142|432 142!432 142|261 248!261 248|271 288"/>
+                    <Edge fillStyle1="1" strokeStyle="1" edges="!271 288|296 411!296 411|173 467!173 467|157 467"/>
+                    <Edge fillStyle1="1" edges="!157 467[159 462 161 457!161 457[197 365 271 288"/>
+                    <Edge strokeStyle="1" edges="!476 142|536 144!157 467|149 467!149 467|125 595!125 595[121 603 112 603!112 603|80 721!80 721[113 733 141 749!144 763[136 758 125 758"/>
                     <Edge fillStyle1="1" edges="!803 1113[740 1134 672 1140!279 994[277 993 276 992!276 992[176 891 144 763"/>
                   </edges>
                 </DOMShape>
@@ -77,7 +78,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -97,7 +98,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -118,7 +119,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -139,17 +140,17 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
                   </strokes>
                   <edges>
                     <Edge strokeStyle="1" edges="
-!965 321|965 268!965 268|1208 468!1208 468[1115 504 1109 599!1109 599[1109 610 1107 623!1107 623|1019 623!1019 623|1019 868!1019 868|1099 884!1099 884[1099 970 1051 1041!1051 1041[1033 1063 1009 1106!1009 1106[997 1098 988 1106!988 1106
-[955 1169 901 1186!901 1186|792 1106!792 1106|744 1050!744 1050|589 1106!589 1106|589 1194!589 1194[529 1221 460 1205!460 1205[420 1195 384 1177!384 1177[340 1154 315 1106!315 1106|336 1013!336 1013|237 956!237 956|165 983!165 983|72
- 810!72 810|107 679!107 679[127 692 160 679!160 679[191 683 213 679!213 679|213 522!213 522|131 522!131 522|144 456!144 456|197 327!197 327|381 327!381 327|381 191!381 191|405 151!405 151[479 136 543 92!543 92[575 69 624 69!624 69[663
- 71 709 71!709 71[777 71 813 133!813 133[820 143 827 151!827 151|749 252!749 252|819 321!819 321|965 321"/>
+!1208 468[1115 504 1109 599!1109 599[1109 610 1107 623!1107 623|1019 623!1019 623|1019 868!1019 868|1099 884!1099 884[1099 970 1051 1041!1051 1041[1033 1063 1009 1106!1009 1106[997 1098 988 1106!988 1106[955 1169 901 1186!901 1186|792
+ 1106!792 1106|744 1050!744 1050|589 1106!589 1106|589 1194!589 1194[529 1221 460 1205!460 1205[420 1195 384 1177!384 1177[340 1154 315 1106!315 1106|336 1013!336 1013|237 956!237 956|165 983!165 983|72 810!72 810|107 679!107 679[127
+ 692 160 679!160 679[191 683 213 679!213 679|213 522!213 522|131 522!131 522|144 456!144 456|197 327!197 327|381 327!381 327|381 191!381 191|405 151!405 151[479 136 543 92!543 92[575 69 624 69!624 69[663 71 709 71!709 71[777 71 813 133
+!813 133[820 143 827 151!827 151|749 252!749 252|819 321!819 321|965 321!965 321|965 268!965 268|1208 468"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -161,17 +162,17 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
                   </strokes>
                   <edges>
                     <Edge strokeStyle="1" edges="
-!1034 197|882 237!882 237[882 258 888 282!888 282[896 320 868 336!868 336|708 336!708 336|671 109!671 109|631 85!631 85[544 193 403 237!403 237[375 218 351 237!351 237[394 302 372 372!372 372[363 401 362 432!362 432|186 432!186 432|167
- 411!167 411|79 568!79 568|127 664!127 664|162 576!162 576|316 576!316 576|316 717!316 717|252 773!252 773|252 816!252 816|204 885!204 885|292 1032!292 1032|428 984!428 984|556 1022!556 1022|540 1091!540 1091|604 1142!604 1142|631 1195
-!631 1195|852 1158!852 1158|823 1032!823 1032|743 1032!743 1032|799 885!799 885|962 885!962 885|946 1003!946 1003|1159 944!1159 944|1159 664!1159 664[1128 672 1098 664!1098 664[1084 629 1098 619!1098 619|1098 488!1098 488|1202 456!1202
- 456|1034 197"/>
+!888 282[896 320 868 336!868 336|708 336!708 336|671 109!671 109|631 85!631 85[544 193 403 237!403 237[375 218 351 237!351 237[394 302 372 372!372 372[363 401 362 432!362 432|186 432!186 432|167 411!167 411|79 568!79 568|127 664!127 664
+|162 576!162 576|316 576!316 576|316 717!316 717|252 773!252 773|252 816!252 816|204 885!204 885|292 1032!292 1032|428 984!428 984|556 1022!556 1022|540 1091!540 1091|604 1142!604 1142|631 1195!631 1195|852 1158!852 1158|823 1032!823
+ 1032|743 1032!743 1032|799 885!799 885|962 885!962 885|946 1003!946 1003|1159 944!1159 944|1159 664!1159 664[1128 672 1098 664!1098 664[1084 629 1098 619!1098 619|1098 488!1098 488|1202 456!1202 456|1034 197!1034 197|882 237!882 237
+[882 258 888 282"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -183,7 +184,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -204,7 +205,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -225,7 +226,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -246,7 +247,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -267,7 +268,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -288,7 +289,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -310,7 +311,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -331,7 +332,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -352,7 +353,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -374,7 +375,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -396,7 +397,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -418,7 +419,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -439,17 +440,17 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
                   </strokes>
                   <edges>
                     <Edge strokeStyle="1" edges="
-!913 203|945 203!945 203|1143 401!1143 401|1023 521!1023 521|1079 620!1079 620|1151 673!1151 673|1151 769!1151 769|1193 857!1193 857|1079 1001!1079 1001[1068 1109 959 1100!959 1100[945 1116 932 1100!932 1100|932 1135!932 1135|884 1135
-!884 1135|828 1073!828 1073[728 1071 652 1128!652 1128[616 1157 580 1184!580 1184[573 1188 564 1191!564 1191|284 1100!284 1100[299 1009 239 916!239 916[224 892 225 876!225 876|196 766!196 766|87 708!87 708|87 548!87 548|167 502!167 502
-[161 488 161 486!161 486|137 438!137 438|225 318!225 318|225 331!225 331|385 305!385 305|404 305!404 305|404 177!404 177[463 127 541 106!541 106[565 99 589 95!589 95[673 81 756 99!756 99|772 198!772 198|796 214!796 214|873 246!873 246
-|887 246!887 246|913 203"/>
+!1143 401|1023 521!1023 521|1079 620!1079 620|1151 673!1151 673|1151 769!1151 769|1193 857!1193 857|1079 1001!1079 1001[1068 1109 959 1100!959 1100[945 1116 932 1100!932 1100|932 1135!932 1135|884 1135!884 1135|828 1073!828 1073[728 1071
+ 652 1128!652 1128[616 1157 580 1184!580 1184[573 1188 564 1191!564 1191|284 1100!284 1100[299 1009 239 916!239 916[224 892 225 876!225 876|196 766!196 766|87 708!87 708|87 548!87 548|167 502!167 502[161 488 161 486!161 486|137 438!137
+ 438|225 318!225 318|225 331!225 331|385 305!385 305|404 305!404 305|404 177!404 177[463 127 541 106!541 106[565 99 589 95!589 95[673 81 756 99!756 99|772 198!772 198|796 214!796 214|873 246!873 246|887 246!887 246|913 203!913 203|945
+ 203!945 203|1143 401"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -461,7 +462,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -482,7 +483,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -504,7 +505,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -525,7 +526,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -548,7 +549,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -569,7 +570,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -591,7 +592,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -613,7 +614,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -634,7 +635,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -644,7 +645,7 @@
 !1003 159[1009 168 1009 180!1009 180|966 218!966 218|1033 434!1033 434|1147 434!1147 434[1159 511 1205 579!1205 579[1222 605 1222 642!1222 642[1222 714 1182 766!1182 766[1098 773 1033 805!1033 805|1017 970!1017 970|1033 1032!1033 1032
 [1002 1101 937 1146!937 1146[897 1174 846 1173!846 1173[834 1184 833 1184!833 1184|755 1101!755 1101|737 1130!737 1130|593 1101!593 1101|441 1194!441 1194|427 1194!427 1194|350 1176!350 1176|249 1045!249 1045|297 909!297 909|155 829!155
  829|89 829!89 829[79 775 61 705!61 705[55 686 66 674!66 674[93 619 139 595!139 595[146 591 150 583!150 583|102 509!102 509[94 507 86 502!86 502|105 389!105 389|358 354!358 354|358 183!358 183[345 180 342 178!342 178|478 111!478 111|537
- 111!537 111|537 207!537 207[550 207 553 204!553 204|579 204!579 204|638 247!638 247|702 90!702 90[817 80 922 103!922 103[975 115 1003 159!86 502|83 514!83 514|83 501!83 501[85 502 86 502"/>
+ 111!537 111|537 207!537 207[550 207 553 204!553 204|579 204!579 204|638 247!638 247|702 90!702 90[817 80 922 103!922 103[975 115 1003 159!86 502[85 502 83 501!83 501|83 514!83 514|86 502"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -656,7 +657,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -677,7 +678,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#FFFFFF" alpha="0.752941176470588"/>
+                          <SolidColor color="#FFFFFF" alpha="0.745098039215686"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -696,10 +697,10 @@
         </DOMLayer>
         <DOMLayer name="Layer 13" color="#4FFFFF">
           <frames>
-            <DOMFrame index="0" keyMode="14848">
+            <DOMFrame index="0" keyMode="8704">
               <elements/>
             </DOMFrame>
-            <DOMFrame index="1" duration="12" keyMode="14848">
+            <DOMFrame index="1" duration="12" keyMode="8704">
               <elements/>
             </DOMFrame>
             <DOMFrame index="13" duration="29" tweenType="motion" motionTweenRotate="none" motionTweenSync="true" motionTweenSnap="true" keyMode="23041">
@@ -724,7 +725,7 @@
               <elements>
                 <DOMSymbolInstance libraryItemName="Portal Assets/zoom_ring" name="" centerPoint3DX="32" centerPoint3DY="32">
                   <matrix>
-                    <Matrix a="1.33332824707031" d="1.33407592773438" tx="32" ty="32"/>
+                    <Matrix a="1.33331298828125" d="1.33407592773438" tx="32" ty="32"/>
                   </matrix>
                   <transformationPoint>
                     <Point/>
@@ -739,26 +740,14 @@
         </DOMLayer>
         <DOMLayer name="Layer 9" color="#4FFF4F">
           <frames>
-            <DOMFrame index="0" keyMode="14848" acceleration="100">
-              <elements>
-                <DOMSymbolInstance libraryItemName="Portal Assets/zoom_ring" name="" centerPoint3DX="32" centerPoint3DY="32">
-                  <matrix>
-                    <Matrix a="1.33332824707031" d="0.019989013671875" tx="32" ty="32"/>
-                  </matrix>
-                  <transformationPoint>
-                    <Point/>
-                  </transformationPoint>
-                  <filters>
-                    <GlowFilter blurX="4" blurY="4" color="#00CCFF" quality="3" strength="2.97"/>
-                  </filters>
-                </DOMSymbolInstance>
-              </elements>
+            <DOMFrame index="0" keyMode="8704">
+              <elements/>
             </DOMFrame>
             <DOMFrame index="1" duration="11" tweenType="motion" motionTweenRotate="none" motionTweenSync="true" motionTweenSnap="true" keyMode="23041" acceleration="100">
               <elements>
                 <DOMSymbolInstance libraryItemName="Portal Assets/zoom_ring" name="" centerPoint3DX="32" centerPoint3DY="32">
                   <matrix>
-                    <Matrix a="1.33332824707031" d="0.019989013671875" tx="32" ty="32"/>
+                    <Matrix a="1.33331298828125" d="0.019989013671875" tx="32" ty="32"/>
                   </matrix>
                   <transformationPoint>
                     <Point/>
@@ -773,7 +762,7 @@
               <elements>
                 <DOMSymbolInstance libraryItemName="Portal Assets/zoom_ring" name="" centerPoint3DX="32" centerPoint3DY="32">
                   <matrix>
-                    <Matrix a="1.33332824707031" d="1.33407592773438" tx="32" ty="32"/>
+                    <Matrix a="1.33331298828125" d="1.33407592773438" tx="32" ty="32"/>
                   </matrix>
                   <transformationPoint>
                     <Point/>
@@ -788,7 +777,7 @@
               <elements>
                 <DOMSymbolInstance libraryItemName="Portal Assets/zoom_ring" name="" centerPoint3DX="32" centerPoint3DY="32">
                   <matrix>
-                    <Matrix a="1.33332824707031" d="1.33407592773438" tx="32" ty="32"/>
+                    <Matrix a="1.33331298828125" d="1.33407592773438" tx="32" ty="32"/>
                   </matrix>
                   <transformationPoint>
                     <Point/>
@@ -821,23 +810,8 @@
         </DOMLayer>
         <DOMLayer name="Layer 10" color="#9933CC">
           <frames>
-            <DOMFrame index="0" keyMode="14848" acceleration="100">
-              <elements>
-                <DOMSymbolInstance libraryItemName="Portal Assets/zoom_ring" name="" centerPoint3DX="32" centerPoint3DY="32">
-                  <matrix>
-                    <Matrix a="0.019989013671875" d="1.00054931640625" tx="32" ty="32"/>
-                  </matrix>
-                  <transformationPoint>
-                    <Point/>
-                  </transformationPoint>
-                  <filters>
-                    <GlowFilter blurX="4" blurY="4" color="#00CCFF" quality="3" strength="2.97"/>
-                  </filters>
-                  <color>
-                    <Color alphaMultiplier="0.75"/>
-                  </color>
-                </DOMSymbolInstance>
-              </elements>
+            <DOMFrame index="0" keyMode="8704">
+              <elements/>
             </DOMFrame>
             <DOMFrame index="1" duration="11" tweenType="motion" motionTweenRotate="none" motionTweenSync="true" motionTweenSnap="true" keyMode="23041" acceleration="100">
               <elements>
@@ -915,23 +889,8 @@
         </DOMLayer>
         <DOMLayer name="Layer 11" color="#FF800A">
           <frames>
-            <DOMFrame index="0" keyMode="14848" acceleration="100">
-              <elements>
-                <DOMSymbolInstance libraryItemName="Portal Assets/zoom_ring" name="" centerPoint3DX="32" centerPoint3DY="32">
-                  <matrix>
-                    <Matrix a="0.6669921875" d="0.019989013671875" tx="32" ty="32"/>
-                  </matrix>
-                  <transformationPoint>
-                    <Point/>
-                  </transformationPoint>
-                  <filters>
-                    <GlowFilter blurX="4" blurY="4" color="#00CCFF" quality="3" strength="2.97"/>
-                  </filters>
-                  <color>
-                    <Color alphaMultiplier="0.5"/>
-                  </color>
-                </DOMSymbolInstance>
-              </elements>
+            <DOMFrame index="0" keyMode="8704">
+              <elements/>
             </DOMFrame>
             <DOMFrame index="1" duration="11" tweenType="motion" motionTweenRotate="none" motionTweenSync="true" motionTweenSnap="true" keyMode="23041" acceleration="100">
               <elements>
@@ -1009,23 +968,8 @@
         </DOMLayer>
         <DOMLayer name="Layer 12" color="#FF4FFF">
           <frames>
-            <DOMFrame index="0" keyMode="14848" acceleration="96">
-              <elements>
-                <DOMSymbolInstance libraryItemName="Portal Assets/zoom_ring" name="" centerPoint3DX="32" centerPoint3DY="32">
-                  <matrix>
-                    <Matrix a="0.0396881103515625" d="0.333328247070313" tx="32" ty="32"/>
-                  </matrix>
-                  <transformationPoint>
-                    <Point/>
-                  </transformationPoint>
-                  <filters>
-                    <GlowFilter blurX="4" blurY="4" color="#00CCFF" quality="3" strength="2.97"/>
-                  </filters>
-                  <color>
-                    <Color alphaMultiplier="0.25"/>
-                  </color>
-                </DOMSymbolInstance>
-              </elements>
+            <DOMFrame index="0" keyMode="8704">
+              <elements/>
             </DOMFrame>
             <DOMFrame index="1" duration="11" tweenType="motion" motionTweenRotate="none" motionTweenSync="true" motionTweenSnap="true" keyMode="23041" acceleration="96">
               <elements>
@@ -1101,12 +1045,12 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="Layer 14" color="#808080" current="true" isSelected="true">
+        <DOMLayer name="Layer 14" color="#808080">
           <frames>
-            <DOMFrame index="0" keyMode="15872">
+            <DOMFrame index="0" keyMode="9728">
               <elements/>
             </DOMFrame>
-            <DOMFrame index="1" duration="12" keyMode="15872">
+            <DOMFrame index="1" duration="12" keyMode="9728">
               <elements/>
             </DOMFrame>
             <DOMFrame index="13" keyMode="9728">
@@ -1196,11 +1140,14 @@
                   </strokes>
                   <edges>
                     <Edge strokeStyle="1" edges="
-!683 584|784 527!784 527|891 613!891 613|891 679!891 679|909 706!909 706|968 685!968 685|1104 749!176 911|176 933!176 933|341 869!341 869|395 679!395 679|567 654!567 654|592 650!592 650|580 642!580 642|646 605!646 605|683 584"/>
+!683 584|784 527!784 527|891 613!891 613|891 679!891 679|909 706!909 706|968 685!968 685|1104 749!176 911|176 933!176 933|341 869!341 869|395 679!395 679|567 654!567 654|592 650!592 650|580 642!580 642|429 551!429 551|429 413!429 413
+|283 348!646 605|683 584"/>
                     <Edge strokeStyle="2" edges="
-!683 584|666 584!666 584|646 605!646 605|559 696!683 584|722 584"/>
+!683 584|666 584!666 584|646 605!722 584|683 584"/>
                     <Edge strokeStyle="1" edges="
-!580 642|429 551!429 551|429 413!429 413|283 348!567 654|580 642"/>
+!567 654|580 642!580 642|646 605"/>
+                    <Edge strokeStyle="2" edges="
+!646 605|559 696"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -1321,13 +1268,15 @@
                     <Edge strokeStyle="2" edges="
 !544 668|523 629!523 629[552 587 632 544!632 544[647 534 632 530!632 530|712 344!712 344|712 373"/>
                     <Edge strokeStyle="3" edges="
-!436 612|381 583!381 583|363 639!363 639|267 698!267 698[227 660 175 683!175 683[156 691 139 695!436 612|544 668!544 668|579 687"/>
+!436 612|381 583!381 583|363 639!363 639|267 698!267 698[227 660 175 683!175 683[156 691 139 695!544 668|436 612"/>
+                    <Edge strokeStyle="4" edges="
+!436 612|411 814"/>
+                    <Edge strokeStyle="3" edges="
+!579 687|544 668"/>
                     <Edge strokeStyle="4" edges="
 !563 467|440 574!440 574|436 612"/>
                     <Edge strokeStyle="2" edges="
 !587 936|632 840!632 840|591 761!591 761|544 668"/>
-                    <Edge strokeStyle="4" edges="
-!436 612|411 814"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -1501,11 +1450,15 @@
 !918 714|872 666!872 666|841 666"/>
                     <Edge strokeStyle="2" edges="
 !841 666|840 662!840 662|824 533!824 533[781 544 736 545!736 545[719 546 704 540!704 540[652 518 592 509!592 509|571 536!571 536|557 536!557 536|528 645!528 645|395 512!395 512|371 512!371 512[361 437 408 394!408 394[423 381 432 365!432
- 365|448 365!448 365|347 173!347 173|347 218!841 666|845 701!845 701|918 714"/>
+ 365|448 365!448 365|347 173!347 173|347 218"/>
                     <Edge strokeStyle="1" edges="
-!841 666|840 666!840 666|840 662!840 662|840 495!918 714|987 786"/>
+!841 666|840 666!840 666|840 662!840 662|840 495"/>
                     <Edge strokeStyle="2" edges="
-!918 714|1016 730!528 645|501 898!501 898|429 955!429 955|325 981!325 981|264 1107!264 1107|264 1072"/>
+!1016 730|918 714!918 714|845 701!845 701|841 666"/>
+                    <Edge strokeStyle="1" edges="
+!918 714|987 786"/>
+                    <Edge strokeStyle="2" edges="
+!528 645|501 898!501 898|429 955!429 955|325 981!325 981|264 1107!264 1107|264 1072"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -1549,13 +1502,11 @@
                     <Edge strokeStyle="1" edges="
 !320 720|339 739!339 739|339 852"/>
                     <Edge strokeStyle="2" edges="
-!320 720|345 703!345 703|345 674!345 674|545 647!545 647|555 599!555 599|562 571"/>
+!320 720|345 703!345 703|345 674!345 674|545 647!545 647|555 599!555 599|562 571!562 571|571 530!571 530|603 530!603 530|619 514!619 514|539 322"/>
                     <Edge strokeStyle="1" edges="
-!381 901|339 907!339 907|339 852"/>
+!625 942[646 950 641 982!641 982|510 881!510 881|381 901!381 901|339 907!339 907|339 852"/>
                     <Edge strokeStyle="2" edges="
-!339 852|381 901!381 901|430 957!562 571|571 530!571 530|603 530!603 530|619 514!619 514|539 322!555 599[509 599 470 586!470 586[424 570 387 538!387 538[318 478 318 391"/>
-                    <Edge strokeStyle="1" edges="
-!381 901|510 881!510 881|641 982!641 982[646 950 625 942"/>
+!339 852|381 901!381 901|430 957!555 599[509 599 470 586!470 586[424 570 387 538!387 538[318 478 318 391"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -1580,8 +1531,8 @@
                   </strokes>
                   <edges>
                     <Edge strokeStyle="1" edges="
-!1067 702[1069 703 1067 675!1067 675|893 675!893 675|843 752!843 752|728 752!728 752|640 675!640 675|485 515!485 515[479 514 475 514!475 514|468 510!468 510|443 440!443 440|563 299!563 299|688 299!688 299|688 115!688 115|707 141!213 406
-|213 395!213 395|293 494!293 494|363 464!363 464|363 451!363 451|468 510!468 510|469 512!469 512[471 512 475 514!640 675|525 787!525 787|491 910!491 910|491 952!491 952|528 952!528 952|587 1003!587 1003|515 1166"/>
+!1067 702[1069 703 1067 675!1067 675|893 675!893 675|843 752!843 752|728 752!728 752|640 675!640 675|485 515!485 515[479 514 475 514!475 514|468 510!468 510|469 512!469 512[471 512 475 514!468 510|443 440!443 440|563 299!563 299|688 299
+!688 299|688 115!688 115|707 141!213 406|213 395!213 395|293 494!293 494|363 464!363 464|363 451!363 451|468 510!640 675|525 787!525 787|491 910!491 910|491 952!491 952|528 952!528 952|587 1003!587 1003|515 1166"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -1606,8 +1557,8 @@
                   </strokes>
                   <edges>
                     <Edge strokeStyle="1" edges="
-!1113 826|1015 826!1015 826|911 679!911 679|703 727!703 727|628 679!628 679[649 652 628 599!628 599[605 586 599 578!599 578|559 568!559 568|492 492!492 492|524 271!524 271|444 175!444 175|444 191!559 568|465 546!465 546[452 554 452 567
-!452 567|356 567!356 567|279 444!279 444|220 444!220 444[215 436 207 436!207 436|167 452!703 727|729 818!729 818[743 816 751 828!751 828|751 847!751 847|660 914!660 914|628 1069!628 1069|657 1106"/>
+!1113 826|1015 826!1015 826|911 679!911 679|703 727!703 727|628 679!628 679[649 652 628 599!628 599[605 586 599 578!599 578|559 568!559 568|492 492!492 492|524 271!524 271|444 175!444 175|444 191!167 452|207 436!207 436[215 436 220 444
+!220 444|279 444!279 444|356 567!356 567|452 567!452 567[452 554 465 546!465 546|559 568!703 727|729 818!729 818[743 816 751 828!751 828|751 847!751 847|660 914!660 914|628 1069!628 1069|657 1106"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -1743,13 +1694,9 @@
                     <Edge strokeStyle="1" edges="
 !501 648|633 648!633 648|705 584!705 584|729 584!729 584[757 645 818 657!818 657[855 665 893 672!893 672[915 676 929 677!929 677|963 677!963 677[963 696 929 696"/>
                     <Edge strokeStyle="2" edges="
-!500 639[484 562 418 529!418 529|339 494!339 494|318 425!318 425[389 370 414 292!414 292[418 282 414 270!414 270|363 168"/>
+!500 639[484 562 418 529!418 529|339 494!339 494|318 425!318 425[389 370 414 292!414 292[418 282 414 270!414 270|363 168!501 648[502 651 502 654!502 654|475 654"/>
                     <Edge strokeStyle="1" edges="
-!500 639[500 643 501 648"/>
-                    <Edge strokeStyle="2" edges="
-!501 648[502 651 502 654!502 654|475 654"/>
-                    <Edge strokeStyle="1" edges="
-!502 613[486 604 502 634!502 634[500 636 500 639"/>
+!500 639[500 643 501 648!502 613[486 604 502 634!502 634[500 636 500 639"/>
                     <Edge strokeStyle="2" edges="
 !502 654|470 782!470 782|470 838!470 838|401 894!401 894|401 1081!401 1081[415 1108 422 1113"/>
                   </edges>
@@ -1861,11 +1808,13 @@
                   </strokes>
                   <edges>
                     <Edge strokeStyle="1" edges="
-!665 553|677 532!677 532|768 447!768 447|728 366!728 366|728 305!728 305|747 249!747 249|747 281!320 281|320 252!320 252|432 390!432 390|341 497!341 497|341 649!341 649|437 633!437 633|576 708"/>
+!665 553|677 532!677 532|768 447!768 447|728 366!728 366|728 305!728 305|747 249!747 249|747 281!320 281|320 252!320 252|432 390!432 390|341 497!341 497|341 649!341 649|437 633!437 633|576 708!576 708|665 553"/>
                     <Edge strokeStyle="2" edges="
-!576 708|576 745!763 536|665 553!665 553|576 568!576 568|576 708"/>
+!665 553|576 568!576 568|576 708"/>
                     <Edge strokeStyle="1" edges="
-!665 553|576 708!576 708|773 708!773 708|773 948!773 948|893 948!893 948|960 1031"/>
+!576 708|773 708!773 708|773 948!773 948|893 948!893 948|960 1031"/>
+                    <Edge strokeStyle="2" edges="
+!763 536|665 553!576 708|576 745"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -2000,7 +1949,7 @@
                   <edges>
                     <Edge strokeStyle="1" edges="
 !678 1010|582 890!582 890|582 866!582 866|582 863!582 863|689 666!689 666|641 666!641 666|593 583!593 583|553 583!553 583|673 458!673 458|804 500!804 500|804 583!804 583|849 658!849 658|934 583!934 583|953 583!953 583|1108 682!1108 682
-|1078 682!172 185|198 233!198 233|366 233!366 233|366 193!366 193|430 332!430 332|284 404!284 404|316 583!316 583|396 583!396 583|396 556!396 556|553 583!406 1095|406 1010!406 1010|582 866"/>
+|1078 682!172 185|198 233!198 233|366 233!366 233|366 193!366 193|430 332!430 332|284 404!284 404|316 583!316 583|396 583!396 583|396 556!396 556|553 583!582 866|406 1010!406 1010|406 1095"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -2145,7 +2094,7 @@
                     <Edge strokeStyle="1" edges="
 !775 698|796 703!796 703|796 834"/>
                     <Edge strokeStyle="2" edges="
-!708 892[704 899 703 904!703 904[671 835 579 819!579 819[564 816 556 804!556 804|584 700!708 919[697 917 703 904"/>
+!584 700|556 804!556 804[564 816 579 819!579 819[671 835 703 904!703 904[697 917 708 919!703 904[704 899 708 892"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -2213,25 +2162,18 @@
                     <Edge strokeStyle="2" edges="
 !718 622|857 507!857 507|798 366!798 366|798 422"/>
                     <Edge strokeStyle="1" edges="
-!491 660[486 659 481 659!481 659[478 631 477 603!477 603[475 582 483 563!483 563[486 557 490 550!490 550[490 549 491 547!491 547[523 489 606 451!606 451[589 450 606 449!606 449[582 435 569 443"/>
+!644 622[613 655 606 691!606 691|505 670!505 670[499 662 491 660!491 660[486 659 481 659!481 659[478 631 477 603!477 603[475 582 483 563!483 563[486 557 490 550!490 550[490 549 491 547!491 547[523 489 606 451!606 451[589 450 606 449!606
+ 449[582 435 569 443"/>
                     <Edge strokeStyle="3" edges="
-!173 681[189 641 179 587!179 587|270 539!270 539|271 539!271 539|294 539!294 539|323 611!323 611|347 584!347 584|374 584"/>
+!123 741[159 717 173 681!173 681[189 641 179 587!179 587|270 539!270 539|271 539!271 539|294 539!294 539|323 611!323 611|347 584!347 584|374 584"/>
                     <Edge strokeStyle="1" edges="
-!271 539|273 531!273 531|299 531!299 531|326 550!326 550|490 550!271 539|230 657!230 657|214 681!214 681|173 681!173 681|137 681"/>
-                    <Edge strokeStyle="3" edges="
-!173 681[159 717 123 741"/>
-                    <Edge strokeStyle="1" edges="
-!645 621[652 612 662 603!662 603[677 590 697 593!697 593|718 622"/>
-                    <Edge strokeStyle="4" edges="
-!644 622|645 621"/>
+!271 539|273 531!273 531|299 531!299 531|326 550!326 550|490 550!173 681|214 681!214 681|230 657!230 657|271 539!137 681|173 681!645 621[652 612 662 603!662 603[677 590 697 593!697 593|718 622"/>
                     <Edge strokeStyle="2" edges="
-!718 622|683 651!683 651|645 621!645 621|606 590!606 590|534 617!534 617|502 617!502 617|491 660!491 660|465 761!465 761|502 827!502 827[547 817 606 857!606 857[617 897 606 913"/>
+!718 622|683 651!683 651|645 621"/>
                     <Edge strokeStyle="4" edges="
-!627 696|644 622"/>
-                    <Edge strokeStyle="1" edges="
-!644 622[613 655 606 691!606 691|505 670!505 670[499 662 491 660"/>
-                    <Edge strokeStyle="4" edges="
-!645 621|653 584"/>
+!645 621|644 622!644 622|627 696!645 621|653 584"/>
+                    <Edge strokeStyle="2" edges="
+!645 621|606 590!606 590|534 617!534 617|502 617!502 617|491 660!491 660|465 761!465 761|502 827!502 827[547 817 606 857!606 857[617 897 606 913"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -2240,20 +2182,8 @@
         </DOMLayer>
         <DOMLayer name="Layer 17" color="#4FFF4F">
           <frames>
-            <DOMFrame index="0" keyMode="15872" acceleration="100">
-              <elements>
-                <DOMSymbolInstance libraryItemName="Portal Assets/portal_background" name="" centerPoint3DX="32" centerPoint3DY="32">
-                  <matrix>
-                    <Matrix a="0.0099945068359375" d="0.0099945068359375" tx="32" ty="32"/>
-                  </matrix>
-                  <transformationPoint>
-                    <Point/>
-                  </transformationPoint>
-                  <color>
-                    <Color tintMultiplier="1" tintColor="#FFFFFF"/>
-                  </color>
-                </DOMSymbolInstance>
-              </elements>
+            <DOMFrame index="0" keyMode="9728">
+              <elements/>
             </DOMFrame>
             <DOMFrame index="1" duration="11" tweenType="motion" motionTweenSync="true" motionTweenSnap="true" keyMode="24065" acceleration="100">
               <elements>
@@ -2270,7 +2200,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="12" keyMode="15872">
+            <DOMFrame index="12" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="Portal Assets/portal_background" name="" centerPoint3DX="32" centerPoint3DY="32">
                   <matrix>
@@ -2282,7 +2212,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="13" duration="30" keyMode="15872">
+            <DOMFrame index="13" duration="30" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="Portal Assets/portal_background" name="" centerPoint3DX="32" centerPoint3DY="32">
                   <matrix>
@@ -2296,7 +2226,7 @@
             </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="Layer 1" color="#4FFF4F">
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
           <frames>
             <DOMFrame index="0" keyMode="9728">
               <elements>

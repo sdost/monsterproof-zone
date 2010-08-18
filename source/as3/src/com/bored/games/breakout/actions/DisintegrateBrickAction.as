@@ -27,19 +27,21 @@ package com.bored.games.breakout.actions
 		{
 			super(NAME, a_gameElement, a_params);
 			
+			/*
 			SoundManager.getInstance().getSoundControllerByID("sfxController").addSound( new SMSound("disintegrate_lg_1", "breakout.assets.sfx.BrickDestroyLg_1", false) );
 			SoundManager.getInstance().getSoundControllerByID("sfxController").addSound( new SMSound("disintegrate_lg_2", "breakout.assets.sfx.BrickDestroyLg_2", false) );
 			SoundManager.getInstance().getSoundControllerByID("sfxController").addSound( new SMSound("disintegrate_lg_3", "breakout.assets.sfx.BrickDestroyLg_3", false) );
 			SoundManager.getInstance().getSoundControllerByID("sfxController").addSound( new SMSound("disintegrate_lg_4", "breakout.assets.sfx.BrickDestroyLg_4", false) );
+			*/
 		}//end constructor()
 		
 		override public function startAction():void 
 		{
 			_finished = false;
 			
-			var v:uint = uint(Math.random() * 3 + 1);
+			//var v:uint = uint(Math.random() * 3 + 1);
 			
-			SoundManager.getInstance().getSoundControllerByID("sfxController").play(sfx_DisintegrateLg + "_" + v);
+			//SoundManager.getInstance().getSoundControllerByID("sfxController").play(sfx_DisintegrateLg + "_" + v);
 			
 			var emitter:BrickCrumbs = new BrickCrumbs( (_gameElement as Brick) );
 			emitter.useInternalTick = false;

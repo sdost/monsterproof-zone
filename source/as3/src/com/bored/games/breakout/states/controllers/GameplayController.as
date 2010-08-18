@@ -1,6 +1,5 @@
 package com.bored.games.breakout.states.controllers
 {
-	import away3dlite.events.Loader3DEvent;
 	import com.bored.games.breakout.objects.hud.ResultsDisplay;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.breakout.states.views.HUDView;
@@ -20,7 +19,6 @@ package com.bored.games.breakout.states.controllers
 	import flash.ui.Keyboard;
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
-	import net.hires.debug.Stats;
 	
 	/**
 	 * ...
@@ -49,8 +47,6 @@ package com.bored.games.breakout.states.controllers
 		private var _lastUpdate:Number;
 		
 		private var _callback:Function;
-		
-		private var _stats:Stats;
 		
 		public function GameplayController(a_container:MovieClip) 
 		{	
@@ -196,7 +192,7 @@ package com.bored.games.breakout.states.controllers
 		}//end advanceLevel()
 				
 		private function levelFinished(e:ObjectEvent = null):void
-		{
+		{		
 			(_gameView as GameView).removeEventListener("ballLost", ballLost);
 			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
 			(_gameView as GameView).removeEventListener("addPoints", addUserPoints);

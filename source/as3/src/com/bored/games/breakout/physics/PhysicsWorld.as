@@ -83,7 +83,9 @@ package com.bored.games.breakout.physics
 		{
 			if ( _world )
 			{				
-				_world.Step(t/1000, _velIterations, _posIterations);				
+				_world.Step(t / 1000, _velIterations, _posIterations);
+				
+				//_debugDraw.Draw();
 				
 				var time:int = getTimer();
 				var bb:b2Body = _world.GetBodyList();
@@ -102,7 +104,7 @@ package com.bored.games.breakout.physics
 		
 		public static function DestroyBody( a_body:b2Body ):void
 		{
-			_world.DestroyBody(a_body);				
+			_world.DestroyBody(a_body);						
 		}//end CleanupBody()
 		
 		public static function DestroyJoint( a_joint:b2Joint ):void

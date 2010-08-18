@@ -1,7 +1,7 @@
 package com.bored.games.breakout.states.views 
 {
+	import Box2DAS.Dynamics.ContactEvent;
 	import flash.utils.getDefinitionByName;
-	import away3dlite.loaders.Collada;
 	import Box2DAS.Collision.b2AABB;
 	import Box2DAS.Collision.b2Manifold;
 	import Box2DAS.Collision.Shapes.b2PolygonShape;
@@ -102,7 +102,6 @@ package com.bored.games.breakout.states.views
 	import flash.utils.Dictionary;
 	import flash.utils.getQualifiedClassName;
 	import flash.utils.getTimer;
-	import net.hires.debug.Stats;
 	import org.flintparticles.common.actions.Fade;
 	import org.bytearray.explorer.events.SWFExplorerEvent;
 	import org.bytearray.explorer.SWFExplorer;
@@ -217,8 +216,6 @@ package com.bored.games.breakout.states.views
 		
 		private var _matrix:Array;
 		
-		private var _stats:Stats;
-		
 		private var _multiplier:GameElement;
 		private var _brickMultiplierManager:BrickMultiplierManagerAction;
 		private var _paddleMultiplierManager:PaddleMultiplierManagerAction;
@@ -325,10 +322,14 @@ package com.bored.games.breakout.states.views
 			b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
 			b2Def.polygon.SetAsBox( w2 / PhysicsWorld.PhysScale, i / PhysicsWorld.PhysScale, new V2(w2 / PhysicsWorld.PhysScale, -(i / PhysicsWorld.PhysScale)) ); // TOP
 			_topWall = b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
+			_topWall.m_reportBeginContact = true;
+			_topWall.m_reportEndContact = true;
 			b2Def.polygon.SetAsBox( i / PhysicsWorld.PhysScale, h2 / PhysicsWorld.PhysScale, new V2((w+i) / PhysicsWorld.PhysScale, h2 / PhysicsWorld.PhysScale) ); // RIGHT
 			b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
 			b2Def.polygon.SetAsBox( w2 / PhysicsWorld.PhysScale, i / PhysicsWorld.PhysScale, new V2(w2 / PhysicsWorld.PhysScale, (h+i) / PhysicsWorld.PhysScale) ); // BOTTOM
 			_bottomWall = b2Def.polygon.create(PhysicsWorld.GetGroundBody(), b2Def.fixture);
+			_bottomWall.m_reportBeginContact = true;
+			_bottomWall.m_reportEndContact = true;
 			
 			_paddle = new Paddle();
 			_paddle.physicsBody.SetTransform( new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ), 0 );
@@ -656,8 +657,8 @@ package com.bored.games.breakout.states.views
 						if ( dist.length() > 0.2 ) return;
 						
 						_paused = true;
-						
-						dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size(), "callback": startVortex } ));
+											
+						startVortex();
 					}
 				}
 				else
@@ -696,6 +697,10 @@ package com.bored.games.breakout.states.views
 			vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
 			GameView.ParticleRenderer.addEmitter(vortex);
 			vortex.start();
+			
+			dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() } ));
+			
+			_gameScreen.bitmapData.fillRect(_gameScreen.bitmapData.rect, 0x00000000);
 		}//end startVortex()
 		
 		private function vortexComplete(e:EmitterEvent):void
@@ -745,7 +750,7 @@ package com.bored.games.breakout.states.views
 				}
 				else if ( a_collectable.GetUserData().actionName == "bonus" )
 				{
-					dispatchEvent(new ObjectEvent("addPoints", { "basePoints": 1000, "brickMult": 1, "paddleMult": 1, "x": a_collectable.GetUserData().x, "y": a_collectable.GetUserData().x } ));
+					dispatchEvent(new ObjectEvent("addPoints", { "basePoints": 1000, "brickMult": 1, "paddleMult": 0, "x": a_collectable.GetUserData().x, "y": a_collectable.GetUserData().x } ));
 				}
 				else if ( a_collectable.GetUserData().actionName == DestructoballAction.NAME || a_collectable.GetUserData().actionName == InvinciballAction.NAME )
 				{
@@ -985,6 +990,7 @@ import Box2DAS.Dynamics.b2Fixture;
 import Box2DAS.Dynamics.Contacts.b2Contact;
 import Box2DAS.Dynamics.Joints.b2DistanceJointDef;
 import com.bored.games.breakout.objects.Ball;
+import com.bored.games.breakout.objects.Beam;
 import com.bored.games.breakout.objects.bricks.Brick;
 import com.bored.games.breakout.objects.bricks.SimpleBrick;
 import com.bored.games.breakout.objects.Bullet;
@@ -1009,16 +1015,16 @@ class GameContactListener extends b2ContactListener
 		var point:V2 = wm.points[0];
 		
 		if ( contact.IsEnabled() ) 
-		{
-			GameView.Contacts.append( new GameContact(contact.GetFixtureA(), contact.GetFixtureB(), point) );
+		{			
+			GameView.Contacts.append( new GameContact(fixtureA, fixtureB, point) );
 		}
 	}//end BeginContact()
 	
 	override public function EndContact(contact:b2Contact):void
 	{
-		var obj:GameContact = new GameContact(contact.GetFixtureA(), contact.GetFixtureB());
+		//var obj:GameContact = new GameContact(contact.GetFixtureA(), contact.GetFixtureB());
 		
-		GameView.Contacts.remove(obj);		
+		//GameView.Contacts.remove(obj);		
 	}//end EndContact()
 	
 	override public function PostSolve(contact:b2Contact, impulse:b2ContactImpulse):void
@@ -1110,7 +1116,7 @@ class GameContact
 	}//end constructor()
 	
 	public function equals(a_gameContact:GameContact):Boolean
-	{
+	{		
 		return (a_gameContact.fixtureA === this.fixtureA) && (a_gameContact.fixtureB === this.fixtureB);
 	}//end equals()
 	
@@ -1119,7 +1125,7 @@ class GameContact
 class ContactLL extends SLL
 {
 	override public function remove(x:Object):Boolean
-	{
+	{	
 		var s:int = size();
 		if (s == 0) return false;
 		

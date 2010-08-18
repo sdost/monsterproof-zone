@@ -62,10 +62,10 @@ package com.bored.games.breakout.objects
 			
 			b2Def.fixture.shape = b2Def.polygon;
 			b2Def.fixture.filter.categoryBits = GameView.id_Bullet;
-			b2Def.fixture.filter.maskBits = GameView.id_Brick | GameView.id_Wall;
+			b2Def.fixture.filter.maskBits = GameView.id_Brick;
 			b2Def.fixture.density = 1.0;
 			b2Def.fixture.friction = 0.0;
-			b2Def.fixture.restitution = 1.0;
+			b2Def.fixture.restitution = 0.0;
 			b2Def.fixture.userData = this;
 			b2Def.fixture.isSensor = true;
 			
@@ -105,11 +105,7 @@ package com.bored.games.breakout.objects
 		public function updateBody():void
 		{
 			var fixture:b2Fixture = _beamBody.GetFixtureList();
-			
-			var shape:b2PolygonShape = new b2PolygonShape();
-			shape.SetAsBox( (_animationController.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animationController.currFrame.height / 2) / PhysicsWorld.PhysScale, new V2(0, _animationController.currFrame.height / 2 / PhysicsWorld.PhysScale) );
-			
-			fixture.m_shape = shape;
+			(fixture.m_shape as b2PolygonShape).SetAsBox( (_animationController.currFrame.width / 2) / PhysicsWorld.PhysScale, (_animationController.currFrame.height / 2) / PhysicsWorld.PhysScale, new V2(0, _animationController.currFrame.height / 2 / PhysicsWorld.PhysScale) );
 		}//end updateBody()
 		
 		override public function update(t:Number = 0):void
@@ -134,7 +130,7 @@ package com.bored.games.breakout.objects
 		}//end animationComplete()
 		
 		public function destroy():void 
-		{			
+		{
 			cleanupPhysics();
 		}//end destroy()
 		

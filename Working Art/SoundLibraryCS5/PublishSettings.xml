@@ -21,22 +21,22 @@
     <qtDefaultName>1</qtDefaultName>
     <rnwkDefaultName>1</rnwkDefaultName>
     <flashFileName>SWFs\SoundLibrary.swf</flashFileName>
-    <projectorWinFileName>SoundLibrary.exe</projectorWinFileName>
-    <projectorMacFileName>SoundLibrary.app</projectorMacFileName>
-    <htmlFileName>SoundLibrary.html</htmlFileName>
-    <gifFileName>SoundLibrary.gif</gifFileName>
-    <jpegFileName>SoundLibrary.jpg</jpegFileName>
-    <pngFileName>SoundLibrary.png</pngFileName>
-    <qtFileName>SoundLibrary.mov</qtFileName>
-    <rnwkFileName>SoundLibrary.smil</rnwkFileName>
+    <projectorWinFileName>SoundLibraryCS5.exe</projectorWinFileName>
+    <projectorMacFileName>SoundLibraryCS5.app</projectorMacFileName>
+    <htmlFileName>SoundLibraryCS5.html</htmlFileName>
+    <gifFileName>SoundLibraryCS5.gif</gifFileName>
+    <jpegFileName>SoundLibraryCS5.jpg</jpegFileName>
+    <pngFileName>SoundLibraryCS5.png</pngFileName>
+    <qtFileName>SoundLibraryCS5.mov</qtFileName>
+    <rnwkFileName>SoundLibraryCS5.smil</rnwkFileName>
   </PublishFormatProperties>
   <PublishHtmlProperties enabled="true">
     <VersionDetectionIfAvailable>0</VersionDetectionIfAvailable>
     <VersionInfo>10,1,52,0;9,0,124,0;8,0,24,0;7,0,14,0;6,0,79,0;5,0,58,0;4,0,32,0;3,0,8,0;2,0,1,12;1,0,0,1;</VersionInfo>
     <UsingDefaultContentFilename>1</UsingDefaultContentFilename>
     <UsingDefaultAlternateFilename>1</UsingDefaultAlternateFilename>
-    <ContentFilename>SoundLibrary_content.html</ContentFilename>
-    <AlternateFilename>SoundLibrary_alternate.html</AlternateFilename>
+    <ContentFilename>SoundLibraryCS5_content.html</ContentFilename>
+    <AlternateFilename>SoundLibraryCS5_alternate.html</AlternateFilename>
     <UsingOwnAlternateFile>0</UsingOwnAlternateFile>
     <OwnAlternateFilename></OwnAlternateFilename>
     <Width>550</Width>
@@ -53,7 +53,7 @@
     <WindowMode>0</WindowMode>
     <DisplayMenu>1</DisplayMenu>
     <DeviceFont>0</DeviceFont>
-    <TemplateFileName>C:\Users\Magdalena\AppData\Local\Adobe\Flash CS4\en\Configuration\HTML\Default.html</TemplateFileName>
+    <TemplateFileName>C:\Users\Magdalena\AppData\Local\Adobe\Flash CS5\en_US\Configuration\HTML\Default.html</TemplateFileName>
     <showTagWarnMsg>1</showTagWarnMsg>
   </PublishHtmlProperties>
   <PublishFlashProperties enabled="true">

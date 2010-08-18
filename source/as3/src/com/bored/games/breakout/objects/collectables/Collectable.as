@@ -115,7 +115,7 @@ package com.bored.games.breakout.objects.collectables
 			this.x = pos.x * PhysicsWorld.PhysScale - width / 2;
 			this.y = pos.y * PhysicsWorld.PhysScale - height / 2;
 			
-			_collectableBody.ApplyForce(new V2(0, 10 * _collectableBody.GetMass()), _collectableBody.GetWorldCenter());
+			_collectableBody.ApplyForce(new V2(0, 10 * _collectableBody.GetMass()), _collectableBody.GetLocalCenter());
 		}//end update()
 		
 		public function destroy():void 

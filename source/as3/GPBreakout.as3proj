@@ -54,6 +54,7 @@
     <element path="libs\MonsterProofEngine.swc" />
     <element path="libs\Box2DAS\Box2D.swc" />
     <element path="libs\Box2D.swc" />
+    <element path="libs\IASounds.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

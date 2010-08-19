@@ -1,4 +1,4 @@
-package com.bored.games.breakout.objects 
+package com.bored.games.breakout.objects
 {
 	import Box2DAS.Collision.Shapes.b2CircleShape;
 	import Box2DAS.Collision.Shapes.b2PolygonShape;
@@ -9,8 +9,9 @@ package com.bored.games.breakout.objects
 	import Box2DAS.Dynamics.b2Filter;
 	import Box2DAS.Dynamics.b2Fixture;
 	import Box2DAS.Dynamics.b2FixtureDef;
-	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
-	import com.bored.games.breakout.factories.AnimationSetFactory;
+	import com.sven.animation.AnimatedSprite;
+	import com.sven.factories.AnimatedSpriteFactory;
+	import com.sven.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;

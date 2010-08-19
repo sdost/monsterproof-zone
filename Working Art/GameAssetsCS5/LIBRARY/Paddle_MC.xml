@@ -1,8 +1,8 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Paddle_MC" itemID="4c339dc2-00000144" linkageExportForAS="true" linkageClassName="breakout.assets.Paddle_MC" sourceLibraryItemHRef="Symbol 1" lastModified="1281989739">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Paddle_MC" itemID="4c339dc2-00000144" linkageExportForAS="true" linkageClassName="breakout.assets.Paddle_MC" sourceLibraryItemHRef="Symbol 1" lastModified="1282232441">
   <timeline>
-    <DOMTimeline name="Paddle_MC" currentFrame="100">
+    <DOMTimeline name="Paddle_MC" currentFrame="103">
       <layers>
-        <DOMLayer name="Layer 1" color="#4FFF4F">
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
           <frames>
             <DOMFrame index="0" name="Normal" labelType="name" keyMode="9728">
               <elements>
@@ -45,9 +45,12 @@
             <DOMFrame index="61" duration="40" name="Intro" labelType="name" keyMode="9728">
               <elements/>
             </DOMFrame>
+            <DOMFrame index="101" duration="40" name="Outro" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
           </frames>
         </DOMLayer>
-        <DOMLayer name="Layer 16" color="#FF4F4F" current="true" isSelected="true">
+        <DOMLayer name="Layer 16" color="#FF4F4F">
           <frames>
             <DOMFrame index="0" duration="39" keyMode="9728">
               <elements/>
@@ -172,7 +175,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="49" keyMode="15872">
+            <DOMFrame index="49" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" selected="true" symbolType="graphic" firstFrame="1" loop="single frame">
                   <matrix>
@@ -184,7 +187,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="50" keyMode="15872">
+            <DOMFrame index="50" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="2" loop="single frame">
                   <matrix>
@@ -196,7 +199,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="51" keyMode="15872">
+            <DOMFrame index="51" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="3" loop="single frame">
                   <matrix>
@@ -208,7 +211,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="52" keyMode="15872">
+            <DOMFrame index="52" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="4" loop="single frame">
                   <matrix>
@@ -220,7 +223,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="53" keyMode="15872">
+            <DOMFrame index="53" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" selected="true" symbolType="graphic" firstFrame="5" loop="loop">
                   <matrix>
@@ -256,7 +259,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="56" keyMode="15872">
+            <DOMFrame index="56" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" selected="true" symbolType="graphic" firstFrame="5" loop="loop">
                   <matrix>
@@ -268,7 +271,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="57" keyMode="15872">
+            <DOMFrame index="57" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="4" loop="single frame">
                   <matrix>
@@ -280,7 +283,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="58" keyMode="15872">
+            <DOMFrame index="58" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="3" loop="single frame">
                   <matrix>
@@ -292,7 +295,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="59" keyMode="15872">
+            <DOMFrame index="59" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="2" loop="single frame">
                   <matrix>
@@ -304,7 +307,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="60" keyMode="15872">
+            <DOMFrame index="60" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/magnet_out" name="" symbolType="graphic" firstFrame="1" loop="single frame">
                   <matrix>
@@ -318,7 +321,7 @@
             </DOMFrame>
             <DOMFrame index="61" keyMode="9728">
               <elements>
-                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" loop="play once">
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" symbolType="graphic" loop="play once">
                   <matrix>
                     <Matrix a="0.99884033203125" d="0.9974365234375" tx="0.45" ty="0.3"/>
                   </matrix>
@@ -330,7 +333,7 @@
             </DOMFrame>
             <DOMFrame index="62" keyMode="9728">
               <elements>
-                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="1" loop="play once">
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" symbolType="graphic" firstFrame="1" loop="play once">
                   <matrix>
                     <Matrix a="0.998260498046875" d="0.9974365234375" tx="15.65" ty="0.6"/>
                   </matrix>
@@ -786,12 +789,492 @@
             </DOMFrame>
             <DOMFrame index="100" keyMode="9728">
               <elements>
-                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="39" loop="play once">
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" symbolType="graphic" firstFrame="39" loop="play once">
                   <matrix>
                     <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
                   </matrix>
                   <transformationPoint>
                     <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="101" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" symbolType="graphic" firstFrame="39" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="102" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="38" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="103" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" symbolType="graphic" firstFrame="37" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="104" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="36" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="105" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="35" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="106" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" symbolType="graphic" firstFrame="34" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="107" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="33" loop="play once">
+                  <matrix>
+                    <Matrix a="0.999420166015625" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-41.95" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="108" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="32" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="109" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="31" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="110" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="30" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="111" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="29" loop="play once">
+                  <matrix>
+                    <Matrix a="0.998260498046875" d="0.9974365234375" tx="42.55" ty="8.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="112" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="28" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="113" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="27" loop="play once">
+                  <matrix>
+                    <Matrix a="0.999420166015625" d="0.9974365234375" tx="43.8" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-43.25" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="114" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="26" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.25"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-7.95"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="115" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="25" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="9.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-9.2"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="116" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="24" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="9.45"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-9.15"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="117" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="23" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="8.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-8.35"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="118" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="22" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="9.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-9"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="119" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="21" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="9.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-9.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="120" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="20" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8.55"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="121" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="19" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="8.65"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-8.35"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="122" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="18" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="8.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-8.25"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="123" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="17" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.5" ty="9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-41.95" y="-8.7"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="124" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="16" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="125" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="15" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="9.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-9.05"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="126" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="14" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.9"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8.6"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="127" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="13" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="9.15"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-8.85"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="128" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="12" loop="play once">
+                  <matrix>
+                    <Matrix a="0.9976806640625" d="0.9974365234375" tx="42.5" ty="8.8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="129" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="11" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="9.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-9"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="130" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="10" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="8.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-8"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="131" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="9" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.55" ty="10.35"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42" y="-10.1"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="132" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="8" loop="play once">
+                  <matrix>
+                    <Matrix a="0.9976806640625" d="0.9974365234375" tx="42.6" ty="9.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.1" y="-9.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="133" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="7" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.4" ty="10.55"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-41.85" y="-10.3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="134" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="6" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.7" ty="7.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.15" y="-7.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="135" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="5" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.65" ty="5.7"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.1" y="-5.4"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="136" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="4" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.7" ty="3.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.15" y="-3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="137" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="3" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="42.6" ty="0.75"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-42.05" y="-0.45"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="138" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" selected="true" symbolType="graphic" firstFrame="2" loop="play once">
+                  <matrix>
+                    <Matrix a="0.9976806640625" d="0.9974365234375" tx="29.95" ty="0.8"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-29.5" y="-0.5"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="139" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" symbolType="graphic" firstFrame="1" loop="play once">
+                  <matrix>
+                    <Matrix a="0.998260498046875" d="0.9974365234375" tx="15.65" ty="0.6"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-15.1" y="-0.3"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="140" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="paddle_intro_anim" name="" symbolType="graphic" loop="play once">
+                  <matrix>
+                    <Matrix a="0.99884033203125" d="0.9974365234375" tx="0.45" ty="0.3"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
                   </transformationPoint>
                 </DOMSymbolInstance>
               </elements>
@@ -1169,8 +1652,8 @@
                   </strokes>
                   <edges>
                     <Edge strokeStyle="1" edges="
-!1529 120|1552 120!1552 120[1550 132 1529 120!197 182[204 159 215 120!215 120|332 120!332 120|332 68!332 68|560 68!560 68|560 176!560 176|673 176!673 176[696 193 705 191!705 191[731 84 833 120!833 120|901 43!901 43|1032 41!1032 41|1090
- 77!1090 77|1200 113!1200 113|1529 120"/>
+!197 182[204 159 215 120!215 120|332 120!332 120|332 68!332 68|560 68!560 68|560 176!560 176|673 176!673 176[696 193 705 191!705 191[731 84 833 120!833 120|901 43!901 43|1032 41!1032 41|1090 77!1090 77|1200 113!1200 113|1529 120!1529
+ 120[1550 132 1552 120!1552 120|1529 120"/>
                   </edges>
                 </DOMShape>
               </elements>
@@ -1251,7 +1734,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="38" keyMode="15872">
+            <DOMFrame index="38" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/l3" name="" centerPoint3DX="10" centerPoint3DY="8">
                   <matrix>
@@ -1280,7 +1763,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1299,7 +1782,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1321,7 +1804,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1344,7 +1827,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1366,7 +1849,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1389,7 +1872,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1412,7 +1895,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1435,14 +1918,14 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
                   </strokes>
                   <edges>
                     <Edge strokeStyle="1" edges="
-!326 151S4|326 120!326 120|211 120!211 120|326 151!326 151|548 120!548 120|548 79!548 79|572 79!572 79|616 51!616 51|726 51!726 51|832 120!832 120|970 166!970 166|1050 166!1050 166|1149 120!1149 120|1282 120!1282 120[1320 97 1367 109
+!326 151S4|211 120!211 120|326 120!326 120|326 151!326 151|548 120!548 120|548 79!548 79|572 79!572 79|616 51!616 51|726 51!726 51|832 120!832 120|970 166!970 166|1050 166!1050 166|1149 120!1149 120|1282 120!1282 120[1320 97 1367 109
 !1367 109[1382 113 1397 120"/>
                   </edges>
                 </DOMShape>
@@ -1458,7 +1941,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1477,7 +1960,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1496,7 +1979,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1516,7 +1999,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1535,7 +2018,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1555,7 +2038,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1574,7 +2057,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1593,7 +2076,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1613,7 +2096,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1633,7 +2116,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1652,7 +2135,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1671,7 +2154,7 @@
                     <StrokeStyle index="1">
                       <SolidStroke scaleMode="normal">
                         <fill>
-                          <SolidColor color="#F3CFF3" alpha="0.501960784313725"/>
+                          <SolidColor color="#F3CFF3" alpha="0.498039215686275"/>
                         </fill>
                       </SolidStroke>
                     </StrokeStyle>
@@ -1720,7 +2203,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="38" keyMode="15872">
+            <DOMFrame index="38" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/l2" name="" centerPoint3DX="13" centerPoint3DY="8">
                   <matrix>
@@ -1747,7 +2230,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -1780,7 +2263,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -1815,7 +2298,7 @@
                   </matrix>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -1848,7 +2331,7 @@
                   </matrix>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -1881,7 +2364,7 @@
                   </matrix>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -1909,7 +2392,7 @@
                   </matrix>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -1940,7 +2423,7 @@
                   </matrix>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -1970,7 +2453,7 @@
                   </matrix>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -1997,7 +2480,7 @@
                   </matrix>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2021,7 +2504,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2052,7 +2535,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2082,7 +2565,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2106,7 +2589,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2133,7 +2616,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2164,7 +2647,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2192,7 +2675,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2227,7 +2710,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2253,7 +2736,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2286,7 +2769,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2318,7 +2801,7 @@
                 <DOMShape>
                   <fills>
                     <FillStyle index="1">
-                      <SolidColor color="#FF66FF" alpha="0.301960784313725"/>
+                      <SolidColor color="#FF66FF" alpha="0.298039215686275"/>
                     </FillStyle>
                   </fills>
                   <edges>
@@ -2379,7 +2862,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="38" keyMode="15872">
+            <DOMFrame index="38" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/l1" name="" centerPoint3DX="13" centerPoint3DY="8">
                   <matrix>
@@ -2434,7 +2917,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="38" keyMode="15872">
+            <DOMFrame index="38" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/r3" name="" centerPoint3DX="75" centerPoint3DY="8">
                   <matrix>
@@ -2489,7 +2972,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="38" keyMode="15872">
+            <DOMFrame index="38" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/r2" name="" centerPoint3DX="73" centerPoint3DY="8">
                   <matrix>
@@ -2544,7 +3027,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="38" keyMode="15872">
+            <DOMFrame index="38" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/r1" name="" centerPoint3DX="73" centerPoint3DY="8">
                   <matrix>
@@ -2599,7 +3082,7 @@
                 </DOMSymbolInstance>
               </elements>
             </DOMFrame>
-            <DOMFrame index="38" keyMode="15872">
+            <DOMFrame index="38" keyMode="9728">
               <elements>
                 <DOMSymbolInstance libraryItemName="paddle_assets/center" name="" centerPoint3DX="38" centerPoint3DY="8">
                   <matrix>

@@ -14,9 +14,8 @@
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
-    <class path="..\..\..\SWFExplorer 0.6\src" />
-    <class path="..\..\..\Flint_2_1_4_source" />
     <class path="..\..\..\wck" />
+    <class path="..\..\..\FSM_Source_1_0\Classes" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -54,6 +53,10 @@
     <element path="libs\MonsterProofEngine.swc" />
     <element path="libs\Box2DAS\Box2D.swc" />
     <element path="libs\Box2D.swc" />
+    <element path="libs\Flint2d.swc" />
+    <element path="libs\SWFExplorer.swc" />
+    <element path="libs\InAssetsUtils.swc" />
+    <element path="libs\UIComponents.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

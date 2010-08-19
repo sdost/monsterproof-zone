@@ -1,8 +1,8 @@
 package com.bored.games.breakout.objects.collectables 
 {
 	import com.bored.games.breakout.actions.ExtendPaddleAction;
-	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
-	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.sven.factories.AnimatedSpriteFactory;
+	import com.sven.animation.AnimatedSprite;
 	
 	/**
 	 * ...

@@ -65,7 +65,7 @@ package com.bored.games.breakout.states.views
 	 */
 	public class HUDView extends StateView
 	{
-		[Embed(source='../../../../../../../assets/GameAssets.swf', fontFamily='Enter Sansman')]
+		[Embed(source='../../../../../../../assets/GameAssets.swf', symbol='breakout.assets.BreakoutFont')]
 		private static var fontCls:Class;
 		
 		private static var bitmapFont:BitmapFont = BitmapFontFactory.generateBitmapFont(new fontCls());

@@ -1,8 +1,6 @@
 package com.bored.games.breakout.emitters 
 {
 	import com.bored.games.breakout.objects.Ball;
-	import com.greensock.easing.Quad;
-	import com.greensock.layout.ScaleMode;
 	import com.sven.utils.AppSettings;
 	import flash.display.BlendMode;
 	import flash.geom.Point;

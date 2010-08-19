@@ -1,6 +1,5 @@
 package com.bored.games.breakout.actions 
 {
-	import com.greensock.TweenMax;
 	import flash.geom.ColorTransform;
 	import org.flintparticles.common.actions.ActionBase;
 	import org.flintparticles.common.emitters.Emitter;

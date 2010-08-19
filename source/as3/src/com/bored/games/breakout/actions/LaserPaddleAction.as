@@ -5,15 +5,15 @@ package com.bored.games.breakout.actions
 	import Box2DAS.Dynamics.b2BodyDef;
 	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.actions.Action;
-	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
-	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.bored.games.objects.GameElement;
+	import com.sven.factories.AnimatedSpriteFactory;
+	import com.sven.animation.AnimatedSprite;
 	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.Bullet;
 	import com.bored.games.breakout.objects.Paddle;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.input.Input;
-	import com.bored.games.objects.GameElement;
 	import flash.display.MovieClip;
 	import flash.utils.getTimer;
 	

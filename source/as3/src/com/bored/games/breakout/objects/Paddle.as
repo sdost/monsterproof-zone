@@ -17,7 +17,10 @@ package com.bored.games.breakout.objects
 	import com.bored.games.breakout.actions.ExtendPaddleAction;
 	import com.bored.games.breakout.actions.LaserPaddleAction;
 	import com.bored.games.breakout.actions.SuperLaserPaddleAction;
-	import com.bored.games.breakout.factories.AnimationSetFactory;
+	import com.sven.animation.AnimatedSprite;
+	import com.sven.animation.AnimationController;
+	import com.sven.animation.AnimationSet;
+	import com.sven.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
@@ -40,6 +43,7 @@ package com.bored.games.breakout.objects
 		
 		// Paddle Transitions
 		public static const PADDLE_INTRO:String = "Intro";
+		public static const PADDLE_OUTRO:String = "Outro";
 		public static const PADDLE_EXTEND_IN:String = "ExtendIn";
 		public static const PADDLE_EXTEND_OUT:String = "ExtendOut";
 		public static const PADDLE_LASER_IN:String = "LaserIn";
@@ -171,6 +175,10 @@ package com.bored.games.breakout.objects
 			{
 				_animationController.setAnimation(_animatedSprite, false);
 				_animationController.addEventListener(AnimationController.ANIMATION_COMPLETE, introComplete, false, 0, true);
+			}
+			else if (a_str == PADDLE_OUTRO)
+			{
+				_animationController.setAnimation(_animatedSprite, false);
 			}
 			else if (a_str == PADDLE_EXTEND_IN)
 			{

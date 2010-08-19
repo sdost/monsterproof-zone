@@ -5,7 +5,7 @@ package com.bored.games.breakout.objects.bricks
 	import Box2DAS.Common.V2;
 	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.MeltBrickAction;
-	import com.bored.games.breakout.objects.AnimationSet;
+	import com.sven.animation.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.sven.utils.AppSettings;

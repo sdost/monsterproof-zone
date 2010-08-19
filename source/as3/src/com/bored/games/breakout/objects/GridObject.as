@@ -3,7 +3,7 @@ package com.bored.games.breakout.objects
 	import com.bored.games.breakout.actions.RemoveGridObjectAction;
 	import com.bored.games.objects.GameElement;
 	import com.sven.utils.AppSettings;
-	import com.sven.utils.ImageFactory;
+	import com.sven.factories.ImageFactory;
 	import flash.display.Bitmap;
 	import flash.display.DisplayObject;
 	

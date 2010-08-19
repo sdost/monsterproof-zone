@@ -1,4 +1,4 @@
-package com.bored.games.breakout.objects 
+package com.bored.games.breakout.objects
 {
 	import Box2DAS.Collision.Shapes.b2PolygonShape;
 	import Box2DAS.Collision.Shapes.b2Shape;

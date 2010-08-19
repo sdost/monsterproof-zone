@@ -8,10 +8,9 @@ package com.bored.games.breakout.objects.collectables
 	import Box2DAS.Dynamics.b2Filter;
 	import Box2DAS.Dynamics.b2Fixture;
 	import Box2DAS.Dynamics.b2FixtureDef;
-	import com.bored.games.animations.AnimatedShot;
-	import com.bored.games.breakout.objects.AnimatedSprite;
-	import com.bored.games.breakout.objects.AnimationController;
-	import com.bored.games.breakout.objects.AnimationSet;
+	import com.sven.animation.AnimatedSprite;
+	import com.sven.animation.AnimationController;
+	import com.sven.animation.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;

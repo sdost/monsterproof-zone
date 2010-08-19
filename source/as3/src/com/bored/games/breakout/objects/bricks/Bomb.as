@@ -2,9 +2,9 @@ package com.bored.games.breakout.objects.bricks
 {
 	import com.bored.games.breakout.actions.ExplodeBrickAction;
 	import com.bored.games.breakout.emitters.BrickExplosion;
-	import com.bored.games.breakout.objects.AnimatedSprite;
-	import com.bored.games.breakout.objects.AnimationController;
-	import com.bored.games.breakout.objects.AnimationSet;
+	import com.sven.animation.AnimatedSprite;
+	import com.sven.animation.AnimationController;
+	import com.sven.animation.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.sven.utils.AppSettings;

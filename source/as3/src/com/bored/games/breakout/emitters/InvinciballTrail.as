@@ -14,9 +14,9 @@ package com.bored.games.breakout.emitters
 	import org.flintparticles.common.initializers.ImageClass;
 	import org.flintparticles.common.initializers.Lifetime;
 	import org.flintparticles.common.initializers.SharedImage;
-	import org.flintparticles.threeD.actions.ScaleAll;
 	import org.flintparticles.twoD.actions.Move;
 	import org.flintparticles.twoD.actions.MutualGravity;
+	import org.flintparticles.twoD.actions.ScaleAll;
 	import org.flintparticles.twoD.actions.TweenToZone;
 	import org.flintparticles.twoD.initializers.Position;
 	import org.flintparticles.twoD.initializers.Velocity;

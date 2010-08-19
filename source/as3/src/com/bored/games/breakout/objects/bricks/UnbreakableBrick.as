@@ -1,7 +1,7 @@
 package com.bored.games.breakout.objects.bricks 
 {
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
-	import com.bored.games.breakout.objects.AnimationSet;
+	import com.sven.animation.AnimationSet;
 	
 	/**
 	 * ...

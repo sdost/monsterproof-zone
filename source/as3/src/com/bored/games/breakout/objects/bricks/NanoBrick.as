@@ -2,8 +2,8 @@ package com.bored.games.breakout.objects.bricks
 {
 	import Box2DAS.Dynamics.b2Filter;
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
-	import com.bored.games.breakout.objects.AnimationController;
-	import com.bored.games.breakout.objects.AnimationSet;
+	import com.sven.animation.AnimationController;
+	import com.sven.animation.AnimationSet;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.states.views.GameView;
 	import flash.display.BitmapData;

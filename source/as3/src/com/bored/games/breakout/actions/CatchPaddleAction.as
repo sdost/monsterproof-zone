@@ -4,8 +4,6 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.Paddle;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
-	import com.jac.soundManager.ISMSound;
-	import com.jac.soundManager.SoundManager;
 	import flash.utils.getTimer;
 	
 	/**
@@ -18,8 +16,6 @@ package com.bored.games.breakout.actions
 		
 		private var _startTime:int;
 		private var _effectTime:int;
-		
-		private var _sndFX:ISMSound;
 		
 		public function CatchPaddleAction(a_gameElement:GameElement, a_params:Object = null) 
 		{

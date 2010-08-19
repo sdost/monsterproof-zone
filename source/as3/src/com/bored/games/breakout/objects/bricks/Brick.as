@@ -9,15 +9,15 @@ package com.bored.games.breakout.objects.bricks
 	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.RemoveGridObjectAction;
 	import com.bored.games.breakout.actions.SpawnCollectable;
-	import com.bored.games.breakout.objects.AnimatedSprite;
-	import com.bored.games.breakout.objects.AnimationSet;
+	import com.sven.animation.AnimatedSprite;
+	import com.sven.animation.AnimationSet;
 	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.Grid;
 	import com.bored.games.breakout.objects.GridObject;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.sven.utils.AppSettings;
-	import com.sven.utils.ImageFactory;
+	import com.sven.factories.ImageFactory;
 	import flash.display.BitmapData;
 	import org.flintparticles.common.renderers.Renderer;
 	

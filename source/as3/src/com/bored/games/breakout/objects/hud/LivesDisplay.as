@@ -1,6 +1,5 @@
 package com.bored.games.breakout.objects.hud 
 {
-	import com.bored.games.objects.GameElement;
 	import com.sven.text.BitmapFont;
 	import com.sven.text.GameChar;
 	import com.sven.text.GameWord;

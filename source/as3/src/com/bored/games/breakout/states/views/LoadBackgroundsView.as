@@ -1,7 +1,7 @@
 package com.bored.games.breakout.states.views
 {
-	import com.bored.games.breakout.factories.AnimationSetFactory;
-	import com.bored.games.breakout.objects.AnimationSet;
+	import com.sven.factories.AnimationSetFactory;
+	import com.sven.animation.AnimationSet;
 	import com.jac.fsm.StateView;
 	import com.sven.utils.AppSettings;
 	import flash.display.Loader;

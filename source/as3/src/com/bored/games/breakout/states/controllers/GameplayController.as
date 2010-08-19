@@ -9,9 +9,6 @@ package com.bored.games.breakout.states.controllers
 	import com.jac.fsm.stateEvents.StateEvent;
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
-	import com.jac.soundManager.SMSound;
-	import com.jac.soundManager.SoundController;
-	import com.jac.soundManager.SoundManager;
 	import com.sven.utils.AppSettings;
 	import flash.display.MovieClip;
 	import flash.events.Event;
@@ -37,7 +34,6 @@ package com.bored.games.breakout.states.controllers
 		private var _gameView:StateView;
 		private var _hudView:StateView;
 		private var _input:Input;
-		private var _sm:SoundManager;
 		
 		private var _running:Boolean;
 		
@@ -53,10 +49,6 @@ package com.bored.games.breakout.states.controllers
 			_period = 1000 / a_container.stage.frameRate;
 			
 			_input = new Input(a_container);
-			
-			_sm = SoundManager.getInstance();
-			_sm.addSoundController( new SoundController("sfxController") );
-			//_sm.setVolume(0.1);
 			
 			_running = false;
 			
@@ -89,6 +81,7 @@ package com.bored.games.breakout.states.controllers
 			
 			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
 			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
+			(_gameView as GameView).show();
 		}//end startGame()
 		
 		private function levelLoaded(e:Event):void
@@ -189,6 +182,7 @@ package com.bored.games.breakout.states.controllers
 			
 			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
 			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
+			(_gameView as GameView).show();
 		}//end advanceLevel()
 				
 		private function levelFinished(e:ObjectEvent = null):void

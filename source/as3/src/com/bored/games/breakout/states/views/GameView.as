@@ -32,14 +32,14 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.emitters.CollectionFizzle;
 	import com.bored.games.breakout.emitters.ImpactSparks;
 	import com.bored.games.breakout.emitters.PortalVortex;
-	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
-	import com.bored.games.breakout.factories.AnimationSetFactory;
-	import com.bored.games.breakout.objects.AnimationSet;
+	import com.sven.factories.AnimatedSpriteFactory;
+	import com.sven.factories.AnimationSetFactory;
+	import com.sven.animation.AnimationSet;
 	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.Beam;
 	import com.bored.games.breakout.objects.bricks.Bomb;
 	import com.bored.games.breakout.objects.bricks.Brick;
-	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.sven.animation.AnimatedSprite;
 	import com.bored.games.breakout.objects.bricks.LimpBrick;
 	import com.bored.games.breakout.objects.bricks.MultiHitBrick;
 	import com.bored.games.breakout.objects.bricks.NanoBrick;
@@ -65,9 +65,6 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.objects.GameElement;
 	import com.inassets.events.ObjectEvent;
 	import com.jac.fsm.StateView;
-	import com.jac.soundManager.SMSound;
-	import com.jac.soundManager.SoundController;
-	import com.jac.soundManager.SoundManager;
 	import com.sven.utils.AppSettings;
 	import de.polygonal.ds.mem.MemoryManager;
 	import de.polygonal.ds.SLL;
@@ -279,7 +276,6 @@ package com.bored.games.breakout.states.views
 			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), true );
 			addChild((ParticleRenderer as BitmapRenderer));
 			
-			var sfx:SoundController = SoundManager.getInstance().getSoundControllerByID("sfxController");
 			//sfx.addSound( new SMSound( sfx_BallWallBounce, "breakout.assets.sfx.Bounce1" ) );
 			//sfx.addSound( new SMSound( sfx_BallPaddleBounce, "breakout.assets.sfx.Bounce2" ) );
 			//sfx.addSound( new SMSound( sfx_BrickExplode, "breakout.assets.sfx.Explode" ) );
@@ -353,11 +349,19 @@ package com.bored.games.breakout.states.views
 			_paddleMultiplierManager.initParams( { "maxMultiplier": AppSettings.instance.paddleMultiplierMax } );
 			
 			PhysicsWorld.UpdateWorld();
-			
-			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
-			
+						
 			enterComplete();
 		}//end enter()
+				
+		public function show():void
+		{
+			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
+		}//end showGameScreen()
+		
+		public function hide():void
+		{
+			this.removeEventListener(Event.RENDER, renderFrame);
+		}//end showGameScreen()
 		
 		public function loadNextLevel(url:String):void
 		{			
@@ -654,11 +658,18 @@ package com.bored.games.breakout.states.views
 					{
 						var dist:V2 = a_ball.GetDistance(a_fixture);
 						
-						if ( dist.length() > 0.2 ) return;
+						/*if ( dist.length() > 0.2 )*/ return;
 						
-						_paused = true;
-											
-						startVortex();
+						resetGame();
+			
+						var vortex:PortalVortex = new PortalVortex(_gameScreen, a_fixture.GetUserData() as Portal);
+						vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
+						GameView.ParticleRenderer.addEmitter(vortex);
+						vortex.start();
+						
+						hide();
+							
+						_gameScreen.bitmapData.fillRect(_gameScreen.bitmapData.rect, 0xFF000000);
 					}
 				}
 				else
@@ -689,24 +700,12 @@ package com.bored.games.breakout.states.views
 			}
 		}//end handleBallCollision()
 		
-		public function startVortex():void
-		{
-			resetGame();
-			
-			var vortex:PortalVortex = new PortalVortex(_gameScreen);
-			vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
-			GameView.ParticleRenderer.addEmitter(vortex);
-			vortex.start();
-			
-			dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() } ));
-			
-			_gameScreen.bitmapData.fillRect(_gameScreen.bitmapData.rect, 0x00000000);
-		}//end startVortex()
-		
 		private function vortexComplete(e:EmitterEvent):void
 		{
 			Emitter2D(e.currentTarget).stop();
 			GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
+			
+			dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() } ));
 		}//end vortexComplete()
 		
 		private function handleCollectableCollision(a_collectable:b2Fixture, a_fixture:b2Fixture):void
@@ -954,6 +953,8 @@ package com.bored.games.breakout.states.views
 			
 			if ( _grid.isEmpty() ) 
 			{
+				_paused = true;
+				_paddle.switchAnimation(Paddle.PADDLE_OUTRO);
 				dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() }));
 			}
 			

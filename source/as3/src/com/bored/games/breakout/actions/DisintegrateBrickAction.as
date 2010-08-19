@@ -5,9 +5,6 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
-	import com.jac.soundManager.SMSound;
-	import com.jac.soundManager.SoundController;
-	import com.jac.soundManager.SoundManager;
 	import flash.events.Event;
 	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.common.renderers.Renderer;

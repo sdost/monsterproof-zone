@@ -6,8 +6,8 @@ package com.bored.games.breakout.objects.collectables
 	import Box2DAS.Dynamics.b2BodyDef;
 	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.breakout.actions.CatchPaddleAction;
-	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
-	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.sven.factories.AnimatedSpriteFactory;
+	import com.sven.animation.AnimatedSprite;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.sven.utils.AppSettings;

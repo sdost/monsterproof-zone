@@ -34,7 +34,7 @@ package com.bored.games.breakout.emitters
 	public class PortalVortex extends Emitter2D
 	{
 		
-		public function PortalVortex(a_screen:Bitmap) 
+		public function PortalVortex(a_screen:Bitmap, a_portal:Portal) 
 		{
 			addInitializer( new Lifetime( 1.0, 2.0 ) );
 			
@@ -45,8 +45,8 @@ package com.bored.games.breakout.emitters
 			var particles:Array = Particle2DUtils.createRectangleParticlesFromBitmapData(a_screen.bitmapData, 16, this.particleFactory, 0, 0);
 			addExistingParticles(particles, true);			
 			
-			var xOffset:Number = a_screen.bitmapData.width / 2;
-			var yOffset:Number = a_screen.bitmapData.height / 2;
+			var xOffset:Number = a_portal.x + a_portal.width / 2;
+			var yOffset:Number = a_portal.y + a_portal.height / 2;
 			
 			addAction( new GravityWell( 400, xOffset, yOffset, 100 ) );
 		}//end constructor()

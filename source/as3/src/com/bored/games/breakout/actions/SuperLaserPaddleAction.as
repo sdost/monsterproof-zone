@@ -6,8 +6,8 @@ package com.bored.games.breakout.actions
 	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.emitters.UltimatePower;
-	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
-	import com.bored.games.breakout.objects.AnimatedSprite;
+	import com.sven.factories.AnimatedSpriteFactory;
+	import com.sven.animation.AnimatedSprite;
 	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.Beam;
 	import com.bored.games.breakout.objects.Bullet;

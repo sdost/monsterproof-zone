@@ -11,8 +11,10 @@ package com.bored.games.breakout.objects
 	import com.bored.games.breakout.actions.DestructoballAction;
 	import com.bored.games.breakout.actions.IntroduceBallAction;
 	import com.bored.games.breakout.actions.InvinciballAction;
-	import com.bored.games.breakout.factories.AnimatedSpriteFactory;
-	import com.bored.games.breakout.factories.AnimationSetFactory;
+	import com.sven.animation.AnimatedSprite;
+	import com.sven.animation.AnimationSet;
+	import com.sven.factories.AnimatedSpriteFactory;
+	import com.sven.factories.AnimationSetFactory;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;

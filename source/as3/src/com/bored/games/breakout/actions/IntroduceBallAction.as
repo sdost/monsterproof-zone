@@ -9,7 +9,6 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
-	import com.jac.soundManager.SoundManager;
 	import flash.events.Event;
 	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.common.renderers.Renderer;

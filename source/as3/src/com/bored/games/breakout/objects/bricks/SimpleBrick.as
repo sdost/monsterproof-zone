@@ -3,7 +3,7 @@ package com.bored.games.breakout.objects.bricks
 	import Box2DAS.Common.V2;
 	import Box2DAS.Dynamics.b2Body;
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
-	import com.bored.games.breakout.objects.AnimationSet;
+	import com.sven.animation.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import org.flintparticles.common.renderers.Renderer;
 	

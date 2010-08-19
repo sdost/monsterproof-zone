@@ -532,6 +532,11 @@ package com.bored.games.breakout.states.views
 			ball.showBall();
 		}//end newBall()
 		
+		public function pause(a_bool:Boolean):void
+		{
+			_paused = a_bool;
+		}//end pause()
+		
 		private function addBallAt(a_x:Number = 0, a_y:Number = 0):Ball
 		{
 			var ball:Ball = new Ball();

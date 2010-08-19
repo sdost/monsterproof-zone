@@ -15,6 +15,7 @@ package com.bored.games.breakout.states.controllers
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.TimerEvent;
+	import flash.filters.BlurFilter;
 	import flash.ui.Keyboard;
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
@@ -223,25 +224,40 @@ package com.bored.games.breakout.states.controllers
 			this.update();
 			container.stage.invalidate();
 			
-			if (_running)
-			{				
-				if ( Input.isKeyDown(Keyboard.F2) )
-				{
-					levelFinished();
+			var delta:Number = getTimer() - _lastUpdate;
+			_lastUpdate = getTimer();
+			
+			if ( !Input.mouseLeftStage )
+			{
+				(_hudView as HUDView).pause(false);
+				(_gameView as GameView).pause(false);
+				container.filters = [];				
+				
+				if (_running)
+				{				
+					if ( Input.isKeyDown(Keyboard.F2) )
+					{
+						levelFinished();
+					}
+				
+					_timeLeft -= delta;
+					
+					(_hudView as HUDView).scoreDisp = AppSettings.instance.userProfile.score;
+					(_hudView as HUDView).timerDisp = _timeLeft;
+					(_hudView as HUDView).livesDisp = AppSettings.instance.userProfile.lives;
+					
+					if ( _timeLeft <= 0 )
+					{
+						endGame();
+					}
 				}
+			}
+			else
+			{
 				
-				var delta:Number = getTimer() - _lastUpdate;
-				_lastUpdate = getTimer();
-				_timeLeft -= delta;
-				
-				(_hudView as HUDView).scoreDisp = AppSettings.instance.userProfile.score;
-				(_hudView as HUDView).timerDisp = _timeLeft;
-				(_hudView as HUDView).livesDisp = AppSettings.instance.userProfile.lives;
-				
-				if ( _timeLeft <= 0 )
-				{
-					endGame();
-				}
+				(_hudView as HUDView).pause(true);
+				(_gameView as GameView).pause(true);
+				container.filters = [new BlurFilter()];
 			}
 		}//end frameUpdate()
 		

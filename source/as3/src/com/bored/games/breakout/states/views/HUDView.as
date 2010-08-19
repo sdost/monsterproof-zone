@@ -391,6 +391,11 @@ package com.bored.games.breakout.states.views
 			_livesDisp.lives = a_num;
 		}//end set scoreDisp()
 		
+		public function pause(a_bool:Boolean):void
+		{
+			_paused = a_bool;
+		}//end pause();
+		
 		override public function update():void 
 		{
 			var delta:Number = getTimer() - _lastUpdate;

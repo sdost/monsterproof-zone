@@ -2,6 +2,8 @@ package com.bored.games.breakout.objects.bricks
 {
 	import Box2DAS.Dynamics.b2Filter;
 	import com.bored.games.breakout.actions.DisintegrateBrickAction;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import com.sven.animation.AnimationController;
 	import com.sven.animation.AnimationSet;
 	import com.bored.games.breakout.objects.Grid;
@@ -107,6 +109,9 @@ package com.bored.games.breakout.objects.bricks
 			filter.categoryBits = GameView.id_Brick;
 				
 			_brickFixture.SetFilterData(filter);
+			
+			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxNanoGrowth");
+			if (snd) snd.play();
 			
 			_animatedSprite = _animationSet.getAnimation(NANO_REVIVE);
 			_animController.setAnimation(_animatedSprite, false);

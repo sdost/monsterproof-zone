@@ -5,6 +5,8 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import flash.events.Event;
 	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.twoD.emitters.Emitter2D;
@@ -27,7 +29,10 @@ package com.bored.games.breakout.actions
 		{
 			_finished = false;
 			
-			//SoundManager.getInstance().getSoundControllerByID("sfxController").play(GameView.sfx_BrickExplode);
+			var v:int = uint(Math.random() * 3 + 1);
+				
+			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxBrickExplosion_" + v);
+			if (snd) snd.play();
 			
 			var emitter:BrickExplosion = new BrickExplosion( (_gameElement as Brick) );
 			emitter.useInternalTick = false;

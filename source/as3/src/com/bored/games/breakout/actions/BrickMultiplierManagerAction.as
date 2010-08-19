@@ -2,6 +2,8 @@ package com.bored.games.breakout.actions
 {
 	import com.bored.games.actions.Action;
 	import com.bored.games.objects.GameElement;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import flash.utils.getTimer;
 	
 	/**
@@ -41,6 +43,9 @@ package com.bored.games.breakout.actions
 		
 		public function increaseMultiplier():void
 		{
+			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxBrickMultiplierIncrease");
+			if (snd) snd.play();
+			
 			_multiplier++;
 			
 			if ( _multiplier > _maxMultiplier )

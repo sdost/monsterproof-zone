@@ -4,6 +4,8 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.Paddle;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import flash.utils.getTimer;
 	
 	/**
@@ -16,6 +18,8 @@ package com.bored.games.breakout.actions
 		
 		private var _startTime:int;
 		private var _effectTime:int;
+		
+		private var _sndLoop:MightySound;
 		
 		public function CatchPaddleAction(a_gameElement:GameElement, a_params:Object = null) 
 		{
@@ -31,7 +35,12 @@ package com.bored.games.breakout.actions
 		{	
 			_startTime = getTimer();
 			
-			//_sndFX = SoundManager.getInstance().getSoundControllerByID("sfxController").play(GameView.sfx_PaddleCatch);
+			_sndLoop = MightySoundManager.instance.getMightySoundByName("sfxPaddleCatchLoop");
+			if (_sndLoop)
+			{
+				_sndLoop.infiniteLoop = true;
+				_sndLoop.play();
+			}
 			
 			this.finished = false;
 		}//end startAction()
@@ -40,7 +49,7 @@ package com.bored.games.breakout.actions
 		{
 			if ( (getTimer() - _startTime) > _effectTime )
 			{	
-				//_sndFX.stopSound();
+				if(_sndLoop) _sndLoop.stop();
 				
 				this.finished = true;
 			}

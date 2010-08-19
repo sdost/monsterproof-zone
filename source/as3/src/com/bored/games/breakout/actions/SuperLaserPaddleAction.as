@@ -6,6 +6,8 @@ package com.bored.games.breakout.actions
 	import Box2DAS.Dynamics.b2FixtureDef;
 	import com.bored.games.actions.Action;
 	import com.bored.games.breakout.emitters.UltimatePower;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import com.sven.factories.AnimatedSpriteFactory;
 	import com.sven.animation.AnimatedSprite;
 	import com.bored.games.breakout.objects.Ball;
@@ -68,7 +70,10 @@ package com.bored.games.breakout.actions
 			}
 			
 			if ( Input.mouseDown )
-			{					
+			{	
+				var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxPaddleSuperLaserFire");
+				if (snd) snd.play();
+				
 				var beam:Beam = new Beam(_sprite);
 				var offsetX:Number = (_gameElement as Paddle).physicsBody.GetPosition().x;
 				var offsetY:Number = 0;

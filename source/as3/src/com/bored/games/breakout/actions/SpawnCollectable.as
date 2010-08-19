@@ -16,6 +16,8 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.physics.PhysicsWorld;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import com.sven.utils.AppSettings;
 	
 	/**
@@ -81,6 +83,9 @@ package com.bored.games.breakout.actions
 			}
 			
 			pb.physicsBody.SetTransform( new V2( xOffset / PhysicsWorld.PhysScale, yOffset / PhysicsWorld.PhysScale ), 0 );
+			
+			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxSpawnCollectable");
+			if (snd) snd.play();
 			
 			GameView.Collectables.append(pb);
 			

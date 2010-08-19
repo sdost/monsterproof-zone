@@ -6,6 +6,8 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.bricks.Brick;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import flash.events.Event;
 	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.common.renderers.Renderer;
@@ -27,6 +29,11 @@ package com.bored.games.breakout.actions
 		override public function startAction():void 
 		{
 			_finished = false;
+			
+			var v:int = uint(Math.random() * 3 + 1);
+				
+			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxBrickMelt_" + v);
+			if (snd) snd.play();
 			
 			var emitter:BrickMelt = new BrickMelt( (_gameElement as Brick) );
 			emitter.useInternalTick = false;

@@ -4,6 +4,8 @@ package com.bored.games.breakout.objects.bricks
 	import Box2DAS.Common.b2Def;
 	import Box2DAS.Common.V2;
 	import Box2DAS.Dynamics.b2FixtureDef;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import com.sven.animation.AnimationController;
 	import com.sven.animation.AnimationSet;
 	import com.bored.games.breakout.physics.PhysicsWorld;
@@ -27,6 +29,8 @@ package com.bored.games.breakout.objects.bricks
 		private var _animController:AnimationController;
 		
 		private var _open:Boolean;
+		
+		private var _sndLoop:MightySound;
 		
 		public function Portal(a_width:int, a_height:int, a_set:AnimationSet) 
 		{
@@ -89,6 +93,9 @@ package com.bored.games.breakout.objects.bricks
 			{	
 				_open  = true;
 				
+				var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxPortalOpen");
+				if (snd) snd.play();
+				
 				_animatedSprite = _animationSet.getAnimation(PORTAL_OPEN)
 			
 				_animController = new AnimationController(_animatedSprite);
@@ -114,6 +121,13 @@ package com.bored.games.breakout.objects.bricks
 		private function animationComplete(e:Event):void
 		{
 			_animController.removeEventListener(AnimationController.ANIMATION_COMPLETE, animationComplete);
+			
+			_sndLoop = MightySoundManager.instance.getMightySoundByName("sfxPortalLoop");
+			if (_sndLoop)
+			{
+				_sndLoop.infiniteLoop = true;
+				_sndLoop.play();
+			}
 			
 			_animatedSprite = _animationSet.getAnimation(PORTAL_LOOP);
 			_animController.setAnimation(_animatedSprite, true);

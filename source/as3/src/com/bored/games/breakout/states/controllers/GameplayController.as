@@ -6,6 +6,8 @@ package com.bored.games.breakout.states.controllers
 	import com.bored.games.breakout.states.views.TitleView;
 	import com.bored.games.input.Input;
 	import com.inassets.events.ObjectEvent;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import com.jac.fsm.stateEvents.StateEvent;
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
@@ -41,6 +43,8 @@ package com.bored.games.breakout.states.controllers
 		
 		private var _timeLeft:Number;
 		private var _lastUpdate:Number;
+		
+		private var _theme:MightySound;
 		
 		private var _callback:Function;
 		
@@ -93,6 +97,9 @@ package com.bored.games.breakout.states.controllers
 		
 		private function gameStartComplete(e:Event):void
 		{
+			_theme = MightySoundManager.instance.getMightySoundByName("musLevelTheme");
+			if (_theme) _theme.play();
+			
 			(_gameView as GameView).newBall();
 			
 			_timeLeft = AppSettings.instance.currentLevel.timeLimit;
@@ -151,6 +158,8 @@ package com.bored.games.breakout.states.controllers
 		
 		private function endGame():void
 		{
+			if (_theme) _theme.stop();
+			
 			(_gameView as GameView).removeEventListener("ballLost", ballLost);
 			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
 			(_gameView as GameView).removeEventListener("addPoints", addUserPoints);
@@ -186,7 +195,9 @@ package com.bored.games.breakout.states.controllers
 		}//end advanceLevel()
 				
 		private function levelFinished(e:ObjectEvent = null):void
-		{		
+		{	
+			if (_theme) _theme.stop();
+			
 			(_gameView as GameView).removeEventListener("ballLost", ballLost);
 			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
 			(_gameView as GameView).removeEventListener("addPoints", addUserPoints);

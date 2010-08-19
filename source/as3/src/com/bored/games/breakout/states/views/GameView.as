@@ -1,6 +1,8 @@
 package com.bored.games.breakout.states.views 
 {
 	import Box2DAS.Dynamics.ContactEvent;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import flash.utils.getDefinitionByName;
 	import Box2DAS.Collision.b2AABB;
 	import Box2DAS.Collision.b2Manifold;
@@ -604,7 +606,9 @@ package com.bored.games.breakout.states.views
 		
 		private function handleBallCollision(a_ball:b2Fixture, a_fixture:b2Fixture, a_point:V2):void
 		{
+			var v:int
 			var node:SLLNode;
+			var snd:MightySound;
 			
 			if ( a_fixture == _bottomWall )
 			{
@@ -613,7 +617,10 @@ package com.bored.games.breakout.states.views
 			}
 			else if ( a_fixture.GetFilterData().categoryBits == id_Wall )
 			{
-				//SoundManager.getInstance().getSoundControllerByID("sfxController").play(sfx_BallWallBounce);
+				v = uint(Math.random() * 3 + 1);
+				
+				snd = MightySoundManager.instance.getMightySoundByName("sfxWallCollision_" + v);
+				if (snd) snd.play();
 			}
 			else if ( a_fixture.GetUserData() is Paddle )
 			{
@@ -623,7 +630,10 @@ package com.bored.games.breakout.states.views
 				}
 				else
 				{
-					//SoundManager.getInstance().getSoundControllerByID("sfxController").play(sfx_BallPaddleBounce);
+					v = uint(Math.random() * 3 + 1);
+				
+					snd = MightySoundManager.instance.getMightySoundByName("sfxPaddleCollision_" + v);
+					if (snd) snd.play();
 				}
 				
 				if ( _paddleMultiplierManager.finished )
@@ -679,6 +689,11 @@ package com.bored.games.breakout.states.views
 						var vel:V2 = a_ball.GetBody().GetLinearVelocity();
 						
 						var angle:Number = Math.atan2(vel.x, vel.y);
+						
+						v = uint(Math.random() * 3 + 1);
+				
+						snd = MightySoundManager.instance.getMightySoundByName("sfxBallSparks_" + v);
+						if (snd) snd.play();
 					
 						var emitter:ImpactSparks = new ImpactSparks(
 							new Point( a_point.x * PhysicsWorld.PhysScale, a_point.y * PhysicsWorld.PhysScale ), 
@@ -712,6 +727,7 @@ package com.bored.games.breakout.states.views
 		{
 			var ind:int;
 			var node:SLLNode;
+			var snd:MightySound;
 			
 			if ( a_fixture == _bottomWall )
 			{
@@ -722,6 +738,9 @@ package com.bored.games.breakout.states.views
 			else if ( a_fixture.GetUserData() is Paddle )
 			{
 				Collectables.remove(a_collectable.GetUserData());
+				
+				snd = MightySoundManager.instance.getMightySoundByName("sfxCatchCollectable");
+				if (snd) snd.play();
 				
 				var emitter:CollectionFizzle = new CollectionFizzle(a_fixture.GetUserData() as Paddle);
 				emitter.useInternalTick = false;
@@ -738,6 +757,9 @@ package com.bored.games.breakout.states.views
 				
 				if ( a_collectable.GetUserData().actionName == "multiball" )
 				{
+					snd = MightySoundManager.instance.getMightySoundByName("sfxMultiballActivate");
+					if (snd) snd.play();
+					
 					var obj:Object = _balls.getNodeAt(0).val;
 					
 					addBallAt(obj.x, obj.y);

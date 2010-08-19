@@ -1,61 +1,54 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <externallyLoadedSounds>
-	<sound url="" id="Wall Collision Sound" />
-	<sound url="" id="Paddle Collision" />
-	<sound url="" id="Multi-hit break 1" />
-	<sound url="" id="Unbreakable Brick Collision Big" />
-	<sound url="" id="Limp Brick Collision big" />
-	<sound url="" id="Bomb block Collision Big" />
-	<sound url="" id="Bomb Block Explosion Big" />
-	<sound url="" id="nano block destroy big" />
-	<sound url="" id="nano block rebuild big" />
-	<sound url="" id="last nano block destroy big" />
-	<sound url="" id="Catch Active" />
-	<sound url="" id="Laser 1 Fire" />
-	<sound url="" id="Laser 2 Fire" />
-	<sound url="" id="Destructoball Transition" />
-	<sound url="" id="Invinciball Transition" />
-	<sound url="" id="Multiball" />
-	<sound url="" id="Multiplier 1" />
-	<sound url="" id="Powerup Released" />
-	<sound url="" id="Bonus Released" />
-	<sound url="" id="On-Block Bonus Collect" />
-	<sound url="" id="In-Block Bonus Collect" />
-	<sound url="" id="Extra Life Collect" />
-	<sound url="" id="Powerup Collect" />
-	<sound url="" id="Portal Open" />
-	<!-- <sound url="" id="Portal Open" /> duplicate? -->
-	<sound url="" id="Portal Loop" />
-	<sound url="" id="Level Theme" />
-	<sound url="../mp3s/03 bomb the blocks (feat. persia).mp3" id="Title Theme or Intro Sound" />
-	<sound url="" id="Catch In" />
-	<sound url="" id="Catch Out" />
-	<sound url="" id="Catch Fire" />
-	<sound url="" id="Extender In" />
-	<sound url="" id="Extender Out" />
-	<sound url="" id="Laser 1 transition" />
-	<sound url="" id="Laser 2 transition" />
-	<sound url="" id="Laser 2 Active" />
-	<sound url="" id="Ready" />
-	<sound url="" id="Start" />
-	<sound url="" id="Background Hum" />
-	<sound url="" id="Ball Launch" />
-	<sound url="" id="Multiplier 2" />
-	<sound url="" id="Multiplier 3" />
-	<sound url="" id="Multiplier Max" />
-	<sound url="" id="Ball Death" />
-	<sound url="" id="Ball Resurrect" />
-	<sound url="" id="Last ball die" />
-	<sound url="" id="Game Over" />
-	<sound url="" id="Last Brick Break" />
-	<sound url="" id="Level Results Show" />
-	<sound url="" id="End of level Transition" />
-	<sound url="" id="End of Game Transition" />
-	<sound url="" id="primary button" />
-	<sound url="" id="secondary button" />
-	<sound url="" id="Level Mouseover" />
-	<sound url="" id="Level Select" />
-	<sound url="" id="Level Locked" />
-	<sound url="" id="Game End Theme" />
-	<sound url="" id="Brick Collision (Small) 1" />
+	<sound url="" id="sfxWallCollision_1" />
+	<sound url="" id="sfxWallCollision_2" />
+	<sound url="" id="sfxWallCollision_3" />
+	<sound url="" id="sfxWallCollision_4" />
+	
+	<sound url="" id="sfxPaddleCollision_1" />
+	<sound url="" id="sfxPaddleCollision_2" />
+	<sound url="" id="sfxPaddleCollision_3" />
+	<sound url="" id="sfxPaddleCollision_4" />
+	
+	<sound url="" id="sfxBrickDisintegrate_1" />
+	<sound url="" id="sfxBrickDisintegrate_2" />
+	<sound url="" id="sfxBrickDisintegrate_3" />
+	<sound url="" id="sfxBrickDisintegrate_4" />
+	
+	<sound url="" id="sfxBallSparks_1" />
+	<sound url="" id="sfxBallSparks_2" />
+	<sound url="" id="sfxBallSparks_3" />
+	<sound url="" id="sfxBallSparks_4" />
+	
+	<sound url="" id="sfxBrickExplosion_1" />
+	<sound url="" id="sfxBrickExplosion_2" />
+	<sound url="" id="sfxBrickExplosion_3" />
+	<sound url="" id="sfxBrickExplosion_4" />
+	
+	<sound url="" id="sfxBrickMelt_1" />
+	<sound url="" id="sfxBrickMelt_2" />
+	<sound url="" id="sfxBrickMelt_3" />
+	<sound url="" id="sfxBrickMelt_4" />
+	
+	<sound url="" id="sfxNanoGrowth" />
+	
+	<sound url="" id="sfxPaddleCatchLoop" />
+	
+	<sound url="" id="sfxPaddleLaserFire" />
+	
+	<sound url="" id="sfxPaddleSuperLaserFire" />
+	
+	<sound url="" id="sfxMultiballActivate" />
+	
+	<sound url="" id="sfxBrickMultiplierIncrease" />
+	
+	<sound url="" id="sfxSpawnCollectable" />
+	
+	<sound url="" id="sfxCatchCollectable" />
+	
+	<sound url="" id="sfxPortalOpen" />
+	<sound url="" id="sfxPortalLoop" />
+	
+	<sound url="" id="musLevelTheme" />
+	<sound url="../mus/03 bomb the blocks (feat. persia).mp3" id="musTitleTheme" />
 </externallyLoadedSounds>

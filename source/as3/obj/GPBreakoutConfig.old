@@ -31,6 +31,7 @@
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\SWFExplorer.swc</path-element>
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\InAssetsUtils.swc</path-element>
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\UIComponents.swc</path-element>
+      <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\IASounds.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

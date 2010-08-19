@@ -510,6 +510,11 @@ package com.bored.games.breakout.states.views
 			_paddle.switchAnimation(Paddle.PADDLE_INTRO);
 		}//end showPaddle()
 		
+		public function hidePaddle():void
+		{
+			_paddle.switchAnimation(Paddle.PADDLE_OUTRO);
+		}//end showPaddle()
+		
 		public function resetPaddle():void
 		{		
 			_paddle.activatePowerup(null);
@@ -668,9 +673,9 @@ package com.bored.games.breakout.states.views
 					{
 						var dist:V2 = a_ball.GetDistance(a_fixture);
 						
-						/*if ( dist.length() > 0.2 )*/ return;
+						if ( dist.length() > 0.1 ) return;
 						
-						resetGame();
+						_paused = true;
 			
 						var vortex:PortalVortex = new PortalVortex(_gameScreen, a_fixture.GetUserData() as Portal);
 						vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
@@ -845,7 +850,7 @@ package com.bored.games.breakout.states.views
 		
 		public function resetGame():void
 		{
-			_paused = true;
+			//_paused = true;
 			
 			Contacts.clear();
 			
@@ -975,8 +980,13 @@ package com.bored.games.breakout.states.views
 			
 			if ( _grid.isEmpty() ) 
 			{
-				_paused = true;
-				_paddle.switchAnimation(Paddle.PADDLE_OUTRO);
+				iter = new SLLIterator(_balls);
+				while ( iter.hasNext() )
+				{
+					obj = iter.next();
+					(obj as Ball).physicsBody.SetActive(false);
+				}
+				_balls.clear();
 				dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() }));
 			}
 			

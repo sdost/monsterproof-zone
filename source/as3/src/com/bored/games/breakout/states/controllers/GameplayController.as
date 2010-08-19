@@ -117,7 +117,9 @@ package com.bored.games.breakout.states.controllers
 		
 		private function restart():void
 		{
-			container.removeEventListener(Event.ENTER_FRAME, frameUpdate);			
+			container.removeEventListener(Event.ENTER_FRAME, frameUpdate);		
+			
+			(_gameView as GameView).resetGame();
 			
 			startGame();
 		}//end restart()
@@ -173,7 +175,7 @@ package com.bored.games.breakout.states.controllers
 			
 			_running = false;
 			
-			//AppSettings.instance.userProfile.reset();
+			AppSettings.instance.userProfile.reset();
 		}//end endGame()
 		
 		private function advanceLevel():void
@@ -198,6 +200,7 @@ package com.bored.games.breakout.states.controllers
 		{	
 			if (_theme) _theme.stop();
 			
+			(_gameView as GameView).hidePaddle();			
 			(_gameView as GameView).removeEventListener("ballLost", ballLost);
 			(_gameView as GameView).removeEventListener("levelFinished", levelFinished);
 			(_gameView as GameView).removeEventListener("addPoints", addUserPoints);

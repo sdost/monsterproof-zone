@@ -57,6 +57,7 @@
     <element path="libs\SWFExplorer.swc" />
     <element path="libs\InAssetsUtils.swc" />
     <element path="libs\UIComponents.swc" />
+    <element path="libs\IASounds.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

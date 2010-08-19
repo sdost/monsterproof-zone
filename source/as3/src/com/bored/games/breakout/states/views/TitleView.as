@@ -1,5 +1,7 @@
 package com.bored.games.breakout.states.views 
 {
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import com.jac.fsm.StateView;
 	import flash.display.Sprite;
 	import flash.events.Event;
@@ -42,9 +44,16 @@ package com.bored.games.breakout.states.views
 		
 		private function clickToPlay(e:MouseEvent):void
 		{
+			var msnd:MightySound = MightySoundManager.instance.getMightySoundByName("Title Theme or Intro Sound");
+			if (msnd)
+			{
+				MightySoundManager.instance.playMusicByName("Title Theme or Intro Sound");
+			}
+			
 			removeEventListener(MouseEvent.CLICK, clickToPlay);
 			
 			dispatchEvent(new Event(START_GAME));
+			
 		}//end clickToPlay()
 		
 	}//end TitleView

@@ -85,12 +85,12 @@ package com.bored.games.breakout.states.controllers
 			
 			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
 			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
-			(_gameView as GameView).show();
 		}//end startGame()
 		
 		private function levelLoaded(e:Event):void
 		{
 			(_hudView as HUDView).showGameStart();
+			(_gameView as GameView).show();
 			(_gameView as GameView).resetPaddle();
 			(_gameView as GameView).showPaddle();
 		}//end levelLoaded()
@@ -193,7 +193,6 @@ package com.bored.games.breakout.states.controllers
 			
 			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
 			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
-			(_gameView as GameView).show();
 		}//end advanceLevel()
 				
 		private function levelFinished(e:ObjectEvent = null):void

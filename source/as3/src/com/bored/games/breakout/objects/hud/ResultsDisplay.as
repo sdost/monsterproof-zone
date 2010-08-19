@@ -73,8 +73,8 @@ package com.bored.games.breakout.objects.hud
 			_totalLabel.x = 200;
 			_totalLabel.y = _blockLabel.y + _blockLabel.height + 25;
 			
-			_minutes = Math.ceil(_timeLeft / 60) / 1000;
-			_seconds = Math.floor((_timeLeft - _minutes * 60 * 1000) / 1000);
+			_minutes = (_timeLeft % (1000 * 60 * 60)) / (1000 * 60);
+			_seconds = ((_timeLeft % (1000 * 60 * 60)) % (1000 * 60)) / 1000;
 			
 			_timeValue = new GameWord(_minutes + ":" + ((_seconds < 10) ? "0" : "") + _seconds, a_font);
 			_timeValue.y = _timeLabel.y;

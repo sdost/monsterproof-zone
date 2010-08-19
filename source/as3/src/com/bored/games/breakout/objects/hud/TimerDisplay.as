@@ -20,8 +20,8 @@ package com.bored.games.breakout.objects.hud
 		{
 			_timeRemaining = a_time;
 						
-			_minutes = Math.ceil(_timeRemaining / 60) / 1000;
-			_seconds = Math.floor((_timeRemaining - _minutes * 60 * 1000) / 1000);
+			_minutes = (_timeRemaining % (1000 * 60 * 60)) / (1000 * 60);
+			_seconds = ((_timeRemaining % (1000 * 60 * 60)) % (1000 * 60)) / 1000;
 			
 			super(_minutes + ":" + ((_seconds < 10) ? "0" : "") + _seconds, a_font);
 		}//end constructor()
@@ -30,8 +30,8 @@ package com.bored.games.breakout.objects.hud
 		{
 			_timeRemaining = a_time;
 			
-			_minutes = Math.ceil(_timeRemaining / 60) / 1000;
-			_seconds = Math.floor((_timeRemaining - _minutes * 60 * 1000) / 1000);
+			_minutes = (_timeRemaining % (1000 * 60 * 60)) / (1000 * 60);
+			_seconds = ((_timeRemaining % (1000 * 60 * 60)) % (1000 * 60)) / 1000;
 			
 			this.text = _minutes + ":" + ((_seconds < 10) ? "0" : "") + _seconds;
 		}//end set time()

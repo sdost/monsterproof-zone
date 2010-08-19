@@ -267,8 +267,8 @@ package com.bored.games.breakout.objects
 						
 			var pos:V2 = _ballBody.GetPosition();
 			
-			this.x = (pos.x * PhysicsWorld.PhysScale - width / 2);
-			this.y = (pos.y * PhysicsWorld.PhysScale - height / 2);
+			this.x = int(pos.x * PhysicsWorld.PhysScale - width / 2);
+			this.y = int(pos.y * PhysicsWorld.PhysScale - height / 2);
 			
 			if (_sleeping) return;
 			

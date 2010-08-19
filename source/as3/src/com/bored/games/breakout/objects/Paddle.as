@@ -335,8 +335,8 @@ package com.bored.games.breakout.objects
 			
 			var pos:V2 = _paddleBody.GetPosition();
 			
-			this.x = (pos.x * PhysicsWorld.PhysScale - width / 2);
-			this.y = ((pos.y * PhysicsWorld.PhysScale + _normalHeight / 2) - height);
+			this.x = int(pos.x * PhysicsWorld.PhysScale - width / 2);
+			this.y = int((pos.y * PhysicsWorld.PhysScale + _normalHeight / 2) - height);
 		}//end update()
 		
 		public function get occupied():Boolean

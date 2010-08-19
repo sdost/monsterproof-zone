@@ -377,7 +377,7 @@ package com.bored.games.breakout.states.views
 			_levelLoader.removeEventListener(Event.COMPLETE, levelLoaded);
 			
 			parseLevel(_levelLoader.content as DisplayObjectContainer);
-			
+	
 			dispatchEvent(new Event("levelLoaded"));
 		}//end levelLoaded()
 		

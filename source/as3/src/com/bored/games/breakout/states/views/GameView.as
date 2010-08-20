@@ -680,7 +680,13 @@ package com.bored.games.breakout.states.views
 						
 						if ( dist.length() > 0.1 ) return;
 						
-						_paused = true;
+						var obj:Object;
+						var iter:SLLIterator = new SLLIterator(_balls);
+						while ( iter.hasNext() )
+						{
+							obj = iter.next();
+							(obj as Ball).physicsBody.SetActive(false);
+						}
 			
 						var vortex:PortalVortex = new PortalVortex(_gameScreen, a_fixture.GetUserData() as Portal);
 						vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
@@ -991,7 +997,6 @@ package com.bored.games.breakout.states.views
 					obj = iter.next();
 					(obj as Ball).physicsBody.SetActive(false);
 				}
-				_balls.clear();
 				dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() }));
 			}
 			

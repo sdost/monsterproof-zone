@@ -24,8 +24,9 @@ package com.bored.games.breakout.profiles
 				var limit:int = xml.@time;
 				var url:String = xml.@src;
 				var background:int = xml.@background;
+				var portal:int = xml.@portalThreshold;
 				
-				var profile:LevelProfile = new LevelProfile(limit, url, background);
+				var profile:LevelProfile = new LevelProfile(limit, url, background, portal);
 				_levels.push(profile);
 			}
 		}//end parse()

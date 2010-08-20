@@ -87,11 +87,7 @@ package com.bored.games.breakout.objects.hud
 		}//end constructor()
 				
 		override public function update(t:Number = 0):void 
-		{
-			_timeValue.x = 472 - _timeValue.width;
-			_blockValue.x = 472 - _blockValue.width;
-			_totalValue.x = 472 - _totalValue.width;
-			
+		{			
 			if ( (getTimer() - _startTime) > _fadeTime )
 			{	
 				_alpha += (0.0 - _alpha) / 4;
@@ -119,6 +115,10 @@ package com.bored.games.breakout.objects.hud
 			_timeLabel.draw(a_bmd, 0xFFFFFF, 1, _alpha);
 			_blockLabel.draw(a_bmd, 0xFFFFFF, 1, _alpha);
 			_totalLabel.draw(a_bmd, 0xFFFFFF, 1, _alpha);
+			
+			_timeValue.x = 472 - _timeValue.width;
+			_blockValue.x = 472 - _blockValue.width;
+			_totalValue.x = 472 - _totalValue.width;
 			
 			_timeValue.draw(a_bmd, 0x00AA00, 1, _alpha);
 			_blockValue.draw(a_bmd, 0x00AA00, 1, _alpha);

@@ -305,10 +305,7 @@ package com.bored.games.breakout.objects
 					if ( obj is NanoBrick || obj is UnbreakableBrick ) continue;
 					else if ( obj is Portal ) 
 					{
-						if ( _gridObjectList.size() < AppSettings.instance.portalOpenThreshold )
-						{
-							(obj as Portal).openPortal();
-						}
+						(obj as Portal).checkPortal(_gridObjectList.toArray());
 					}
 					else _empty = false;
 				}

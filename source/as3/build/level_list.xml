@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <levels>
 
-<level src="../levels/00.swf" time="300000" background="3" />
-<level src="../levels/04.swf" time="300000" background="8" />
-<level src="../levels/05.swf" time="300000" background="4" />
-<level src="../levels/06.swf" time="300000" background="0" />
-<level src="../levels/07.swf" time="300000" background="1" />
-<level src="../levels/08.swf" time="300000" background="7" />
-<level src="../levels/09.swf" time="300000" background="3" />
-<level src="../levels/10.swf" time="300000" background="8" />
-<level src="../levels/11.swf" time="300000" background="1" />
-<level src="../levels/01.swf" time="300000" background="7" />
-<level src="../levels/03.swf" time="300000" background="6" />
-<level src="../levels/02.swf" time="300000" background="1" />
-<level src="../levels/12.swf" time="300000" background="1" />
-<level src="../levels/bonus.swf" time="300000" background="0" />
+<level src="../levels/00.swf" time="300000" background="3" portalThreshold="15" />
+<level src="../levels/04.swf" time="300000" background="8" portalThreshold="15" />
+<level src="../levels/05.swf" time="300000" background="4" portalThreshold="15" />
+<level src="../levels/06.swf" time="300000" background="0" portalThreshold="15" />
+<level src="../levels/07.swf" time="300000" background="1" portalThreshold="15" />
+<level src="../levels/08.swf" time="300000" background="7" portalThreshold="15" />
+<level src="../levels/09.swf" time="300000" background="3" portalThreshold="15" />
+<level src="../levels/10.swf" time="300000" background="8" portalThreshold="15" />
+<level src="../levels/11.swf" time="300000" background="1" portalThreshold="15" />
+<level src="../levels/01.swf" time="300000" background="7" portalThreshold="15" />
+<level src="../levels/03.swf" time="300000" background="6" portalThreshold="15" />
+<level src="../levels/02.swf" time="300000" background="1" portalThreshold="15" />
+<level src="../levels/12.swf" time="300000" background="1" portalThreshold="15" />
+<level src="../levels/bonus.swf" time="300000" background="0" portalThreshold="15" />
 </levels>

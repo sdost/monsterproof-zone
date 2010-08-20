@@ -87,19 +87,32 @@ package com.bored.games.breakout.objects.bricks
 			_animController.update(t);
 		}//end update()
 		
-		public function openPortal():void
+		public function checkPortal(a_arr:Array):void
 		{
 			if ( !_open )
 			{	
-				_open  = true;
+				var cnt:int = 0;
 				
-				var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxPortalOpen");
-				if (snd) snd.play();
+				for each(var b:Brick in a_arr)
+				{
+					if ( !(b is NanoBrick || b is UnbreakableBrick || b is Portal) )
+					{
+						cnt++;
+					}
+				}
 				
-				_animatedSprite = _animationSet.getAnimation(PORTAL_OPEN)
+				if (cnt < AppSettings.instance.currentLevel.portalThreshold)
+				{				
+					_open  = true;
+				
+					var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxPortalOpen");
+					if (snd) snd.play();
+				
+					_animatedSprite = _animationSet.getAnimation(PORTAL_OPEN)
 			
-				_animController = new AnimationController(_animatedSprite);
-				_animController.addEventListener(AnimationController.ANIMATION_COMPLETE, animationComplete, false, 0, true);
+					_animController = new AnimationController(_animatedSprite);
+					_animController.addEventListener(AnimationController.ANIMATION_COMPLETE, animationComplete, false, 0, true);
+				}
 			}
 		}//end openPortal()
 		

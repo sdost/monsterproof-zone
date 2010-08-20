@@ -239,11 +239,15 @@ package com.bored.games.breakout.states.controllers
 				
 			if (_paused)
 			{
-				//container.filters = [new BlurFilter(6, 6, 3)];
+				if (Input.mouseDown) 
+				{
+					_paused = false;			
+					_timerRunning = !_paused;
+				}
 			}
 			else
 			{
-				//container.filters = [];
+				_timerRunning = !_paused;
 			}
 			
 			if (_timerRunning)
@@ -266,9 +270,6 @@ package com.bored.games.breakout.states.controllers
 			Input.update();
 			
 			_paused = _paused || Input.mouseLeftStage;
-			_timerRunning = !_paused;
-			
-			if (Input.mouseDown) _paused = false;
 		}//end UpdateInputState()
 		
 		private function keyUp(e:KeyboardEvent):void

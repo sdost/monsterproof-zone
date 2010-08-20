@@ -14,6 +14,7 @@ package com.bored.games.breakout.states.controllers
 	import com.sven.utils.AppSettings;
 	import flash.display.MovieClip;
 	import flash.events.Event;
+	import flash.events.KeyboardEvent;
 	import flash.events.TimerEvent;
 	import flash.filters.BlurFilter;
 	import flash.ui.Keyboard;
@@ -38,7 +39,8 @@ package com.bored.games.breakout.states.controllers
 		private var _hudView:StateView;
 		private var _input:Input;
 		
-		private var _running:Boolean;
+		private var _paused:Boolean;
+		private var _timerRunning:Boolean;
 		
 		private var _updateTimer:Timer;
 		
@@ -55,7 +57,8 @@ package com.bored.games.breakout.states.controllers
 			
 			_input = new Input(a_container);
 			
-			_running = false;
+			_paused = true;
+			_timerRunning = false;
 			
 			_gameView = new GameView();
 			_hudView = new HUDView();
@@ -73,6 +76,9 @@ package com.bored.games.breakout.states.controllers
 			//container.addChild(_stats);
 			
 			container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
+			_paused = false;
+			
+			this.container.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp, false, 0, true);
 			
 			/*
 			_updateTimer = new Timer(_period, 1);
@@ -106,7 +112,7 @@ package com.bored.games.breakout.states.controllers
 			_timeLeft = AppSettings.instance.currentLevel.timeLimit;
 			_lastUpdate = getTimer();
 			
-			_running = true;
+			_timerRunning = true;
 			
 			(_hudView as HUDView).showHUD();
 			
@@ -174,7 +180,7 @@ package com.bored.games.breakout.states.controllers
 			
 			_callback = restart;
 			
-			_running = false;
+			_timerRunning = false;
 			
 			AppSettings.instance.userProfile.reset();
 		}//end endGame()
@@ -214,12 +220,12 @@ package com.bored.games.breakout.states.controllers
 			
 			_callback = advanceLevel;
 			
-			_running = false;
+			_timerRunning = false;
 		}//end gridEmpty()
 				
 		private function frameUpdate(e:Event):void
 		{	
-			Input.update();
+			updateInputState();
 			
 			this.update();
 			container.stage.invalidate();
@@ -227,39 +233,60 @@ package com.bored.games.breakout.states.controllers
 			var delta:Number = getTimer() - _lastUpdate;
 			_lastUpdate = getTimer();
 			
-			if ( !Input.mouseLeftStage )
+			(_hudView as HUDView).pause(_paused);
+			(_gameView as GameView).pause(_paused);
+			MightySoundManager.instance.pause(_paused);
+				
+			if (_paused)
 			{
-				(_hudView as HUDView).pause(false);
-				(_gameView as GameView).pause(false);
-				container.filters = [];				
-				
-				if (_running)
-				{				
-					if ( Input.isKeyDown(Keyboard.F2) )
-					{
-						levelFinished();
-					}
-				
-					_timeLeft -= delta;
-					
-					(_hudView as HUDView).scoreDisp = AppSettings.instance.userProfile.score;
-					(_hudView as HUDView).timerDisp = _timeLeft;
-					(_hudView as HUDView).livesDisp = AppSettings.instance.userProfile.lives;
-					
-					if ( _timeLeft <= 0 )
-					{
-						endGame();
-					}
-				}
+				//container.filters = [new BlurFilter(6, 6, 3)];
 			}
 			else
 			{
+				//container.filters = [];
+			}
+			
+			if (_timerRunning)
+			{
+				_timeLeft -= delta;
 				
-				(_hudView as HUDView).pause(true);
-				(_gameView as GameView).pause(true);
-				container.filters = [new BlurFilter()];
+				(_hudView as HUDView).scoreDisp = AppSettings.instance.userProfile.score;
+				(_hudView as HUDView).timerDisp = _timeLeft;
+				(_hudView as HUDView).livesDisp = AppSettings.instance.userProfile.lives;
+				
+				if ( _timeLeft <= 0 )
+				{
+					endGame();
+				}
 			}
 		}//end frameUpdate()
+		
+		private function updateInputState():void
+		{
+			Input.update();
+			
+			_paused = _paused || Input.mouseLeftStage;
+			_timerRunning = !_paused;
+			
+			if (Input.mouseDown) _paused = false;
+		}//end UpdateInputState()
+		
+		private function keyUp(e:KeyboardEvent):void
+		{
+			switch(e.charCode)
+			{
+				case Keyboard.F2:
+					if( _timerRunning ) levelFinished();
+					break;
+				case ("p".charCodeAt(0)):
+					_paused = !_paused;
+					_timerRunning = !_paused;
+					break;
+				case ("m".charCodeAt(0)):
+					MightySoundManager.instance.mute = !MightySoundManager.instance.mute;
+					break;
+			}
+		}//end keyUp()
 		
 	}//end GameplayController
 

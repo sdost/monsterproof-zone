@@ -50,5 +50,5 @@
 	<sound url="" id="sfxPortalLoop" />
 	
 	<sound url="" id="musLevelTheme" />
-	<sound url="../mus/03 bomb the blocks (feat. persia).mp3" id="musTitleTheme" />
+	<sound url="../mus/theme_intro.mp3" id="musTitleTheme" />
 </externallyLoadedSounds>

@@ -1,5 +1,6 @@
 package com.bored.games.breakout.states.views 
 {
+	import com.bored.games.breakout.objects.hud.PauseDisplay;
 	import com.bored.games.breakout.objects.hud.PopupText;
 	import com.bored.games.breakout.objects.hud.GameOverDisplay;
 	import com.bored.games.breakout.objects.hud.GameStartDisplay;
@@ -82,6 +83,7 @@ package com.bored.games.breakout.states.views
 		private var _timeDisp:TimerDisplay;
 		private var _scoreDisp:ScoreDisplay;
 		private var _resultsDisp:ResultsDisplay;
+		private var _pauseDisp:PauseDisplay;
 		
 		private var _gameStart:GameStartDisplay;
 		private var _gameOver:GameOverDisplay;
@@ -394,6 +396,7 @@ package com.bored.games.breakout.states.views
 		public function pause(a_bool:Boolean):void
 		{
 			_paused = a_bool;
+			_pauseDisp = new PauseDisplay(bitmapFont);
 		}//end pause();
 		
 		override public function update():void 
@@ -470,6 +473,11 @@ package com.bored.games.breakout.states.views
 			
 			if ( !_hideResults ) {
 				_resultsDisp.draw(_mainBuffer);
+			}
+			
+			if ( _paused )
+			{
+				_pauseDisp.draw(_mainBuffer);
 			}
 						
 			_mainBuffer.unlock();

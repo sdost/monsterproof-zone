@@ -366,7 +366,7 @@ package com.bored.games.breakout.states.views
 		}//end showGameScreen()
 		
 		public function loadNextLevel(url:String):void
-		{			
+		{	
 			_levelLoader = new Loader();
 			_levelLoader.contentLoaderInfo.addEventListener(Event.COMPLETE, levelLoaded, false, 0, true);
 			_levelLoader.load( new URLRequest(url) );
@@ -377,6 +377,9 @@ package com.bored.games.breakout.states.views
 			_levelLoader.removeEventListener(Event.COMPLETE, levelLoaded);
 			
 			parseLevel(_levelLoader.content as DisplayObjectContainer);
+			
+			_levelLoader.unloadAndStop();
+			_levelLoader = null;
 	
 			dispatchEvent(new Event("levelLoaded"));
 		}//end levelLoaded()
@@ -863,7 +866,7 @@ package com.bored.games.breakout.states.views
 		{
 			//_paused = true;
 			
-			Contacts.clear();
+			Contacts.clear(true);
 			
 			var iter:SLLIterator = new SLLIterator(Collectables);
 			var obj:Object;
@@ -872,7 +875,7 @@ package com.bored.games.breakout.states.views
 				obj = iter.next();
 				obj.destroy();
 			}
-			Collectables.clear();
+			Collectables.clear(true);
 			
 			iter = new SLLIterator(Bullets);
 			while ( iter.hasNext() )
@@ -880,7 +883,9 @@ package com.bored.games.breakout.states.views
 				obj = iter.next();
 				obj.destroy();
 			}
-			Bullets.clear();
+			Bullets.clear(true);
+			
+			Emitters.clear(true);
 			
 			iter = new SLLIterator(_balls);
 			while ( iter.hasNext() )
@@ -888,7 +893,7 @@ package com.bored.games.breakout.states.views
 				obj = iter.next();
 				obj.destroy();
 			}
-			_balls.clear();
+			_balls.clear(true);
 		}//end resetGame()
 		
 		override public function update():void

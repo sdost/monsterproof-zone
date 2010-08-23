@@ -78,16 +78,14 @@ package com.bored.games.breakout.states.controllers
 			container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
 			_paused = false;
 			
-			this.container.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp, false, 0, true);
+			container.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp, false, 0, true);
 			
 			/*
 			_updateTimer = new Timer(_period, 1);
 			_updateTimer.addEventListener(TimerEvent.TIMER, frameUpdate, false, 0, true);
 			_updateTimer.start();
 			*/
-						
-			AppSettings.instance.currentLevelInd = 0;
-			
+									
 			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
 			
 			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
@@ -124,8 +122,11 @@ package com.bored.games.breakout.states.controllers
 		
 		private function restart():void
 		{
-			container.removeEventListener(Event.ENTER_FRAME, frameUpdate);		
+			container.removeEventListener(Event.ENTER_FRAME, frameUpdate);	
 			
+			container.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
+			
+			(_gameView as GameView).hide();
 			(_gameView as GameView).resetGame();
 			
 			startGame();
@@ -276,8 +277,12 @@ package com.bored.games.breakout.states.controllers
 		{
 			switch(e.charCode)
 			{
-				case Keyboard.F2:
-					if( _timerRunning ) levelFinished();
+				case ("s".charCodeAt(0)):
+					if ( _paused )
+					{
+						levelFinished();
+						_paused = false;
+					}
 					break;
 				case ("p".charCodeAt(0)):
 					_paused = !_paused;

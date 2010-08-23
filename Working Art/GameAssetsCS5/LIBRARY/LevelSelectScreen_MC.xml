@@ -1,0 +1,461 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="LevelSelectScreen_MC" itemID="4c72b66a-00000298" linkageExportForAS="true" linkageClassName="breakout.assets.LevelSelectScreen_MC" sourceLibraryItemHRef="TitleScreen_MC copy" lastModified="1282593192" lastUniqueIdentifier="54">
+  <timeline>
+    <DOMTimeline name="LevelSelectScreen_MC">
+      <layers>
+        <DOMLayer name="Layer 2" color="#9933CC" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_0" centerPoint3DX="74.95" centerPoint3DY="44">
+                  <matrix>
+                    <Matrix tx="42.95" ty="28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_1" centerPoint3DX="179.35" centerPoint3DY="44">
+                  <matrix>
+                    <Matrix tx="147.35" ty="28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_2" centerPoint3DX="283.75" centerPoint3DY="44">
+                  <matrix>
+                    <Matrix tx="251.75" ty="28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_3" centerPoint3DX="388.15" centerPoint3DY="44">
+                  <matrix>
+                    <Matrix tx="356.15" ty="28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_4" centerPoint3DX="492.55" centerPoint3DY="44">
+                  <matrix>
+                    <Matrix tx="460.55" ty="28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_5" centerPoint3DX="596.95" centerPoint3DY="44">
+                  <matrix>
+                    <Matrix tx="564.95" ty="28"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_6" centerPoint3DX="74.95" centerPoint3DY="101">
+                  <matrix>
+                    <Matrix tx="42.95" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_7" centerPoint3DX="179.35" centerPoint3DY="101">
+                  <matrix>
+                    <Matrix tx="147.35" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_8" centerPoint3DX="283.75" centerPoint3DY="101">
+                  <matrix>
+                    <Matrix tx="251.75" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_9" centerPoint3DX="388.15" centerPoint3DY="101">
+                  <matrix>
+                    <Matrix tx="356.15" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_10" centerPoint3DX="492.55" centerPoint3DY="101">
+                  <matrix>
+                    <Matrix tx="460.55" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_11" centerPoint3DX="596.95" centerPoint3DY="101">
+                  <matrix>
+                    <Matrix tx="564.95" ty="85"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_12" centerPoint3DX="74.95" centerPoint3DY="158">
+                  <matrix>
+                    <Matrix tx="42.95" ty="142"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_13" centerPoint3DX="179.35" centerPoint3DY="158">
+                  <matrix>
+                    <Matrix tx="147.35" ty="142"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_14" centerPoint3DX="283.75" centerPoint3DY="158">
+                  <matrix>
+                    <Matrix tx="251.75" ty="142"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_15" centerPoint3DX="388.15" centerPoint3DY="158">
+                  <matrix>
+                    <Matrix tx="356.15" ty="142"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_16" centerPoint3DX="492.55" centerPoint3DY="158">
+                  <matrix>
+                    <Matrix tx="460.55" ty="142"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_17" centerPoint3DX="596.95" centerPoint3DY="158">
+                  <matrix>
+                    <Matrix tx="564.95" ty="142"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_18" centerPoint3DX="74.95" centerPoint3DY="215">
+                  <matrix>
+                    <Matrix tx="42.95" ty="199"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_19" centerPoint3DX="179.35" centerPoint3DY="215">
+                  <matrix>
+                    <Matrix tx="147.35" ty="199"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_20" centerPoint3DX="283.75" centerPoint3DY="215">
+                  <matrix>
+                    <Matrix tx="251.75" ty="199"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_21" centerPoint3DX="388.15" centerPoint3DY="215">
+                  <matrix>
+                    <Matrix tx="356.15" ty="199"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_22" centerPoint3DX="492.55" centerPoint3DY="215">
+                  <matrix>
+                    <Matrix tx="460.55" ty="199"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_23" centerPoint3DX="596.95" centerPoint3DY="215">
+                  <matrix>
+                    <Matrix tx="564.95" ty="199"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_24" centerPoint3DX="74.95" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="42.95" ty="256"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_25" centerPoint3DX="179.35" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="147.35" ty="256"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_26" centerPoint3DX="283.75" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="251.75" ty="256"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_27" centerPoint3DX="388.15" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="356.15" ty="256"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_28" centerPoint3DX="492.55" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="460.55" ty="256"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_29" centerPoint3DX="596.95" centerPoint3DY="272">
+                  <matrix>
+                    <Matrix tx="564.95" ty="256"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_30" centerPoint3DX="74.95" centerPoint3DY="329">
+                  <matrix>
+                    <Matrix tx="42.95" ty="313"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_31" centerPoint3DX="179.35" centerPoint3DY="329">
+                  <matrix>
+                    <Matrix tx="147.35" ty="313"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_32" centerPoint3DX="283.75" centerPoint3DY="329">
+                  <matrix>
+                    <Matrix tx="251.75" ty="313"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_33" centerPoint3DX="388.15" centerPoint3DY="329">
+                  <matrix>
+                    <Matrix tx="356.15" ty="313"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_34" centerPoint3DX="492.55" centerPoint3DY="329">
+                  <matrix>
+                    <Matrix tx="460.55" ty="313"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_35" centerPoint3DX="596.95" centerPoint3DY="329">
+                  <matrix>
+                    <Matrix tx="564.95" ty="313"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_36" centerPoint3DX="74.95" centerPoint3DY="386">
+                  <matrix>
+                    <Matrix tx="42.95" ty="370"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_37" centerPoint3DX="179.35" centerPoint3DY="386">
+                  <matrix>
+                    <Matrix tx="147.35" ty="370"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_38" centerPoint3DX="283.75" centerPoint3DY="386">
+                  <matrix>
+                    <Matrix tx="251.75" ty="370"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_39" centerPoint3DX="388.15" centerPoint3DY="386">
+                  <matrix>
+                    <Matrix tx="356.15" ty="370"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_40" centerPoint3DX="492.55" centerPoint3DY="386">
+                  <matrix>
+                    <Matrix tx="460.55" ty="370"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_41" centerPoint3DX="596.95" centerPoint3DY="386">
+                  <matrix>
+                    <Matrix tx="564.95" ty="370"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_42" centerPoint3DX="74.95" centerPoint3DY="443">
+                  <matrix>
+                    <Matrix tx="42.95" ty="427"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_43" centerPoint3DX="179.35" centerPoint3DY="443">
+                  <matrix>
+                    <Matrix tx="147.35" ty="427"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_44" centerPoint3DX="283.75" centerPoint3DY="443">
+                  <matrix>
+                    <Matrix tx="251.75" ty="427"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_45" centerPoint3DX="388.15" centerPoint3DY="443">
+                  <matrix>
+                    <Matrix tx="356.15" ty="427"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_46" centerPoint3DX="492.55" centerPoint3DY="443">
+                  <matrix>
+                    <Matrix tx="460.55" ty="427"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_47" centerPoint3DX="596.95" centerPoint3DY="443">
+                  <matrix>
+                    <Matrix tx="564.95" ty="427"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_48" centerPoint3DX="74.95" centerPoint3DY="500">
+                  <matrix>
+                    <Matrix tx="42.95" ty="484"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_49" centerPoint3DX="179.35" centerPoint3DY="500">
+                  <matrix>
+                    <Matrix tx="147.35" ty="484"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_50" centerPoint3DX="283.75" centerPoint3DY="500">
+                  <matrix>
+                    <Matrix tx="251.75" ty="484"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_51" centerPoint3DX="388.15" centerPoint3DY="500">
+                  <matrix>
+                    <Matrix tx="356.15" ty="484"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_52" centerPoint3DX="492.55" centerPoint3DY="500">
+                  <matrix>
+                    <Matrix tx="460.55" ty="484"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+                <DOMSymbolInstance libraryItemName="MedOrange" name="lvl_icon_53" selected="true" centerPoint3DX="596.95" centerPoint3DY="500">
+                  <matrix>
+                    <Matrix tx="564.95" ty="484"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="32" y="16"/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 1" color="#4FFF4F" locked="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" selected="true" libraryItemName="bg_assets/BG_base.png">
+                  <matrix>
+                    <Matrix tx="-0.05"/>
+                  </matrix>
+                </DOMBitmapInstance>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

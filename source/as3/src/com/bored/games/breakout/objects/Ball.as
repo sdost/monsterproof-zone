@@ -129,7 +129,10 @@ package com.bored.games.breakout.objects
 		
 		private function cleanupPhysics():void
 		{
+			_ballBody.GetFixtureList().SetUserData(null);
 			PhysicsWorld.DestroyBody(_ballBody);
+			_ballBody.SetUserData(null);
+			_ballBody = null;			
 		}//end cleanupPhysics()
 		
 		private function initializeActions():void
@@ -301,6 +304,8 @@ package com.bored.games.breakout.objects
 			{
 				this.deactivateAction(InvinciballAction.NAME);
 			}
+			
+			reset();
 		}//end destroy()
 		
 	}//end Ball

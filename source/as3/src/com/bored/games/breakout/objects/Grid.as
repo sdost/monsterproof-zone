@@ -29,7 +29,7 @@ package com.bored.games.breakout.objects
 	 */
 	public class Grid extends GameElement
 	{
-		private static const MAX_GRID_OBJECTS:int = 1000;
+		private static const MAX_GRID_OBJECTS:int = AppSettings.instance.maxGridObjects;
 		
 		private var _gridWidth:int;
 		private var _gridHeight:int;
@@ -71,6 +71,7 @@ package com.bored.games.breakout.objects
 			_gridObjectList = new SLL(MAX_GRID_OBJECTS);
 			_gridRemoveList = new Vector.<GridObject>();
 			_collectables = new Dictionary(true);
+			_grid = new Vector.<GridObject>(100 << _shift, true);
 			
 			_count = 0;
 		
@@ -93,7 +94,7 @@ package com.bored.games.breakout.objects
 			
 			_explosionManager = new ExplosionManagerAction(this, obj);
 			addAction(_explosionManager);
-			
+			activateAction(ExplosionManagerAction.NAME);
 			
 			obj =
 			{
@@ -161,9 +162,7 @@ package com.bored.games.breakout.objects
 		}//end explodeBricks()
 		
 		private function generate():void
-		{
-			_grid = new Vector.<GridObject>(100 << _shift, true);
-			
+		{			
 			for ( var i:int = 0; i < _grid.length; i++)
 			{
 				_grid[i] = null;
@@ -180,14 +179,20 @@ package com.bored.games.breakout.objects
 				obj.destroy();
 			}
 			
-			_gridObjectList.clear();
+			_gridObjectList.clear(true);
+			
+			_gridRemoveList = new Vector.<GridObject>();
+			_collectables = new Dictionary(true);
+			
 			generate();
 			
 			_empty = false;
 		}//end clear()
 		
 		public function addGridObject( a_obj:GridObject, a_x:int, a_y:int ):Boolean
-		{			
+		{		
+			if ( _gridObjectList.size() >= MAX_GRID_OBJECTS ) return false;			
+			
 			var rightBounds:int = a_x + a_obj.gridWidth;
 			var bottomBounds:int = a_y + a_obj.gridHeight;
 			
@@ -294,7 +299,7 @@ package com.bored.games.breakout.objects
 			}
 			
 			_empty = true;
-			
+						
 			var iter:SLLIterator = new SLLIterator(_gridObjectList);
 			while ( iter.hasNext() )
 			{

@@ -119,7 +119,8 @@ package com.bored.games.breakout.objects.bricks
 		private function cleanupPhysics():void
 		{
 			if ( _grid ) 
-			{				
+			{	
+				_brickFixture.SetUserData(null);
 				_grid.gridBody.DestroyFixture(_brickFixture);
 				_brickFixture = null;
 			}
@@ -153,6 +154,7 @@ package com.bored.games.breakout.objects.bricks
 		override public function destroy():void 
 		{
 			super.destroy();
+			reset();
 		}//end destroy()
 			
 	}//end Brick

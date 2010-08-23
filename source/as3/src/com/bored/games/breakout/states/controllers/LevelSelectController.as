@@ -1,5 +1,6 @@
 package com.bored.games.breakout.states.controllers 
 {
+	import com.bored.games.breakout.states.views.LevelListView;
 	import com.bored.games.breakout.states.views.LoadBackgroundsView;
 	import com.bored.games.breakout.states.views.LoadBrickAssetsView;
 	import com.bored.games.breakout.states.views.LoadSoundsView;
@@ -27,21 +28,18 @@ package com.bored.games.breakout.states.controllers
 		
 		public function LevelSelectController(a_container:MovieClip) 
 		{						
-			/*_titleScreen = new TitleView();
-			_titleScreen.addEventListener(TitleView.START_GAME, startGame, false, 0, true);
-			_titleScreen.addEventListener(TitleView.CONTINUE_GAME, continueGame, false, 0, true);
-			_titleScreen.addEventListener(TitleView.SHOW_OPTIONS, showOptions, false, 0, true);
-			*/
+			_levelList = new LevelListView();
+			_levelList.addEventListener(LevelListView.LEVEL_SELECTED, levelSelect, false, 0, true);
 			
 			super([_levelList], a_container);
 		}//end constructor()
 		
-		/*
-		private function startGame(e:Event):void
+		private function levelSelect(e:Event):void
 		{
-			dispatchEvent(new Event('startGame'));
+			dispatchEvent(new Event('levelSelect'));
 		}//end startGame()
 	
+		/*
 		private function continueGame(e:Event):void
 		{
 			

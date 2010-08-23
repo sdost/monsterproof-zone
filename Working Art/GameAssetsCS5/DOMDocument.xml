@@ -2,6 +2,7 @@
      <folders>
           <DOMFolderItem name="ball_assets" itemID="4c2dfd78-00000060"/>
           <DOMFolderItem name="bg_assets" itemID="4c23c9d3-00000036"/>
+          <DOMFolderItem name="BMPs" itemID="4c1f8a62-00000022"/>
           <DOMFolderItem name="bullet_assets" itemID="4c339e95-00000160"/>
           <DOMFolderItem name="fonts" itemID="4c3f65be-0000006a"/>
           <DOMFolderItem name="paddle_assets" itemID="4c339e36-00000151"/>
@@ -47,6 +48,7 @@
           <DOMBitmapItem name="bg_assets/BG_base.png" itemID="4c2281c3-00001430" sourceExternalFilepath=".\LIBRARY\bg_assets\BG_base.png" sourceLastImported="1277333442" originalCompressionType="lossless" quality="50" href="bg_assets\BG_base.png" bitmapDataHRef="M 7 1277413824.dat" frameRight="13440" frameBottom="10880"/>
           <DOMBitmapItem name="bullet_assets/blaster_bullet.png" itemID="4c33aa73-0000006e" sourceExternalFilepath=".\LIBRARY\bullet_assets\blaster_bullet.png" sourceLastImported="1277844577" allowSmoothing="true" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="bullet_assets\blaster_bullet.png" bitmapDataHRef="M 112 1278451302.dat" frameRight="80" frameBottom="280"/>
           <DOMBitmapItem name="paddle_assets/blaster_paddle.png" itemID="4c488b50-00000361" sourceExternalFilepath=".\LIBRARY\paddle_assets\blaster_paddle.png" sourceLastImported="1279060882" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="paddle_assets\blaster_paddle.png" bitmapDataHRef="M 155 1279826051.dat" frameRight="1680" frameBottom="620"/>
+          <DOMBitmapItem name="BMPs/brick_med_orange_BMP" itemID="4c22382e-00000078" sourceExternalFilepath=".\LIBRARY\BMPs\brick_med_orange_BMP.png" sourceLastImported="1277311022" allowSmoothing="true" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="BMPs\brick_med_orange_BMP.png" bitmapDataHRef="M 6 1277310944.dat" frameRight="1280" frameBottom="640"/>
           <DOMBitmapItem name="paddle_assets/center.png" itemID="4c45f32b-000001a9" sourceExternalFilepath=".\LIBRARY\paddle_assets\center.png" sourceLastImported="1279656210" allowSmoothing="true" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="paddle_assets\center.png" bitmapDataHRef="M 153 1279656136.dat" frameRight="960" frameBottom="320"/>
           <DOMBitmapItem name="ball_assets/destructo_ball0001.png" itemID="4c2e4902-00000378" sourceExternalFilepath=".\LIBRARY\ball_assets\destructo_ball0001.png" sourceLastImported="1278105310" allowSmoothing="true" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="ball_assets\destructo_ball0001.png" bitmapDataHRef="M 68 1278426995.dat" frameRight="400" frameBottom="400"/>
           <DOMBitmapItem name="ball_assets/destructo_ball0002.png" itemID="4c2e4902-0000037d" sourceExternalFilepath=".\LIBRARY\ball_assets\destructo_ball0002.png" sourceLastImported="1278105310" allowSmoothing="true" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="ball_assets\destructo_ball0002.png" bitmapDataHRef="M 69 1278426995.dat" frameRight="400" frameBottom="400"/>
@@ -173,9 +175,11 @@
           <Include href="InvinciballPowerup_MC.xml"/>
           <Include href="LaserBullet_MC.xml"/>
           <Include href="LaserPowerup_MC.xml"/>
+          <Include href="LevelSelectScreen_MC.xml"/>
           <Include href="Loading_MC.xml"/>
           <Include href="loading_ring.xml" loadImmediate="false"/>
           <Include href="loading_text.xml" loadImmediate="false"/>
+          <Include href="MedOrange.xml"/>
           <Include href="MultiballPowerup_MC.xml"/>
           <Include href="paddle.xml" loadImmediate="false"/>
           <Include href="paddle_assets/blaster_duel.xml" loadImmediate="false"/>

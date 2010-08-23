@@ -96,9 +96,7 @@ package com.bored.games.breakout.states.views
 		
 		private var _time:int;
 		
-		private var _bmp:Bitmap;
-		
-		private var _loader:URLLoader;
+		private var _bmp:Bitmap
 		
 		private var _paused:Boolean;
 		
@@ -344,18 +342,20 @@ package com.bored.games.breakout.states.views
 			return bmd;
 		}//end get GameOverBMP()
 		
+		/*
 		override public function enter():void 
 		{			
-			_loader = new URLLoader( new URLRequest(AppSettings.instance.levelListURL) );
-			_loader.addEventListener(Event.COMPLETE, levelListComplete, false, 0, true);
+			//_loader = new URLLoader( new URLRequest(AppSettings.instance.levelListURL) );
+			//_loader.addEventListener(Event.COMPLETE, levelListComplete, false, 0, true);
 		}//end enter()
 		
 		private function levelListComplete(e:Event):void
 		{
-			AppSettings.instance.levelList = new LevelList(XML(_loader.data));
+			//AppSettings.instance.levelList = new LevelList(XML(_loader.data));
 			
 			enterComplete();
 		}//end levelListComplete()
+		*/
 		
 		override protected function removedFromStageHandler(e:Event):void
 		{

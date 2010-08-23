@@ -72,7 +72,10 @@ package com.bored.games.breakout.objects
 		
 		protected function cleanupPhysics():void
 		{
+			_bulletBody.GetFixtureList().SetUserData(null);
 			PhysicsWorld.DestroyBody(_bulletBody);
+			_bulletBody.SetUserData(null);
+			_bulletBody = null;
 		}//end cleanupPhysics()
 		
 		public function get physicsBody():b2Body
@@ -110,6 +113,8 @@ package com.bored.games.breakout.objects
 		public function destroy():void 
 		{			
 			cleanupPhysics();
+			
+			reset();
 		}//end destroy()
 		
 	}//end Bullet

@@ -79,8 +79,9 @@ package com.bored.games.breakout.objects
 		
 		private function cleanupPhysics():void
 		{
+			_beamBody.GetFixtureList().SetUserData(null);
 			PhysicsWorld.DestroyBody(_beamBody);
-			
+			_beamBody.SetUserData(null);
 			_beamBody = null;
 		}//end cleanupPhysics()
 		
@@ -134,6 +135,8 @@ package com.bored.games.breakout.objects
 		public function destroy():void 
 		{
 			cleanupPhysics();
+			
+			reset();
 		}//end destroy()
 		
 	}//end Beam

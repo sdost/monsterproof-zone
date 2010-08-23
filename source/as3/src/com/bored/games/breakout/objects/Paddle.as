@@ -158,7 +158,7 @@ package com.bored.games.breakout.objects
 
 		public function activatePowerup(str:String):void
 		{
-			deactivateAction(_currentEffectAction);
+			if(_currentEffectAction) deactivateAction(_currentEffectAction);
 			
 			if ( checkForActionNamed(str) )
 			{
@@ -325,13 +325,6 @@ package com.bored.games.breakout.objects
 			super.update(t);
 			
 			_animationController.update(t);
-			
-			/*
-			if ( _paddleJoint )
-			{
-				trace("_paddleJoint.m_impulse: [" + _paddleJoint.m_impulse.x + ", " + _paddleJoint.m_impulse.y + ", " + _paddleJoint.m_impulse.z + "]");
-			}
-			*/
 			
 			var pos:V2 = _paddleBody.GetPosition();
 			

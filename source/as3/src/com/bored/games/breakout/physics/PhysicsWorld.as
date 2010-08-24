@@ -40,10 +40,9 @@ package com.bored.games.breakout.physics
 		{
 			b2Base.initialize();
 			b2Def.initialize();
+			
 			_world = new b2World( new V2(0, 0), _doSleep );
-			_world.SetWarmStarting(true);
 			_world.SetAutoClearForces(true);
-			_world.SetContinuousPhysics(true);
 		}//end InitializePhysics()
 		
 		public static function SetContactListener(a_listener:b2ContactListener):void
@@ -85,15 +84,13 @@ package com.bored.games.breakout.physics
 			{				
 				_world.Step(t / 1000, _velIterations, _posIterations);
 				
-				//_debugDraw.Draw();
-				
 				var time:int = getTimer();
 				var bb:b2Body = _world.GetBodyList();
 				
 				while ( bb != null )
 				{
 					if ( bb.GetUserData() != null )
-					{						
+					{							
 						bb.GetUserData().update(t);
 					}
 					

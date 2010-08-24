@@ -110,6 +110,7 @@ package com.bored.games.breakout.states.views
 	import org.flintparticles.common.counters.TimePeriod;
 	import org.flintparticles.common.displayObjects.Line;
 	import org.flintparticles.common.easing.Quadratic;
+	import org.flintparticles.common.emitters.Emitter;
 	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.common.initializers.ColorInit;
 	import org.flintparticles.common.initializers.Lifetime;
@@ -221,6 +222,8 @@ package com.bored.games.breakout.states.views
 		
 		private var _lastUpdate:Number;
 		
+		private var _contactListener:GameContactListener;
+		
 		public function GameView() 
 		{
 			super();
@@ -241,16 +244,14 @@ package com.bored.games.breakout.states.views
 			_paddleMultiplierManager = new PaddleMultiplierManagerAction(_multiplier);
 			_multiplier.addAction(_brickMultiplierManager);
 			_multiplier.addAction(_paddleMultiplierManager);
-				
+			
+			_contactListener = new GameContactListener();
 			PhysicsWorld.InitializePhysics();
-			//PhysicsWorld.SetDebugDraw(this);
-			PhysicsWorld.SetContactListener(new GameContactListener());
+			PhysicsWorld.SetContactListener(_contactListener);
 		}//end constructor()
 		
 		override protected function addedToStageHandler(e:Event):void
-		{
-			//trace("GameView::addedToStageHandler()");
-			
+		{			
 			super.addedToStageHandler(e);
 			
 			(new CatchPowerup()).destroy();
@@ -295,15 +296,7 @@ package com.bored.games.breakout.states.views
 		}//end reset()
 		
 		override public function enter():void
-		{		
-			//trace("GameView::enter()");
-			
-			/*
-			var filter:b2FilterData = new b2FilterData();
-			filter.categoryBits = GameView.id_Wall;
-			filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
-			*/
-			
+		{					
 			b2Def.fixture.restitution = 1.0;
 			b2Def.fixture.filter.categoryBits = GameView.id_Wall;
 			b2Def.fixture.filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
@@ -385,9 +378,7 @@ package com.bored.games.breakout.states.views
 		}//end levelLoaded()
 		
 		private function parseLevel(a_level:DisplayObjectContainer):void
-		{	
-			_grid.clear();
-			
+		{				
 			for ( var i:int = 0; i < a_level.numChildren; i++ )
 			{
 				var obj:DisplayObject = a_level.getChildAt(i);
@@ -885,6 +876,12 @@ package com.bored.games.breakout.states.views
 			}
 			Bullets.clear(true);
 			
+			iter = new SLLIterator(Emitters);
+			while ( iter.hasNext() )
+			{
+				obj = iter.next();
+				ParticleRenderer.removeEmitter(obj as Emitter);
+			}
 			Emitters.clear(true);
 			
 			iter = new SLLIterator(_balls);
@@ -894,6 +891,8 @@ package com.bored.games.breakout.states.views
 				obj.destroy();
 			}
 			_balls.clear(true);
+			
+			_grid.clear();
 		}//end resetGame()
 		
 		override public function update():void
@@ -918,6 +917,7 @@ package com.bored.games.breakout.states.views
 			
 			PhysicsWorld.UpdateWorld(delta);
 		
+			var obj:Object;
 			var iter:SLLIterator = new SLLIterator(Contacts);
 			while( iter.hasNext() )
 			{
@@ -979,7 +979,7 @@ package com.bored.games.breakout.states.views
 			iter = new SLLIterator(Bullets);
 			while( iter.hasNext() )
 			{
-				var obj:Object = iter.next();
+				obj = iter.next();
 				
 				if ( obj is Beam )
 				{
@@ -987,13 +987,13 @@ package com.bored.games.breakout.states.views
 						Bullets.remove(obj);
 				}
 			}
-			
+						
 			iter = new SLLIterator(Emitters);
 			while ( iter.hasNext() )
 			{
 				iter.next().update(delta/1000);
 			}
-			
+						
 			if ( _grid.isEmpty() ) 
 			{
 				iter = new SLLIterator(_balls);
@@ -1004,7 +1004,7 @@ package com.bored.games.breakout.states.views
 				}
 				dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() }));
 			}
-			
+						
 			//if ( stage ) stage.invalidate();
 		}//end update()
 		

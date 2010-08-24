@@ -3,6 +3,8 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.profiles.LevelList;
 	import com.inassets.sound.MightySound;
 	import com.inassets.sound.MightySoundManager;
+	import com.inassets.ui.buttons.events.ButtonEvent;
+	import com.inassets.ui.buttons.MightyButton;
 	import com.jac.fsm.StateView;
 	import com.sven.factories.MovieClipFactory;
 	import com.sven.utils.AppSettings;
@@ -30,13 +32,14 @@ package com.bored.games.breakout.states.views
 		
 		private var _lvlSelectMC:Sprite;
 		
-		private var _list:Array;
+		private var _levelButtons:Array;
 		
 		public function LevelListView() 
 		{
 			super();
 			
 			_lvlSelectMC = new mcCls();
+			_levelButtons = new Array(20);
 		}//end constructor()
 		
 		override protected function addedToStageHandler(e:Event):void
@@ -44,6 +47,16 @@ package com.bored.games.breakout.states.views
 			super.addedToStageHandler(e);
 			
 			addChild(_lvlSelectMC);
+			
+			var mc:MovieClip;
+			
+			for ( var i:int = 1; i <= 20; i++ )
+			{
+				mc = _lvlSelectMC.getChildByName("lvl_icon_" + i) as MovieClip;
+				var mb:MightyButton = new MightyButton(mc, false);
+				mb.pause(false);
+				_levelButtons[i-1] = mb;
+			}
 		}//end addedToStageHandler()
 		
 		override public function enter():void 
@@ -61,13 +74,13 @@ package com.bored.games.breakout.states.views
 			enterComplete();
 		}//end levelListComplete()
 		
-		private function onClick(e:MouseEvent):void
+		private function onClick(e:ButtonEvent):void
 		{
-			var tokens:Array = (e.currentTarget as MovieClip).name.split("_");
+			var tokens:Array = (e.mightyButton.buttonContents as MovieClip).name.split("_");
 			
 			var ind:int = int(tokens[2]);
 			
-			AppSettings.instance.currentLevelInd = ind;
+			AppSettings.instance.currentLevelInd = ind - 1;
 			
 			dispatchEvent(new Event(LEVEL_SELECTED));
 		}//end onClick()
@@ -75,23 +88,18 @@ package com.bored.games.breakout.states.views
 		private function refresh():void
 		{			
 			var len:int = AppSettings.instance.levelList.levelCount;
-			var mc:MovieClip;
 			
-			_list = new Array(len);
-			
-			for ( var i:int = 0; i < 54; i++ )
+			for ( var i:int = 0; i < _levelButtons.length; i++ )
 			{
-				mc = _lvlSelectMC.getChildByName("lvl_icon_" + i) as MovieClip;
-				
 				if( i < len )
 				{
-					mc.visible = true;
-					mc.addEventListener(MouseEvent.CLICK, onClick, false, 0, true);
+					(_levelButtons[i] as MightyButton).pause(false);
+					(_levelButtons[i] as MightyButton).addEventListener(ButtonEvent.MIGHTYBUTTON_CLICK_EVT, onClick, false, 0, true);
 				}
 				else
 				{
-					mc.visible = false;
-					mc.removeEventListener(MouseEvent.CLICK, onClick);
+					(_levelButtons[i] as MightyButton).pause(true);
+					(_levelButtons[i] as MightyButton).removeEventListener(ButtonEvent.MIGHTYBUTTON_CLICK_EVT, onClick);
 				}
 			}
 		}//end refresh()

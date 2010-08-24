@@ -24,14 +24,9 @@ package com.bored.games.breakout.objects.hud
 		public function set score(a_str:int):void
 		{
 			_score = a_str;
-		}//end score()
-		
-		override public function update(t:Number = 0):void 
-		{
-			super.update(t);
 			
 			this.text = String(_score);
-		}//end update()
+		}//end score()
 		
 	}//end ScoreDisplay
 

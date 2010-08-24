@@ -44,6 +44,8 @@ package com.bored.games.breakout.objects
 		
 		private var _nanoManager:NanoManagerAction;
 		
+		private var _collectableSpawner:SpawnCollectable;
+		
 		private var _gridBody:b2Body;
 		
 		private var _count:int;
@@ -104,6 +106,9 @@ package com.bored.games.breakout.objects
 			_nanoManager = new NanoManagerAction(this, obj);
 			addAction(_nanoManager);
 			activateAction(NanoManagerAction.NAME);
+			
+			_collectableSpawner = new SpawnCollectable(this);
+			addAction(_collectableSpawner);
 		}//end initializeActions()
 		
 		private function initializePhysics():void
@@ -288,8 +293,11 @@ package com.bored.games.breakout.objects
 				
 				if ( _collectables[go] )
 				{
-					go.addAction(new SpawnCollectable(go, { "type": _collectables[go] } ));
-					go.activateAction(SpawnCollectable.NAME);
+					var xOffset:Number = (go.gridX + go.gridWidth/2) * AppSettings.instance.defaultTileWidth;
+					var yOffset:Number = (go.gridY + go.gridHeight/2) * AppSettings.instance.defaultTileHeight;
+					
+					_collectableSpawner.initParams({ "type": _collectables[go], "xOffset": xOffset, "yOffset": yOffset });
+					activateAction(SpawnCollectable.NAME);
 					
 					_collectables[go] = null;
 				}

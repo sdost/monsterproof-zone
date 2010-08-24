@@ -75,7 +75,10 @@ package com.bored.games.breakout.objects.collectables
 		
 		private function cleanupPhysics():void
 		{
+			_collectableBody.GetFixtureList().SetUserData(null);
+			_collectableBody.SetUserData(null);
 			PhysicsWorld.DestroyBody(_collectableBody);
+			_collectableBody = null;
 		}//end cleanupPhysics()
 		
 		public function get physicsBody():b2Body

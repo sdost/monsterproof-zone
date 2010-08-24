@@ -29,6 +29,8 @@ package com.bored.games.breakout.actions
 		public static const NAME:String = "com.bored.games.breakout.actions.SpawnCollectable";
 		
 		private var _type:String;
+		private var _xOffset:Number;
+		private var _yOffset:Number;
 		
 		public function SpawnCollectable(a_gameElement:GameElement, a_params:Object = null) 
 		{
@@ -38,15 +40,14 @@ package com.bored.games.breakout.actions
 		override public function initParams(a_params:Object):void 
 		{
 			_type = a_params.type;
+			_xOffset = a_params.xOffset;
+			_yOffset = a_params.yOffset;
 		}//end initParams()
 		
 		override public function startAction():void 
 		{	
 			var brick:Brick = (_gameElement as Brick);
-					
-			var xOffset:Number = (brick.gridX + brick.gridWidth/2) * AppSettings.instance.defaultTileWidth;
-			var yOffset:Number = (brick.gridY + brick.gridHeight/2) * AppSettings.instance.defaultTileHeight;
-			
+				
 			var die:Number = Math.random();
 			
 			var pb:Collectable;
@@ -82,7 +83,7 @@ package com.bored.games.breakout.actions
 					break;
 			}
 			
-			pb.physicsBody.SetTransform( new V2( xOffset / PhysicsWorld.PhysScale, yOffset / PhysicsWorld.PhysScale ), 0 );
+			pb.physicsBody.SetTransform( new V2( _xOffset / PhysicsWorld.PhysScale, _yOffset / PhysicsWorld.PhysScale ), 0 );
 			
 			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxSpawnCollectable");
 			if (snd) snd.play();

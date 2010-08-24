@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <levels>
-
 <level src="../levels/00.swf" time="300000" background="3" portalThreshold="15" />
 <level src="../levels/04.swf" time="300000" background="8" portalThreshold="15" />
 <level src="../levels/05.swf" time="300000" background="4" portalThreshold="15" />

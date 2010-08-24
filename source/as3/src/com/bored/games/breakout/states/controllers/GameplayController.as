@@ -64,7 +64,6 @@ package com.bored.games.breakout.states.controllers
 			_hudView = new HUDView();
 			
 			_gameView.addEventListener("levelLoaded", levelLoaded, false, 0, true);
-			
 			_hudView.addEventListener("gameStartComplete", gameStartComplete, false, 0, true);
 			
 			super([_gameView, _hudView], a_container);
@@ -72,19 +71,10 @@ package com.bored.games.breakout.states.controllers
 		
 		public function startGame():void
 		{
-			//_stats = new Stats();
-			//container.addChild(_stats);
-			
 			container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
 			_paused = false;
 			
 			container.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp, false, 0, true);
-			
-			/*
-			_updateTimer = new Timer(_period, 1);
-			_updateTimer.addEventListener(TimerEvent.TIMER, frameUpdate, false, 0, true);
-			_updateTimer.start();
-			*/
 									
 			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
 			

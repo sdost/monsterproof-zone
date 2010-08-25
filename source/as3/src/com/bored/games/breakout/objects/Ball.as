@@ -97,6 +97,8 @@ package com.bored.games.breakout.objects
 		
 		private function initializePhysicsBody():void
 		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
 			b2Def.body.type = b2Body.b2_dynamicBody;
 			b2Def.body.bullet = true;
 			b2Def.body.allowSleep = false;
@@ -129,6 +131,8 @@ package com.bored.games.breakout.objects
 		
 		private function cleanupPhysics():void
 		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
 			_ballBody.GetFixtureList().SetUserData(null);
 			PhysicsWorld.DestroyBody(_ballBody);
 			_ballBody.SetUserData(null);

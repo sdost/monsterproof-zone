@@ -267,9 +267,6 @@ package com.bored.games.breakout.states.views
 			
 			_grid = new Grid( AppSettings.instance.defaultGridWidth, AppSettings.instance.defaultGridHeight );
 					
-			_backBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
-			_effectsBuffer = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
-			
 			_gameScreen = new Bitmap();
 			_gameScreen.bitmapData = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_gameScreen.smoothing = true;
@@ -293,6 +290,26 @@ package com.bored.games.breakout.states.views
 		
 		override public function reset():void
 		{
+			_grid.initializePhysics();
+			_paddle.initializePhysics();
+			_paddle.physicsBody.SetTransform( new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ), 0 );
+			_paddle.visible = false;
+			
+			b2Def.mouseJoint.Initialize(_paddle.physicsBody, new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ));
+			b2Def.mouseJoint.maxForce = 10000.0 * _paddle.physicsBody.GetMass();
+			b2Def.mouseJoint.dampingRatio = 0;
+			b2Def.mouseJoint.frequencyHz = 5000;
+			_mouseJoint = PhysicsWorld.CreateJoint(b2Def.mouseJoint) as b2MouseJoint;
+			
+			b2Def.lineJoint.Initialize( PhysicsWorld.GetGroundBody(), _paddle.physicsBody, _paddle.physicsBody.GetPosition(), new V2( 1.0, 0.0 ) );
+			
+			b2Def.lineJoint.lowerTranslation = -(AppSettings.instance.paddleExtentX - _paddle.width/2) / PhysicsWorld.PhysScale;
+			b2Def.lineJoint.upperTranslation = (AppSettings.instance.paddleExtentX - _paddle.width/2) / PhysicsWorld.PhysScale;
+			b2Def.lineJoint.enableLimit = true;
+			
+			_lineJoint = PhysicsWorld.CreateJoint(b2Def.lineJoint) as b2LineJoint;
+			
+			PhysicsWorld.UpdateWorld();
 		}//end reset()
 		
 		override public function enter():void
@@ -580,15 +597,6 @@ package com.bored.games.breakout.states.views
 				_gameScreen.bitmapData.copyPixels( bmd, bmd.rect, new Point(obj.x, obj.y), null, null, true );
 			}
 			
-			iter = new SLLIterator(_balls);
-			while ( iter.hasNext() )
-			{
-				obj = iter.next();
-				_gameScreen.bitmapData.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
-			}
-			
-			_gameScreen.bitmapData.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x, _paddle.y ), null, null, true );
-			
 			iter = new SLLIterator(Collectables);
 			while ( iter.hasNext() )
 			{
@@ -602,6 +610,15 @@ package com.bored.games.breakout.states.views
 				obj = iter.next();
 				_gameScreen.bitmapData.copyPixels( obj.currFrame, obj.currFrame.rect, new Point(obj.x, obj.y), null, null, true );
 			}
+			
+			iter = new SLLIterator(_balls);
+			while ( iter.hasNext() )
+			{
+				obj = iter.next();
+				_gameScreen.bitmapData.copyPixels( obj.currFrame, obj.currFrame.rect, new Point( obj.x, obj.y ), null, null, true );
+			}
+			
+			_gameScreen.bitmapData.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x, _paddle.y ), null, null, true );
 			
 			_gameScreen.bitmapData.unlock();
 					
@@ -893,6 +910,12 @@ package com.bored.games.breakout.states.views
 			_balls.clear(true);
 			
 			_grid.clear();
+			
+			PhysicsWorld.DestroyWorld();
+			PhysicsWorld.InitializePhysics();
+			PhysicsWorld.SetContactListener(_contactListener);
+			
+			reset();
 		}//end resetGame()
 		
 		override public function update():void

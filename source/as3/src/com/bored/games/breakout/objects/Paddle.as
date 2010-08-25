@@ -80,14 +80,16 @@ package com.bored.games.breakout.objects
 			
 			_normalHeight = _animatedSprite.height;
 			
-			initializePhysicsBody();
+			initializePhysics();
 			initializeActions();
 			
 			_stickyMode = false;
 		}//end constructor()
 		
-		private function initializePhysicsBody():void
+		public function initializePhysics():void
 		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
 			b2Def.body.type = b2Body.b2_dynamicBody;
 			b2Def.body.fixedRotation = true;
 			b2Def.body.allowSleep = false;

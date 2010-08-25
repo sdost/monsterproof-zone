@@ -52,6 +52,8 @@ package com.bored.games.breakout.objects.bricks
 		
 		override protected function initializePhysics():void
 		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
 			var shape:b2PolygonShape = new b2PolygonShape();
 			
 			var b2Width:Number = this.gridWidth * AppSettings.instance.defaultTileWidth;

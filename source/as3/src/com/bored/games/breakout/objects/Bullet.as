@@ -40,6 +40,8 @@ package com.bored.games.breakout.objects
 		
 		protected function initializePhysicsBody():void
 		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
 			b2Def.body.type = b2Body.b2_dynamicBody;
 			b2Def.body.fixedRotation = true;
 			b2Def.body.bullet = true;
@@ -72,6 +74,8 @@ package com.bored.games.breakout.objects
 		
 		protected function cleanupPhysics():void
 		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
 			_bulletBody.GetFixtureList().SetUserData(null);
 			PhysicsWorld.DestroyBody(_bulletBody);
 			_bulletBody.SetUserData(null);

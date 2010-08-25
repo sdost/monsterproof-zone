@@ -111,8 +111,10 @@ package com.bored.games.breakout.objects
 			addAction(_collectableSpawner);
 		}//end initializeActions()
 		
-		private function initializePhysics():void
+		public function initializePhysics():void
 		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
 			b2Def.body.type = b2Body.b2_staticBody;
 			b2Def.body.userData = this;
 			

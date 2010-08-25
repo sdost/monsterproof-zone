@@ -29,6 +29,8 @@ package com.bored.games.breakout.objects.bricks
 		
 		override protected function initializePhysics():void
 		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
 			var b2Width:Number = this.gridWidth * AppSettings.instance.defaultTileWidth;
 			var b2Height:Number = this.gridHeight * AppSettings.instance.defaultTileHeight;
 			

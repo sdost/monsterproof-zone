@@ -1,12 +1,15 @@
 package com.bored.games.breakout.actions 
 {
 	import com.bored.games.actions.Action;
+	import com.bored.games.breakout.emitters.BallStateTransition;
 	import com.bored.games.breakout.emitters.InvinciballTrail;
 	import com.bored.games.breakout.objects.Ball;
 	import com.bored.games.breakout.objects.Paddle;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
+	import flash.events.Event;
 	import flash.utils.getTimer;
+	import org.flintparticles.common.events.EmitterEvent;
 	import org.flintparticles.twoD.emitters.Emitter2D;
 	
 	/**
@@ -42,8 +45,24 @@ package com.bored.games.breakout.actions
 			GameView.Emitters.append(_emitter);
 			_emitter.start();
 			
+			var emitter:BallStateTransition = new BallStateTransition( (_gameElement as Ball), 0xFFFFCC66, 0xFFFFFFCC );
+			emitter.useInternalTick = false;
+			emitter.addEventListener( EmitterEvent.EMITTER_EMPTY, finishAction, false, 0, true );
+			GameView.ParticleRenderer.addEmitter(emitter);
+			GameView.Emitters.append(emitter);
+			emitter.start();
+			
 			this.finished = false;
 		}//end startAction()
+		
+		private function finishAction(e:Event):void
+		{
+			Emitter2D(e.currentTarget).stop();
+			Emitter2D(e.currentTarget).removeEventListener( EmitterEvent.EMITTER_EMPTY, finishAction);
+			
+			GameView.ParticleRenderer.removeEmitter(Emitter2D(e.currentTarget));
+			GameView.Emitters.remove(Emitter2D(e.currentTarget));
+		}//end finishAction()
 		
 		override public function update(a_time:Number):void 
 		{			

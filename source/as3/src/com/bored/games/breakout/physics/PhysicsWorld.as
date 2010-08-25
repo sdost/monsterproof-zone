@@ -96,6 +96,8 @@ package com.bored.games.breakout.physics
 					
 					bb = bb.GetNext();
 				}
+				
+				if( _debugDraw ) _debugDraw.Draw();
 			}
 		}//end UpdateWorld()
 		

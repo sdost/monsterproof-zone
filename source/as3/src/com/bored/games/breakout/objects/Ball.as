@@ -309,6 +309,9 @@ package com.bored.games.breakout.objects
 				this.deactivateAction(InvinciballAction.NAME);
 			}
 			
+			removeAction(DestructoballAction.NAME);
+			removeAction(InvinciballAction.NAME);
+			
 			reset();
 		}//end destroy()
 		

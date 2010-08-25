@@ -266,7 +266,8 @@ package com.bored.games.breakout.states.views
 			new LaserPaddleAction(null, null);
 			
 			_grid = new Grid( AppSettings.instance.defaultGridWidth, AppSettings.instance.defaultGridHeight );
-					
+			_paddle = new Paddle();
+			
 			_gameScreen = new Bitmap();
 			_gameScreen.bitmapData = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_gameScreen.smoothing = true;
@@ -290,30 +291,6 @@ package com.bored.games.breakout.states.views
 		
 		override public function reset():void
 		{
-			_grid.initializePhysics();
-			_paddle.initializePhysics();
-			_paddle.physicsBody.SetTransform( new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ), 0 );
-			_paddle.visible = false;
-			
-			b2Def.mouseJoint.Initialize(_paddle.physicsBody, new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ));
-			b2Def.mouseJoint.maxForce = 10000.0 * _paddle.physicsBody.GetMass();
-			b2Def.mouseJoint.dampingRatio = 0;
-			b2Def.mouseJoint.frequencyHz = 5000;
-			_mouseJoint = PhysicsWorld.CreateJoint(b2Def.mouseJoint) as b2MouseJoint;
-			
-			b2Def.lineJoint.Initialize( PhysicsWorld.GetGroundBody(), _paddle.physicsBody, _paddle.physicsBody.GetPosition(), new V2( 1.0, 0.0 ) );
-			
-			b2Def.lineJoint.lowerTranslation = -(AppSettings.instance.paddleExtentX - _paddle.width/2) / PhysicsWorld.PhysScale;
-			b2Def.lineJoint.upperTranslation = (AppSettings.instance.paddleExtentX - _paddle.width/2) / PhysicsWorld.PhysScale;
-			b2Def.lineJoint.enableLimit = true;
-			
-			_lineJoint = PhysicsWorld.CreateJoint(b2Def.lineJoint) as b2LineJoint;
-			
-			PhysicsWorld.UpdateWorld();
-		}//end reset()
-		
-		override public function enter():void
-		{					
 			b2Def.fixture.restitution = 1.0;
 			b2Def.fixture.filter.categoryBits = GameView.id_Wall;
 			b2Def.fixture.filter.maskBits = GameView.id_Ball | GameView.id_Bullet | GameView.id_Collectable;
@@ -339,9 +316,9 @@ package com.bored.games.breakout.states.views
 			_bottomWall.m_reportBeginContact = true;
 			_bottomWall.m_reportEndContact = true;
 			
-			_paddle = new Paddle();
+			_paddle.initializePhysics();
 			_paddle.physicsBody.SetTransform( new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ), 0 );
-			_paddle.visible = false;
+			//_paddle.visible = false;
 						
 			b2Def.mouseJoint.Initialize(_paddle.physicsBody, new V2( AppSettings.instance.paddleStartX / PhysicsWorld.PhysScale, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale ));
 			b2Def.mouseJoint.maxForce = 10000.0 * _paddle.physicsBody.GetMass();
@@ -356,6 +333,15 @@ package com.bored.games.breakout.states.views
 			b2Def.lineJoint.enableLimit = true;
 			
 			_lineJoint = PhysicsWorld.CreateJoint(b2Def.lineJoint) as b2LineJoint;
+			
+			_grid.initializePhysics();
+			
+			PhysicsWorld.UpdateWorld();
+		}//end reset()
+		
+		override public function enter():void
+		{	
+			reset();
 			
 			_brickMultiplierManager.initParams({ "timeout": AppSettings.instance.brickMultiplierTimeout, "maxMultiplier": AppSettings.instance.brickMultiplierMax });
 			_paddleMultiplierManager.initParams( { "maxMultiplier": AppSettings.instance.paddleMultiplierMax } );
@@ -395,7 +381,9 @@ package com.bored.games.breakout.states.views
 		}//end levelLoaded()
 		
 		private function parseLevel(a_level:DisplayObjectContainer):void
-		{				
+		{			
+			_grid.clear();
+			
 			for ( var i:int = 0; i < a_level.numChildren; i++ )
 			{
 				var obj:DisplayObject = a_level.getChildAt(i);
@@ -621,8 +609,6 @@ package com.bored.games.breakout.states.views
 			_gameScreen.bitmapData.copyPixels( _paddle.currFrame, _paddle.currFrame.rect, new Point( _paddle.x, _paddle.y ), null, null, true );
 			
 			_gameScreen.bitmapData.unlock();
-					
-			//_gameScreen.bitmapData.copyPixels(_backBuffer, _gameScreen.bitmapData.rect, new Point());	
 		}//end render()
 		
 		private function handleBallCollision(a_ball:b2Fixture, a_fixture:b2Fixture, a_point:V2):void
@@ -647,7 +633,7 @@ package com.bored.games.breakout.states.views
 			{
 				if ( a_fixture.GetUserData().stickyMode && !a_fixture.GetUserData().occupied )
 				{
-					a_fixture.GetUserData().catchBall(a_ball.GetUserData() as Ball);
+					a_fixture.GetUserData().catchBall(a_ball.GetUserData() as Ball, false);
 				}
 				else
 				{
@@ -911,6 +897,9 @@ package com.bored.games.breakout.states.views
 			
 			_grid.clear();
 			
+			_paddle.destroy();
+			_grid.destroy();
+			
 			PhysicsWorld.DestroyWorld();
 			PhysicsWorld.InitializePhysics();
 			PhysicsWorld.SetContactListener(_contactListener);
@@ -932,7 +921,10 @@ package com.bored.games.breakout.states.views
 			
 			UpdateMouseWorld();
 			
-			if ( Input.mouseDown ) _paddle.releaseBall();
+			if ( Input.mouseDown ) 
+			{
+				_paddle.releaseBall();
+			}
 			
 			_mouseJoint.SetTarget(new V2(_mouseXWorldPhys, AppSettings.instance.paddleStartY / PhysicsWorld.PhysScale));
 			

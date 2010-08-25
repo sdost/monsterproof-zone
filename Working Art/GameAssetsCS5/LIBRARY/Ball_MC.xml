@@ -1,6 +1,6 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Ball_MC" itemID="4c2dfd2c-0000003d" linkageExportForAS="true" linkageClassName="breakout.assets.Ball_MC" sourceLibraryItemHRef="Symbol 1" lastModified="1278968227">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="Ball_MC" itemID="4c2dfd2c-0000003d" linkageExportForAS="true" linkageClassName="breakout.assets.Ball_MC" sourceLibraryItemHRef="Symbol 1" lastModified="1282752056">
   <timeline>
-    <DOMTimeline name="Ball_MC">
+    <DOMTimeline name="Ball_MC" currentFrame="9">
       <layers>
         <DOMLayer name="Layer 2" color="#9933CC">
           <frames>
@@ -19,7 +19,7 @@
           <frames>
             <DOMFrame index="0" keyMode="9728">
               <elements>
-                <DOMBitmapInstance name="" referenceID="" selected="true" libraryItemName="ball_assets/ball0001.png"/>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="ball_assets/ball0001.png"/>
               </elements>
             </DOMFrame>
             <DOMFrame index="1" keyMode="9728">

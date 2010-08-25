@@ -80,7 +80,6 @@ package com.bored.games.breakout.objects
 			
 			_normalHeight = _animatedSprite.height;
 			
-			initializePhysics();
 			initializeActions();
 			
 			_stickyMode = false;
@@ -116,6 +115,23 @@ package com.bored.games.breakout.objects
 			_paddleBody = PhysicsWorld.CreateBody(b2Def.body);
 			b2Def.fixture.create(_paddleBody);
 		}//end initializePhysicsBody()
+		
+		private function cleanupPhysics():void
+		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
+			_paddleBody.GetFixtureList().SetUserData(null);
+			PhysicsWorld.DestroyBody(_paddleBody);
+			_paddleBody.SetUserData(null);
+			_paddleBody = null;			
+		}//end cleanupPhysics()
+		
+		public function destroy():void
+		{
+			cleanupPhysics();
+			
+			//reset();
+		}//end destroy()
 		
 		private function initializeActions():void
 		{
@@ -263,7 +279,7 @@ package com.bored.games.breakout.objects
 			switchAnimation(PADDLE_NORMAL);
 		}//end extendOutComplete()
 		
-		public function catchBall(a_ball:Ball):void
+		public function catchBall(a_ball:Ball, a_recenter:Boolean = true):void
 		{
 			var worldAxis:V2 = new V2(1.0, 0.0);
 			
@@ -271,16 +287,26 @@ package com.bored.games.breakout.objects
 			
 			var pos:V2 = _paddleBody.GetWorldCenter();
 			pos.y -= a_ball.height / PhysicsWorld.PhysScale;
-			a_ball.physicsBody.SetTransform( pos, 0 );
+			
+			if ( a_recenter )
+			{
+				a_ball.physicsBody.SetTransform( pos, 0 );
+			}
+			else
+			{
+				a_ball.physicsBody.SetTransform( new V2( a_ball.physicsBody.GetWorldCenter().x, pos.y ), 0 );
+			}
+			
+			var xdiff:Number = pos.x - a_ball.physicsBody.GetWorldCenter().x;
 			
 			b2Def.lineJoint.enableLimit = true;
-			b2Def.lineJoint.lowerTranslation = -(this.width / 2) / PhysicsWorld.PhysScale;
-			b2Def.lineJoint.upperTranslation = (this.width / 2) / PhysicsWorld.PhysScale;
+			b2Def.lineJoint.lowerTranslation = -(this.width / 2) / PhysicsWorld.PhysScale + xdiff;
+			b2Def.lineJoint.upperTranslation = (this.width / 2) / PhysicsWorld.PhysScale + xdiff;
 			
 			b2Def.lineJoint.Initialize( 
 				_paddleBody,
 				a_ball.physicsBody,
-				a_ball.physicsBody.GetWorldCenter(),
+				pos,
 				worldAxis);
 				
 			_paddleJoint = PhysicsWorld.CreateJoint(b2Def.lineJoint) as b2LineJoint;		
@@ -290,6 +316,9 @@ package com.bored.games.breakout.objects
 		{
 			if (_paddleJoint)
 			{	
+				var b:Ball = _paddleJoint.GetBodyB().GetUserData() as Ball;
+				if (!b.visible) return;
+				
 				var ball:V2 = _paddleJoint.GetBodyB().GetPosition();
 				var paddle:V2 = _paddleJoint.GetBodyA().GetPosition();
 				
@@ -297,18 +326,11 @@ package com.bored.games.breakout.objects
 				
 				var extent:Number = (this.width / 2) / PhysicsWorld.PhysScale;
 				
-				/*
-				var rect:AABB = new AABB();
-				_paddleJoint.GetBodyB().GetFixtureList().m_shape.ComputeAABB(rect, new XF());
-				*/
-			
 				var ballXRatio:Number = ballXDiff / (extent * 2);
 				
 				if (isNaN(ballXRatio)) ballXRatio = 0;
 				if (ballXRatio < -0.95) ballXRatio = -0.95;
 				if (ballXRatio > 0.95) ballXRatio = 0.95;
-				
-				var b:Ball = _paddleJoint.GetBodyB().GetUserData() as Ball;
 				
 				var vel:V2 = new V2();
 				vel.x = ballXRatio * AppSettings.instance.paddleReflectionMultiplier;

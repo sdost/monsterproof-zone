@@ -80,7 +80,6 @@ package com.bored.games.breakout.objects
 			generate();
 			
 			initializeActions();
-			initializePhysics();
 			
 			_empty = false;
 			
@@ -120,6 +119,22 @@ package com.bored.games.breakout.objects
 			
 			_gridBody = PhysicsWorld.CreateBody(b2Def.body);
 		}//end initializePhysics()
+		
+		private function cleanupPhysics():void
+		{
+			if ( !PhysicsWorld.Exists() ) return;
+			
+			PhysicsWorld.DestroyBody(_gridBody);
+			_gridBody.SetUserData(null);
+			_gridBody = null;			
+		}//end cleanupPhysics()
+		
+		public function destroy():void
+		{
+			cleanupPhysics();
+			
+			//reset();
+		}//end destroy()
 		
 		public function get gridBody():b2Body
 		{

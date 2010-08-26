@@ -109,6 +109,8 @@ package com.bored.games.breakout.states.views
 		{
 			super();
 			
+			_popups = new SLL();
+			
 			_hideHUD = true;
 			_hideResults = true;
 			
@@ -117,39 +119,28 @@ package com.bored.games.breakout.states.views
 		
 		override protected function addedToStageHandler(e:Event):void
 		{
+			trace("HUDView::addedToStage()");
+			
 			super.addedToStageHandler(e);
-								
-			AppSettings.instance.userProfile = new UserProfile();			
 			
-			_livesDisp = new LivesDisplay(0, bitmapFont);
-			_timeDisp = new TimerDisplay(0, bitmapFont);
-			_scoreDisp = new ScoreDisplay(0, bitmapFont);
-			
-			_popups = new SLL();
-			
-			_timeDisp.x = stage.stageWidth / 2;
-			
-			_backBuffer = new BitmapData(stage.stageWidth, stage.stageHeight, true, 0x00000000);
 			_mainBuffer = new BitmapData(stage.stageWidth, stage.stageHeight, true, 0x00000000);
 			
 			_bmp = new Bitmap(_mainBuffer);
 			addChild(_bmp);
-			
-			stage.invalidate();
-			
-			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
-						
-			_renderer = new PixelRenderer(new Rectangle(0, 0, stage.stageWidth, stage.stageHeight));
-			_renderer.addFilter( new BlurFilter( 2, 2, 1 ) );
-			_renderer.addFilter( new ColorMatrixFilter( [ 1, 0, 0, 0, 0,
-														  0, 1, 0, 0, 0,
-														  0, 0, 1, 0, 0,
-														  0, 0, 0, 0.95, 0 ] ) );
-														  
-			_lastUpdate = getTimer();
-			
-			_paused = false;
+				
 		}//end addedToStageHandler()
+		
+		override protected function removedFromStageHandler(e:Event):void 
+		{
+			super.removedFromStageHandler(e);
+
+			removeChild(_bmp);
+			_bmp = null;
+			
+			_mainBuffer = null;
+					
+			this.removeEventListener(Event.RENDER, renderFrame);
+		}//end removedFromStageHandler()
 		
 		public function showGameStart():void
 		{
@@ -342,25 +333,34 @@ package com.bored.games.breakout.states.views
 			return bmd;
 		}//end get GameOverBMP()
 		
-		/*
 		override public function enter():void 
 		{			
-			//_loader = new URLLoader( new URLRequest(AppSettings.instance.levelListURL) );
-			//_loader.addEventListener(Event.COMPLETE, levelListComplete, false, 0, true);
-		}//end enter()
-		
-		private function levelListComplete(e:Event):void
-		{
-			//AppSettings.instance.levelList = new LevelList(XML(_loader.data));
+			_livesDisp = new LivesDisplay(0, bitmapFont);
+			_timeDisp = new TimerDisplay(0, bitmapFont);
+			_scoreDisp = new ScoreDisplay(0, bitmapFont);
+			
+			_renderer = new PixelRenderer(new Rectangle(0, 0, stage.stageWidth, stage.stageHeight));
+			_renderer.addFilter( new BlurFilter( 2, 2, 1 ) );
+			_renderer.addFilter( new ColorMatrixFilter( [ 1, 0, 0, 0, 0,
+														  0, 1, 0, 0, 0,
+														  0, 0, 1, 0, 0,
+														  0, 0, 0, 0.95, 0 ] ) );
+			
+			_paused = true;
 			
 			enterComplete();
-		}//end levelListComplete()
-		*/
+		}//end enter()
 		
-		override protected function removedFromStageHandler(e:Event):void
+		override public function exit():void 
 		{
-			super.removedFromStageHandler(e);
-		}//end removedFromStageHandler()
+			_livesDisp = null;
+			_timeDisp = null;
+			_scoreDisp = null;
+			
+			_renderer = null;
+			
+			exitComplete();
+		}//end exit()
 		
 		public function addPopupText(a_base:int, a_brickMult:int, a_paddleMult:int, a_x:Number, a_y:Number):void
 		{
@@ -380,17 +380,17 @@ package com.bored.games.breakout.states.views
 		
 		public function set scoreDisp(a_num:Number):void
 		{
-			_scoreDisp.score = a_num;
+			if( _scoreDisp ) _scoreDisp.score = a_num;
 		}//end set scoreDisp()
 		
 		public function set timerDisp(a_num:Number):void
 		{
-			_timeDisp.time = a_num;
+			if( _timeDisp ) _timeDisp.time = a_num;
 		}//end set scoreDisp()
 		
 		public function set livesDisp(a_num:Number):void
 		{
-			_livesDisp.lives = a_num;
+			if( _livesDisp ) _livesDisp.lives = a_num;
 		}//end set scoreDisp()
 		
 		public function pause(a_bool:Boolean):void
@@ -440,6 +440,16 @@ package com.bored.games.breakout.states.views
 			//if (stage) stage.invalidate();
 		}//end update()
 		
+		public function show():void
+		{
+			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
+		}//end showGameScreen()
+		
+		public function hide():void
+		{
+			this.removeEventListener(Event.RENDER, renderFrame);
+		}//end showGameScreen()
+		
 		public function showHUD():void
 		{
 			_hideHUD = false;
@@ -454,9 +464,10 @@ package com.bored.games.breakout.states.views
 		{	
 			_mainBuffer.lock();
 			
-			_mainBuffer.fillRect(_backBuffer.rect, 0x00000000);
+			_mainBuffer.fillRect(_mainBuffer.rect, 0x00000000);
 			
 			if ( !_hideHUD ) {
+				_timeDisp.x = (stage.stageWidth / 2) - (_timeDisp.width / 2);
 				_scoreDisp.x = stage.stageWidth - _scoreDisp.width;
 				
 				_livesDisp.draw(_mainBuffer, 0xFFFFFF, 1.0);

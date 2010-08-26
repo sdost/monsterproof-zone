@@ -11,6 +11,7 @@ package com.bored.games.breakout.states.controllers
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
 	import flash.display.MovieClip;
+	import flash.display.StageQuality;
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	import flash.events.TimerEvent;
@@ -27,7 +28,9 @@ package com.bored.games.breakout.states.controllers
 		private var _levelList:StateView;
 		
 		public function LevelSelectController(a_container:MovieClip) 
-		{						
+		{	
+			a_container.stage.quality = StageQuality.HIGH;
+			
 			_levelList = new LevelListView();
 			_levelList.addEventListener(LevelListView.LEVEL_SELECTED, levelSelect, false, 0, true);
 			

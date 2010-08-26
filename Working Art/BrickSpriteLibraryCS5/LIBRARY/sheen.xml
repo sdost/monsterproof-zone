@@ -1,0 +1,34 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="sheen" itemID="4c76e3b7-000006f4" sourceLibraryItemHRef="Symbol 1" lastModified="1282863834">
+  <timeline>
+    <DOMTimeline name="sheen">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMRectangleObject objectWidth="14.05" objectHeight="84.9" x="12.35" y="-30.95" selected="true" lockFlag="true">
+                  <matrix>
+                    <Matrix a="1.06707763671875" tx="-20.65" ty="-11.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="19.35" y="11.5"/>
+                  </transformationPoint>
+                  <fill>
+                    <LinearGradient>
+                      <matrix>
+                        <Matrix a="0.008575439453125" d="0.05181884765625" tx="19.35" ty="11.5"/>
+                      </matrix>
+                      <GradientEntry color="#FFFFFF" alpha="0" ratio="0"/>
+                      <GradientEntry color="#FFFFFF" alpha="0.749019607843137" ratio="0.513725490196078"/>
+                      <GradientEntry color="#FFFFFF" alpha="0" ratio="1"/>
+                    </LinearGradient>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

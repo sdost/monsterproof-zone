@@ -13,6 +13,7 @@ package com.bored.games.breakout.states.controllers
 	import com.jac.fsm.StateViewController;
 	import com.sven.utils.AppSettings;
 	import flash.display.MovieClip;
+	import flash.display.StageQuality;
 	import flash.events.Event;
 	import flash.events.KeyboardEvent;
 	import flash.events.TimerEvent;
@@ -20,6 +21,8 @@ package com.bored.games.breakout.states.controllers
 	import flash.ui.Keyboard;
 	import flash.utils.Timer;
 	import flash.utils.getTimer;
+	
+	[Event(name = 'returnToLevelSelect', type = 'flash.events.Event')]
 	
 	/**
 	 * ...
@@ -60,6 +63,8 @@ package com.bored.games.breakout.states.controllers
 			_paused = true;
 			_timerRunning = false;
 			
+			a_container.stage.quality = StageQuality.BEST;
+			
 			_gameView = new GameView();
 			_hudView = new HUDView();
 			
@@ -69,10 +74,11 @@ package com.bored.games.breakout.states.controllers
 			super([_gameView, _hudView], a_container);
 		}//end constructor()
 		
-		public function startGame():void
+		private function startGame():void
 		{
+			container.stage.quality = StageQuality.LOW;
+			
 			container.addEventListener(Event.ENTER_FRAME, frameUpdate, false, 0, true);
-			_paused = false;
 			
 			container.stage.addEventListener(KeyboardEvent.KEY_UP, keyUp, false, 0, true);
 									
@@ -82,8 +88,18 @@ package com.bored.games.breakout.states.controllers
 			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
 		}//end startGame()
 		
+		override protected function notifyEnterComplete(e:StateEvent):void 
+		{
+			super.notifyEnterComplete(e);
+			
+			startGame();
+		}//end notifyEnterComplete()
+		
 		private function levelLoaded(e:Event):void
 		{
+			_paused = false;
+			
+			(_hudView as HUDView).show();
 			(_hudView as HUDView).showGameStart();
 			(_gameView as GameView).show();
 			(_gameView as GameView).resetPaddle();
@@ -93,6 +109,7 @@ package com.bored.games.breakout.states.controllers
 		private function gameStartComplete(e:Event):void
 		{
 			_theme = MightySoundManager.instance.getMightySoundByName("musLevelTheme");
+			_theme.infiniteLoop = true;
 			if (_theme) _theme.play();
 			
 			(_gameView as GameView).newBall();
@@ -120,6 +137,19 @@ package com.bored.games.breakout.states.controllers
 			(_gameView as GameView).resetGame();
 			
 			startGame();
+		}//end restart()
+		
+		private function returnToLevelSelect():void
+		{
+			container.removeEventListener(Event.ENTER_FRAME, frameUpdate);	
+			
+			container.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
+			
+			(_gameView as GameView).hide();
+			(_gameView as GameView).resetGame();
+			(_hudView as HUDView).pause(true);			
+			
+			dispatchEvent(new Event('returnToLevelSelect'));
 		}//end restart()
 		
 		private function resultsComplete(e:Event):void
@@ -158,6 +188,8 @@ package com.bored.games.breakout.states.controllers
 		
 		private function endGame():void
 		{
+			_timerRunning = false;
+			
 			if (_theme) _theme.stop();
 			
 			(_gameView as GameView).removeEventListener("ballLost", ballLost);
@@ -169,9 +201,7 @@ package com.bored.games.breakout.states.controllers
 			(_hudView as HUDView).showResults(ResultsDisplay.GAME_OVER, AppSettings.instance.userProfile.score, _timeLeft, 0);
 			(_hudView as HUDView).addEventListener("resultsComplete", resultsComplete, false, 0, true);
 			
-			_callback = restart;
-			
-			_timerRunning = false;
+			_callback = returnToLevelSelect;
 			
 			AppSettings.instance.userProfile.reset();
 		}//end endGame()
@@ -224,6 +254,20 @@ package com.bored.games.breakout.states.controllers
 			var delta:Number = getTimer() - _lastUpdate;
 			_lastUpdate = getTimer();
 			
+			if (_timerRunning && _timeLeft > 0)
+			{
+				_timeLeft -= delta;
+				
+				(_hudView as HUDView).scoreDisp = AppSettings.instance.userProfile.score;
+				(_hudView as HUDView).timerDisp = _timeLeft;
+				(_hudView as HUDView).livesDisp = AppSettings.instance.userProfile.lives;
+				
+				if ( _timeLeft <= 0 )
+				{
+					endGame();
+				}
+			}
+			
 			(_hudView as HUDView).pause(_paused);
 			(_gameView as GameView).pause(_paused);
 			MightySoundManager.instance.pause(_paused);
@@ -239,20 +283,6 @@ package com.bored.games.breakout.states.controllers
 			else
 			{
 				_timerRunning = !_paused;
-			}
-			
-			if (_timerRunning)
-			{
-				_timeLeft -= delta;
-				
-				(_hudView as HUDView).scoreDisp = AppSettings.instance.userProfile.score;
-				(_hudView as HUDView).timerDisp = _timeLeft;
-				(_hudView as HUDView).livesDisp = AppSettings.instance.userProfile.lives;
-				
-				if ( _timeLeft <= 0 )
-				{
-					endGame();
-				}
 			}
 		}//end frameUpdate()
 		

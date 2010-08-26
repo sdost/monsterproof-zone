@@ -1,22 +1,154 @@
-<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="MedThreeHit" itemID="4c2a76b5-00000085" linkageExportForAS="true" linkageClassName="MedThreeHit" sourceLibraryItemHRef="Symbol 1" lastModified="1278001358">
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="MedThreeHit" itemID="4c2a76b5-00000085" linkageExportForAS="true" linkageClassName="MedThreeHit" sourceLibraryItemHRef="Symbol 1" lastModified="1282861693">
   <timeline>
-    <DOMTimeline name="MedThreeHit">
+    <DOMTimeline name="MedThreeHit" currentFrame="119">
       <layers>
-        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+        <DOMLayer name="Layer 5" color="#4FFFFF" locked="true" current="true" isSelected="true">
           <frames>
-            <DOMFrame index="0" name="Damage0" labelType="name" keyMode="9728">
+            <DOMFrame index="0" duration="40" name="Damage0" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="40" duration="40" name="Damage1" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="80" duration="40" name="Damage2" labelType="name" keyMode="9728">
+              <elements/>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 4" color="#FF4FFF" locked="true" layerType="mask">
+          <frames>
+            <DOMFrame index="0" duration="40" keyMode="9728">
               <elements>
-                <DOMBitmapInstance name="" referenceID="" selected="true" libraryItemName="BMPs/brick_med_threehit_1_BMP"/>
+                <DOMRectangleObject objectWidth="64" objectHeight="32" x="-78.85" y="6.5" lockFlag="true">
+                  <matrix>
+                    <Matrix a="0.660934448242188" tx="62.15" ty="-6.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-46.85" y="22.5"/>
+                  </transformationPoint>
+                  <fill>
+                    <SolidColor color="#66FF00"/>
+                  </fill>
+                </DOMRectangleObject>
               </elements>
             </DOMFrame>
-            <DOMFrame index="1" name="Damage1" labelType="name" keyMode="9728">
+            <DOMFrame index="40" duration="40" keyMode="9728">
               <elements>
-                <DOMBitmapInstance name="" referenceID="" libraryItemName="BMPs/brick_med_threehit_2_BMP"/>
+                <DOMRectangleObject objectWidth="64" objectHeight="32" x="-78.85" y="6.5" lockFlag="true">
+                  <matrix>
+                    <Matrix a="0.660934448242188" tx="62.15" ty="-6.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-46.85" y="22.5"/>
+                  </transformationPoint>
+                  <fill>
+                    <SolidColor color="#66FF00"/>
+                  </fill>
+                </DOMRectangleObject>
               </elements>
             </DOMFrame>
-            <DOMFrame index="2" name="Damage2" labelType="name" keyMode="9728">
+            <DOMFrame index="80" duration="40" keyMode="9728">
               <elements>
-                <DOMBitmapInstance name="" referenceID="" libraryItemName="BMPs/brick_med_threehit_3_BMP"/>
+                <DOMRectangleObject objectWidth="64" objectHeight="32" x="-78.85" y="6.5" lockFlag="true">
+                  <matrix>
+                    <Matrix a="0.660934448242188" tx="62.15" ty="-6.5"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point x="-46.85" y="22.5"/>
+                  </transformationPoint>
+                  <fill>
+                    <SolidColor color="#66FF00"/>
+                  </fill>
+                </DOMRectangleObject>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 3" color="#FF800A" parentLayerIndex="1" locked="true" animationType="motion object">
+          <frames>
+            <DOMFrame index="0" duration="8" motionTweenScale="false" keyMode="8192">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="8" duration="15" tweenType="motion object" motionTweenRotate="none" motionTweenScale="false" motionTweenSync="true" isMotionObject="true" visibleAnimationKeyframes="2097151" keyMode="10243">
+              <motionObjectXML><AnimationCore TimeScale="30000" Version="1" duration="15000"><TimeMap strength="0" type="Quadratic"/><metadata><names><name langID="en_US" value=""/></names><Settings orientToPath="0" xformPtXOffsetPct="0.498328" xformPtYOffsetPct="0.5" xformPtZOffsetPixels="0"/></metadata><PropertyContainer id="headContainer"><PropertyContainer id="Basic_Motion"><Property enabled="1" id="Motion_X" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/><Keyframe anchor="0,103.5" next="0,103.5" previous="0,103.5" roving="0" timevalue="14000"/></Property><Property enabled="1" id="Motion_Y" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="14000"/></Property><Property enabled="1" id="Rotation_Z" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,29.9999" next="0,29.9999" previous="0,29.9999" roving="0" timevalue="0"/></Property></PropertyContainer><PropertyContainer id="Transformation"><Property enabled="1" id="Skew_X" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/></Property><Property enabled="1" id="Skew_Y" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/></Property><Property enabled="1" id="Scale_X" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,100" next="0,100" previous="0,100" roving="0" timevalue="0"/></Property><Property enabled="1" id="Scale_Y" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,100" next="0,100" previous="0,100" roving="0" timevalue="0"/></Property></PropertyContainer><PropertyContainer id="Colors"/><PropertyContainer id="Filters"/></PropertyContainer></AnimationCore></motionObjectXML>
+              <elements>
+                <DOMSymbolInstance libraryItemName="sheen" name="" centerPoint3DX="-16.65" centerPoint3DY="7.95">
+                  <matrix>
+                    <Matrix a="0.866043090820313" b="0.49713134765625" c="-0.49713134765625" d="0.866043090820313" tx="-16.65" ty="7.95"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="23" motionTweenScale="false" keyMode="8192">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="24" duration="16" motionTweenScale="false" keyMode="8192">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="40" duration="8" motionTweenScale="false" keyMode="8192">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="48" duration="15" tweenType="motion object" motionTweenRotate="none" motionTweenScale="false" motionTweenSync="true" isMotionObject="true" visibleAnimationKeyframes="2097151" keyMode="10243">
+              <motionObjectXML><AnimationCore TimeScale="30000" Version="1" duration="15000"><TimeMap strength="0" type="Quadratic"/><metadata><names><name langID="en_US" value=""/></names><Settings orientToPath="0" xformPtXOffsetPct="0.498328" xformPtYOffsetPct="0.5" xformPtZOffsetPixels="0"/></metadata><PropertyContainer id="headContainer"><PropertyContainer id="Basic_Motion"><Property enabled="1" id="Motion_X" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/><Keyframe anchor="0,103.5" next="0,103.5" previous="0,103.5" roving="0" timevalue="14000"/></Property><Property enabled="1" id="Motion_Y" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="14000"/></Property><Property enabled="1" id="Rotation_Z" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,29.9999" next="0,29.9999" previous="0,29.9999" roving="0" timevalue="0"/></Property></PropertyContainer><PropertyContainer id="Transformation"><Property enabled="1" id="Skew_X" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/></Property><Property enabled="1" id="Skew_Y" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/></Property><Property enabled="1" id="Scale_X" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,100" next="0,100" previous="0,100" roving="0" timevalue="0"/></Property><Property enabled="1" id="Scale_Y" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,100" next="0,100" previous="0,100" roving="0" timevalue="0"/></Property></PropertyContainer><PropertyContainer id="Colors"/><PropertyContainer id="Filters"/></PropertyContainer></AnimationCore></motionObjectXML>
+              <elements>
+                <DOMSymbolInstance libraryItemName="sheen" name="" centerPoint3DX="-16.65" centerPoint3DY="7.95">
+                  <matrix>
+                    <Matrix a="0.866043090820313" b="0.49713134765625" c="-0.49713134765625" d="0.866043090820313" tx="-16.65" ty="7.95"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="63" motionTweenScale="false" keyMode="8192">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="64" duration="16" motionTweenScale="false" keyMode="8192">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="80" duration="8" motionTweenScale="false" keyMode="8192">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="88" duration="15" tweenType="motion object" motionTweenRotate="none" motionTweenScale="false" motionTweenSync="true" isMotionObject="true" visibleAnimationKeyframes="2097151" keyMode="10243">
+              <motionObjectXML><AnimationCore TimeScale="30000" Version="1" duration="15000"><TimeMap strength="0" type="Quadratic"/><metadata><names><name langID="en_US" value=""/></names><Settings orientToPath="0" xformPtXOffsetPct="0.498328" xformPtYOffsetPct="0.5" xformPtZOffsetPixels="0"/></metadata><PropertyContainer id="headContainer"><PropertyContainer id="Basic_Motion"><Property enabled="1" id="Motion_X" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/><Keyframe anchor="0,103.5" next="0,103.5" previous="0,103.5" roving="0" timevalue="14000"/></Property><Property enabled="1" id="Motion_Y" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="14000"/></Property><Property enabled="1" id="Rotation_Z" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,29.9999" next="0,29.9999" previous="0,29.9999" roving="0" timevalue="0"/></Property></PropertyContainer><PropertyContainer id="Transformation"><Property enabled="1" id="Skew_X" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/></Property><Property enabled="1" id="Skew_Y" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,0" next="0,0" previous="0,0" roving="0" timevalue="0"/></Property><Property enabled="1" id="Scale_X" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,100" next="0,100" previous="0,100" roving="0" timevalue="0"/></Property><Property enabled="1" id="Scale_Y" ignoreTimeMap="0" readonly="0" visible="1"><Keyframe anchor="0,100" next="0,100" previous="0,100" roving="0" timevalue="0"/></Property></PropertyContainer><PropertyContainer id="Colors"/><PropertyContainer id="Filters"/></PropertyContainer></AnimationCore></motionObjectXML>
+              <elements>
+                <DOMSymbolInstance libraryItemName="sheen" name="" centerPoint3DX="-16.65" centerPoint3DY="7.95">
+                  <matrix>
+                    <Matrix a="0.866043090820313" b="0.49713134765625" c="-0.49713134765625" d="0.866043090820313" tx="-16.65" ty="7.95"/>
+                  </matrix>
+                  <transformationPoint>
+                    <Point/>
+                  </transformationPoint>
+                </DOMSymbolInstance>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="103" motionTweenScale="false" keyMode="8192">
+              <elements/>
+            </DOMFrame>
+            <DOMFrame index="104" duration="16" motionTweenScale="false" keyMode="8192">
+              <elements/>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+        <DOMLayer name="Layer 2" color="#9933CC" locked="true">
+          <frames>
+            <DOMFrame index="0" duration="40" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="BMPs/brick_med_threehit_1.png"/>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="40" duration="40" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="BMPs/brick_med_threehit_2.png"/>
+              </elements>
+            </DOMFrame>
+            <DOMFrame index="80" duration="40" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" libraryItemName="BMPs/brick_med_threehit_3.png"/>
               </elements>
             </DOMFrame>
           </frames>

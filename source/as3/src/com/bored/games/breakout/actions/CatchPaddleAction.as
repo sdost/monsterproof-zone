@@ -48,9 +48,7 @@ package com.bored.games.breakout.actions
 		override public function update(a_time:Number):void 
 		{
 			if ( (getTimer() - _startTime) > _effectTime )
-			{	
-				if(_sndLoop) _sndLoop.stop();
-				
+			{					
 				this.finished = true;
 			}
 		}//end update()
@@ -61,6 +59,7 @@ package com.bored.games.breakout.actions
 			
 			if (_finished)
 			{
+				if(_sndLoop) _sndLoop.stop();
 				(_gameElement as Paddle).stickyMode = false;
 				(_gameElement as Paddle).releaseBall();
 				(_gameElement as Paddle).switchAnimation(Paddle.PADDLE_CATCH_OUT);

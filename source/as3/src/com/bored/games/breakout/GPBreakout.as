@@ -1,5 +1,6 @@
 ﻿package com.bored.games.breakout
 {
+	import com.bored.games.breakout.profiles.UserProfile;
 	import com.bored.games.breakout.states.controllers.GameplayController;
 	import com.bored.games.breakout.states.controllers.LevelSelectController;
 	import com.bored.games.breakout.states.controllers.LoadingController;
@@ -58,11 +59,9 @@
 		{
 			super.addedToStage();
 			
-			addStates();
-			
 			stage.align = StageAlign.TOP_LEFT;
 			
-			var appSetting:AppSettings = AppSettings.instance;
+			var appSetting:AppSettings = AppSettings.instance;		
 			
 			AppSettings.instance.load("development.config");
 			
@@ -73,8 +72,9 @@
 		{
 			AppSettings.instance.removeEventListener(Event.COMPLETE, onConfigReady);
 			
-			stage.quality = StageQuality.BEST;
+			AppSettings.instance.userProfile = new UserProfile();
 			
+			_loader = new LoadingController(this);
 			_loader.addEventListener(Event.COMPLETE, loadingComplete, false, 0, true);
 			_sm.changeState(_loader);
 		}//end addedToStage()
@@ -82,9 +82,9 @@
 		private function loadingComplete(e:Event):void
 		{
 			_loader.removeEventListener(Event.COMPLETE, loadingComplete);
-			
 			_loader = null;
 			
+			_title = new TitleController(this);
 			_title.addEventListener('startGame', titleComplete, false, 0, true);
 			_sm.changeState(_title);
 		}//end loadingComplete()
@@ -94,6 +94,17 @@
 			_title.removeEventListener('startGame', titleComplete);
 			_title = null;
 			
+			_levelSelect = new LevelSelectController(this);
+			_levelSelect.addEventListener('levelSelect', levelSelectComplete, false, 0, true);
+			_sm.changeState(_levelSelect);
+		}//end titleComplete()
+		
+		private function returnToLevelSelect(e:Event):void
+		{
+			_gameplay.removeEventListener('returnToLevelSelect', returnToLevelSelect);
+			_gameplay = null;
+			
+			_levelSelect = new LevelSelectController(this);
 			_levelSelect.addEventListener('levelSelect', levelSelectComplete, false, 0, true);
 			_sm.changeState(_levelSelect);
 		}//end titleComplete()
@@ -103,25 +114,10 @@
 			_levelSelect.removeEventListener('levelSelect', levelSelectComplete);
 			_levelSelect = null;
 			
-			_gameplay.addEventListener(StateEvent.ENTER_COMPLETE, enterComplete, false, 0, true);
+			_gameplay = new GameplayController(this);
+			_gameplay.addEventListener('returnToLevelSelect', returnToLevelSelect, false, 0, true);
 			_sm.changeState(_gameplay);
 		}//end levelSelectComplete()
-		
-		private function enterComplete(e:StateEvent):void
-		{
-			stage.quality = StageQuality.LOW;
-			
-			_gameplay.removeEventListener(StateEvent.ENTER_COMPLETE, enterComplete);
-			(_gameplay as GameplayController).startGame();
-		}//end enterComplete()
-		
-		protected function addStates():void
-		{
-			_loader = new LoadingController(this);
-			_title = new TitleController(this);
-			_levelSelect = new LevelSelectController(this);
-			_gameplay = new GameplayController(this);
-		}//end addStates()
 		
 	}//end class GPBreakout
 	

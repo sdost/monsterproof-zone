@@ -3,6 +3,14 @@ package com.bored.games.breakout.states.views
 	import Box2DAS.Dynamics.ContactEvent;
 	import com.inassets.sound.MightySound;
 	import com.inassets.sound.MightySoundManager;
+	import com.noteflight.standingwave3.elements.AudioDescriptor;
+	import com.noteflight.standingwave3.elements.IAudioSource;
+	import com.noteflight.standingwave3.filters.BiquadFilter;
+	import com.noteflight.standingwave3.generators.SoundGenerator;
+	import com.noteflight.standingwave3.output.AudioPlayer;
+	import com.noteflight.standingwave3.sources.SoundSource;
+	import flash.events.SampleDataEvent;
+	import flash.media.Sound;
 	import flash.utils.getDefinitionByName;
 	import Box2DAS.Collision.b2AABB;
 	import Box2DAS.Collision.b2Manifold;
@@ -222,11 +230,23 @@ package com.bored.games.breakout.states.views
 		
 		private var _lastUpdate:Number;
 		
+		private var _lowpassFilter:BiquadFilter;
+		
 		private var _contactListener:GameContactListener;
 		
 		public function GameView() 
 		{
 			super();
+			
+			(new CatchPowerup());
+			(new InvinciballPowerup());
+			(new ExtendPowerup());
+			(new LaserPowerup());
+			(new MultiballPowerup());
+			(new DestructoballPowerup());
+			(new SuperLaserPowerup());
+			(new ExtraLifePowerup());
+			(new LaserPaddleAction(null, null));
 						
 			_balls = new SLL();
 			
@@ -251,42 +271,29 @@ package com.bored.games.breakout.states.views
 		}//end constructor()
 		
 		override protected function addedToStageHandler(e:Event):void
-		{			
+		{	
 			super.addedToStageHandler(e);
-			
-			(new CatchPowerup()).destroy();
-			(new InvinciballPowerup()).destroy();
-			(new ExtendPowerup()).destroy();
-			(new LaserPowerup()).destroy();
-			(new MultiballPowerup()).destroy();
-			(new DestructoballPowerup()).destroy();
-			(new SuperLaserPowerup()).destroy();
-			(new ExtraLifePowerup()).destroy();
-			
-			new LaserPaddleAction(null, null);
-			
-			_grid = new Grid( AppSettings.instance.defaultGridWidth, AppSettings.instance.defaultGridHeight );
-			_paddle = new Paddle();
 			
 			_gameScreen = new Bitmap();
 			_gameScreen.bitmapData = new BitmapData( stage.stageWidth, stage.stageHeight, true, 0x00000000 );
 			_gameScreen.smoothing = true;
-			//_gameScreen.alpha = 0.3;
 			addChild( _gameScreen );
 			
 			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), true );
 			addChild((ParticleRenderer as BitmapRenderer));
-			
-			//sfx.addSound( new SMSound( sfx_BallWallBounce, "breakout.assets.sfx.Bounce1" ) );
-			//sfx.addSound( new SMSound( sfx_BallPaddleBounce, "breakout.assets.sfx.Bounce2" ) );
-			//sfx.addSound( new SMSound( sfx_BrickExplode, "breakout.assets.sfx.Explode" ) );
-			//sfx.addSound( new SMSound( sfx_PaddleCatch, "breakout.assets.sfx.PaddleCatch", true ) );
-			//sfx.addSound( new SMSound( sfx_PaddleExtend, "breakout.assets.sfx.PaddleExtend" ) );
 		}//end addedToStageHandler()
 		
 		override protected function removedFromStageHandler(e:Event):void
 		{
 			super.removedFromStageHandler(e);
+			
+			removeChild(_gameScreen);
+			_gameScreen = null;
+			
+			removeChild((ParticleRenderer as BitmapRenderer));
+			ParticleRenderer = null;
+			
+			this.removeEventListener(Event.RENDER, renderFrame);
 		}//end removedFromStageHandler()
 		
 		override public function reset():void
@@ -341,12 +348,17 @@ package com.bored.games.breakout.states.views
 		
 		override public function enter():void
 		{	
+			_grid = new Grid( AppSettings.instance.defaultGridWidth, AppSettings.instance.defaultGridHeight );
+			_paddle = new Paddle();
+			
 			reset();
 			
 			_brickMultiplierManager.initParams({ "timeout": AppSettings.instance.brickMultiplierTimeout, "maxMultiplier": AppSettings.instance.brickMultiplierMax });
 			_paddleMultiplierManager.initParams( { "maxMultiplier": AppSettings.instance.paddleMultiplierMax } );
 			
 			PhysicsWorld.UpdateWorld();
+			
+			_paused = true;
 						
 			enterComplete();
 		}//end enter()
@@ -368,9 +380,9 @@ package com.bored.games.breakout.states.views
 			_levelLoader.load( new URLRequest(url) );
 		}//end loadNextLevel()
 		
-		private function levelLoaded(e:Event = null):void
+		private function levelLoaded(e:Event):void
 		{
-			_levelLoader.removeEventListener(Event.COMPLETE, levelLoaded);
+			_levelLoader.contentLoaderInfo.removeEventListener(Event.COMPLETE, levelLoaded);
 			
 			parseLevel(_levelLoader.content as DisplayObjectContainer);
 			
@@ -517,10 +529,6 @@ package com.bored.games.breakout.states.views
 		public function resetPaddle():void
 		{		
 			_paddle.activatePowerup(null);
-			
-			_lastUpdate = getTimer();
-			
-			_paused = false;
 		}//end initializePaddle()
 		
 		public function newBall():void
@@ -624,7 +632,7 @@ package com.bored.games.breakout.states.views
 			}
 			else if ( a_fixture.GetFilterData().categoryBits == id_Wall )
 			{
-				v = uint(Math.random() * 3 + 1);
+				v = uint(Math.random() * 2 + 1);
 				
 				snd = MightySoundManager.instance.getMightySoundByName("sfxWallCollision_" + v);
 				if (snd) snd.play();
@@ -637,7 +645,7 @@ package com.bored.games.breakout.states.views
 				}
 				else
 				{
-					v = uint(Math.random() * 3 + 1);
+					v = uint(Math.random() * 2 + 1);
 				
 					snd = MightySoundManager.instance.getMightySoundByName("sfxPaddleCollision_" + v);
 					if (snd) snd.play();
@@ -686,9 +694,19 @@ package com.bored.games.breakout.states.views
 						}
 			
 						var vortex:PortalVortex = new PortalVortex(_gameScreen, a_fixture.GetUserData() as Portal);
+						//vortex.useInternalTick = false;
 						vortex.addEventListener(EmitterEvent.EMITTER_EMPTY, vortexComplete,	false, 0, true);						
 						GameView.ParticleRenderer.addEmitter(vortex);
 						vortex.start();
+						
+						/*
+						var ms:MightySound = MightySoundManager.instance.getMightySoundByName("musLevelTheme");
+						ms.stop();
+						var pos:int = ms.currentChannel.position;
+						var source:IAudioSource = new SoundSource(ms.sound);
+						_lowpassFilter = new BiquadFilter(source, BiquadFilter.LOW_PASS_TYPE, 5000);
+						new AudioPlayer().play(_lowpassFilter);
+						*/
 						
 						hide();
 							
@@ -1019,7 +1037,12 @@ package com.bored.games.breakout.states.views
 				}
 				dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() }));
 			}
-						
+				
+			if (_lowpassFilter)
+			{
+				_lowpassFilter.frequency--;
+			}
+			
 			//if ( stage ) stage.invalidate();
 		}//end update()
 		

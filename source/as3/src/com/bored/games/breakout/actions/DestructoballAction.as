@@ -6,6 +6,8 @@ package com.bored.games.breakout.actions
 	import com.bored.games.breakout.objects.Paddle;
 	import com.bored.games.breakout.states.views.GameView;
 	import com.bored.games.objects.GameElement;
+	import com.inassets.sound.MightySound;
+	import com.inassets.sound.MightySoundManager;
 	import flash.events.Event;
 	import flash.utils.getTimer;
 	import org.flintparticles.common.events.EmitterEvent;
@@ -42,6 +44,9 @@ package com.bored.games.breakout.actions
 			GameView.ParticleRenderer.addEmitter(emitter);
 			GameView.Emitters.append(emitter);
 			emitter.start();
+			
+			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxDestructoballTransition");
+			if (snd) snd.play();
 			
 			this.finished = false;
 		}//end startAction()

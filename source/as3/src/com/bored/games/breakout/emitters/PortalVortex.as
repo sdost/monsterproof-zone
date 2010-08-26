@@ -40,7 +40,7 @@ package com.bored.games.breakout.emitters
 		
 		public function PortalVortex(a_screen:Bitmap, a_portal:Portal) 
 		{
-			addInitializer( new Lifetime( 1.5, 2.5 ) );
+			addInitializer( new Lifetime( 10.0 ) );
 			
 			addAction( new Age() );
 			addAction( new Move() );
@@ -51,7 +51,7 @@ package com.bored.games.breakout.emitters
 			var xOffset:Number = a_portal.x + a_portal.gridWidth / 2 * AppSettings.instance.defaultTileWidth;
 			var yOffset:Number = a_portal.y + a_portal.gridHeight / 2 * AppSettings.instance.defaultTileHeight;
 			
-			addAction( new GravityWell( 500, xOffset, yOffset, 150 ) );
+			addAction( new GravityWell( 500, xOffset, yOffset, 250 ) );
 			addAction( new DeathZone( new DiscZone( new Point( xOffset, yOffset ), a_portal.gridWidth / 2 * AppSettings.instance.defaultTileWidth ) ) );
 		}//end constructor()
 		

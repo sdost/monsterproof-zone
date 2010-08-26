@@ -10,6 +10,7 @@ package com.bored.games.breakout.states.controllers
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
 	import flash.display.MovieClip;
+	import flash.display.StageQuality;
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	import flash.events.TimerEvent;
@@ -26,7 +27,9 @@ package com.bored.games.breakout.states.controllers
 		private var _titleScreen:StateView;
 		
 		public function TitleController(a_container:MovieClip) 
-		{						
+		{		
+			a_container.stage.quality = StageQuality.HIGH;
+			
 			_titleScreen = new TitleView();
 			_titleScreen.addEventListener(TitleView.START_GAME, startGame, false, 0, true);
 			_titleScreen.addEventListener(TitleView.CONTINUE_GAME, continueGame, false, 0, true);

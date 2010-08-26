@@ -14,12 +14,13 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'8/25/2010'</value>
+      <value>'8/26/2010'</value>
     </define>
     <source-path append="true">
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\src</path-element>
       <path-element>C:\Users\Magdalena\Projects\wck</path-element>
       <path-element>C:\Users\Magdalena\Projects\FSM_Source_1_0\Classes</path-element>
+      <path-element>C:\Users\Magdalena\Projects\standingwave3\sw3\src</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
@@ -32,12 +33,13 @@
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\InAssetsUtils.swc</path-element>
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\UIComponents.swc</path-element>
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\IASounds.swc</path-element>
+      <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\awave.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>
     <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\src\com\bored\games\breakout\GPBreakout.as</path-element>
   </file-specs>
-  <default-background-color>#FFFFFF</default-background-color>
+  <default-background-color>#000000</default-background-color>
   <default-frame-rate>40</default-frame-rate>
   <default-size>
     <width>672</width>

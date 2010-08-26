@@ -44,6 +44,7 @@ package com.bored.games.breakout.states.views
 			addEventListener(MouseEvent.CLICK, clickToPlay, false, 0, true);
 			
 			_theme = MightySoundManager.instance.getMightySoundByName("musTitleTheme");
+			_theme.infiniteLoop = true;
 			if (_theme) _theme.play();
 		}//end addedToStageHandler()
 		

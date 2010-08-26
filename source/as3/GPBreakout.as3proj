@@ -9,13 +9,14 @@
     <movie width="672" />
     <movie height="544" />
     <movie version="10" />
-    <movie background="#FFFFFF" />
+    <movie background="#000000" />
   </output>
   <!-- Other classes to be compiled into your SWF -->
   <classpaths>
     <class path="src" />
     <class path="..\..\..\wck" />
     <class path="..\..\..\FSM_Source_1_0\Classes" />
+    <class path="..\..\..\standingwave3\sw3\src" />
   </classpaths>
   <!-- Build options -->
   <build>
@@ -58,6 +59,7 @@
     <element path="libs\InAssetsUtils.swc" />
     <element path="libs\UIComponents.swc" />
     <element path="libs\IASounds.swc" />
+    <element path="libs\awave.swc" />
   </libraryPaths>
   <!-- External Libraries -->
   <externalLibraryPaths>

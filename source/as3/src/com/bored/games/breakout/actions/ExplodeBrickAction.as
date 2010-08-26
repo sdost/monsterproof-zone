@@ -29,7 +29,7 @@ package com.bored.games.breakout.actions
 		{
 			_finished = false;
 			
-			var v:int = uint(Math.random() * 3 + 1);
+			var v:int = uint(Math.random() * 1 + 1);
 				
 			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxBrickExplosion_" + v);
 			if (snd) snd.play();

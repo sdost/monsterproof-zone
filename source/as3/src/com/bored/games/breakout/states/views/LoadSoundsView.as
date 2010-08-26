@@ -78,9 +78,25 @@ package com.bored.games.breakout.states.views
 			
 			//stateFinished();
 			
-			loadXmlSoundList();
+			//loadXmlSoundList();
+			
+			_explorer = new SWFExplorer();
+			_explorer.addEventListener(SWFExplorerEvent.COMPLETE, assetsParsed, false, 0, true);
+			_explorer.parse(_loader.contentLoaderInfo.bytes);
 			
 		}//end loadingComplete()
+		
+		private function assetsParsed(e:SWFExplorerEvent):void
+		{
+			for ( var i:int = 0; i < e.definitions.length; i++ )
+			{
+				var cls:Class = _loader.contentLoaderInfo.applicationDomain.getDefinition(e.definitions[i]) as Class;
+				
+				MightySoundManager.instance.addSound(new cls() as Sound, e.definitions[i]);
+			}
+			
+			stateFinished();
+		}//end assetsParsed()
 		
 		private function loadXmlSoundList():void
 		{

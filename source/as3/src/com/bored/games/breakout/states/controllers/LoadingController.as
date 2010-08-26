@@ -8,6 +8,7 @@ package com.bored.games.breakout.states.controllers
 	import com.jac.fsm.StateView;
 	import com.jac.fsm.StateViewController;
 	import flash.display.MovieClip;
+	import flash.display.StageQuality;
 	import flash.events.Event;
 	import flash.events.ProgressEvent;
 	import flash.events.TimerEvent;
@@ -31,7 +32,9 @@ package com.bored.games.breakout.states.controllers
 		private var _totalLoaded:int;
 		
 		public function LoadingController(a_container:MovieClip) 
-		{						
+		{	
+			a_container.stage.quality = StageQuality.HIGH;
+			
 			_loadingBar = new LoadingBarView();
 			_brickLoader = new LoadBrickAssetsView();
 			_backgroundLoader = new LoadBackgroundsView();

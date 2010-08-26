@@ -3,6 +3,9 @@
 <level src="../levels/level_love.swf" time="300000" background="7" portalThreshold="15" />
 <level src="../levels/level_metalprison.swf" time="300000" background="5" portalThreshold="15" />
 <level src="../levels/level_rainbow.swf" time="300000" background="8" portalThreshold="15" />
+<level src="../levels/level_giantworld.swf" time="300000" background="8" portalThreshold="15" />
+<level src="../levels/level_waterworld.swf" time="300000" background="8" portalThreshold="15" />
+<level src="../levels/level_nanocircuit.swf" time="300000" background="8" portalThreshold="15" />
 <level src="../levels/00.swf" time="300000" background="3" portalThreshold="15" />
 <level src="../levels/04.swf" time="300000" background="8" portalThreshold="15" />
 <level src="../levels/05.swf" time="300000" background="4" portalThreshold="15" />
@@ -16,5 +19,4 @@
 <level src="../levels/03.swf" time="300000" background="6" portalThreshold="15" />
 <level src="../levels/02.swf" time="300000" background="1" portalThreshold="15" />
 <level src="../levels/12.swf" time="300000" background="1" portalThreshold="15" />
-<level src="../levels/bonus.swf" time="300000" background="0" portalThreshold="15" />
 </levels>

@@ -23,7 +23,7 @@ package com.bored.games.breakout.states.controllers
 	 */
 	public class LevelSelectController extends StateViewController
 	{	
-		//[Event(name = 'levelSelect', type = 'flash.events.Event')]
+		[Event(name = 'levelSelect', type = 'flash.events.Event')]
 		
 		private var _levelList:StateView;
 		
@@ -41,18 +41,6 @@ package com.bored.games.breakout.states.controllers
 		{
 			dispatchEvent(new Event('levelSelect'));
 		}//end startGame()
-	
-		/*
-		private function continueGame(e:Event):void
-		{
-			
-		}//end startGame()
-		
-		private function showOptions(e:Event):void
-		{
-			
-		}//end startGame()
-		*/
 				
 		override protected function exitComplete(e:StateEvent):void 
 		{			

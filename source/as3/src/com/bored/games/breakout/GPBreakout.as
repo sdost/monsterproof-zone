@@ -5,6 +5,7 @@
 	import com.bored.games.breakout.states.controllers.LevelSelectController;
 	import com.bored.games.breakout.states.controllers.LoadingController;
 	import com.bored.games.breakout.states.controllers.TitleController;
+	import com.bored.games.breakout.states.controllers.WinController;
 	import com.bored.games.breakout.states.views.TitleView;
 	import com.bored.games.input.Input;
 	import com.bored.services.BoredServices;
@@ -35,6 +36,7 @@
 		private var _title:StateController;
 		private var _levelSelect:StateController;
 		private var _gameplay:StateController;
+		private var _win:StateController;
 		
 		public function GPBreakout() 
 		{		
@@ -73,6 +75,7 @@
 			AppSettings.instance.removeEventListener(Event.COMPLETE, onConfigReady);
 			
 			AppSettings.instance.userProfile = new UserProfile();
+			AppSettings.instance.userProfile.unlockLevel(0);
 			
 			_loader = new LoadingController(this);
 			_loader.addEventListener(Event.COMPLETE, loadingComplete, false, 0, true);
@@ -101,8 +104,18 @@
 		
 		private function returnToLevelSelect(e:Event):void
 		{
-			_gameplay.removeEventListener('returnToLevelSelect', returnToLevelSelect);
-			_gameplay = null;
+			if (_win)
+			{
+				_win.removeEventListener('returnToLevelSelect', returnToLevelSelect);
+				_win = null;
+			}
+			
+			if (_gameplay)
+			{			
+				_gameplay.removeEventListener('returnToLevelSelect', returnToLevelSelect);
+				_gameplay.removeEventListener('proceedToWinScreen', proceedToWinScreen);
+				_gameplay = null;
+			}
 			
 			_levelSelect = new LevelSelectController(this);
 			_levelSelect.addEventListener('levelSelect', levelSelectComplete, false, 0, true);
@@ -116,8 +129,20 @@
 			
 			_gameplay = new GameplayController(this);
 			_gameplay.addEventListener('returnToLevelSelect', returnToLevelSelect, false, 0, true);
+			_gameplay.addEventListener('proceedToWinScreen', proceedToWinScreen, false, 0, true);
 			_sm.changeState(_gameplay);
 		}//end levelSelectComplete()
+		
+		private function proceedToWinScreen(e:Event):void
+		{
+			_gameplay.removeEventListener('returnToLevelSelect', returnToLevelSelect);
+			_gameplay.removeEventListener('proceedToWinScreen', proceedToWinScreen);
+			_gameplay = null;
+			
+			_win = new WinController(this);
+			_win.addEventListener('returnToLevelSelect', returnToLevelSelect, false, 0, true);
+			_sm.changeState(_win);
+		}//end titleComplete()
 		
 	}//end class GPBreakout
 	

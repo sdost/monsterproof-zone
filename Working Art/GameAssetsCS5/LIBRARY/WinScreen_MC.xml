@@ -1,0 +1,17 @@
+<DOMSymbolItem xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://ns.adobe.com/xfl/2008/" name="WinScreen_MC" itemID="4c77dea0-000002e2" linkageExportForAS="true" linkageClassName="breakout.assets.WinScreen_MC" sourceLibraryItemHRef="TitleScreen_MC copy" lastModified="1282924282">
+  <timeline>
+    <DOMTimeline name="WinScreen_MC">
+      <layers>
+        <DOMLayer name="Layer 1" color="#4FFF4F" current="true" isSelected="true">
+          <frames>
+            <DOMFrame index="0" keyMode="9728">
+              <elements>
+                <DOMBitmapInstance name="" referenceID="" selected="true" libraryItemName="winscreen02.png"/>
+              </elements>
+            </DOMFrame>
+          </frames>
+        </DOMLayer>
+      </layers>
+    </DOMTimeline>
+  </timeline>
+</DOMSymbolItem>

@@ -9,11 +9,13 @@ package com.bored.games.breakout.profiles
 	{
 		private var _lives:int;
 		private var _score:int;
+		private var _levelsUnlocked:Array;
 	
 		public function UserProfile() 
 		{			
 			_lives = AppSettings.instance.defaultStartingLives;
 			_score = 0;
+			_levelsUnlocked = new Array();
 		}//end constructor()
 		
 		public function addPoints(a_points:int):void
@@ -40,6 +42,28 @@ package com.bored.games.breakout.profiles
 		{
 			return _lives;
 		}//end get lives()
+		
+		public function unlockLevel(a_lvl:int):void
+		{
+			if ( _levelsUnlocked.length > a_lvl )
+			{
+				_levelsUnlocked[a_lvl] = true;
+			}
+			else
+			{
+				_levelsUnlocked.push(true);
+			}
+		}//end unlockLevel()
+		
+		public function levelUnlocked(a_lvl:int):Boolean
+		{
+			if ( _levelsUnlocked.length > a_lvl )
+			{
+				return _levelsUnlocked[a_lvl];
+			}
+			
+			return false;
+		}//end levelUnlocked()
 		
 		public function reset():void
 		{

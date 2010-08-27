@@ -152,6 +152,19 @@ package com.bored.games.breakout.states.controllers
 			dispatchEvent(new Event('returnToLevelSelect'));
 		}//end restart()
 		
+		private function proceedToWinScreen():void
+		{
+			container.removeEventListener(Event.ENTER_FRAME, frameUpdate);	
+			
+			container.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
+			
+			(_gameView as GameView).hide();
+			(_gameView as GameView).resetGame();
+			(_hudView as HUDView).pause(true);			
+			
+			dispatchEvent(new Event('proceedToWinScreen'));
+		}//end restart()
+		
 		private function resultsComplete(e:Event):void
 		{
 			(_hudView as HUDView).removeEventListener("resultsComplete", resultsComplete);
@@ -212,15 +225,19 @@ package com.bored.games.breakout.states.controllers
 			
 			AppSettings.instance.currentLevelInd++;
 			
+			AppSettings.instance.userProfile.unlockLevel(AppSettings.instance.currentLevelInd);
+			
 			if (AppSettings.instance.currentLevelInd >= AppSettings.instance.levelList.levelCount)
 			{
-				AppSettings.instance.currentLevelInd = 0;
+				proceedToWinScreen();
 			}
+			else
+			{
+				AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
 			
-			AppSettings.instance.currentLevel = AppSettings.instance.levelList.getLevel(AppSettings.instance.currentLevelInd);
-			
-			(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
-			(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
+				(_gameView as GameView).loadNextLevel(AppSettings.instance.currentLevel.levelDataURL);
+				(_gameView as GameView).setBackground(AppSettings.instance.backgrounds[AppSettings.instance.currentLevel.backgroundIndex]);
+			}
 		}//end advanceLevel()
 				
 		private function levelFinished(e:ObjectEvent = null):void
@@ -310,6 +327,12 @@ package com.bored.games.breakout.states.controllers
 					break;
 				case ("m".charCodeAt(0)):
 					MightySoundManager.instance.mute = !MightySoundManager.instance.mute;
+					break;
+				case ("q".charCodeAt(0)):
+					if ( _paused )
+					{
+						returnToLevelSelect();
+					}
 					break;
 			}
 		}//end keyUp()

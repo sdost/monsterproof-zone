@@ -20,6 +20,7 @@ package com.bored.games.breakout.objects.hud
 		
 		private var _muteValue:GameWord;
 		
+		private var _quit:GameWord;
 		private var _click:GameWord;
 		
 		public function PauseDisplay(a_font:BitmapFont) 
@@ -30,16 +31,20 @@ package com.bored.games.breakout.objects.hud
 			_title.x = 672 / 2 - _title.width / 2;
 			_title.y = 150;
 			
-			_muteLabel = new GameWord("Sound/Music (M):", a_font);
+			_muteLabel = new GameWord("SOUND/MUSIC (M):", a_font);
 			_muteLabel.x = 200;
 			_muteLabel.y = _title.y + _title.height + 25;
 			
 			_muteValue = new GameWord(MightySoundManager.instance.mute ? "OFF" : "ON", a_font);
 			_muteValue.y = _muteLabel.y;
 			
+			_quit = new GameWord("QUIT (Q) to Level Select.", a_font);
+			_quit.x = 672 / 2 - _quit.width / 2;
+			_quit.y = _muteLabel.y + _muteLabel.height + 50;
+			
 			_click = new GameWord("Click to Resume.", a_font);
 			_click.x = 672 / 2 - _click.width / 2;
-			_click.y = _muteLabel.y + _muteLabel.height + 50;
+			_click.y = _quit.y + _quit.height + 25;
 		}//end constructor()
 				
 		override public function update(t:Number = 0):void 
@@ -57,6 +62,8 @@ package com.bored.games.breakout.objects.hud
 			_muteValue.text = MightySoundManager.instance.mute ? "OFF" : "ON";
 			_muteValue.x = 472 - _muteValue.width;
 			_muteValue.draw(a_bmd, 0xFFFFFF, 1);
+			
+			_quit.draw(a_bmd, 0xFFFFFF, 1);
 			
 			_click.draw(a_bmd, 0xFFFFFF, 1);
 		}//end draw()

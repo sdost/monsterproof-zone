@@ -204,6 +204,7 @@
           <DOMBitmapItem name="roundgem_assets/round0029.png" itemID="4c659c2c-000005b6" sourceExternalFilepath=".\LIBRARY\roundgem_assets\round0029.png" sourceLastImported="1281731088" allowSmoothing="true" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="roundgem_assets\round0029.png" bitmapDataHRef="M 622 1281727704.dat" frameRight="520" frameBottom="520"/>
           <DOMBitmapItem name="title_final.png" itemID="4c6ae47d-0000011b" sourceExternalFilepath=".\LIBRARY\title_final.png" sourceLastImported="1282059106" allowSmoothing="true" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="title_final.png" bitmapDataHRef="M 653 1282073725.dat" frameRight="13440" frameBottom="10880"/>
           <DOMBitmapItem name="title02.png" itemID="4c6464cb-00000233" sourceExternalFilepath=".\LIBRARY\title02.png" sourceLastImported="1281647625" originalCompressionType="lossless" quality="50" href="title02.png" bitmapDataHRef="M 564 1281647819.dat" frameLeft="-115200" frameTop="-115200" frameRight="-115200" frameBottom="-115200"/>
+          <DOMBitmapItem name="winscreen02.png" itemID="4c77def2-000002f9" sourceExternalFilepath=".\LIBRARY\winscreen02.png" sourceLastImported="1282924250" externalFileSize="261396" allowSmoothing="true" useImportedJPEGData="false" compressionType="lossless" originalCompressionType="lossless" quality="50" href="winscreen02.png" bitmapDataHRef="M 184 1282924260.dat" frameRight="13440" frameBottom="10880"/>
      </media>
      <symbols>
           <Include href="_Buttons/level01_button.xml" loadImmediate="false"/>
@@ -270,8 +271,10 @@
           <Include href="slaser_assets/super_laser.xml" loadImmediate="false"/>
           <Include href="SuperLaserBeam_MC.xml"/>
           <Include href="SuperLaserPowerup_MC.xml"/>
+          <Include href="Symbol 106.xml" itemIcon="1" loadImmediate="false"/>
           <Include href="Symbol 134.xml" itemIcon="1" loadImmediate="false"/>
           <Include href="TitleScreen_MC.xml"/>
+          <Include href="WinScreen_MC.xml"/>
      </symbols>
      <timelines>
           <DOMTimeline name="Scene 1">
@@ -588,5 +591,7 @@
           </swatchList>
      </extendedSwatchLists>
      <PrinterSettings/>
-     <publishHistory/>
+     <publishHistory>
+          <PublishItem publishSize="1064814" publishTime="1282924279"/>
+     </publishHistory>
 </DOMDocument>

@@ -93,11 +93,20 @@ package com.bored.games.breakout.states.views
 			{
 				if( i < len )
 				{
-					(_levelButtons[i] as MightyButton).pause(false);
+					(_levelButtons[i] as MightyButton).buttonContents.visible = true;
+					if ( AppSettings.instance.userProfile.levelUnlocked(i) )
+					{
+						(_levelButtons[i] as MightyButton).pause(false);
+					}
+					else
+					{
+						(_levelButtons[i] as MightyButton).pause(true);
+					}
 					(_levelButtons[i] as MightyButton).addEventListener(ButtonEvent.MIGHTYBUTTON_CLICK_EVT, onClick, false, 0, true);
 				}
 				else
 				{
+					(_levelButtons[i] as MightyButton).buttonContents.visible = false;
 					(_levelButtons[i] as MightyButton).pause(true);
 					(_levelButtons[i] as MightyButton).removeEventListener(ButtonEvent.MIGHTYBUTTON_CLICK_EVT, onClick);
 				}

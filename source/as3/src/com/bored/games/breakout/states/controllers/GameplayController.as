@@ -108,7 +108,9 @@ package com.bored.games.breakout.states.controllers
 		
 		private function gameStartComplete(e:Event):void
 		{
-			_theme = MightySoundManager.instance.getMightySoundByName("musLevelTheme");
+			//var v:int = Math.ceil(Math.random() * 2);
+			
+			_theme = MightySoundManager.instance.getMightySoundByName("musLevelTheme_1");
 			_theme.infiniteLoop = true;
 			if (_theme) _theme.play();
 			
@@ -134,6 +136,7 @@ package com.bored.games.breakout.states.controllers
 			container.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
 			
 			(_gameView as GameView).hide();
+			(_hudView as HUDView).hide();
 			(_gameView as GameView).resetGame();
 			
 			startGame();
@@ -146,6 +149,7 @@ package com.bored.games.breakout.states.controllers
 			container.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
 			
 			(_gameView as GameView).hide();
+			(_hudView as HUDView).hide();
 			(_gameView as GameView).resetGame();
 			(_hudView as HUDView).pause(true);			
 			
@@ -159,6 +163,7 @@ package com.bored.games.breakout.states.controllers
 			container.stage.removeEventListener(KeyboardEvent.KEY_UP, keyUp);
 			
 			(_gameView as GameView).hide();
+			(_hudView as HUDView).hide();
 			(_gameView as GameView).resetGame();
 			(_hudView as HUDView).pause(true);			
 			

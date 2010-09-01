@@ -1,14 +1,9 @@
 package com.bored.games.breakout.states.views 
 {
 	import Box2DAS.Dynamics.ContactEvent;
+	import com.greensock.TweenMax;
 	import com.inassets.sound.MightySound;
 	import com.inassets.sound.MightySoundManager;
-	import com.noteflight.standingwave3.elements.AudioDescriptor;
-	import com.noteflight.standingwave3.elements.IAudioSource;
-	import com.noteflight.standingwave3.filters.BiquadFilter;
-	import com.noteflight.standingwave3.generators.SoundGenerator;
-	import com.noteflight.standingwave3.output.AudioPlayer;
-	import com.noteflight.standingwave3.sources.SoundSource;
 	import flash.events.SampleDataEvent;
 	import flash.media.Sound;
 	import flash.utils.getDefinitionByName;
@@ -230,8 +225,6 @@ package com.bored.games.breakout.states.views
 		
 		private var _lastUpdate:Number;
 		
-		private var _lowpassFilter:BiquadFilter;
-		
 		private var _contactListener:GameContactListener;
 		
 		public function GameView() 
@@ -281,6 +274,10 @@ package com.bored.games.breakout.states.views
 			
 			ParticleRenderer = new BitmapRenderer( new Rectangle( 0, 0, stage.stageWidth, stage.stageHeight), true );
 			addChild((ParticleRenderer as BitmapRenderer));
+			
+			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
+			
+			this.alpha = 0;
 		}//end addedToStageHandler()
 		
 		override protected function removedFromStageHandler(e:Event):void
@@ -365,12 +362,12 @@ package com.bored.games.breakout.states.views
 				
 		public function show():void
 		{
-			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
+			TweenMax.fromTo(this, 1.0, { "alpha": 0.0 }, { "alpha": 1.0 })
 		}//end showGameScreen()
 		
 		public function hide():void
 		{
-			this.removeEventListener(Event.RENDER, renderFrame);
+			TweenMax.fromTo(this, 1.0, { "alpha": 1.0 }, { "alpha": 0.0 })
 		}//end showGameScreen()
 		
 		public function loadNextLevel(url:String):void
@@ -632,7 +629,7 @@ package com.bored.games.breakout.states.views
 			}
 			else if ( a_fixture.GetFilterData().categoryBits == id_Wall )
 			{
-				v = uint(Math.random() * 2 + 1);
+				v = Math.ceil(Math.random() * 3);
 				
 				snd = MightySoundManager.instance.getMightySoundByName("sfxWallCollision_" + v);
 				if (snd) snd.play();
@@ -645,7 +642,7 @@ package com.bored.games.breakout.states.views
 				}
 				else
 				{
-					v = uint(Math.random() * 2 + 1);
+					v = Math.ceil(Math.random() * 3);
 				
 					snd = MightySoundManager.instance.getMightySoundByName("sfxPaddleCollision_" + v);
 					if (snd) snd.play();
@@ -721,7 +718,7 @@ package com.bored.games.breakout.states.views
 						
 						var angle:Number = Math.atan2(vel.x, vel.y);
 						
-						v = uint(Math.random() * 3 + 1);
+						v = Math.ceil(Math.random() * 4);
 				
 						snd = MightySoundManager.instance.getMightySoundByName("sfxBallSparks_" + v);
 						if (snd) snd.play();
@@ -1036,11 +1033,6 @@ package com.bored.games.breakout.states.views
 					(obj as Ball).physicsBody.SetActive(false);
 				}
 				dispatchEvent(new ObjectEvent("levelFinished", { "blocksRemaining": _grid.gridObjectList.size() }));
-			}
-				
-			if (_lowpassFilter)
-			{
-				_lowpassFilter.frequency--;
 			}
 			
 			//if ( stage ) stage.invalidate();

@@ -1,5 +1,6 @@
 package com.bored.games.breakout.states.views 
 {
+	import com.greensock.TweenMax;
 	import com.inassets.sound.MightySound;
 	import com.inassets.sound.MightySoundManager;
 	import com.jac.fsm.StateView;
@@ -46,7 +47,16 @@ package com.bored.games.breakout.states.views
 			_theme = MightySoundManager.instance.getMightySoundByName("musTitleTheme");
 			_theme.infiniteLoop = true;
 			if (_theme) _theme.play();
+			
+			this.alpha = 0;
 		}//end addedToStageHandler()
+		
+		override public function enter():void 
+		{			
+			TweenMax.fromTo(this, 1.0, { "alpha": 0.0 }, { "alpha": 1.0 } );
+			
+			enterComplete();
+		}//end enter()
 		
 		private function clickToPlay(e:MouseEvent):void
 		{			
@@ -54,9 +64,13 @@ package com.bored.games.breakout.states.views
 			
 			if(_theme) _theme.stop();
 			
-			dispatchEvent(new Event(START_GAME));
-			
+			TweenMax.fromTo(this, 1.0, { "alpha": 1.0 }, { "alpha": 0.0, "onComplete": dispatchGameStart } );
 		}//end clickToPlay()
+		
+		private function dispatchGameStart():void
+		{
+			dispatchEvent(new Event(START_GAME));
+		}//end dispatchGameStart
 		
 	}//end TitleView
 

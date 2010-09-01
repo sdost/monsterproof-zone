@@ -14,13 +14,12 @@
     </define>
     <define append="true">
       <name>CONFIG::timeStamp</name>
-      <value>'8/27/2010'</value>
+      <value>'9/1/2010'</value>
     </define>
     <source-path append="true">
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\src</path-element>
       <path-element>C:\Users\Magdalena\Projects\wck</path-element>
       <path-element>C:\Users\Magdalena\Projects\FSM_Source_1_0\Classes</path-element>
-      <path-element>C:\Users\Magdalena\Projects\standingwave3\sw3\src</path-element>
       <path-element>C:\Program Files (x86)\FlashDevelop\Library\AS3\classes</path-element>
     </source-path>
     <library-path append="true">
@@ -33,7 +32,7 @@
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\InAssetsUtils.swc</path-element>
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\UIComponents.swc</path-element>
       <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\IASounds.swc</path-element>
-      <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\awave.swc</path-element>
+      <path-element>C:\Users\Magdalena\Projects\gp_breakout\source\as3\libs\greensock.swc</path-element>
     </library-path>
   </compiler>
   <file-specs>

@@ -110,7 +110,7 @@ package com.bored.games.breakout.objects.bricks
 				
 			_brickFixture.SetFilterData(filter);
 			
-			var v:int = uint(Math.random() * 3 + 1);
+			var v:int = Math.ceil(Math.random() * 4);
 			
 			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxNanoGrowth_" + v);
 			if (snd) snd.play();
@@ -135,7 +135,7 @@ package com.bored.games.breakout.objects.bricks
 				_animController.removeEventListener( AnimationController.ANIMATION_COMPLETE, reviveAnimationComplete );
 			}
 			
-			var v:int = uint(Math.random() * 3 + 1);
+			var v:int = Math.ceil(Math.random() * 4);
 			
 			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxNanoDestroy_" + v);
 			if (snd) snd.play();

@@ -12,6 +12,9 @@ package com.bored.games.breakout.states.views
 	import com.bored.games.breakout.profiles.LevelList;
 	import com.bored.games.breakout.profiles.LevelProfile;
 	import com.bored.games.breakout.profiles.UserProfile;
+	import com.greensock.data.TweenMaxVars;
+	import com.greensock.TweenLite;
+	import com.greensock.TweenMax;
 	import com.jac.fsm.StateView;
 	import com.sven.text.BitmapFont;
 	import com.sven.text.BitmapFontFactory;
@@ -127,7 +130,10 @@ package com.bored.games.breakout.states.views
 			
 			_bmp = new Bitmap(_mainBuffer);
 			addChild(_bmp);
-				
+			
+			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
+			
+			this.alpha = 0;
 		}//end addedToStageHandler()
 		
 		override protected function removedFromStageHandler(e:Event):void 
@@ -346,7 +352,7 @@ package com.bored.games.breakout.states.views
 														  0, 0, 1, 0, 0,
 														  0, 0, 0, 0.95, 0 ] ) );
 			
-			_paused = true;
+			_paused = false;
 			
 			enterComplete();
 		}//end enter()
@@ -442,12 +448,12 @@ package com.bored.games.breakout.states.views
 		
 		public function show():void
 		{
-			this.addEventListener(Event.RENDER, renderFrame, false, 0, true);
+			TweenMax.fromTo(this, 1.0, { "alpha": 0.0 }, { "alpha": 1.0 })
 		}//end showGameScreen()
 		
 		public function hide():void
 		{
-			this.removeEventListener(Event.RENDER, renderFrame);
+			TweenMax.fromTo(this, 1.0, { "alpha": 1.0 }, { "alpha": 0.0 })
 		}//end showGameScreen()
 		
 		public function showHUD():void

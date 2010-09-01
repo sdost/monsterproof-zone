@@ -1,5 +1,6 @@
 package com.bored.games.breakout.states.views
 {
+	import com.greensock.TweenMax;
 	import com.sven.factories.AnimationSetFactory;
 	import com.sven.animation.AnimationSet;
 	import com.jac.fsm.StateView;
@@ -48,6 +49,8 @@ package com.bored.games.breakout.states.views
 			
 			_loadingMC.gotoAndStop(1);
 			addChild(_loadingMC);
+			
+			TweenMax.fromTo(this, 1.0, { "alpha": 0.0 }, { "alpha": 1.0 } );
 		}//end addedToStageHandler()
 		
 		public function set progress(a_perc:Number):void

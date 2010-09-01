@@ -1,6 +1,8 @@
 package com.bored.games.breakout.states.views 
 {
 	import com.bored.games.breakout.profiles.LevelList;
+	import com.greensock.events.TweenEvent;
+	import com.greensock.TweenMax;
 	import com.inassets.sound.MightySound;
 	import com.inassets.sound.MightySoundManager;
 	import com.inassets.ui.buttons.events.ButtonEvent;
@@ -57,6 +59,8 @@ package com.bored.games.breakout.states.views
 				mb.pause(false);
 				_levelButtons[i-1] = mb;
 			}
+			
+			this.alpha = 0;
 		}//end addedToStageHandler()
 		
 		override public function enter():void 
@@ -71,6 +75,8 @@ package com.bored.games.breakout.states.views
 			
 			refresh();
 			
+			TweenMax.fromTo(this, 1.0, { "alpha": 0.0 }, { "alpha": 1.0 });
+			
 			enterComplete();
 		}//end levelListComplete()
 		
@@ -82,8 +88,18 @@ package com.bored.games.breakout.states.views
 			
 			AppSettings.instance.currentLevelInd = ind - 1;
 			
-			dispatchEvent(new Event(LEVEL_SELECTED));
+			for ( var i:int = 0; i < _levelButtons.length; i++ )
+			{
+				(_levelButtons[i] as MightyButton).removeEventListener(ButtonEvent.MIGHTYBUTTON_CLICK_EVT, onClick);
+			}
+			
+			TweenMax.fromTo(this, 1.0, { "alpha": 1.0 }, { "alpha": 0.0, "onComplete": dispatchLevelSelected } );
 		}//end onClick()
+		
+		private function dispatchLevelSelected():void
+		{
+			dispatchEvent(new Event(LEVEL_SELECTED));
+		}//end dispatchLevelSelected()
 		
 		private function refresh():void
 		{			

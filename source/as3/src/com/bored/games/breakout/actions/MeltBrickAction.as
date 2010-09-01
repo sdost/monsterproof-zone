@@ -30,7 +30,7 @@ package com.bored.games.breakout.actions
 		{
 			_finished = false;
 			
-			var v:int = uint(Math.random() * 3 + 1);
+			var v:int = Math.ceil(Math.random() * 4);
 				
 			var snd:MightySound = MightySoundManager.instance.getMightySoundByName("sfxBrickMelt_" + v);
 			if (snd) snd.play();

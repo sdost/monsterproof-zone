@@ -41,7 +41,8 @@
           <DOMSoundItem name="powerlaser2" itemID="4c77bab5-00000314" linkageExportForAS="true" linkageClassName="sfxPaddleSuperLaserFire" sourceExternalFilepath=".\LIBRARY\powerlaser2.wav" sourceLastImported="1282896948" externalFileSize="1470868" href="powerlaser2.wav" soundDataHRef="M 49 1282845357.dat" format="44kHz 16bit Stereo" sampleCount="367603"/>
           <DOMSoundItem name="powermultiball" itemID="4c77bab5-00000313" linkageExportForAS="true" linkageClassName="sfxMultiballActivate" sourceExternalFilepath=".\LIBRARY\powermultiball.wav" sourceLastImported="1282896948" externalFileSize="363416" href="powermultiball.wav" soundDataHRef="M 50 1282845357.dat" format="44kHz 16bit Stereo" sampleCount="90739"/>
           <DOMSoundItem name="theme_intro" itemID="4c77bab4-00000312" linkageExportForAS="true" linkageClassName="musTitleTheme" sourceExternalFilepath=".\LIBRARY\theme_intro.wav" sourceLastImported="1282315894" externalFileSize="12940292" href="theme_intro.wav" soundDataHRef="M 61 1282850043.dat" format="44kHz 16bit Stereo" sampleCount="2972148"/>
-          <DOMSoundItem name="theme_levelplaceholder" itemID="4c77bab3-00000311" linkageExportForAS="true" linkageClassName="musLevelTheme" sourceExternalFilepath=".\LIBRARY\theme_levelplaceholder.wav" sourceLastImported="1282896950" externalFileSize="3763828" href="theme_levelplaceholder.wav" soundDataHRef="M 51 1282845358.dat" format="44kHz 16bit Stereo" sampleCount="940840"/>
+          <DOMSoundItem name="theme_level_nes" itemID="4c781bc1-0000020c" linkageExportForAS="true" linkageClassName="musLevelTheme_2" sourceExternalFilepath=".\LIBRARY\theme_level_nes.wav" sourceLastImported="1282938966" externalFileSize="15918380" href="theme_level_nes.wav" soundDataHRef="M 52 1282939036.dat" format="44kHz 16bit Stereo" sampleCount="3979584"/>
+          <DOMSoundItem name="theme_levelplaceholder" itemID="4c77bab3-00000311" linkageExportForAS="true" linkageClassName="musLevelTheme_1" sourceExternalFilepath=".\LIBRARY\theme_levelplaceholder.wav" sourceLastImported="1282896950" externalFileSize="3763828" href="theme_levelplaceholder.wav" soundDataHRef="M 51 1282845358.dat" format="44kHz 16bit Stereo" sampleCount="940840"/>
           <DOMSoundItem name="unbreak1" itemID="4c77bab3-00000310" sourceExternalFilepath=".\LIBRARY\unbreak1.wav" sourceLastImported="1282896952" externalFileSize="242010" href="unbreak1.wav" soundDataHRef="M 52 1282845358.dat" format="44kHz 16bit Stereo" sampleCount="60389"/>
           <DOMSoundItem name="unbreak2" itemID="4c77bab3-0000030f" sourceExternalFilepath=".\LIBRARY\unbreak2.wav" sourceLastImported="1282896954" externalFileSize="242010" href="unbreak2.wav" soundDataHRef="M 53 1282845359.dat" format="44kHz 16bit Stereo" sampleCount="60389"/>
           <DOMSoundItem name="unbreak3" itemID="4c77bab3-0000030e" sourceExternalFilepath=".\LIBRARY\unbreak3.wav" sourceLastImported="1282896954" externalFileSize="242010" href="unbreak3.wav" soundDataHRef="M 54 1282845359.dat" format="44kHz 16bit Stereo" sampleCount="60389"/>
@@ -369,6 +370,7 @@
      </extendedSwatchLists>
      <PrinterSettings/>
      <publishHistory>
+          <PublishItem publishSize="3976406" publishTime="1282939130"/>
           <PublishItem publishSize="2549999" publishTime="1282915096"/>
           <PublishItem publishSize="2296516" publishTime="1282854732"/>
           <PublishItem publishSize="2253354" publishTime="1282853289"/>
